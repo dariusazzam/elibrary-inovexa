@@ -23,19 +23,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $data = $request->validate([
-            'role'     => 'required|in:member,admin,super',
-            'id'       => 'required|string|max:50',
+            'role' => 'required|in:member,admin,super',
+            'id' => 'required|string|max:50',
             'password' => 'required|string|max:100',
         ], [
-            'id.required'       => 'ID atau NIK wajib diisi.',
+            'id.required' => 'ID atau NIK wajib diisi.',
             'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
-        $key = 'login:' . $request->ip();
+        $key = 'login:'.$request->ip();
 
         if (RateLimiter::tooManyAttempts($key, 5)) {
             return back()->withInput($request->only('id', 'role'))
-                ->with('err', 'Percobaan maksimal tercapai. Coba lagi dalam ' . RateLimiter::availableIn($key) . ' detik.');
+                ->with('err', 'Percobaan maksimal tercapai. Coba lagi dalam '.RateLimiter::availableIn($key).' detik.');
         }
 
         $lib = Library::load();
@@ -58,12 +58,12 @@ class AuthController extends Controller
             }
 
             session(['user' => [
-                'n'    => $acc['name'],
-                'id'   => $displayId,
+                'n' => $acc['name'],
+                'id' => $displayId,
                 'role' => $data['role'],
             ]]);
 
-            return redirect()->route('dashboard')->with('toast', 'Selamat datang, ' . $acc['name']);
+            return redirect()->route('dashboard')->with('toast', 'Selamat datang, '.$acc['name']);
         }
 
         RateLimiter::hit($key, 60);
@@ -93,22 +93,23 @@ class AuthController extends Controller
         }
 
         $lib = Library::load();
+
         return view('register', compact('lib'));
     }
 
     public function register(Request $request)
     {
         $data = $request->validate([
-            'name'                  => 'required|string|min:3|max:60',
-            'nik'                   => 'required|digits:16',
-            'password'              => 'required|string|min:6|confirmed',
+            'name' => 'required|string|min:3|max:60',
+            'nik' => 'required|digits:16',
+            'password' => 'required|string|min:6|confirmed',
         ], [
-            'name.required'         => 'Nama lengkap wajib diisi.',
-            'nik.required'          => 'Nomor Induk Kependudukan (NIK) wajib diisi.',
-            'nik.digits'            => 'NIK harus berupa 16 digit angka sesuai KTP.',
-            'password.required'     => 'Kata sandi wajib diisi.',
-            'password.min'          => 'Kata sandi minimal 6 karakter.',
-            'password.confirmed'    => 'Konfirmasi kata sandi tidak cocok.',
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'nik.required' => 'Nomor Induk Kependudukan (NIK) wajib diisi.',
+            'nik.digits' => 'NIK harus berupa 16 digit angka sesuai KTP.',
+            'password.required' => 'Kata sandi wajib diisi.',
+            'password.min' => 'Kata sandi minimal 6 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
         ]);
 
         $lib = Library::load();
@@ -123,12 +124,12 @@ class AuthController extends Controller
         // Langsung beri sesi login
         $request->session()->regenerate();
         session(['user' => [
-            'n'    => $created['name'],
-            'id'   => $created['id'],
+            'n' => $created['name'],
+            'id' => $created['id'],
             'role' => 'member',
         ]]);
 
-        return redirect()->route('dashboard')->with('toast', 'Pendaftaran berhasil! Nomor ID Anda: ' . $created['id']);
+        return redirect()->route('dashboard')->with('toast', 'Pendaftaran berhasil! Nomor ID Anda: '.$created['id']);
     }
 
     // -----------------------------------------------------------------
@@ -143,13 +144,13 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $data = $request->validate([
-            'id'                    => 'required|string|max:50',
-            'password'              => 'required|string|min:6|confirmed',
+            'id' => 'required|string|max:50',
+            'password' => 'required|string|min:6|confirmed',
         ], [
-            'id.required'           => 'Nomor ID Anggota atau NIK wajib diisi.',
-            'password.required'     => 'Kata sandi baru wajib diisi.',
-            'password.min'          => 'Kata sandi baru minimal 6 karakter.',
-            'password.confirmed'    => 'Konfirmasi kata sandi baru tidak cocok.',
+            'id.required' => 'Nomor ID Anggota atau NIK wajib diisi.',
+            'password.required' => 'Kata sandi baru wajib diisi.',
+            'password.min' => 'Kata sandi baru minimal 6 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi baru tidak cocok.',
         ]);
 
         $lib = Library::load();

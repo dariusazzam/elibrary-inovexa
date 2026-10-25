@@ -1,60 +1,169 @@
 @extends('layouts.app')
-
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Anggota — Inovexa Library')
 
 @section('content')
-<div class="space-y-6">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-4">
-        <div>
-            <h1 class="text-2xl font-bold text-gray-900">Dashboard Perpustakaan</h1>
-            <p class="text-sm text-gray-500">Selamat datang, {{ $user->name }} ({{ $user->role->role_name ?? '-' }})</p>
-        </div>
-        <div class="mt-4 md:mt-0 flex gap-2">
-            <a href="{{ route('books.index') }}" class="px-3 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">Katalog Buku</a>
-            @if($user->isMember() && $user->member_number)
-                <a href="{{ route('profile.card') }}" class="px-3 py-2 bg-emerald-600 text-white rounded-md text-sm font-medium hover:bg-emerald-700">Kartu Anggota</a>
-            @endif
-        </div>
-    </div>
+@php
+    $r = $u['role'] ?? 'member';
+    $isMember = $r === 'member';
+    $userName = $isMember ? 'Herdman' : ($u['n'] ?? 'Petugas Budi Santoso');
+    $userNumber = $isMember ? 'INX - 2026 - 8820' : ($u['id'] ?? 'admin');
+    $userRole = $isMember ? 'Anggota Reguler' : 'Admin Pegawai Sirkulasi';
+@endphp
 
-    <!-- Overview Stats -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-            <div class="text-xs font-semibold text-gray-500 uppercase">Total Buku</div>
-            <div class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['total_books'] ?? 0 }}</div>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-            <div class="text-xs font-semibold text-gray-500 uppercase">Pinjaman Aktif</div>
-            <div class="text-2xl font-bold text-indigo-600 mt-2">{{ $stats['active_loans'] ?? 0 }}</div>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-            <div class="text-xs font-semibold text-gray-500 uppercase">Reservasi Pending</div>
-            <div class="text-2xl font-bold text-amber-600 mt-2">{{ $stats['pending_reservations'] ?? 0 }}</div>
-        </div>
-        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-            <div class="text-xs font-semibold text-gray-500 uppercase">Total Anggota</div>
-            <div class="text-2xl font-bold text-emerald-600 mt-2">{{ $stats['total_members'] ?? 0 }}</div>
-        </div>
-    </div>
+<div class="figma-container">
+    {{-- Sidebar Kiri Hijau Tua Persis Image 2 Figma --}}
+    <aside class="figma-sidebar">
+        {{-- Area Atas: Header Gambar Perpustakaan + Hamburger & Badge PORTAL ANGGOTA --}}
+        <div class="figma-sidebar-header-bg">
+            <div class="figma-header-top-row">
+                <button type="button" class="figma-burger-btn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <span class="figma-portal-tag">PORTAL ANGGOTA</span>
+            </div>
 
-    @if($user->isMember())
-        <div class="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4">Informasi Keanggotaan Saya</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <span class="text-gray-500">Buku Sedang Dipinjam:</span>
-                    <div class="text-xl font-bold text-gray-800 mt-1">{{ $memberStats['my_loans_count'] ?? 0 }}</div>
+            <div class="figma-user-badge-row">
+                <div class="figma-avatar-circle">
+                    <span>H</span>
                 </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <span class="text-gray-500">Reservasi Buku:</span>
-                    <div class="text-xl font-bold text-gray-800 mt-1">{{ $memberStats['my_reservations_count'] ?? 0 }}</div>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <span class="text-gray-500">Denda Belum Lunas:</span>
-                    <div class="text-xl font-bold text-rose-600 mt-1">Rp {{ number_format($memberStats['my_unpaid_fines'] ?? 0, 0, ',', '.') }}</div>
+                <div class="figma-user-meta">
+                    <b>{{ $userName }}</b>
+                    <small>{{ $userRole }}</small>
+                    <div class="figma-user-id">{{ $userNumber }}</div>
                 </div>
             </div>
         </div>
-    @endif
+
+        {{-- Navigasi Menu Vertikal Persis Image 2 Figma --}}
+        <nav class="figma-side-nav">
+            {{-- 1. Dashboard --}}
+            <a href="{{ route('dashboard', 'ov') }}" class="figma-nav-item {{ ($menu ?? 'ov') === 'ov' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">📊</span>
+                <span class="figma-nav-text">Dashboard</span>
+            </a>
+
+            {{-- 2. Profil & Kartu Digital --}}
+            <a href="{{ route('dashboard', 'card') }}" class="figma-nav-item {{ ($menu ?? '') === 'card' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">🪪</span>
+                <span class="figma-nav-text">Profil &amp; Kartu Digital</span>
+            </a>
+
+            {{-- 3. Peminjaman & Denda --}}
+            <a href="{{ route('dashboard', 'loans') }}" class="figma-nav-item {{ ($menu ?? '') === 'loans' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">📖</span>
+                <span class="figma-nav-text">Peminjaman &amp; Denda</span>
+                <span class="figma-badge-green">2</span>
+            </a>
+
+            {{-- 4. Reservasi Buku --}}
+            <a href="{{ route('dashboard', 'resv') }}" class="figma-nav-item {{ ($menu ?? '') === 'resv' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">🪑</span>
+                <span class="figma-nav-text">Reservasi Buku</span>
+                <span class="figma-dot-yellow"></span>
+            </a>
+
+            {{-- 5. E-Library & Baca --}}
+            <a href="{{ route('dashboard', 'elib') }}" class="figma-nav-item {{ ($menu ?? '') === 'elib' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">📱</span>
+                <span class="figma-nav-text">E-Library &amp; Baca</span>
+            </a>
+
+            {{-- 6. Notifikasi --}}
+            <a href="{{ route('dashboard', 'notif') }}" class="figma-nav-item {{ ($menu ?? '') === 'notif' ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">🔔</span>
+                <span class="figma-nav-text">Notifikasi</span>
+                <span class="figma-badge-orange">Baru</span>
+            </a>
+        </nav>
+
+        {{-- Bagian Bawah: Tombol Keluar Sistem --}}
+        <div class="figma-side-bottom">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="figma-logout-btn">
+                    <span>🚪</span> Keluar Sistem
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    {{-- Area Konten Utama Kanan Persis Image 2 Figma --}}
+    <div class="figma-main-wrapper">
+        {{-- Top Header Bar --}}
+        @if(($menu ?? '') === 'card')
+        <header class="figma-topbar figma-topbar-light">
+            <div class="figma-search-pill figma-search-pill-light">
+                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <input type="text" placeholder="Cari koleksi katalog, judul buku, atau ISBN..." onkeydown="if(event.key==='Enter') window.location='{{ route('dashboard', 'cat') }}'">
+            </div>
+
+            <div class="figma-topbar-actions">
+                <div class="figma-time-badge figma-time-badge-light">
+                    <span class="figma-dot-green"></span>
+                    <small>Layanan Sirkulasi Buka • 08:00 - 20:00 WIB</small>
+                </div>
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
+                    <span>🔔</span>
+                    <span class="figma-bell-dot"></span>
+                </button>
+                <div class="figma-topbar-user-pill">
+                    <div class="figma-topbar-user-avatar">H</div>
+                    <div class="figma-topbar-user-info">
+                        <span class="topbar-user-name">{{ $userName }}</span>
+                        <span class="topbar-user-role">{{ $userRole }}</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @else
+        <header class="figma-topbar">
+            <div class="figma-topbar-title-wrap">
+                <h1 class="figma-topbar-title">Dashboard Anggota</h1>
+                <small class="figma-topbar-sub">Sistem Informasi Perpustakaan &amp; E-Library Inovexa</small>
+            </div>
+
+            <div class="figma-search-pill">
+                <span class="figma-search-icon">🔍</span>
+                <input type="text" placeholder="Cari judul buku, pengarang, ISBN, atau e-book...">
+            </div>
+
+            <div class="figma-topbar-actions">
+                <div class="figma-time-badge">
+                    <span class="figma-dot-green"></span>
+                    <small>Layanan Sirkulasi Aktif: 08.00 - 20.00 WIB</small>
+                </div>
+                <button type="button" class="figma-bell-btn" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
+                    <span>🔔</span>
+                    <span class="figma-bell-dot"></span>
+                </button>
+            </div>
+        </header>
+        @endif
+
+        {{-- Konten Utama Panel --}}
+        <main class="figma-page-content">
+            @if(view()->exists('panels.' . $menu))
+                @include('panels.' . $menu)
+            @else
+                @include('panels.ov')
+            @endif
+        </main>
+    </div>
+</div>
+
+{{-- Modal Kontak / Bantuan Sirkulasi --}}
+<div class="modal" id="contact-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('contact-modal')">
+    <div class="modal-box">
+        <button class="modal-close" type="button" onclick="closeModal('contact-modal')">×</button>
+        <div class="lbl">MEJA SIRKULASI TERPADU</div>
+        <h2 style="margin:4px 0 10px">Layanan Konsultasi &amp; Pustakawan</h2>
+        <p style="color:var(--m);font-size:13px;line-height:1.5">Hubungi staf sirkulasi bila memerlukan bantuan perpanjangan masa pinjam, loker drop-box, reservasi meja baca, atau validasi kartu.</p>
+        <div class="card" style="background:#f9f8f6;margin-top:14px;font-size:13px;line-height:1.8">
+            <b>☎ Telepon / WA Sirkulasi:</b> 0812-9876-5432<br>
+            <b>✉ Pos-el Pelayanan:</b> sirkulasi@inovexa.test<br>
+            <b>📍 Lokasi:</b> Lantai 1 Meja Sirkulasi Sentral (Buka 08.00 - 20.00 WIB)
+        </div>
+        <button class="btn" type="button" style="width:100%;margin-top:18px" onclick="closeModal('contact-modal')">Tutup Jendela</button>
+    </div>
 </div>
 @endsection

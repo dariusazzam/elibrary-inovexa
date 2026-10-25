@@ -2,136 +2,166 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
-use App\Models\Book;
-use App\Models\Loan;
-use App\Models\Reservation;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Support\Library;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
-    public function showLoginForm(): View|RedirectResponse
+    public function form(?string $role = 'member')
     {
-        if (Auth::check()) {
+        if (session('user')) {
             return redirect()->route('dashboard');
         }
 
-        return view('auth.login');
+        $lib = Library::load();
+        $role = $role ?: 'member';
+
+        return view('login', compact('lib', 'role'));
     }
 
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(Request $request)
     {
-        $credentials = $request->validated();
-
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()->withInput($request->only('email'))
-                ->with('error', 'Kombinasi email dan password tidak sesuai.');
-        }
-
-        /** @var User $user */
-        $user = Auth::user();
-
-        if (! $user->isActive()) {
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return redirect()->route('login')
-                ->with('error', 'Akun Anda dinonaktifkan. Silakan hubungi pengelola perpustakaan.');
-        }
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard'))
-            ->with('success', 'Selamat datang kembali, '.$user->name.'.');
-    }
-
-    public function logout(Request $request): RedirectResponse
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login')
-            ->with('success', 'Anda telah berhasil keluar dari sistem.');
-    }
-
-    public function dashboard(): View
-    {
-        /** @var User $user */
-        $user = Auth::user();
-
-        $stats = [
-            'total_books' => Book::count(),
-            'active_loans' => Loan::where('status', 'dipinjam')->count(),
-            'pending_reservations' => Reservation::where('status', 'pending')->count(),
-            'total_members' => User::whereHas('role', fn ($q) => $q->where('role_name', 'Anggota'))->count(),
-        ];
-
-        $memberStats = [];
-        if ($user->isMember()) {
-            $memberStats = [
-                'my_loans_count' => Loan::where('user_id', $user->id)->where('status', 'dipinjam')->count(),
-                'my_reservations_count' => Reservation::where('user_id', $user->id)->where('status', 'pending')->count(),
-                'my_unpaid_fines' => Loan::where('user_id', $user->id)
-                    ->whereHas('returnRecord', fn ($q) => $q->where('payment_status', 'belum_bayar'))
-                    ->with('returnRecord')
-                    ->get()
-                    ->sum(fn ($l) => $l->returnRecord?->penalty_fee ?? 0),
-            ];
-        }
-
-        return view('dashboard', compact('user', 'stats', 'memberStats'));
-    }
-
-    public function profile(): View
-    {
-        /** @var User $user */
-        $user = Auth::user();
-
-        return view('profile.index', compact('user'));
-    }
-
-    public function updateProfile(Request $request): RedirectResponse
-    {
-        /** @var User $user */
-        $user = Auth::user();
-
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'phone' => ['nullable', 'string', 'max:20'],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
+        $data = $request->validate([
+            'role' => 'required|in:member,admin,super',
+            'id' => 'required|string|max:50',
+            'password' => 'required|string|max:100',
+        ], [
+            'id.required' => 'ID atau NIK wajib diisi.',
+            'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
-        if (empty($validated['password'])) {
-            unset($validated['password']);
-        } else {
-            $validated['password'] = Hash::make($validated['password']);
+        $key = 'login:'.$request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            return back()->withInput($request->only('id', 'role'))
+                ->with('err', 'Percobaan maksimal tercapai. Coba lagi dalam '.RateLimiter::availableIn($key).' detik.');
         }
 
-        $user->update($validated);
+        $lib = Library::load();
+        $id = trim($data['id']);
 
-        return redirect()->route('profile')
-            ->with('success', 'Profil Anda berhasil diperbarui.');
+        if ($lib->verify($id, $data['password'], $data['role'])) {
+            RateLimiter::clear($key);
+            $request->session()->regenerate();
+
+            $acc = $lib->findAccount($id);
+            // Cari ID resmi kartu (bukan NIK) untuk disimpan di sesi
+            $displayId = $id;
+            if (strlen($id) === 16 && ctype_digit($id)) {
+                foreach ($lib->users as $u) {
+                    if ($u['n'] === $acc['name']) {
+                        $displayId = $u['i'];
+                        break;
+                    }
+                }
+            }
+
+            session(['user' => [
+                'n' => $acc['name'],
+                'id' => $displayId,
+                'role' => $data['role'],
+            ]]);
+
+            return redirect()->route('dashboard')->with('toast', 'Selamat datang, '.$acc['name']);
+        }
+
+        RateLimiter::hit($key, 60);
+        $left = max(0, 5 - RateLimiter::attempts($key));
+
+        return redirect()->route('login', $data['role'])
+            ->withInput($request->only('id'))
+            ->with('err', "ID/NIK atau kata sandi tidak cocok. Sisa percobaan: {$left}.");
     }
 
-    public function memberCard(): View|RedirectResponse
+    public function logout(Request $request)
     {
-        /** @var User $user */
-        $user = Auth::user();
+        $request->session()->forget('user');
+        $request->session()->regenerateToken();
 
-        if (! $user->isMember() || empty($user->member_number)) {
-            return redirect()->route('dashboard')
-                ->with('error', 'Kartu anggota hanya tersedia untuk akun anggota terdaftar.');
+        return redirect()->route('home')->with('toast', 'Anda telah keluar dari sistem.');
+    }
+
+    // -----------------------------------------------------------------
+    // Pendaftaran mandiri anggota
+    // -----------------------------------------------------------------
+
+    public function registerForm()
+    {
+        if (session('user')) {
+            return redirect()->route('dashboard');
         }
 
-        return view('profile.card', compact('user'));
+        $lib = Library::load();
+
+        return view('register', compact('lib'));
+    }
+
+    public function register(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|min:3|max:60',
+            'nik' => 'required|digits:16',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'nik.required' => 'Nomor Induk Kependudukan (NIK) wajib diisi.',
+            'nik.digits' => 'NIK harus berupa 16 digit angka sesuai KTP.',
+            'password.required' => 'Kata sandi wajib diisi.',
+            'password.min' => 'Kata sandi minimal 6 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+        ]);
+
+        $lib = Library::load();
+
+        if ($lib->memberTaken($data['nik'])) {
+            return back()->withInput($request->only('name', 'nik'))
+                ->withErrors(['nik' => 'NIK ini sudah terdaftar sebagai anggota. Silakan masuk atau gunakan fitur Lupa Kata Sandi.']);
+        }
+
+        $created = $lib->registerMember(trim($data['name']), trim($data['nik']), $data['password']);
+
+        // Langsung beri sesi login
+        $request->session()->regenerate();
+        session(['user' => [
+            'n' => $created['name'],
+            'id' => $created['id'],
+            'role' => 'member',
+        ]]);
+
+        return redirect()->route('dashboard')->with('toast', 'Pendaftaran berhasil! Nomor ID Anda: '.$created['id']);
+    }
+
+    // -----------------------------------------------------------------
+    // Lupa kata sandi mandiri
+    // -----------------------------------------------------------------
+
+    public function forgotForm()
+    {
+        return view('forgot-password');
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $data = $request->validate([
+            'id' => 'required|string|max:50',
+            'password' => 'required|string|min:6|confirmed',
+        ], [
+            'id.required' => 'Nomor ID Anggota atau NIK wajib diisi.',
+            'password.required' => 'Kata sandi baru wajib diisi.',
+            'password.min' => 'Kata sandi baru minimal 6 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi baru tidak cocok.',
+        ]);
+
+        $lib = Library::load();
+        $ok = $lib->resetPassword(trim($data['id']), $data['password']);
+
+        if (! $ok) {
+            return back()->withInput($request->only('id'))
+                ->withErrors(['id' => 'Akun anggota dengan ID/NIK tersebut tidak ditemukan.']);
+        }
+
+        return redirect()->route('login', 'member')
+            ->with('toast', 'Kata sandi berhasil diperbarui. Silakan masuk dengan sandi baru Anda.');
     }
 }

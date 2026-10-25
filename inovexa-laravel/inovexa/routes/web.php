@@ -22,25 +22,25 @@ Route::get('/lupa-sandi', [AuthController::class, 'forgotForm'])->name('password
 Route::post('/lupa-sandi', [AuthController::class, 'resetPassword'])->name('password.reset');
 
 // Semua peran yang sudah login
-Route::middleware(EnsureRole::class . ':member,admin,super')->group(function () {
+Route::middleware(EnsureRole::class.':member,admin,super')->group(function () {
     Route::get('/dashboard/elib/baca/{id}', [DashboardController::class, 'reader'])->whereNumber('id')->name('elib.read');
     Route::get('/dashboard/{menu?}', [DashboardController::class, 'show'])->name('dashboard');
 });
 
 // Anggota
-Route::middleware(EnsureRole::class . ':member')->group(function () {
+Route::middleware(EnsureRole::class.':member')->group(function () {
     Route::delete('/reservasi/{id}', [DashboardController::class, 'cancel'])->whereNumber('id')->name('reserve.cancel');
 });
 
 // Petugas & Super Admin
-Route::middleware(EnsureRole::class . ':admin,super')->group(function () {
+Route::middleware(EnsureRole::class.':admin,super')->group(function () {
     Route::post('/sirkulasi', [DashboardController::class, 'lend'])->name('lend');
     Route::post('/sirkulasi/{id}/kembali', [DashboardController::class, 'giveBack'])->whereNumber('id')->name('return');
     Route::post('/stok', [DashboardController::class, 'addBook'])->name('stock.add');
 });
 
 // Super Admin
-Route::middleware(EnsureRole::class . ':super')->group(function () {
+Route::middleware(EnsureRole::class.':super')->group(function () {
     Route::post('/pengguna/{i}/toggle', [DashboardController::class, 'toggleUser'])->whereNumber('i')->name('user.toggle');
     Route::post('/pengaturan', [DashboardController::class, 'saveSettings'])->name('settings.save');
 });

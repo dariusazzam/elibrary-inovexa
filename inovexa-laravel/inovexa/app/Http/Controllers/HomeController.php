@@ -9,8 +9,8 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $lib   = Library::load();
-        $q     = trim((string) $request->query('q', ''));
+        $lib = Library::load();
+        $q = trim((string) $request->query('q', ''));
         $topic = (string) $request->query('topic', '');
         $books = $lib->filter($q, $topic);
 
@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function reserve(int $id)
     {
         $user = session('user');
-        $lib  = Library::load();
+        $lib = Library::load();
 
         if (! $user) {
             return redirect()->route('login', 'member')->with('toast', 'Masuk sebagai anggota untuk reservasi');

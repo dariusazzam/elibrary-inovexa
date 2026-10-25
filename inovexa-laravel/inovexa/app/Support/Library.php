@@ -12,15 +12,15 @@ class Library
 {
     public const ROLES = [
         'member' => 'Anggota (Pengunjung)',
-        'admin'  => 'Admin Pegawai',
-        'super'  => 'Super Admin',
+        'admin' => 'Admin Pegawai',
+        'super' => 'Super Admin',
     ];
 
     /** [id, password, nama] — contoh awal yang ditampilkan di halaman login */
     public const CREDS = [
         'member' => ['INX-2026-8820', '123456', 'Herdman'],
-        'admin'  => ['admin', 'admin123', 'Petugas Sirkulasi'],
-        'super'  => ['super', 'super123', 'Super Admin'],
+        'admin' => ['admin', 'admin123', 'Petugas Sirkulasi'],
+        'super' => ['super', 'super123', 'Super Admin'],
     ];
 
     public const NIK_DEMO = '3271040801990002';
@@ -29,22 +29,27 @@ class Library
 
     public const MENU = [
         'member' => [['ov', 'Dashboard'], ['loans', 'Pinjaman Saya'], ['resv', 'Reservasi'], ['cat', 'Katalog'], ['elib', 'E-Library & Baca'], ['notif', 'Notifikasi'], ['card', 'Kartu Digital']],
-        'admin'  => [['ov', 'Ringkasan'], ['circ', 'Sirkulasi'], ['stock', 'Stok Buku'], ['mem', 'Anggota']],
-        'super'  => [['ov', 'Ringkasan'], ['users', 'Pengguna'], ['roles', 'Hak Akses'], ['sys', 'Pengaturan']],
+        'admin' => [['ov', 'Ringkasan'], ['circ', 'Sirkulasi'], ['stock', 'Stok Buku'], ['mem', 'Anggota']],
+        'super' => [['ov', 'Ringkasan'], ['users', 'Pengguna'], ['roles', 'Hak Akses'], ['sys', 'Pengaturan']],
     ];
 
     /** Teks halaman login per peran */
     public const LOGIN = [
         'member' => ['Portal Layanan Anggota Perpustakaan', 'Akses peminjaman, reservasi buku, bebas denda sirkulasi, & pembacaan katalog e-library warga kota.', 'Nomor NIK (KTP) / ID Anggota Perpustakaan', 'Contoh: 3271040801990002 atau INX-2026-8820', 'Gunakan 16 digit NIK yang terdaftar pada Disdukcapil atau nomor kartu fisik perpustakaan.', 'Masuk ke Portal Anggota'],
-        'admin'  => ['Meja Kerja Petugas Sirkulasi', 'Layanan sirkulasi pinjam-kembali, input denda keterlambatan, & pencatatan buku fisik perpustakaan.', 'NIP / ID Pegawai Perpustakaan', 'Contoh: 198507122010011003 atau admin', 'Gunakan NIP atau ID pegawai yang diterbitkan oleh Dinas Perpustakaan.', 'Masuk ke Meja Petugas'],
-        'super'  => ['Konsol Super Admin Sistem', 'Pengaturan hak akses peran, data master pengguna, & konfigurasi sistem perpustakaan.', 'ID Super Admin', 'Contoh: SA-0001 atau super', 'Akses khusus pengelola pusat. Seluruh aktivitas dicatat dalam log audit.', 'Masuk ke Konsol Admin'],
+        'admin' => ['Meja Kerja Petugas Sirkulasi', 'Layanan sirkulasi pinjam-kembali, input denda keterlambatan, & pencatatan buku fisik perpustakaan.', 'NIP / ID Pegawai Perpustakaan', 'Contoh: 198507122010011003 atau admin', 'Gunakan NIP atau ID pegawai yang diterbitkan oleh Dinas Perpustakaan.', 'Masuk ke Meja Petugas'],
+        'super' => ['Konsol Super Admin Sistem', 'Pengaturan hak akses peran, data master pengguna, & konfigurasi sistem perpustakaan.', 'ID Super Admin', 'Contoh: SA-0001 atau super', 'Akses khusus pengelola pusat. Seluruh aktivitas dicatat dalam log audit.', 'Masuk ke Konsol Admin'],
     ];
 
     public array $books = [];
+
     public array $loans = [];
+
     public array $resv = [];
+
     public array $users = [];
+
     public array $cfg = ['dur' => 7, 'fine' => 1000];
+
     public int $lastId = 20;
 
     /** id/NIK => ['pw' => string, 'name' => string, 'role' => string]. Autentikasi berbasis akun ini. */
@@ -55,7 +60,7 @@ class Library
 
     public static function load(): self
     {
-        $lib = new self();
+        $lib = new self;
         $data = session('lib');
 
         if (! $data) {
@@ -129,6 +134,7 @@ class Library
                 return $b;
             }
         }
+
         return null;
     }
 
@@ -139,6 +145,7 @@ class Library
                 return true;
             }
         }
+
         return false;
     }
 
@@ -146,7 +153,8 @@ class Library
     {
         return array_values(array_filter($this->books, function ($b) use ($q, $topic) {
             $okTopic = $topic === '' || $b['c'] === $topic;
-            $okQ = $q === '' || mb_stripos($b['t'] . $b['a'] . $b['c'], $q) !== false;
+            $okQ = $q === '' || mb_stripos($b['t'].$b['a'].$b['c'], $q) !== false;
+
             return $okTopic && $okQ;
         }));
     }
@@ -154,12 +162,13 @@ class Library
     public function fine(array $loan): int
     {
         $late = intdiv(Carbon::today()->timestamp - Carbon::parse($loan['d'])->startOfDay()->timestamp, 86400);
+
         return max(0, $late) * $this->cfg['fine'];
     }
 
     public function rp(int $n): string
     {
-        return 'Rp' . number_format($n, 0, ',', '.');
+        return 'Rp'.number_format($n, 0, ',', '.');
     }
 
     public function hasReservation(int $bookId, string $who): bool
@@ -169,6 +178,7 @@ class Library
                 return true;
             }
         }
+
         return false;
     }
 
@@ -189,10 +199,13 @@ class Library
         $this->loans = array_values(array_filter($this->loans, function ($l) use ($bookId, &$fine) {
             if ($l['b'] === $bookId) {
                 $fine = $this->fine($l);
+
                 return false;
             }
+
             return true;
         }));
+
         return $fine;
     }
 
@@ -220,6 +233,7 @@ class Library
         if (! $this->isActive($id)) {
             return false;
         }
+
         return hash_equals($acc['pw'], $password);
     }
 
@@ -241,6 +255,7 @@ class Library
                 return (bool) $u['on'];
             }
         }
+
         return true;
     }
 
@@ -248,13 +263,15 @@ class Library
     {
         do {
             $this->memberSeq++;
-            $id = 'INX-2026-' . $this->memberSeq;
+            $id = 'INX-2026-'.$this->memberSeq;
         } while (isset($this->accounts[$id]));
+
         return $id;
     }
 
     /**
      * Mendaftarkan anggota baru.
+     *
      * @return array{id:string,name:string}
      */
     public function registerMember(string $name, string $nik, string $password): array
@@ -281,6 +298,7 @@ class Library
                 return true;
             }
         }
+
         return false;
     }
 
@@ -298,6 +316,7 @@ class Library
             }
         }
         $this->save();
+
         return true;
     }
 
@@ -317,7 +336,7 @@ class Library
         $c = $b['c'];
 
         return [
-            ['n' => 1, 'title' => 'Pengantar — Tentang ' . $t, 'minutes' => 4, 'body' => "Buku \"{$t}\" karya {$a} termasuk dalam ranah {$c}. Bab pengantar ini memaparkan latar belakang penulisan, lingkup pembahasan, serta cara membaca buku ini secara efisien. Pembaca dianjurkan menyiapkan catatan kecil untuk menandai gagasan utama yang ingin ditelusuri lebih lanjut di rak referensi."],
+            ['n' => 1, 'title' => 'Pengantar — Tentang '.$t, 'minutes' => 4, 'body' => "Buku \"{$t}\" karya {$a} termasuk dalam ranah {$c}. Bab pengantar ini memaparkan latar belakang penulisan, lingkup pembahasan, serta cara membaca buku ini secara efisien. Pembaca dianjurkan menyiapkan catatan kecil untuk menandai gagasan utama yang ingin ditelusuri lebih lanjut di rak referensi."],
             ['n' => 2, 'title' => 'Inti Pembahasan', 'minutes' => 7, 'body' => "Pada bagian inti, {$a} menyusun argumen secara bertahap: dimulai dari definisi istilah kunci, kemudian konteks historisnya, lalu contoh penerapannya. Setiap sub-bab ditutup dengan ringkasan tiga poin. Pembaca dapat memanfaatkan navigasi bab di panel samping untuk melompat antar bagian tanpa kehilangan urutan logika penulis."],
             ['n' => 3, 'title' => 'Kesimpulan & Refleksi', 'minutes' => 5, 'body' => "Kesimpulan merajut kembali benang merah {$c} yang menjadi dasar buku ini. {$a} mengajak pembaca merefleksikan bagaimana gagasan tersebut relevan dengan kehidupan sehari-hari warga kota. Bagian akhir memuat daftar bacaan lanjutan yang tersedia di katalog perpustakaan Inovexa dan dapat Anda reservasi langsung dari menu Katalog."],
         ];
@@ -344,9 +363,9 @@ class Library
                 if ($this->fine($l) > 0) {
                     $out[] = ['msg' => "Pinjaman \"{$book}\" terlambat. Denda berjalan {$this->rp($this->fine($l))}.", 'time' => 'Segera', 'tone' => 'no'];
                 } elseif ($days <= 2) {
-                    $out[] = ['msg' => "Jatuh tempo \"{$book}\" " . ($days <= 0 ? 'hari ini' : "{$days} hari lagi") . '.', 'time' => 'Hari ini', 'tone' => 'warn'];
+                    $out[] = ['msg' => "Jatuh tempo \"{$book}\" ".($days <= 0 ? 'hari ini' : "{$days} hari lagi").'.', 'time' => 'Hari ini', 'tone' => 'warn'];
                 } else {
-                    $out[] = ['msg' => "\"{$book}\" aman — jatuh tempo " . Carbon::parse($l['d'])->translatedFormat('d F Y') . '.', 'time' => 'Terjadwal', 'tone' => 'ok'];
+                    $out[] = ['msg' => "\"{$book}\" aman — jatuh tempo ".Carbon::parse($l['d'])->translatedFormat('d F Y').'.', 'time' => 'Terjadwal', 'tone' => 'ok'];
                 }
             }
 
@@ -363,8 +382,8 @@ class Library
             }
         } else {
             $overdue = array_values(array_filter($this->loans, fn ($l) => $this->fine($l) > 0));
-            $out[] = ['msg' => count($overdue) . " pinjaman sedang terlambat.", 'time' => 'Hari ini', 'tone' => count($overdue) ? 'no' : 'ok'];
-            $out[] = ['msg' => count($this->books) . ' judul terdaftar, ' . count($this->loans) . ' sedang dipinjam.', 'time' => 'Ringkasan', 'tone' => 'warn'];
+            $out[] = ['msg' => count($overdue).' pinjaman sedang terlambat.', 'time' => 'Hari ini', 'tone' => count($overdue) ? 'no' : 'ok'];
+            $out[] = ['msg' => count($this->books).' judul terdaftar, '.count($this->loans).' sedang dipinjam.', 'time' => 'Ringkasan', 'tone' => 'warn'];
             foreach ($this->resv as $r) {
                 if (! $this->out($r['b'])) {
                     $book = $this->book($r['b'])['t'] ?? 'Buku';
@@ -399,7 +418,7 @@ class Library
     {
         $bars = '';
         $x = 0;
-        $seed = md5('INX|' . $code);
+        $seed = md5('INX|'.$code);
         $bits = [];
         foreach (str_split($seed) as $h) {
             $bits[] = decbin(hexdec($h)); // 4 bit per heksa
@@ -420,6 +439,7 @@ class Library
         }
 
         $total = $x + $scale;
+
         return sprintf('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d" preserveAspectRatio="none">%s</svg>',
             $total, $height, $total, $height, $bars);
     }
@@ -427,6 +447,6 @@ class Library
     /** Data mentah untuk barcode (mis. untuk generator eksternal/printer). */
     public function barcodePayload(string $code): string
     {
-        return 'INX;' . $code . ';' . Carbon::today()->toDateString();
+        return 'INX;'.$code.';'.Carbon::today()->toDateString();
     }
 }

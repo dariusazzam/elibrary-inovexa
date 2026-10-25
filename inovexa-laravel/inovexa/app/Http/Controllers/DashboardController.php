@@ -9,10 +9,10 @@ class DashboardController extends Controller
 {
     public function show(?string $menu = 'ov')
     {
-        $u     = session('user');
-        $lib   = Library::load();
+        $u = session('user');
+        $lib = Library::load();
         $menus = Library::MENU[$u['role']];
-        $menu  = $menu ?: 'ov';
+        $menu = $menu ?: 'ov';
 
         abort_unless(in_array($menu, array_column($menus, 0), true), 404);
 
@@ -50,8 +50,8 @@ class DashboardController extends Controller
 
     public function lend(Request $request)
     {
-        $lib  = Library::load();
-        $who  = trim((string) $request->input('w'));
+        $lib = Library::load();
+        $who = trim((string) $request->input('w'));
         $book = (int) $request->input('b');
 
         if ($who === '' || ! $lib->book($book) || $lib->out($book)) {
@@ -66,16 +66,16 @@ class DashboardController extends Controller
 
     public function giveBack(int $id)
     {
-        $lib  = Library::load();
+        $lib = Library::load();
         $fine = $lib->giveBack($id);
         $lib->save();
 
-        return back()->with('toast', $fine ? 'Dikembalikan. Denda ' . $lib->rp($fine) : 'Buku dikembalikan');
+        return back()->with('toast', $fine ? 'Dikembalikan. Denda '.$lib->rp($fine) : 'Buku dikembalikan');
     }
 
     public function addBook(Request $request)
     {
-        $title  = trim((string) $request->input('t'));
+        $title = trim((string) $request->input('t'));
         $author = trim((string) $request->input('a'));
 
         if ($title === '' || $author === '') {
@@ -103,7 +103,7 @@ class DashboardController extends Controller
     public function saveSettings(Request $request)
     {
         $data = $request->validate([
-            'dur'  => 'required|integer|min:1|max:365',
+            'dur' => 'required|integer|min:1|max:365',
             'fine' => 'required|integer|min:0|max:1000000',
         ]);
 
