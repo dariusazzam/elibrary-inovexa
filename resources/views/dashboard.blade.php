@@ -1,15 +1,18 @@
 @extends('layouts.app')
-@section('title', 'Dashboard Anggota — Inovexa Library')
-
-@section('content')
 @php
-    $r = $u['role'] ?? 'member';
+    $r = session('user')['role'] ?? 'member';
+    $u = session('user') ?? ['n' => 'Anggota', 'role' => 'member'];
     $isMember = $r === 'member';
-    $userName = $isMember ? 'Herdman' : ($u['n'] ?? 'Petugas Budi Santoso');
-    $userNumber = $isMember ? 'INX - 2026 - 8820' : ($u['id'] ?? 'admin');
-    $userRole = $isMember ? 'Anggota Reguler' : 'Admin Pegawai Sirkulasi';
+    $userName = $u['n'] ?? ($r === 'admin' ? 'Budi Santoso' : 'Anggota');
+    $userNumber = $u['id'] ?? ($r === 'admin' ? 'NIP : ASN-2026-04' : 'INX-2026');
+    $userRole = $isMember ? 'Anggota Reguler' : ($r === 'admin' ? 'Admin Pegawai & Tata Kelola' : 'Super Admin');
+    $firstLetter = mb_strtoupper(mb_substr($userName, 0, 1));
+    $tagLabel = $isMember ? 'PORTAL ANGGOTA' : ($r === 'admin' ? 'AKTIVITAS PETUGAS SIRKULASI' : 'KONSOL SUPER ADMIN');
 @endphp
 
+@section('title', ($r === 'admin' ? 'Dashboard Admin Pegawai' : ($r === 'super' ? 'Konsol Super Admin' : 'Dashboard Anggota')) . ' — Inovexa Library')
+
+@section('content')
 <div class="figma-container">
     {{-- Sidebar Kiri Hijau Tua Persis Image 2 Figma --}}
     <aside class="figma-sidebar">
@@ -19,12 +22,12 @@
                 <button type="button" class="figma-burger-btn" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
-                <span class="figma-portal-tag">PORTAL ANGGOTA</span>
+                <span class="figma-portal-tag">{{ $tagLabel }}</span>
             </div>
 
             <div class="figma-user-badge-row">
                 <div class="figma-avatar-circle">
-                    <span>H</span>
+                    <span>{{ $firstLetter }}</span>
                 </div>
                 <div class="figma-user-meta">
                     <b>{{ $userName }}</b>
@@ -36,44 +39,25 @@
 
         {{-- Navigasi Menu Vertikal Persis Image 2 Figma --}}
         <nav class="figma-side-nav">
-            {{-- 1. Dashboard --}}
-            <a href="{{ route('dashboard', 'ov') }}" class="figma-nav-item {{ ($menu ?? 'ov') === 'ov' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">📊</span>
-                <span class="figma-nav-text">Dashboard</span>
+            @foreach($menus as $m)
+            @php
+                $icons = [
+                    'ov' => '📊',
+                    'circ' => '👥',
+                    'stock' => '📚',
+                    'circ_return' => '🔄',
+                    'fines' => '💵',
+                    'resv' => '📌',
+                    'notif' => '🔔',
+                    'reports' => '📈',
+                ];
+                $icon = $icons[$m[0]] ?? '📄';
+            @endphp
+            <a href="{{ route('dashboard', $m[0]) }}" class="figma-nav-item {{ ($menu ?? 'ov') === $m[0] ? 'active-pill' : '' }}">
+                <span class="figma-nav-icon">{{ $icon }}</span>
+                <span class="figma-nav-text">{{ $m[1] }}</span>
             </a>
-
-            {{-- 2. Profil & Kartu Digital --}}
-            <a href="{{ route('dashboard', 'card') }}" class="figma-nav-item {{ ($menu ?? '') === 'card' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">🪪</span>
-                <span class="figma-nav-text">Profil &amp; Kartu Digital</span>
-            </a>
-
-            {{-- 3. Peminjaman & Denda --}}
-            <a href="{{ route('dashboard', 'loans') }}" class="figma-nav-item {{ ($menu ?? '') === 'loans' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">📖</span>
-                <span class="figma-nav-text">Peminjaman &amp; Denda</span>
-                <span class="figma-badge-green">2</span>
-            </a>
-
-            {{-- 4. Reservasi Buku --}}
-            <a href="{{ route('dashboard', 'resv') }}" class="figma-nav-item {{ ($menu ?? '') === 'resv' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">🪑</span>
-                <span class="figma-nav-text">Reservasi Buku</span>
-                <span class="figma-dot-yellow"></span>
-            </a>
-
-            {{-- 5. E-Library & Baca --}}
-            <a href="{{ route('dashboard', 'elib') }}" class="figma-nav-item {{ ($menu ?? '') === 'elib' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">📱</span>
-                <span class="figma-nav-text">E-Library &amp; Baca</span>
-            </a>
-
-            {{-- 6. Notifikasi --}}
-            <a href="{{ route('dashboard', 'notif') }}" class="figma-nav-item {{ ($menu ?? '') === 'notif' ? 'active-pill' : '' }}">
-                <span class="figma-nav-icon">🔔</span>
-                <span class="figma-nav-text">Notifikasi</span>
-                <span class="figma-badge-orange">Baru</span>
-            </a>
+            @endforeach
         </nav>
 
         {{-- Bagian Bawah: Tombol Keluar Sistem --}}
@@ -107,7 +91,7 @@
                     <span class="figma-bell-dot"></span>
                 </button>
                 <div class="figma-topbar-user-pill">
-                    <div class="figma-topbar-user-avatar">H</div>
+                    <div class="figma-topbar-user-avatar">{{ $firstLetter }}</div>
                     <div class="figma-topbar-user-info">
                         <span class="topbar-user-name">{{ $userName }}</span>
                         <span class="topbar-user-role">{{ $userRole }}</span>
@@ -117,25 +101,27 @@
         </header>
         @else
         <header class="figma-topbar">
-            <div class="figma-topbar-title-wrap">
-                <h1 class="figma-topbar-title">Dashboard Anggota</h1>
-                <small class="figma-topbar-sub">Sistem Informasi Perpustakaan &amp; E-Library Inovexa</small>
-            </div>
-
-            <div class="figma-search-pill">
+            <div class="figma-search-pill" style="max-width:380px">
                 <span class="figma-search-icon">🔍</span>
-                <input type="text" placeholder="Cari judul buku, pengarang, ISBN, atau e-book...">
+                <input type="text" placeholder="Cari judul buku, pengarang, ISBN katalog...">
             </div>
 
             <div class="figma-topbar-actions">
                 <div class="figma-time-badge">
                     <span class="figma-dot-green"></span>
-                    <small>Layanan Sirkulasi Aktif: 08.00 - 20.00 WIB</small>
+                    <small>Layanan Aktif: 08:00 - 20:00 WIB</small>
                 </div>
                 <button type="button" class="figma-bell-btn" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
                     <span>🔔</span>
                     <span class="figma-bell-dot"></span>
                 </button>
+                <div class="figma-topbar-user-pill" style="display:flex;align-items:center;gap:8px;background:#f3f4f6;padding:4px 10px;border-radius:99px">
+                    <div style="width:26px;height:26px;border-radius:50%;background:#153223;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700">{{ $firstLetter }}</div>
+                    <div style="line-height:1.2;font-size:11px">
+                        <b>{{ $userName }}</b><br>
+                        <small style="color:var(--m);font-size:9.5px">{{ $userRole }}</small>
+                    </div>
+                </div>
             </div>
         </header>
         @endif

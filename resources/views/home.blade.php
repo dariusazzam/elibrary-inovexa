@@ -19,10 +19,13 @@
     </div>
     @if(session('user'))
         <a class="btn k" href="{{ route('dashboard') }}">Dashboard</a>
+        <span class="av" style="width:32px;height:32px;background:#111;color:#fff;border-radius:50%;display:grid;place-items:center;font-size:13px">{{ mb_strtoupper(mb_substr(session('user')['n'], 0, 1)) }}</span>
     @else
         <a class="btn k" href="{{ route('login') }}">Masuk Akun</a>
+        <a href="{{ route('login') }}" class="av" style="width:36px;height:36px;background:#111;color:#fff;border-radius:50%;display:grid;place-items:center;text-decoration:none" title="Masuk Akun">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
     @endif
-    <span class="av" style="width:26px;height:26px;background:#111;color:#fff;font-size:12px">☺</span>
 </div></nav>
 
 <div class="w" id="top">
@@ -107,6 +110,32 @@
                 <button class="btn ghost" type="button" style="font-size:11px;padding:7px 10px" onclick="openModal('contact-modal')">Hubungi Meja Sirkulasi</button>
             </div>
         </div></div>
+    </section>
+
+    <!-- Kolom Informasi Kontak / Meja Sirkulasi Tambahan (Sesuai Permintaan) -->
+    <section class="sec">
+        <div class="band" style="background:var(--c);border:1px solid var(--ln);padding:32px">
+            <div class="lbl" style="margin-bottom:6px">PUSAT BANTUAN</div>
+            <h2 style="margin:0 0 8px;font-size:22px">Meja Sirkulasi &amp; Informasi</h2>
+            <p style="color:var(--m);margin-top:0;margin-bottom:20px">Petugas siap membantu masalah pengembalian, perpanjangan pinjaman, atau aktivasi kartu anggota.</p>
+            <div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px">
+                <div class="card" style="background:var(--b);border:none;padding:16px">
+                    <b>☎ Telepon</b>
+                    <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">(021) 555-0142</span>
+                </div>
+                <div class="card" style="background:var(--b);border:none;padding:16px">
+                    <b>✉ Email Resmi</b>
+                    <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">layanan@inovexa.test</span>
+                </div>
+                <div class="card" style="background:var(--b);border:none;padding:16px">
+                    <b>⌂ Lokasi Layanan</b>
+                    <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">Lobi Barat, Gedung Perpustakaan Umum Kota</span>
+                </div>
+            </div>
+            <div style="font-size:12px;color:var(--m);display:flex;align-items:center;gap:6px">
+                <span>🕒</span> Jam respons petugas: <b>Senin–Sabtu, 08.00–20.00 WIB</b>.
+            </div>
+        </div>
     </section>
 
     <footer id="tentang">

@@ -1,13 +1,15 @@
 @php
+    $defaultName = $u['n'] ?? 'Frendy Wahyu P';
+    $defaultId = $u['id'] ?? '24670091';
     $profile = session('member_profile', [
-        'name'     => 'Herdman',
-        'nia'      => 'INX-2026-08912',
+        'name'     => $defaultName,
+        'nia'      => 'INX-2026-' . $defaultId,
         'nik'      => '3374*********01',
-        'email'    => 'herdman.library@inovexa.id',
-        'phone'    => '+62 812-3456-7890',
-        'category' => 'Masyarakat Umum / Peneliti Mandiri',
+        'email'    => 'Inovexa@gmail.com',
+        'phone'    => '+62 812-' . substr($defaultId, -4) . '-7890',
+        'category' => 'Mahasiswa / Anggota Reguler',
         'reg_date' => '15 Januari 2024',
-        'address'  => 'Jl. Pemuda No. 88, Kel. Pandansari, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132',
+        'address'  => 'Jl. Perpustakaan Kota No. 42, Kebayoran Baru, Jakarta Selatan 12140',
     ]);
 @endphp
 

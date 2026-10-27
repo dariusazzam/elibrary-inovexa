@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Support\Library;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -31,18 +30,10 @@ class AuthController extends Controller
             'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
-        $key = 'login:'.$request->ip();
-
-        if (RateLimiter::tooManyAttempts($key, 5)) {
-            return back()->withInput($request->only('id', 'role'))
-                ->with('err', 'Percobaan maksimal tercapai. Coba lagi dalam '.RateLimiter::availableIn($key).' detik.');
-        }
-
         $lib = Library::load();
         $id = trim($data['id']);
 
         if ($lib->verify($id, $data['password'], $data['role'])) {
-            RateLimiter::clear($key);
             $request->session()->regenerate();
 
             $acc = $lib->findAccount($id);
@@ -66,12 +57,8 @@ class AuthController extends Controller
             return redirect()->route('dashboard')->with('toast', 'Selamat datang, '.$acc['name']);
         }
 
-        RateLimiter::hit($key, 60);
-        $left = max(0, 5 - RateLimiter::attempts($key));
-
         return redirect()->route('login', $data['role'])
-            ->withInput($request->only('id'))
-            ->with('err', "ID/NIK atau kata sandi tidak cocok. Sisa percobaan: {$left}.");
+            ->with('err', 'ID/NIK atau kata sandi tidak cocok.');
     }
 
     public function logout(Request $request)

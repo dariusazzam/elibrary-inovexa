@@ -30,21 +30,21 @@ class Library
     public const MENU = [
         'member' => [
             ['ov', 'Dashboard'],
-            ['loans', 'Peminjaman Buku'],
-            ['resv', 'Peminjaman Meja'],
-            ['cat', 'Koleksi Buku'],
+            ['card', 'Profil & Kartu Digital'],
+            ['loans', 'Peminjaman & Denda'],
+            ['resv', 'Reservasi Buku'],
             ['elib', 'E-Library & Baca'],
             ['notif', 'Notifikasi'],
-            ['card', 'Kartu Anggota'],
         ],
         'admin' => [
-            ['ov', 'Dashboard Utama'],
-            ['circ', 'Sirkulasi Peminjaman'],
-            ['circ_return', 'Antrean Pengembalian'],
-            ['stock', 'Katalog Buku Perpustakaan'],
-            ['mem', 'Verifikasi Anggota'],
-            ['fines', 'Kasir Denda'],
-            ['reports', 'Laporan & Statistik'],
+            ['ov', 'Dashboard Sirkulasi'],
+            ['circ', 'Kelola Data Anggota'],
+            ['stock', 'Kelola Koleksi Buku & Eksemplar'],
+            ['circ_return', 'Proses Peminjaman & Pengembalian'],
+            ['fines', 'Kelola Denda & Pembayaran'],
+            ['resv', 'Kelola Reservasi Buku'],
+            ['notif', 'Kelola E-Library & Notifikasi'],
+            ['reports', 'Lihat & Cetak Laporan'],
         ],
         'super' => [
             ['ov', 'Ringkasan Konsol'],
@@ -92,17 +92,43 @@ class Library
                 $lib->$k = $v;
             }
 
-            // Migrasi session dari versi demo lama yang belum memiliki akun dinamis.
-            if (! $lib->accounts) {
-                $lib->accounts = [
-                    'INX-2026-8820' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
-                    '3271040801990002' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
-                    'INX-2026-0031' => ['pw' => '123456', 'name' => 'Siti Rahma', 'role' => 'member'],
-                    'admin' => ['pw' => 'admin123', 'name' => 'Petugas Sirkulasi', 'role' => 'admin'],
-                    'super' => ['pw' => 'super123', 'name' => 'Super Admin', 'role' => 'super'],
-                ];
-                $lib->save();
-            }
+            // Selalu perbarui accounts & users agar ID mahasiswa/dosen yang diminta selalu aktif
+            $lib->accounts = [
+                'INX-2026-8820' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
+                '3271040801990002' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
+                '24670095' => ['pw' => '123456', 'name' => 'Adinda Zahwa Aprilia', 'role' => 'member'],
+                '24670090' => ['pw' => '123456', 'name' => 'Muhammad Dzaky Zidane', 'role' => 'member'],
+                '24670104' => ['pw' => '123456', 'name' => 'Carendra Aldiansyah', 'role' => 'member'],
+                '24670082' => ['pw' => '123456', 'name' => 'Juniari Nur Shofa', 'role' => 'member'],
+                '24670083' => ['pw' => '123456', 'name' => 'syalna kurnia putri', 'role' => 'member'],
+                '24670102' => ['pw' => '123456', 'name' => 'rendi dwiki h', 'role' => 'member'],
+                '24670075' => ['pw' => '123456', 'name' => 'Robiatul Adawiyyah', 'role' => 'member'],
+                '24670092' => ['pw' => '123456', 'name' => 'Eka Bayu Prasetio', 'role' => 'member'],
+                '24670091' => ['pw' => '123456', 'name' => 'frendy wahyu p', 'role' => 'member'],
+                '24670089' => ['pw' => '123456', 'name' => 'Darius Fikram Azzam', 'role' => 'member'],
+                '24670081' => ['pw' => '123456', 'name' => 'nopal', 'role' => 'member'],
+                '24670016' => ['pw' => '123456', 'name' => 'Muhammad Okta Ramadhani', 'role' => 'member'],
+                'admin' => ['pw' => 'admin123', 'name' => 'Budi Santoso', 'role' => 'admin'],
+                'super' => ['pw' => 'super123', 'name' => 'Super Admin', 'role' => 'super'],
+            ];
+            $lib->users = [
+                ['n' => 'Herdman',                 'i' => 'INX-2026-8820', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Adinda Zahwa Aprilia',    'i' => '24670095', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Muhammad Dzaky Zidane',   'i' => '24670090', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Carendra Aldiansyah',     'i' => '24670104', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Juniari Nur Shofa',       'i' => '24670082', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'syalna kurnia putri',     'i' => '24670083', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'rendi dwiki h',           'i' => '24670102', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Robiatul Adawiyyah',      'i' => '24670075', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Eka Bayu Prasetio',       'i' => '24670092', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'frendy wahyu p',          'i' => '24670091', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Darius Fikram Azzam',     'i' => '24670089', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'nopal',                   'i' => '24670081', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Muhammad Okta Ramadhani', 'i' => '24670016', 'r' => 'Anggota',       'on' => true],
+                ['n' => 'Budi Santoso',            'i' => 'admin',         'r' => 'Admin Pegawai', 'on' => true],
+                ['n' => 'Super Admin',             'i' => 'super',         'r' => 'Super Admin',   'on' => true],
+            ];
+            $lib->save();
         }
 
         return $lib;
@@ -135,15 +161,35 @@ class Library
             ['b' => 4, 'w' => 'Herdman', 'd' => '24 Okt 2026, 17:00 WIB'], // Metodologi Penelitian Kualitatif
         ];
         $this->users = [
-            ['n' => 'Herdman',               'i' => 'INX-2026-8820', 'r' => 'Anggota',       'on' => true],
-            ['n' => 'Budi Santoso',          'i' => 'admin',         'r' => 'Admin Pegawai', 'on' => true],
-            ['n' => 'Siti Rahma',            'i' => 'INX-2026-0031', 'r' => 'Anggota',       'on' => true],
-            ['n' => 'Super Admin',           'i' => 'super',         'r' => 'Super Admin',   'on' => true],
+            ['n' => 'Adinda Zahwa Aprilia',    'i' => '24670095', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Muhammad Dzaky Zidane',   'i' => '24670090', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Carendra Aldiansyah',     'i' => '24670104', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Juniari Nur Shofa',       'i' => '24670082', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'syalna kurnia putri',     'i' => '24670083', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'rendi dwiki h',           'i' => '24670102', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Robiatul Adawiyyah',      'i' => '24670075', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Eka Bayu Prasetio',       'i' => '24670092', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'frendy wahyu p',          'i' => '24670091', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Darius Fikram Azzam',     'i' => '24670089', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'nopal',                   'i' => '24670081', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Muhammad Okta Ramadhani', 'i' => '24670016', 'r' => 'Anggota',       'on' => true],
+            ['n' => 'Budi Santoso',            'i' => 'admin',         'r' => 'Admin Pegawai', 'on' => true],
+            ['n' => 'Super Admin',             'i' => 'super',         'r' => 'Super Admin',   'on' => true],
         ];
 
         $this->accounts = [
-            'INX-2026-8820' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
-            '3271040801990002' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
+            '24670095' => ['pw' => '123456', 'name' => 'Adinda Zahwa Aprilia', 'role' => 'member'],
+            '24670090' => ['pw' => '123456', 'name' => 'Muhammad Dzaky Zidane', 'role' => 'member'],
+            '24670104' => ['pw' => '123456', 'name' => 'Carendra Aldiansyah', 'role' => 'member'],
+            '24670082' => ['pw' => '123456', 'name' => 'Juniari Nur Shofa', 'role' => 'member'],
+            '24670083' => ['pw' => '123456', 'name' => 'syalna kurnia putri', 'role' => 'member'],
+            '24670102' => ['pw' => '123456', 'name' => 'rendi dwiki h', 'role' => 'member'],
+            '24670075' => ['pw' => '123456', 'name' => 'Robiatul Adawiyyah', 'role' => 'member'],
+            '24670092' => ['pw' => '123456', 'name' => 'Eka Bayu Prasetio', 'role' => 'member'],
+            '24670091' => ['pw' => '123456', 'name' => 'frendy wahyu p', 'role' => 'member'],
+            '24670089' => ['pw' => '123456', 'name' => 'Darius Fikram Azzam', 'role' => 'member'],
+            '24670081' => ['pw' => '123456', 'name' => 'nopal', 'role' => 'member'],
+            '24670016' => ['pw' => '123456', 'name' => 'Muhammad Okta Ramadhani', 'role' => 'member'],
             'admin' => ['pw' => 'admin123', 'name' => 'Budi Santoso', 'role' => 'admin'],
             'super' => ['pw' => 'super123', 'name' => 'Super Admin', 'role' => 'super'],
         ];
