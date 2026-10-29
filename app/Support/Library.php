@@ -147,7 +147,7 @@ class Library
             ['id' => 3, 't' => 'Sapiens: Riwayat Singkat Umat Manusia', 'a' => 'Yuval Noah Harari',      'c' => 'Sejarah Nusantara', 's' => 'Rak Sejarah 01', 'h' => 35],
             ['id' => 4, 't' => 'Metodologi Penelitian Kualitatif',      'a' => 'Prof. Dr. Sugiyono',     'c' => 'Sains & Data',      's' => 'Rak Sains 04',   'h' => 190],
             ['id' => 5, 't' => 'Bumi Manusia',                         'a' => 'Pramoedya A. Toer',      'c' => 'Fiksi & Sastra',    's' => 'Rak Fiksi 04',   'h' => 10],
-            ['id' => 6, 't' => 'Bisnis Online Revolution',             'a' => 'Tung Desem Waringin',    'c' => 'Bisnis & Finansial', 's' => 'Rak Bisnis 01',  'h' => 140],
+            ['id' => 6, 't' => 'Bisnis Online Revolution',             'a' => 'Iwan Kenrianto',         'c' => 'Bisnis & Finansial', 's' => 'Rak Bisnis 01',  'h' => 140],
             ['id' => 7, 't' => 'The Psychology of Money',              'a' => 'Morgan Housel',          'c' => 'Bisnis & Finansial', 's' => 'Rak Bisnis 03',  'h' => 80],
             ['id' => 8, 't' => 'Prinsip Desain Antarmuka Modern',      'a' => 'Don Norman & Associates', 'c' => 'Teknologi Informasi', 's' => 'Rak IT 02',     'h' => 210],
         ];

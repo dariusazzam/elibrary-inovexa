@@ -6,8 +6,8 @@
         3 => 'foto/Sapiens Riwayat Singkat Umat Manusia.jpeg',
         4 => 'foto/Metodologi Penelitian Kualitatif.jpeg',
         5 => 'foto/Bumi Manusia.jpeg',
-        6 => 'foto/The Psychology of Money.jpeg',
-        7 => 'foto/Bisnis Online Revolution.jpeg',
+        6 => 'foto/Iwan Kenrianto.jpg',
+        7 => 'foto/The Psychology of Money.jpeg',
         8 => 'foto/Prinsip Desain Antarmuka Modern.jpeg',
     ];
     $img = $imgMap[$id] ?? null;
