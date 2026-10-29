@@ -100,26 +100,26 @@
             </div>
         </header>
         @else
-        <header class="figma-topbar">
-            <div class="figma-search-pill" style="max-width:380px">
-                <span class="figma-search-icon">🔍</span>
-                <input type="text" placeholder="Cari judul buku, pengarang, ISBN katalog...">
+        <header class="figma-topbar figma-topbar-light">
+            <div class="figma-search-pill figma-search-pill-light">
+                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <input type="text" placeholder="Cari koleksi katalog, judul buku, atau ISBN..." onkeydown="if(event.key==='Enter') window.location='{{ route('dashboard', 'cat') }}'">
             </div>
 
             <div class="figma-topbar-actions">
-                <div class="figma-time-badge">
+                <div class="figma-time-badge figma-time-badge-light">
                     <span class="figma-dot-green"></span>
-                    <small>Layanan Aktif: 08:00 - 20:00 WIB</small>
+                    <small>Layanan Sirkulasi Buka • 08:00 - 20:00 WIB</small>
                 </div>
-                <button type="button" class="figma-bell-btn" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
                     <span>🔔</span>
                     <span class="figma-bell-dot"></span>
                 </button>
-                <div class="figma-topbar-user-pill" style="display:flex;align-items:center;gap:8px;background:#f3f4f6;padding:4px 10px;border-radius:99px">
-                    <div style="width:26px;height:26px;border-radius:50%;background:#153223;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700">{{ $firstLetter }}</div>
-                    <div style="line-height:1.2;font-size:11px">
-                        <b>{{ $userName }}</b><br>
-                        <small style="color:var(--m);font-size:9.5px">{{ $userRole }}</small>
+                <div class="figma-topbar-user-pill">
+                    <div class="figma-topbar-user-avatar">{{ $firstLetter }}</div>
+                    <div class="figma-topbar-user-info">
+                        <span class="topbar-user-name">{{ $userName }}</span>
+                        <span class="topbar-user-role">{{ $userRole }}</span>
                     </div>
                 </div>
             </div>
