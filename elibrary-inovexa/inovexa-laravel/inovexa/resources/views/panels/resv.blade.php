@@ -22,43 +22,59 @@
 <div style="display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:start">
     {{-- Kolom Kiri: Status Kuota Antrean & Smart Locker --}}
     <div>
-        <div style="background:#153223;color:#fff;border-radius:14px;padding:24px;box-shadow:0 10px 25px rgba(21,50,35,.15);margin-bottom:20px">
+                <div style="background:#153223;color:#fff;border-radius:14px;padding:24px;box-shadow:0 10px 25px rgba(21,50,35,.15);margin-bottom:20px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
                 <div>
                     <span style="font-size:9px;color:#a9cbb7;letter-spacing:.08em;font-weight:700">STATUS KUOTA ANTREAN</span>
-                    <h3 style="font-size:16px;margin:2px 0 0;font-weight:700">Smart Locker &amp; Drop Box</h3>
+                    <h3 style="font-size:16px;margin:2px 0 0;font-weight:700">2 / 2 Buku Digunakan</h3>
                 </div>
-                <span style="font-size:10px;background:rgba(234,179,8,.2);color:#fde047;border:1px solid rgba(234,179,8,.3);padding:3px 10px;border-radius:99px;font-weight:600">Periode 2026</span>
+                <span style="font-size:10px;background:rgba(234,179,8,.2);color:#fde047;border:1px solid rgba(234,179,8,.3);padding:3px 10px;border-radius:99px;font-weight:600">Kuot Penuh (100%)</span>
             </div>
 
-            <div style="margin-bottom:18px">
-                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px">
-                    <span style="color:#cbd5e1">Batas Kuota Antrean Aktif</span>
-                    <b style="color:#fff">2 / 2 Buku</b>
-                </div>
-                <div style="width:100%;height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden">
-                    <div style="width:100%;height:100%;background:#f59e0b;border-radius:99px"></div>
-                </div>
-                <small style="font-size:10px;color:#fde047;display:block;margin-top:6px">⚠️ Kuota Penuh (100%): Batas simulasi maksimal 2 judul buku dalam status reservasi/antrean aktif.</small>
-            </div>
+            <p style="font-size:11.5px;color:#cbd5e1;margin:0 0 16px;line-height:1.4">Batas simultan: Maksimal 2 judul buku dalam status reservasi/antrean aktif secara bersamaan.</p>
 
-            <div style="background:rgba(0,0,0,.25);padding:12px;border-radius:8px;font-size:11.5px;color:#cbd5e1;line-height:1.4">
+            <div style="background:rgba(0,0,0,.25);padding:12px;border-radius:8px;font-size:11.5px;color:#cbd5e1;line-height:1.4;margin-bottom:14px">
                 <b>⏱️ Masa Tunggu Ambil:</b> 2x24 jam setelah status berubah menjadi <span style="color:#4ade80">Siap Diambil</span> di loker.
             </div>
 
-            <button class="btn ghost" style="width:100%;margin-top:14px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:11.5px;padding:8px" onclick="toast('Preferensi penjemputan diperbarui')">⚙️ Kelola Preferensi Penjemputan</button>
+            <button class="btn ghost" style="width:100%;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);font-size:11.5px;padding:8px" onclick="toast('Preferensi penjemputan diperbarui')">⚙️ Kelola Preferensi Penjemputan</button>
         </div>
 
         {{-- Info Loker Aktif --}}
-        <div class="card" style="padding:18px;background:#fff">
+        <div class="card" style="padding:18px;background:#fff;margin-bottom:20px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
                 <h4 style="margin:0;font-size:13px;font-weight:700">Smart Locker &amp; Drop Box</h4>
                 <span class="pill" style="background:#dcebe2;color:var(--ok)">Online</span>
             </div>
             <p style="font-size:11.5px;color:var(--m);margin:0 0 12px">Gate B - Lantai Dasar (Lobi Selatan)</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11.5px;border-top:1px solid var(--ln);padding-top:10px">
-                <div>Lokasi Kosong: <br><b style="color:var(--t)">14 / 32 Unit</b></div>
-                <div>Jam Layanan Mandiri:<br><b style="color:var(--t)">08.00–21.00 WIB</b></div>
+                <div>Lokasi Kosong: <br><b style="color:var(--t)">14 / 32 Unit</b><br><small style="color:#059669">Tersedia langsung</small></div>
+                <div>Jam Layanan Mandiri:<br><b style="color:var(--t)">08.00–21.00 WIB</b><br><small style="color:var(--m)">WIB (Setiap Hari)</small></div>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:var(--m);border-top:1px solid var(--ln);padding-top:8px">
+                💡 Gunakan kartu digital atau pindai QR reservasi pada layar sensor loker untuk membuka loker otomatis.
+            </div>
+        </div>
+
+        {{-- Alur Prosedur Reservasi --}}
+        <div class="card" style="padding:18px;background:#fff">
+            <h4 style="margin:0 0 12px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px">📋 ALUR PROSEDUR RESERVASI</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:11.5px">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                    <span style="background:#153223;color:#fff;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;flex-shrink:0">1</span>
+                    <div><b>Pilih Buku Katalog</b><br><small style="color:var(--m)">Pilih koleksi buku fisik yang sedang dipinjam rekan lain atau siapkan buku untuk diambil langsung di loket sirkulasi tanpa antre.</small></div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                    <span style="background:#153223;color:#fff;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;flex-shrink:0">2</span>
+                    <div><b>Notifikasi Verifikasi</b><br><small style="color:var(--m)">Sistem mengirim pesan WhatsApp &amp; Email segera setelah petugas menempatkan buku ke loker penjemputan.</small></div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                    <span style="background:#153223;color:#fff;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;flex-shrink:0">3</span>
+                    <div><b>Pindai &amp; Ambil Mandiri</b><br><small style="color:var(--m)">Tunjukkan QR Pass pada scanner Smart Locker Gate B atau Meja Sirkulasi Lt. 1 sebelum batas waktu 48 jam berakhir.</small></div>
+                </div>
+            </div>
+            <div style="margin-top:12px;background:#fef3c7;border:1px solid #fde047;padding:8px 10px;border-radius:6px;font-size:11px;color:#92400e">
+                ⚠️ Pemesanan akan <b>dibatalkan otomatis</b> jika tidak diambil dalam tempo 48 jam.
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
-<div style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
-    <div style="min-width:0">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+<div class="member-management-page collection-management-page" style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
+    <div class="member-management-main" style="min-width:0">
+        <div class="member-management-heading" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
             <div>
                 <div style="font-size:10px;color:var(--m);font-weight:700;letter-spacing:.05em;margin-bottom:3px">DASHBOARD ADMIN SIRKULASI &rsaquo; KELOLA KOLEKSI BUKU &amp; EKSEMPLAR</div>
                 <h2 style="font-size:22px;font-weight:800;color:var(--t);margin:0;display:flex;align-items:center;gap:10px">
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Top Stats Grid -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+        <div class="member-management-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">TOTAL KOLEKSI / JUDUL TERDAFTAR</span>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Search & Filters -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
+        <div class="member-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
                 <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
                 <input type="text" placeholder="Cari ISBN, Judul Buku, Barcode, Pengarang, DDC..." style="width:100%;padding:8px 12px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
@@ -72,7 +72,7 @@
         </div>
 
         <!-- Sub Tabs & Bulk Action -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="collection-tabs" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
             <div style="display:flex;gap:8px">
                 <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer">Semua (12.450)</button>
                 <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Tersedia di Rak (10.120)</button>
@@ -83,7 +83,7 @@
         </div>
 
         <!-- Bulk Bar (Checked) -->
-        <div style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
+        <div class="member-management-bulkbar" style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
             <div style="display:flex;align-items:center;gap:10px">
                 <input type="checkbox" checked style="accent-color:#059669;width:15px;height:15px">
                 <span><b>2 Koleksi Dipilih</b></span>
@@ -96,7 +96,7 @@
         </div>
 
         <!-- Main Table -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
+        <div class="member-management-table" style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
             <table style="width:100%;border-collapse:collapse;text-align:left;font-size:12px">
                 <thead>
                     <tr style="background:#f9fafb;border-bottom:1px solid var(--ln);color:var(--m);font-size:10.5px;font-weight:700">
@@ -173,7 +173,7 @@
                     <tr style="border-bottom:1px solid var(--ln);background:#f0fdf4">
                         <td style="padding:12px"><input type="checkbox" checked style="accent-color:#059669"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <div style="width:38px;height:52px;background:#e5e7eb;border-radius:4px;flex-shrink:0;background-size:cover;background-position:center;background-image:url('{{ asset('foto/Filosofi Teras.jpeg') }}')"></div>
+                            <div style="width:38px;height:52px;background:#f9fafb;border:1px dashed #d1d5db;border-radius:4px;flex-shrink:0"></div>
                             <div>
                                 <b style="font-size:13px;color:var(--t);display:block">Atomic Habits: Perubahan Kecil Hasil Luar Biasa</b>
                                 <small style="color:var(--m);display:block">DDC: 158.1 • James Clear</small>
@@ -247,11 +247,11 @@
     </div>
 
     <!-- Right Sidebar Detail Koleksi -->
-    <div style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
+    <div class="member-management-detail" style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
         <!-- Top RFID Card Preview -->
-        <div style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                <span style="font-size:9.5px;font-weight:700;letter-spacing:.05em">INOVEXA LIBRARY</span>
+        <div class="collection-rfid-card" style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
+            <div class="collection-rfid-card-head" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                <span class="collection-rfid-brand"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa"><b>INOVEXA LIBRARY</b></span>
                 <span style="background:#059669;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700">RFID ACTIVE</span>
             </div>
             <div style="font-size:10px;color:#a3e635;margin-bottom:2px">NO. PANGGIL (CALL NUMBER)</div>

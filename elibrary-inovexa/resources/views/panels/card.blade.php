@@ -44,14 +44,10 @@
                 {{-- Header Kartu --}}
                 <div class="smartpass-head-row">
                     <div class="smartpass-brand-lockup">
-                        <svg class="smartpass-brand-icon" width="22" height="22" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="4" width="20" height="16" rx="3" stroke="#86efac" stroke-width="2"/>
-                            <path d="M7 10h10M7 14h6" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="17" cy="14" r="1.5" fill="#86efac"/>
-                        </svg>
+                        <img class="member-logo-badge" src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa">
                         <div class="smartpass-brand-text">
-                            <span class="smartpass-tag-label">DIGITAL SMARTPASS</span>
-                            <span class="smartpass-brand-title">INOVEXA LIBRARY</span>
+                             <span class="smartpass-tag-label">DIGITAL SMARTPASS</span>
+                             <span class="smartpass-brand-title">INOVEXA LIBRARY</span>
                         </div>
                     </div>
                     <span class="smartpass-status-pill" id="cardStatusBadge">STATUS: AKTIF</span>

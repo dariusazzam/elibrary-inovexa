@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Membaca: ' . $b['t'] . ' — Inovexa E-Library')
+@section('title', 'Membaca: ' . $b['t'] . ' — Inovexa Technologies')
 
 @section('content')
 <div style="background:var(--g);color:#fff;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.15);position:sticky;top:0;z-index:20">
@@ -60,7 +60,7 @@
 
             <div id="reader-body" style="font-size:16px;color:var(--t);text-align:justify">
                 <p>{{ $currentChapter['body'] }}</p>
-                <p>Koleksi ini disediakan secara legal oleh Inovexa Public Library bagi seluruh warga yang terdaftar. Gunakan kutipan ini dengan bijak untuk kepentingan pembelajaran, riset akademis, dan pemajuan literasi mandiri.</p>
+                <p>Koleksi ini disediakan secara legal oleh Inovexa Technologies bagi seluruh anggota yang terdaftar. Gunakan kutipan ini dengan bijak untuk kepentingan pembelajaran dan riset akademis.</p>
                 <blockquote style="margin:20px 0;padding:12px 18px;border-left:4px solid var(--g);background:var(--b);border-radius:6px;font-style:italic">
                     “Membaca adalah dialog sunyi antara pemikiran seorang pengarang dengan kehausan intelektual sang pembaca.”
                 </blockquote>

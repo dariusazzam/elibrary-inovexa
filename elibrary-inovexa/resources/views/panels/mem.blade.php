@@ -1,7 +1,7 @@
-<div style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
-    <div style="min-width:0">
+<div class="member-management-page" style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
+    <div class="member-management-main" style="min-width:0">
         <!-- Top Title & Buttons -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+        <div class="member-management-heading" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
             <div>
                 <div style="font-size:10px;color:var(--m);font-weight:700;letter-spacing:.05em;margin-bottom:3px">Dashboard Admin Sirkulasi &rsaquo; Kelola Data Anggota</div>
                 <h2 style="font-size:22px;font-weight:800;color:var(--t);margin:0;display:flex;align-items:center;gap:10px">
@@ -18,38 +18,38 @@
         </div>
 
         <!-- Top Stats Grid -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+        <div class="member-management-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL ANGGOTA TERDAFTAR</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.890 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+28 registrasi bulan ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">👥</span>
+                    <span class="member-management-stat-icon" style="color:#17643d;background:#e8f4ed"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m2-9a3 3 0 1 0 0-6m1 9a5 5 0 0 1 3 5v1"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">ANGGOTA AKTIF SIRKULASI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.642 <span style="font-size:11px;font-weight:normal;color:var(--m)">Anggota</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Status valid bebas sanksi (86.8%)</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📜</span>
+                <span class="member-management-stat-icon" style="color:#168c68;background:#e9f8f1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18H6zM9 7h6m-6 4h6m-6 4h4"/><path d="M4 6H3v15h12v-1"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">VERIFIKASI KTM / BERKAS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">14 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ Butuh validasi loket hari ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📋</span>
+                <span class="member-management-stat-icon" style="color:#c76b00;background:#fff4df"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2m-7 6h8m-8 4h8m-8 4h5"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">MASA BERLAKU HABIS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">24 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚡ Perlu perpanjangan masa aktif</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📅</span>
+                <span class="member-management-stat-icon" style="color:#dc2626;background:#fff0f0"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m-9 3v4m-2-2h4"/></svg></span>
             </div>
         </div>
 
         <!-- Search & Filters -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
+        <div class="member-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
                 <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
                 <input type="text" placeholder="Cari NIA (INX-...), nama lengkap, NIK..." style="width:100%;padding:8px 30px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
@@ -66,7 +66,7 @@
         </div>
 
         <!-- Sub Tabs & Info -->
-        <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+        <div class="member-management-tabs" style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
             <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer">Semua (1.890)</button>
             <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Aktif (1.642)</button>
             <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer">Menunggu Verifikasi 14</button>
@@ -76,7 +76,7 @@
         <div style="font-size:11.5px;color:var(--m);margin-bottom:10px">Menampilkan <b>6 data</b> anggota relevan</div>
 
         <!-- Bulk Bar -->
-        <div style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
+        <div class="member-management-bulkbar" style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
             <div style="display:flex;align-items:center;gap:10px">
                 <input type="checkbox" checked style="accent-color:#059669;width:15px;height:15px">
                 <span><b>2 Anggota Dipilih</b></span>
@@ -89,7 +89,7 @@
         </div>
 
         <!-- Main Table -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
+        <div class="member-management-table" style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
             <table style="width:100%;border-collapse:collapse;text-align:left;font-size:12px">
                 <thead>
                     <tr style="background:#f9fafb;border-bottom:1px solid var(--ln);color:var(--m);font-size:10.5px;font-weight:700">
@@ -323,25 +323,20 @@
     </div>
 
     <!-- Right Sidebar Detail Anggota -->
-    <div style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
+    <div class="member-management-detail" style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
         <!-- Top Digital Card -->
-        <div style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                <span style="font-size:9px;font-weight:700;letter-spacing:.05em">INOVEXA PUBLIC LIBRARY</span>
-                <span style="background:#059669;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700">NFC ACTIVE</span>
+        <div class="member-mini-card">
+            <div class="member-mini-card-head">
+                <span class="member-mini-logo-frame"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa"></span>
+                <div class="member-mini-brand"><b>INOVEXA PUBLIC<br>LIBRARY</b><small>Kartu Identitas Anggota Digital</small></div>
+                <span class="member-mini-nfc"><i></i>NFC<br>ACTIVE</span>
             </div>
-            <div style="font-size:9px;color:#a9cbb7;margin-bottom:2px">KARTU IDENTITAS ANGGOTA DIGITAL</div>
-            <div style="font-size:10px;color:#cbd5e1;margin-bottom:6px">NAMA LENGKAP PEMUSTAKA</div>
-            <div style="font-size:14px;font-weight:800;margin-bottom:2px">Herdman</div>
-            <div style="font-size:10px;color:#cbd5e1;margin-bottom:12px">NIA: INX-2026-08912</div>
-            <div style="display:flex;justify-content:space-between;align-items:flex-end">
-                <div>
-                    <span style="font-size:8.5px;color:#94a3b8;display:block">BERLAKU HINGGA</span>
-                    <b style="font-size:11px">12 Des 2027</b>
-                </div>
-                <div style="background:#fff;padding:4px;border-radius:4px">
-                    <div style="font-family:monospace;font-size:8px;color:#000;letter-spacing:1px">BARCODE ID VALID</div>
-                </div>
+            <div class="member-mini-label">KARTU IDENTITAS ANGGOTA DIGITAL</div>
+            <div class="member-mini-holder"><b>Herdman</b><span>Umum</span></div>
+            <div class="member-mini-id">NIA: INX-2026-08912</div>
+            <div class="member-mini-bottom">
+                <div><small>BERLAKU HINGGA</small><b>12 Des 2027</b></div>
+                <div class="member-mini-barcode"><i></i><small>BARCODE ID VALID</small></div>
             </div>
         </div>
 

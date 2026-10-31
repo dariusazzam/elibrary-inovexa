@@ -10,7 +10,7 @@
 @endphp
 
 <nav><div class="w">
-    <div class="logo"><i>▤</i><div>Inovexa<small>PUBLIC LIBRARY</small></div></div>
+    <div class="logo"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa Technologies" style="width:42px;height:42px;object-fit:contain;border-radius:8px"><div>Inovexa<small>PUBLIC LIBRARY</small></div></div>
     <div class="links">
         <a href="#top" style="background:var(--b);font-weight:600">Beranda</a>
         <a href="#katalog">Katalog Buku</a>
@@ -140,7 +140,7 @@
 
     <footer id="tentang">
         <div>
-            <div class="logo" style="color:var(--t);margin-bottom:8px"><i>▤</i>Inovexa Public Library</div>
+            <div class="logo" style="color:var(--t);margin-bottom:8px"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa Technologies" style="width:36px;height:36px;object-fit:contain;border-radius:7px">Inovexa Public Library</div>
             Pusat literasi sipil modern yang berdedikasi melayani keterbukaan informasi, arsip daerah, serta ruang bertumbuh bagi segenap warga.
         </div>
         <div>

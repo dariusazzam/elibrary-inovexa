@@ -9,32 +9,48 @@
     $tagLabel = $isMember ? 'PORTAL ANGGOTA' : ($r === 'admin' ? 'AKTIVITAS PETUGAS SIRKULASI' : 'KONSOL SUPER ADMIN');
 ?>
 
-<?php $__env->startSection('title', ($r === 'admin' ? 'Dashboard Admin Pegawai' : ($r === 'super' ? 'Konsol Super Admin' : 'Dashboard Anggota')) . ' — Inovexa Library'); ?>
+<?php $__env->startSection('title', ($r === 'admin' ? 'Dashboard Admin Pegawai' : ($r === 'super' ? 'Konsol Super Admin' : 'Dashboard Anggota')) . ' — Inovexa Technologies'); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="figma-container">
     
-    <aside class="figma-sidebar">
+    <aside class="figma-sidebar <?php echo e($r === 'admin' ? 'figma-sidebar-admin' : ''); ?>">
         
-        <div class="figma-sidebar-header-bg">
-            <div class="figma-header-top-row">
-                <button type="button" class="figma-burger-btn" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-                <span class="figma-portal-tag"><?php echo e($tagLabel); ?></span>
+        <?php if($r === 'admin'): ?>
+            <div class="figma-admin-brand">
+                <img src="<?php echo e(asset('foto/logo.jpeg')); ?>" alt="Logo Inovexa">
+                <span><b>Inovexa Library</b><small>Sistem Sirkulasi &amp; Tata Kelola</small></span>
             </div>
-
-            <div class="figma-user-badge-row">
-                <div class="figma-avatar-circle">
-                    <span><?php echo e($firstLetter); ?></span>
-                </div>
+            <div class="figma-admin-user-card">
+                <div class="figma-avatar-circle"><span><?php echo e($firstLetter); ?></span></div>
                 <div class="figma-user-meta">
                     <b><?php echo e($userName); ?></b>
                     <small><?php echo e($userRole); ?></small>
                     <div class="figma-user-id"><?php echo e($userNumber); ?></div>
                 </div>
             </div>
-        </div>
+            <div class="figma-admin-nav-label"><?php echo e($tagLabel); ?></div>
+        <?php else: ?>
+            <div class="figma-sidebar-header-bg">
+                <div class="figma-header-top-row">
+                    <button type="button" class="figma-burger-btn" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <span class="figma-portal-tag"><?php echo e($tagLabel); ?></span>
+                </div>
+
+                <div class="figma-user-badge-row">
+                    <div class="figma-avatar-circle">
+                        <span><?php echo e($firstLetter); ?></span>
+                    </div>
+                    <div class="figma-user-meta">
+                        <b><?php echo e($userName); ?></b>
+                        <small><?php echo e($userRole); ?></small>
+                        <div class="figma-user-id"><?php echo e($userNumber); ?></div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         
         <nav class="figma-side-nav">
@@ -58,9 +74,18 @@
                 ];
                 $icon = $icons[$m[0]] ?? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>';
             ?>
+            <?php
+                $badges = [
+                    'resv' => '<span style="width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block;margin-left:auto"></span>',
+                    'notif' => '<span style="font-size:9px;font-weight:700;background:#d97706;color:#fff;padding:1px 6px;border-radius:99px;margin-left:auto">Baru</span>',
+                ];
+                $badge = $badges[$m[0]] ?? '';
+            ?>
             <a href="<?php echo e(route('dashboard', $m[0])); ?>" class="figma-nav-item <?php echo e(($menu ?? 'ov') === $m[0] ? 'active-pill' : ''); ?>">
                 <span class="figma-nav-icon" style="display:inline-flex;align-items:center;justify-content:center;opacity:0.85"><?php echo $icon; ?></span>
                 <span class="figma-nav-text"><?php echo e($m[1]); ?></span>
+                <?php echo $badge; ?>
+
             </a>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </nav>
@@ -70,7 +95,8 @@
             <form method="POST" action="<?php echo e(route('logout')); ?>">
                 <?php echo csrf_field(); ?>
                 <button type="submit" class="figma-logout-btn">
-                    <span>🚪</span> Keluar Sistem
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M12 4h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/></svg>
+                    Keluar Sistem
                 </button>
             </form>
         </div>
@@ -79,17 +105,45 @@
     
     <div class="figma-main-wrapper">
         
-        <?php if(($menu ?? '') === 'card'): ?>
+        <?php if($r === 'admin'): ?>
         <header class="figma-topbar figma-topbar-light">
-            <div class="figma-search-pill figma-search-pill-light">
+            <div class="figma-search-pill figma-search-pill-light" style="max-width:440px">
                 <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
-                <input type="text" placeholder="Cari koleksi katalog, judul buku, atau ISBN..." onkeydown="if(event.key==='Enter') window.location='<?php echo e(route('dashboard', 'cat')); ?>'">
+                <input type="text" placeholder="Cari data anggota, ISBN buku, barcode transaksi...">
             </div>
 
             <div class="figma-topbar-actions">
                 <div class="figma-time-badge figma-time-badge-light">
                     <span class="figma-dot-green"></span>
-                    <small>Layanan Sirkulasi Buka • 08:00 - 20:00 WIB</small>
+                    <small>Layanan Aktif: 08:00 - 16:30 WIB</small>
+                </div>
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Scan Barcode" onclick="toast('Pemindai barcode siap digunakan')" style="padding:0 14px !important;border-radius:99px !important;background:#000 !important;color:#fff !important;font-size:11px !important;font-weight:600 !important;display:inline-flex !important;align-items:center !important;gap:6px !important;width:auto !important;height:34px !important;line-height:34px !important;border:none !important;cursor:pointer !important;white-space:nowrap !important">
+                    <span style="font-size:13px">▦</span> Scan Barcode
+                </button>
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='<?php echo e(route('dashboard', 'notif')); ?>'">
+                    <span>🔔</span>
+                    <span class="figma-bell-dot"></span>
+                </button>
+                <div class="figma-topbar-user-pill">
+                    <div class="figma-topbar-user-avatar"><?php echo e($firstLetter); ?></div>
+                    <div class="figma-topbar-user-info">
+                        <span class="topbar-user-name"><?php echo e($userName); ?></span>
+                        <span class="topbar-user-role"><?php echo e($userRole); ?></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <?php elseif(($menu ?? '') === 'card' || ($menu ?? '') === 'resv'): ?>
+        <header class="figma-topbar figma-topbar-light">
+            <div class="figma-search-pill figma-search-pill-light">
+                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <input type="text" placeholder="Cari koleksi katalog, judul buku, atau ISBN...">
+            </div>
+
+            <div class="figma-topbar-actions">
+                <div class="figma-time-badge figma-time-badge-light">
+                    <span class="figma-dot-green"></span>
+                    <small>Layanan Sirkulasi Buka • 08.00 - 20.00 WIB</small>
                 </div>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='<?php echo e(route('dashboard', 'notif')); ?>'">
                     <span>🔔</span>
@@ -105,26 +159,26 @@
             </div>
         </header>
         <?php else: ?>
-        <header class="figma-topbar">
-            <div class="figma-search-pill" style="max-width:380px">
-                <span class="figma-search-icon">🔍</span>
+        <header class="figma-topbar figma-topbar-light">
+            <div class="figma-search-pill figma-search-pill-light" style="max-width:380px">
+                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
                 <input type="text" placeholder="Cari judul buku, pengarang, ISBN katalog...">
             </div>
 
             <div class="figma-topbar-actions">
-                <div class="figma-time-badge">
+                <div class="figma-time-badge figma-time-badge-light">
                     <span class="figma-dot-green"></span>
                     <small>Layanan Aktif: 08:00 - 20:00 WIB</small>
                 </div>
-                <button type="button" class="figma-bell-btn" title="Notifikasi" onclick="window.location='<?php echo e(route('dashboard', 'notif')); ?>'">
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='<?php echo e(route('dashboard', 'notif')); ?>'">
                     <span>🔔</span>
                     <span class="figma-bell-dot"></span>
                 </button>
-                <div class="figma-topbar-user-pill" style="display:flex;align-items:center;gap:8px;background:#f3f4f6;padding:4px 10px;border-radius:99px">
-                    <div style="width:26px;height:26px;border-radius:50%;background:#153223;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700"><?php echo e($firstLetter); ?></div>
-                    <div style="line-height:1.2;font-size:11px">
-                        <b><?php echo e($userName); ?></b><br>
-                        <small style="color:var(--m);font-size:9.5px"><?php echo e($userRole); ?></small>
+                <div class="figma-topbar-user-pill">
+                    <div class="figma-topbar-user-avatar"><?php echo e($firstLetter); ?></div>
+                    <div class="figma-topbar-user-info">
+                        <span class="topbar-user-name"><?php echo e($userName); ?></span>
+                        <span class="topbar-user-role"><?php echo e($userRole); ?></span>
                     </div>
                 </div>
             </div>
@@ -133,8 +187,16 @@
 
         
         <main class="figma-page-content">
-            <?php if(view()->exists('panels.' . $menu)): ?>
-                <?php echo $__env->make('panels.' . $menu, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php
+                $panelView = match (true) {
+                    $r === 'admin' && $menu === 'circ' => 'panels.mem',
+                    $r === 'admin' && $menu === 'resv' => 'panels.resv-admin',
+                    $r === 'admin' && $menu === 'notif' => 'panels.elib-admin',
+                    default => 'panels.' . $menu,
+                };
+            ?>
+            <?php if(view()->exists($panelView)): ?>
+                <?php echo $__env->make($panelView, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php else: ?>
                 <?php echo $__env->make('panels.ov', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <?php endif; ?>

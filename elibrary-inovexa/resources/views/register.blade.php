@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Daftar Anggota — Inovexa Public Library')
+@section('title', 'Daftar Anggota — Inovexa Technologies')
 
 @section('content')
 <div class="row" style="max-width:1100px;margin:0 auto;padding:16px 20px 0;align-items:center">
@@ -9,7 +9,7 @@
 
 <div class="lg" style="min-height:0;padding-top:12px">
     <div class="lp">
-        <div class="logo"><i style="background:#fff;color:var(--g)">▤</i><div>Inovexa Public Library<small style="color:#a9c0b2">KEANGGOTAAN MANDATI WARGA</small></div></div>
+        <div class="logo"><i style="background:#fff;color:var(--g)">X</i><div>Inovexa Technologies<small style="color:#a9c0b2">PENDAFTARAN ANGGOTA</small></div></div>
         <span class="tag" style="align-self:start">Verifikasi NIK Terhubung Disdukcapil</span>
         <h2>Jadi Anggota dalam 1 Menit.</h2>
         <span style="font-size:12px;color:#c9d8cf">Isi data diri Anda, dan sistem langsung menerbitkan nomor kartu digital (INX-2026-••••) yang berlaku untuk pinjam buku fisik, reservasi, dan akses penuh e-library.</span>

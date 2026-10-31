@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Lupa Kata Sandi — Inovexa Public Library')
+@section('title', 'Lupa Kata Sandi — Inovexa Technologies')
 
 @section('content')
 <div class="row" style="max-width:1100px;margin:0 auto;padding:16px 20px 0;align-items:center">
@@ -9,7 +9,7 @@
 
 <div class="lg" style="min-height:0;padding-top:12px">
     <div class="lp">
-        <div class="logo"><i style="background:#fff;color:var(--g)">▤</i><div>Inovexa Public Library<small style="color:#a9c0b2">PEMULIHAN AKSES</small></div></div>
+        <div class="logo"><i style="background:#fff;color:var(--g)">X</i><div>Inovexa Technologies<small style="color:#a9c0b2">PEMULIHAN AKSES</small></div></div>
         <span class="tag" style="align-self:start">Atur Ulang Sandi Anggota</span>
         <h2>Pulihkan Sandi Portal Anda.</h2>
         <span style="font-size:12px;color:#c9d8cf">Masukkan ID Anggota perpustakaan atau 16 digit NIK yang terdaftar, lalu tentukan kata sandi baru Anda. Kata sandi akan langsung aktif.</span>

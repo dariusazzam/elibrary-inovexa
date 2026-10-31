@@ -198,4 +198,4 @@
         </div>
     </div>
 </div>
-<?php /**PATH D:\perangkat lunak\kelompok\elibrary-inovexa\resources\views/panels/loans.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\perangkat lunak\kelompok\elibrary-inovexa\resources\views\panels\loans.blade.php ENDPATH**/ ?>

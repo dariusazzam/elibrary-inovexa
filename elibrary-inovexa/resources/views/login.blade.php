@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Otorisasi Akun — Inovexa Public Library')
+@section('title', 'Otorisasi Akun — Inovexa Technologies')
 
 @section('content')
 @php 
@@ -22,11 +22,11 @@
     </span>
 </div>
 
-<div class="lg" style="min-height:0;padding-top:16px;max-width:1120px">
+<div class="lg {{ $role === 'admin' ? 'lg-admin' : '' }}" style="min-height:0;padding-top:16px;max-width:1120px">
     {{-- Panel Kiri Hijau Tua Khazanah Literasi Warga --}}
-    <div class="lp" style="background:#153223;color:#fff;border-radius:16px 0 0 16px;padding:36px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 30px rgba(21,50,35,.15)">
+    <div class="lp login-promo-panel" style="background:#153223;color:#fff;border-radius:16px 0 0 16px;padding:36px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 30px rgba(21,50,35,.15)">
         <div class="logo" style="color:#fff">
-            <i style="background:#fff;color:#153223;font-weight:800;border-radius:8px">▤</i>
+            <img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa Technologies" style="width:40px;height:40px;object-fit:contain;background:#fff;border-radius:9px;padding:3px">
             <div>Inovexa Public Library<small style="color:#a9c0b2;letter-spacing:.06em">PERPUSTAKAAN DAERAH &amp; ARSIP SIPIL</small></div>
         </div>
 
@@ -49,7 +49,7 @@
     </div>
 
     {{-- Panel Kanan Form Login Sesuai Image 2 & 3 --}}
-    <div class="rp" style="background:#fff;border:1px solid var(--ln);border-radius:0 16px 16px 0;padding:36px;display:flex;flex-direction:column;justify-content:space-between">
+    <div class="rp login-form-panel" style="background:#fff;border:1px solid var(--ln);border-radius:0 16px 16px 0;padding:36px;display:flex;flex-direction:column;justify-content:space-between">
         <div>
             <div class="row" style="align-items:start">
                 <div>
@@ -62,20 +62,20 @@
             {{-- 3 Tab Peran Sesuai Figma --}}
             <div style="display:flex;background:#f2ede4;border-radius:10px;padding:4px;margin:18px 0 16px;gap:4px">
                 <a href="{{ route('login', 'member') }}" style="flex:1;text-align:center;padding:9px 6px;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;{{ $role === 'member' ? 'background:#153223;color:#fff' : 'color:#555' }}">
-                    👤 Anggota (Pengunjung)
+                    <span aria-hidden="true">♟</span> Anggota (Pengunjung)
                 </a>
                 <a href="{{ route('login', 'admin') }}" style="flex:1;text-align:center;padding:9px 6px;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;{{ $role === 'admin' ? 'background:#153223;color:#fff' : 'color:#555' }}">
-                    🗂 Admin Pegawai
+                    <span aria-hidden="true">▣</span> Admin Pegawai
                 </a>
                 <a href="{{ route('login', 'super') }}" style="flex:1;text-align:center;padding:9px 6px;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;{{ $role === 'super' ? 'background:#153223;color:#fff' : 'color:#555' }}">
-                    ⚙ Super Admin
+                    <span aria-hidden="true">⚙</span> Super Admin
                 </a>
             </div>
 
             {{-- Box Info Peran --}}
             <div style="border-left:3px solid #b45309;background:#fef3e7;padding:12px 14px;border-radius:8px;margin-bottom:16px;font-size:12px">
                 <b style="color:#b45309;display:flex;align-items:center;gap:6px">
-                    <span>🪪</span> Portal Layanan {{ $currentTab[0] }}
+                    <span aria-hidden="true">▣</span> Portal Layanan {{ $currentTab[0] }}
                 </b>
                 <span style="color:var(--m);display:block;margin-top:2px">{{ $L[1] }}</span>
             </div>
@@ -86,7 +86,7 @@
 
                 <label for="u" style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">{{ $currentTab[2] }}</label>
                 <div style="position:relative">
-                    <span style="position:absolute;left:12px;top:11px;color:var(--m);font-size:13px">🆔</span>
+                    <span style="position:absolute;left:12px;top:11px;color:var(--m);font-size:13px" aria-hidden="true">▣</span>
                     <input class="in" id="u" name="id" value="{{ old('id') }}" placeholder="Masukkan nomor identitas akun" autocomplete="username" style="padding-left:36px" required>
                 </div>
                 <div style="font-size:11px;color:var(--m);margin:4px 0 12px">{{ $currentTab[3] }}</div>
@@ -96,9 +96,9 @@
                     <a href="{{ route('password.forgot') }}" style="color:#b45309;font-size:11px;font-weight:600;text-decoration:none">Lupa Kata Sandi?</a>
                 </div>
                 <div style="position:relative">
-                    <span style="position:absolute;left:12px;top:11px;color:var(--m);font-size:13px">🔒</span>
+                    <span style="position:absolute;left:12px;top:11px;color:var(--m);font-size:13px" aria-hidden="true">♙</span>
                     <input class="in" id="p" name="password" type="password" value="" placeholder="Masukkan kata sandi atau PIN Anda" autocomplete="current-password" style="padding-left:36px;padding-right:36px" required>
-                    <button type="button" onclick="eye()" aria-label="Tampilkan sandi" style="position:absolute;right:10px;top:10px;background:none;border:0;cursor:pointer;color:var(--m)">👁</button>
+                    <button type="button" onclick="eye()" aria-label="Tampilkan sandi" style="position:absolute;right:10px;top:10px;background:none;border:0;cursor:pointer;color:var(--m)">◎</button>
                 </div>
 
                 <div class="row" style="margin-top:10px;font-size:11px">
@@ -111,7 +111,7 @@
                 <div class="err" id="err" style="color:#dc2626;font-size:12px;margin-top:6px;min-height:16px">{{ session('err') ?? $errors->first() }}</div>
                 
                 <button class="btn" style="width:100%;padding:12px;background:#153223;color:#fff;border-radius:8px;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px">
-                    <span>➔</span> {{ $currentTab[4] }}
+                    <span aria-hidden="true">↪</span> {{ $currentTab[4] }}
                 </button>
             </form>
 

@@ -1,5 +1,5 @@
-<div style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
-    <div style="min-width:0">
+<div class="circulation-management-page fines-management-page" style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
+    <div class="circulation-management-main" style="min-width:0">
         <!-- Banner Rekonsiliasi Kas -->
         <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#166534">
             <div style="display:flex;align-items:center;gap:10px">
@@ -10,7 +10,7 @@
         </div>
 
         <!-- Top Title & Buttons -->
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+        <div class="circulation-management-heading" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
             <div>
                 <div style="font-size:10px;color:var(--m);font-weight:700;letter-spacing:.05em;margin-bottom:3px">Dashboard Admin Sirkulasi &rsaquo; Kelola Denda &amp; Pembayaran</div>
                 <h2 style="font-size:22px;font-weight:800;color:var(--t);margin:0;display:flex;align-items:center;gap:10px">
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Top Stats Grid -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+        <div class="circulation-management-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL DENDA HARI INI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 1.450.000</div>
@@ -58,7 +58,7 @@
         </div>
 
         <!-- Search & Filters -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
+        <div class="circulation-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
                 <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
                 <input type="text" placeholder="Cari nomor kuitansi (TR-FIN-...), NIA anggota..." style="width:100%;padding:8px 30px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
@@ -75,7 +75,7 @@
         </div>
 
         <!-- Sub Tabs -->
-        <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+        <div class="circulation-management-tabs" style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
             <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer">Semua Tagihan (26)</button>
             <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Menunggu Pembayaran 14</button>
             <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Lunas Hari Ini 18</button>
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Bulk Bar -->
-        <div style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
+        <div class="circulation-management-bulkbar" style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
             <div style="display:flex;align-items:center;gap:10px">
                 <input type="checkbox" checked style="accent-color:#059669;width:15px;height:15px">
                 <span><b>2 Tagihan Dipilih</b></span>
@@ -97,7 +97,7 @@
         </div>
 
         <!-- Main Table -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden;margin-bottom:20px">
+        <div class="circulation-management-table" style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden;margin-bottom:12px">
             <table style="width:100%;border-collapse:collapse;text-align:left;font-size:12px">
                 <thead>
                     <tr style="background:#f9fafb;border-bottom:1px solid var(--ln);color:var(--m);font-size:10.5px;font-weight:700">
@@ -260,18 +260,13 @@
     </div>
 
     <!-- Right Sidebar Kuitansi & Kasir -->
-    <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="fines-management-detail" style="display:flex;flex-direction:column;gap:16px">
         <!-- Top Kuitansi Card -->
-        <div style="background:#153223;color:#fff;border-radius:12px;padding:16px;position:relative">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                <span style="font-size:9.5px;font-weight:700;letter-spacing:.05em">INOVEXA LIBRARY</span>
-                <span style="background:#059669;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700">SCANNER DATE</span>
-            </div>
-            <div style="font-size:9.5px;color:#a9cbb7;margin-bottom:2px">NO. KUITANSI PEMBAYARAN</div>
-            <div style="font-size:13.5px;font-weight:800;font-family:monospace;margin-bottom:10px">KR-2026-1025-844</div>
-            <div style="font-size:11px;color:#cbd5e1">Layanan Sirkulasi / Pembayaran</div>
-            <div style="font-size:12px;font-weight:700;margin-bottom:4px">Ahmad Fauzi</div>
-            <div style="font-size:10px;color:#cbd5e1;margin-bottom:12px">NIA: INX-2026-04118</div>
+        <div class="fines-payment-card" style="background:#153223;color:#fff;border-radius:12px;padding:16px;position:relative">
+            <div class="fines-payment-card-head"><span class="fines-payment-brand"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa"><b>INOVEXA LIBRARY<br><small>CIRCULATION &amp; FINE PAYMENT</small></b></span><span class="fines-payment-status">TAGIHAN AKTIF</span></div>
+            <div class="fines-payment-reference">NO. KUITANSI / PEMBAYARAN</div>
+            <div class="fines-payment-number">KR-2026-1025-844</div>
+            <div class="fines-payment-person"><span><b>Ahmad Fauzi</b><small>NIA: INX-2026-04118 &bull; Loket Utama 1</small></span><i>AF</i></div>
 
             <div style="background:rgba(0,0,0,.2);padding:10px;border-radius:8px;font-size:11px;margin-bottom:12px">
                 <div style="display:flex;justify-content:space-between;margin-bottom:4px">
@@ -293,7 +288,7 @@
                     <b>QRIS KASDA/KAS DAERAH:</b><br>
                     Scan via mobile banking / e-wallet untuk pembayaran instan.
                 </div>
-                <div style="background:#111;color:#fff;padding:4px 8px;border-radius:4px;font-size:9px;font-family:monospace">QRIS</div>
+                <div class="fines-payment-qr" aria-label="Kode QR pembayaran"><i></i><b>QRIS</b></div>
             </div>
         </div>
 

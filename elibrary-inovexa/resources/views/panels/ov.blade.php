@@ -1,16 +1,17 @@
 @if($u['role'] === 'admin')
-    <div style="background:#153223;color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(21,50,35,.2)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <div class="admin-dashboard">
+    <div class="admin-dashboard-hero" style="background:#153223;color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(21,50,35,.2)">
+        <div class="admin-hero-top" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
             <span style="font-size:9.5px;font-weight:700;color:#a9cbb7;letter-spacing:.08em;background:rgba(255,255,255,.12);padding:3px 10px;border-radius:99px">LOKET SIRKULASI TERPADU &bull; LANTAI 1</span>
-            <div style="display:flex;gap:8px">
-                <button class="btn" style="background:#ea580c;color:#fff;font-size:11px;padding:6px 14px" onclick="toast('Form transaksi baru')">＋ Transaksi Baru</button>
-                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="toast('Edit data sirkulasi')">✎ Edit Data Sirkulasi</button>
-                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="toast('Pengembalian cepat')">📥 Pengembalian Cepat</button>
-                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="window.location='{{ route('dashboard', 'mem') }}'">👥 + Tambah Anggota</button>
+            <div class="admin-hero-actions" style="display:flex;gap:8px">
+                <button class="btn" style="background:#ea580c;color:#fff;font-size:11px;padding:6px 14px" onclick="toast('Form transaksi baru')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Transaksi Baru</button>
+                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="toast('Edit data sirkulasi')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5 4 4M4 20l4.5-1 11-11a2.1 2.1 0 0 0-3-3l-11 11L4 20Z"/></svg> Edit Data Sirkulasi</button>
+                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="toast('Pengembalian cepat')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h13M11 6l6 6-6 6M20 5v14"/></svg> Pengembalian Cepat</button>
+                <button class="btn ghost" style="background:rgba(255,255,255,.15);color:#fff;border:0;font-size:11px;padding:6px 14px" onclick="window.location='{{ route('dashboard', 'mem') }}'"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m5-11v6m-3-3h6"/></svg> Tambah Anggota</button>
             </div>
         </div>
-        <h2 style="font-size:26px;margin:0 0 6px;font-weight:800;letter-spacing:-.02em;text-align:center">Halo, Petugas {{ $u['n'] }}!</h2>
-        <p style="color:#d1e7db;font-size:12.5px;max-width:700px;margin:0 auto;line-height:1.5;text-align:center">
+        <h2 class="admin-hero-greeting" style="font-size:26px;margin:0 0 6px;font-weight:800;letter-spacing:-.02em;text-align:center">Halo, Petugas {{ $u['n'] }}!</h2>
+        <p class="admin-hero-description" style="color:#d1e7db;font-size:12.5px;max-width:700px;margin:0 auto;line-height:1.5;text-align:center">
             Meja layanan sirkulasi aktif. Kelola peminjaman, perpanjangan, pengembalian buku, dan penyesuaian jadwal transaksi secara real-time.
         </p>
     </div>
@@ -22,7 +23,7 @@
             <div style="font-size:22px;font-weight:800;color:var(--t)">142</div>
             <div style="font-size:11px;color:var(--m)">Buku Peminjaman Aktif</div>
             <div style="font-size:10px;color:var(--ok);margin-top:4px">▲ +14 transaksi dari sesi pagi</div>
-            <span style="position:absolute;top:16px;right:16px;font-size:18px">📊</span>
+            <span class="admin-stat-icon" style="position:absolute;top:14px;right:14px;color:#17643d;background:#e8f4ed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h17M8 15l4-4 3 2 5-6"/><path d="M16 7h4v4"/></svg></span>
         </div>
 
         <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln);position:relative">
@@ -30,7 +31,7 @@
             <div style="font-size:22px;font-weight:800;color:var(--o)">18</div>
             <div style="font-size:11px;color:var(--m)">Buku Jatuh Tempo</div>
             <div style="font-size:10px;color:#dc2626;margin-top:4px">Potensi Denda: Rp 180.000</div>
-            <span style="position:absolute;top:16px;right:16px;font-size:18px">⚠️</span>
+            <span class="admin-stat-icon" style="position:absolute;top:14px;right:14px;color:#c65d0c;background:#fff1e7"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span>
         </div>
 
         <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln);position:relative">
@@ -38,7 +39,7 @@
             <div style="font-size:22px;font-weight:800;color:var(--t)">7</div>
             <div style="font-size:11px;color:var(--m)">Antrean Siap Diambil</div>
             <div style="font-size:10px;color:var(--m);margin-top:4px">Tersedia batas 2x24 jam</div>
-            <span style="position:absolute;top:16px;right:16px;font-size:18px">📦</span>
+            <span class="admin-stat-icon" style="position:absolute;top:14px;right:14px;color:#475569;background:#f1f5f9"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4V7Z"/><path d="m3 7 9 4 9-4M12 11v10M8 5l9 4"/></svg></span>
         </div>
 
         <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln);position:relative">
@@ -46,7 +47,7 @@
             <div style="font-size:20px;font-weight:800;color:var(--ok)">Rp 345.000</div>
             <div style="font-size:11px;color:var(--m)">Denda Terkumpul Hari Ini</div>
             <div style="font-size:10px;color:var(--m);margin-top:4px">12 Transaksi &bull; 8 QRIS / 4 Tunai</div>
-            <span style="position:absolute;top:16px;right:16px;font-size:18px">💵</span>
+            <span class="admin-stat-icon" style="position:absolute;top:14px;right:14px;color:#087443;background:#e8f4ed"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M7 9h.01M17 15h.01"/></svg></span>
         </div>
     </div>
 
@@ -229,6 +230,7 @@
             </div>
         </div>
     </div>
+    </div>
 @else
     @php
         $userName = $u['n'] ?? 'Muhammad Dzaky Zidane';
@@ -245,12 +247,10 @@
             {{-- Baris Atas: Logo Inisial & Teks Kartu + Status Aktif --}}
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
                 <div style="display:flex;align-items:center;gap:10px">
-                    <div style="width:34px;height:34px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:800;color:#86efac">
-                        {{ $firstInit }}
-                    </div>
+                    <img class="member-dashboard-logo" src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa">
                     <div>
-                        <div style="font-size:8.5px;font-weight:700;letter-spacing:.08em;color:#94a3b8">KARTU ANGGOTA DIGITAL</div>
-                        <div style="font-size:13px;font-weight:800;letter-spacing:.03em;color:#fff">INOVEXA LIBRARY</div>
+                        <div style="font-size:8.5px;font-weight:700;letter-spacing:.08em;color:#94a3b8">DIGITAL SMARTPASS</div>
+                        <div class="member-card-wordmark">INOVEXA LIBRARY</div>
                     </div>
                 </div>
                 <span style="background:#166534;border:1px solid #22c55e;color:#86efac;padding:4px 12px;border-radius:99px;font-size:9.5px;font-weight:700;letter-spacing:.05em">STATUS: AKTIF</span>
@@ -303,42 +303,29 @@
                 </p>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px">
-                <a href="{{ route('dashboard', 'cat') }}" class="btn ghost" style="border:1px solid var(--ln);padding:10px;text-align:center;font-size:11.5px;text-decoration:none;color:var(--t);display:flex;flex-direction:column;gap:4px">
-                    <span>🔍</span> <b>Cari Katalog</b><small style="color:var(--m);font-size:9.5px">OPAC Induk</small>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px">
+                <a href="{{ route('dashboard', 'elib') }}" class="btn ghost" style="min-width:0;border:1px solid #eee9e3;border-radius:11px;background:#faf9f7;padding:10px 9px;text-align:left;text-decoration:none;color:var(--t);display:flex;align-items:center;gap:8px;transition:background .2s,border-color .2s">
+                    <span style="width:29px;height:29px;flex:none;border:1px solid #eee9e3;border-radius:8px;background:#fff;color:#214b38;display:grid;place-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4 4" stroke-linecap="round"/></svg></span>
+                    <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><b style="font-size:10px;line-height:1.2">Cari Katalog</b><small style="color:var(--m);font-size:8.5px;line-height:1.2">OPAC Inovexa</small></span>
                 </a>
-                <a href="{{ route('dashboard', 'resv') }}" class="btn ghost" style="border:1px solid var(--ln);padding:10px;text-align:center;font-size:11.5px;text-decoration:none;color:var(--t);display:flex;flex-direction:column;gap:4px">
-                    <span>📌</span> <b>Reservasi Baru</b><small style="color:var(--m);font-size:9.5px">Pesan antrean</small>
+                <a href="{{ route('dashboard', 'resv') }}" class="btn ghost" style="min-width:0;border:1px solid #eee9e3;border-radius:11px;background:#faf9f7;padding:10px 9px;text-align:left;text-decoration:none;color:var(--t);display:flex;align-items:center;gap:8px;transition:background .2s,border-color .2s">
+                    <span style="width:29px;height:29px;flex:none;border:1px solid #eee9e3;border-radius:8px;background:#fff;color:#d97732;display:grid;place-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M8 3v4m8-4v4M4 10h16m-8 3v4m-2-2h4" stroke-linecap="round"/></svg></span>
+                    <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><b style="font-size:10px;line-height:1.2">Reservasi Baru</b><small style="color:var(--m);font-size:8.5px;line-height:1.2">Pesan antrean</small></span>
                 </a>
-                <a href="{{ route('dashboard', 'elib') }}" class="btn ghost" style="border:1px solid var(--ln);padding:10px;text-align:center;font-size:11.5px;text-decoration:none;color:var(--t);display:flex;flex-direction:column;gap:4px">
-                    <span>📖</span> <b>E-Library</b><small style="color:var(--m);font-size:9.5px">Baca e-bo</small>
+                <a href="{{ route('dashboard', 'elib') }}" class="btn ghost" style="min-width:0;border:1px solid #eee9e3;border-radius:11px;background:#faf9f7;padding:10px 9px;text-align:left;text-decoration:none;color:var(--t);display:flex;align-items:center;gap:8px;transition:background .2s,border-color .2s">
+                    <span style="width:29px;height:29px;flex:none;border:1px solid #eee9e3;border-radius:8px;background:#fff;color:#168c68;display:grid;place-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M8 7h8M8 11h8"/></svg></span>
+                    <span style="min-width:0;display:flex;flex-direction:column;gap:2px"><b style="font-size:10px;line-height:1.2">E-Library</b><small style="color:var(--m);font-size:8.5px;line-height:1.2">Baca e-book</small></span>
                 </a>
             </div>
         </div>
     </div>
 
     {{-- 4 Stat Cards Ringkasan Anggota --}}
-    <div class="g4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">
-        <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln)">
-            <div style="font-size:10px;color:var(--m);font-weight:700;margin-bottom:4px">Buku Sedang Dipinjam</div>
-            <div style="font-size:22px;font-weight:800;color:var(--t)">2 <span style="font-size:11px;font-weight:400;color:var(--m)">/ Maks 3 Buku</span></div>
-            <div style="font-size:10.5px;color:#b45309;margin-top:4px">⚠️ 1 buku jatuh tempo 3 hari lagi</div>
-        </div>
-        <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln)">
-            <div style="font-size:10px;color:var(--m);font-weight:700;margin-bottom:4px">Reservasi Siap Ambil</div>
-            <div style="font-size:22px;font-weight:800;color:var(--t)">1 <span style="font-size:11px;font-weight:400;color:var(--m)">Buku Menunggu</span></div>
-            <div style="font-size:10.5px;color:var(--ok);margin-top:4px">✅ Tersedia di Meja Sirkulasi</div>
-        </div>
-        <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln)">
-            <div style="font-size:10px;color:var(--m);font-weight:700;margin-bottom:4px">Denda Keterlambatan</div>
-            <div style="font-size:22px;font-weight:800;color:var(--ok)">Rp 0</div>
-            <div style="font-size:10.5px;color:var(--m);margin-top:4px">🟢 Bebas Denda / Tertib Pinjam</div>
-        </div>
-        <div class="card" style="background:#fff;padding:16px;border:1px solid var(--ln)">
-            <div style="font-size:10px;color:var(--m);font-weight:700;margin-bottom:4px">Total Riwayat Selesai</div>
-            <div style="font-size:22px;font-weight:800;color:var(--t)">18 <span style="font-size:11px;font-weight:400;color:var(--m)">Judul Buku</span></div>
-            <div style="font-size:10.5px;color:var(--m);margin-top:4px">⭐ Tingkat pembaca aktif</div>
-        </div>
+    <div class="member-summary-grid">
+        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M8 7h8M8 11h8"/></svg></span><div><div class="member-summary-label">Buku Sedang Dipinjam</div><div class="member-summary-value">2 <small>/ Maks 3 Buku</small></div><div class="member-summary-note warning">⚠ 1 buku jatuh tempo 3 hari lagi</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h5"/></svg></span><div><div class="member-summary-label">Reservasi Siap Ambil</div><div class="member-summary-value">1 <small>Buku Menunggu</small></div><div class="member-summary-note success">▣ Tersedia di Meja Sirkulasi</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.3 2.3 4.8-4.8"/></svg></span><div><div class="member-summary-label">Denda Keterlambatan</div><div class="member-summary-value green">Rp 0</div><div class="member-summary-note success"><span aria-hidden="true">✓</span> Bebas denda, akun tertib</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon neutral"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9 5V3h6v2M9 10h6M9 14h6M9 18h3"/></svg></span><div><div class="member-summary-label">Total Riwayat Selesai</div><div class="member-summary-value">18 <small>Judul Buku</small></div><div class="member-summary-note">★ Tingkat pembaca aktif</div></div></div>
     </div>
 
     {{-- Grid 2 Kolom: Buku Sedang Dipinjam & Status Reservasi Buku --}}
@@ -423,7 +410,7 @@
                 <span style="color:var(--m)">Sisa Kuota Reservasi Bulan Ini:</span>
                 <b>2 dari 3 Buku</b>
             </div>
-            <a href="{{ route('dashboard', 'cat') }}" class="btn" style="display:block;text-align:center;background:#fff;border:1px solid var(--ln);color:var(--t);margin-top:10px;font-size:11.5px;padding:8px;text-decoration:none">+ Cari &amp; Reservasi Buku Lain</a>
+             <a href="{{ route('dashboard', 'resv') }}" class="btn" style="display:block;text-align:center;background:#fff;border:1px solid var(--ln);color:var(--t);margin-top:10px;font-size:11.5px;padding:8px;text-decoration:none">+ Ajukan Reservasi Lain</a>
         </div>
     </div>
 
@@ -501,7 +488,7 @@
                     <p style="color:var(--m);font-size:11px;margin:4px 0 10px;line-height:1.4">Panduan lengkap UI/UX perpustakaan digital terkini untuk akademisi.</p>
                     <div style="font-size:11px;color:#b45309;font-weight:700">⭐ 4.9 / 5.0 &bull; <span style="color:var(--m);font-weight:400">128 Pembaca</span></div>
                 </div>
-                <a href="{{ route('dashboard', 'cat') }}" class="btn" style="background:#fff;border:1px solid #059669;color:#059669;font-size:11.5px;padding:6px;text-align:center;text-decoration:none;margin-top:10px">+ Tambah ke Rak Buku Saya</a>
+                 <a href="{{ route('dashboard', 'elib') }}" class="btn" style="background:#fff;border:1px solid #059669;color:#059669;font-size:11.5px;padding:6px;text-align:center;text-decoration:none;margin-top:10px">+ Buka E-Library</a>
             </div>
         </div>
     </div>

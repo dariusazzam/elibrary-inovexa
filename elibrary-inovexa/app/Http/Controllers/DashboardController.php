@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function show(?string $menu = 'ov')
+    public function show(Request $request, ?string $menu = 'ov')
     {
         $u = session('user');
         $lib = Library::load();
@@ -20,8 +20,33 @@ class DashboardController extends Controller
         $mr = array_values(array_filter($lib->resv, fn ($r) => $r['w'] === $u['n']));
         $notifications = $lib->notifications($u);
         $notifCount = $lib->notificationCount($u);
+        $catalogBooks = $lib->books;
+        $catalogQuery = trim((string) $request->query('q', ''));
+        $catalogCategory = trim((string) $request->query('category', ''));
+        $catalogSort = (string) $request->query('sort', 'popular');
 
-        return view('dashboard', compact('u', 'lib', 'menus', 'menu', 'my', 'mr', 'notifications', 'notifCount'));
+        if ($menu === 'cat') {
+            $catalogBooks = array_values(array_filter($catalogBooks, function (array $book) use ($catalogQuery, $catalogCategory): bool {
+                $matchesCategory = $catalogCategory === '' || $book['c'] === $catalogCategory;
+                $searchableText = strtolower(implode(' ', [$book['t'], $book['a'], $book['c'], $book['s']]));
+                $matchesQuery = $catalogQuery === '' || str_contains($searchableText, strtolower($catalogQuery));
+
+                return $matchesCategory && $matchesQuery;
+            }));
+
+            if ($catalogSort === 'newest') {
+                usort($catalogBooks, fn (array $first, array $second): int => $second['id'] <=> $first['id']);
+            } elseif ($catalogSort === 'title') {
+                usort($catalogBooks, fn (array $first, array $second): int => strcasecmp($first['t'], $second['t']));
+            }
+        }
+
+        $catalogCategories = array_values(array_unique(array_map(fn (array $book): string => $book['c'], $lib->books)));
+
+        return view('dashboard', compact(
+            'u', 'lib', 'menus', 'menu', 'my', 'mr', 'notifications', 'notifCount',
+            'catalogBooks', 'catalogCategories', 'catalogQuery', 'catalogCategory', 'catalogSort'
+        ));
     }
 
     public function reader(int $id, Request $request)

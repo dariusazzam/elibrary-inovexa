@@ -1,5 +1,5 @@
-<div style="max-width:1450px;margin:0 auto">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+<div class="circulation-management-page" style="max-width:1450px;margin:0 auto">
+    <div class="circulation-management-heading" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
         <div>
             <div style="font-size:10px;color:var(--m);font-weight:700;letter-spacing:.05em;margin-bottom:3px">Dashboard Admin Sirkulasi &rsaquo; Proses Peminjaman &amp; Pengembalian</div>
             <h2 style="font-size:22px;font-weight:800;color:var(--t);margin:0">Proses Peminjaman &amp; Pengembalian</h2>
@@ -14,7 +14,7 @@
     </div>
 
     <!-- Top Stats Grid -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+    <div class="circulation-management-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL TRANSAKSI HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">342 <span style="font-size:11px;font-weight:normal;color:var(--m)">Transaksi</span></div>
@@ -45,10 +45,10 @@
     </div>
 
     <!-- Grid 2 Kolom: Tabel Kiri + Sidebar Kanan -->
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px">
+    <div class="circulation-management-grid" style="display:grid;grid-template-columns:1fr 340px;gap:20px">
         <div style="min-width:0">
             <!-- Search & Filters -->
-            <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
+            <div class="circulation-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
                 <div style="flex:1;position:relative">
                     <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
                     <input type="text" placeholder="Cari No. Transaksi, NIA Anggota, Barcode Buku..." style="width:100%;padding:8px 12px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Sub Tabs -->
-            <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+            <div class="circulation-management-tabs" style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
                 <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:700;cursor:pointer">Semua Transaksi (342)</button>
                 <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Peminjaman Baru (154)</button>
                 <button style="background:#f3f4f6;color:var(--m);border:none;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer">Pengembalian (188)</button>
@@ -73,7 +73,7 @@
             </div>
 
             <!-- Bulk Bar -->
-            <div style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
+            <div class="circulation-management-bulkbar" style="background:#153223;color:#fff;padding:8px 14px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:12px">
                 <div style="display:flex;align-items:center;gap:10px">
                     <input type="checkbox" checked style="accent-color:#059669;width:15px;height:15px">
                     <span><b>2 Transaksi Dipilih</b></span>
@@ -86,7 +86,7 @@
             </div>
 
             <!-- Main Table -->
-            <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
+            <div class="circulation-management-table" style="background:#fff;border:1px solid var(--ln);border-radius:10px;overflow:hidden">
                 <table style="width:100%;border-collapse:collapse;text-align:left;font-size:12px">
                     <thead>
                         <tr style="background:#f9fafb;border-bottom:1px solid var(--ln);color:var(--m);font-size:10.5px;font-weight:700">
@@ -270,18 +270,19 @@
         </div>
 
         <!-- Right Sidebar Slip & Detail -->
-        <div style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
-            <div style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                    <span style="font-size:9.5px;font-weight:700;letter-spacing:.05em">INOVEXA CIRCULATION</span>
-                    <span style="background:#059669;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700">SCANNER READY</span>
+        <div class="circulation-management-detail" style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
+            <div class="circulation-rfid-card" style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
+                <div class="circulation-rfid-card-head">
+                    <span class="circulation-rfid-brand"><span class="circulation-rfid-mark" aria-hidden="true">↪</span><span><b>INOVEXA<br>CIRCULATION</b><small>SMART DESK CHECKOUT<br>RFID SYSTEM</small></span></span>
+                    <span class="circulation-rfid-ready"><i></i><span>SCANNER<br>READY</span></span>
                 </div>
-                <div style="font-size:10px;color:#a3e635;margin-bottom:2px">NO. TRANSAKSI SIRKULASI</div>
-                <div style="font-size:15px;font-weight:800;font-family:monospace;margin-bottom:8px">TR-2026-1025-089</div>
-                <div style="font-size:13px;font-weight:700;margin-bottom:2px">Herdman (Mahasiswa)</div>
-                <div style="font-size:10.5px;color:#cbd5e1;margin-bottom:12px">NIA: INX-2026-06912 • Loket Utama 1</div>
-                <div style="background:#fff;padding:6px;border-radius:4px;text-align:center">
-                    <div style="font-family:monospace;font-size:9px;color:#000;letter-spacing:2px">||| | |||| || ||||||</div>
+                <div class="circulation-rfid-number-label">NO. TRANSAKSI SIRKULASI</div>
+                <div class="circulation-rfid-number">TR-2026-1025-089</div>
+                <div class="circulation-rfid-member">Herdman (Mahasiswa)</div>
+                <div class="circulation-rfid-meta">NIA: INX-2026-06912 &bull; Loket Utama 1</div>
+                <div class="circulation-rfid-footer">
+                    <div><small>READER UID CHIP</small><b>RDR-DESK-01-SECURE</b></div>
+                    <div class="circulation-rfid-barcode"><i></i><small>BARCODE 08912</small></div>
                 </div>
             </div>
 

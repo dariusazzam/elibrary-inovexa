@@ -3,6 +3,33 @@
 @section('title', 'Edit Buku - ' . $book->title)
 
 @section('content')
+@php
+    $bookCoverFiles = [
+        'The Psychology of Money.jpeg',
+        'Sapiens Riwayat Singkat Umat Manusia.jpeg',
+        'Prinsip Desain Antarmuka Modern.jpeg',
+        'Metodologi Penelitian Kualitatif.jpeg',
+        'laskar pelangi.jpeg',
+        'Filosofi Teras.jpeg',
+        'Bumi Manusia.jpeg',
+        'Atomic Habits.jpeg',
+        'bisnis onlain.jpeg',
+    ];
+    $bookCoverAliases = [
+        'atomichabitsperubahankecilhasilluarbiasa' => 'Atomic Habits.jpeg',
+        'sapiensriwayatsingkatumatmanusia' => 'Sapiens Riwayat Singkat Umat Manusia.jpeg',
+    ];
+    $normalizeBookName = fn (string $name): string => preg_replace('/[^a-z0-9]/', '', strtolower($name));
+    $normalizedTitle = $normalizeBookName($book->title);
+    $coverImage = $bookCoverAliases[$normalizedTitle] ?? collect($bookCoverFiles)->first(function (string $file) use ($normalizeBookName, $normalizedTitle): bool {
+        $fileName = pathinfo($file, PATHINFO_FILENAME);
+
+        return $normalizeBookName($fileName) === $normalizedTitle
+            || str_contains($normalizedTitle, $normalizeBookName($fileName))
+            || str_contains($normalizeBookName($fileName), $normalizedTitle);
+    });
+@endphp
+
 <div class="max-w-3xl mx-auto space-y-6">
     <div class="flex items-center justify-between">
         <div>
@@ -17,6 +44,22 @@
     <form method="POST" action="{{ route('books.update', $book) }}" class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-5">
         @csrf
         @method('PUT')
+
+        <div class="flex items-center gap-4 rounded-lg bg-gray-50 border border-gray-200 p-4">
+            @if($coverImage)
+                <img src="{{ asset('foto/' . $coverImage) }}?v={{ filemtime(public_path('foto/' . $coverImage)) }}" alt="Sampul {{ $book->title }}"
+                     class="h-28 w-20 rounded-md object-cover shadow-sm border border-gray-200">
+            @else
+                <div class="h-28 w-20 rounded-md border border-dashed border-gray-300 bg-white flex items-center justify-center text-center px-2 text-[10px] text-gray-400">
+                    Foto buku belum tersedia
+                </div>
+            @endif
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wide text-gray-500">Sampul Buku</p>
+                <p class="mt-1 text-sm font-medium text-gray-900">{{ $book->title }}</p>
+                <p class="mt-1 text-xs text-gray-500">Foto sampul diambil dari folder foto.</p>
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="md:col-span-2">
