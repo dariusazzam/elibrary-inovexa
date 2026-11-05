@@ -20,7 +20,7 @@ class Library
     public const CREDS = [
         'member' => ['INX-2026-8820', '123456', 'Herdman'],
         'admin' => ['admin', 'admin123', 'Budi Santoso'],
-        'super' => ['super', 'super123', 'Super Admin'],
+        'super' => ['super', 'super123', 'Ari'],
     ];
 
     public const NIK_DEMO = '3271040801990002';
@@ -47,10 +47,16 @@ class Library
             ['reports', 'Lihat & Cetak Laporan'],
         ],
         'super' => [
-            ['ov', 'Ringkasan Konsol'],
-            ['users', 'Pengguna'],
-            ['roles', 'Hak Akses'],
-            ['sys', 'Pengaturan'],
+            ['ov', 'Dashboard Super Admin'],
+            ['users', 'Kelola Akun & Hak Akses'],
+            ['circ', 'Kelola Data Anggota'],
+            ['stock', 'Koleksi & Repository Buku'],
+            ['circ_return', 'Kelola Sirkulasi'],
+            ['sys', 'Kebijakan Denda & Notifikasi'],
+            ['elib', 'Kelola E-Library'],
+            ['audit', 'Audit Log & Backup Sistem'],
+            ['reports', 'Lihat Keseluruhan Laporan'],
+            ['roles', 'Matriks Hak Akses'],
         ],
     ];
 
@@ -109,7 +115,7 @@ class Library
                 '24670081' => ['pw' => '123456', 'name' => 'nopal', 'role' => 'member'],
                 '24670016' => ['pw' => '123456', 'name' => 'Muhammad Okta Ramadhani', 'role' => 'member'],
                 'admin' => ['pw' => 'admin123', 'name' => 'Budi Santoso', 'role' => 'admin'],
-                'super' => ['pw' => 'super123', 'name' => 'Super Admin', 'role' => 'super'],
+                'super' => ['pw' => 'super123', 'name' => 'Ari', 'role' => 'super'],
             ];
             $lib->users = [
                 ['n' => 'Herdman',                 'i' => 'INX-2026-8820', 'r' => 'Anggota',       'on' => true],
@@ -126,7 +132,7 @@ class Library
                 ['n' => 'nopal',                   'i' => '24670081', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Muhammad Okta Ramadhani', 'i' => '24670016', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Budi Santoso',            'i' => 'admin',         'r' => 'Admin Pegawai', 'on' => true],
-                ['n' => 'Super Admin',             'i' => 'super',         'r' => 'Super Admin',   'on' => true],
+                ['n' => 'Ari',                     'i' => 'SA-2026-01',    'r' => 'Super Admin',   'on' => true],
             ];
             $lib->save();
         }

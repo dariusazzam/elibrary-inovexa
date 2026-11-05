@@ -3,21 +3,39 @@
     $r = session('user')['role'] ?? 'member';
     $u = session('user') ?? ['n' => 'Anggota', 'role' => 'member'];
     $isMember = $r === 'member';
-    $userName = $u['n'] ?? ($r === 'admin' ? 'Budi Santoso' : 'Anggota');
-    $userNumber = $u['id'] ?? ($r === 'admin' ? 'NIP : ASN-2026-04' : 'INX-2026');
+    $userName = $u['n'] ?? ($r === 'admin' ? 'Budi Santoso' : ($r === 'super' ? 'Ari' : 'Anggota'));
+    $userNumber = $u['id'] ?? ($r === 'admin' ? 'NIP : ASN-2026-04' : ($r === 'super' ? 'SA-2026-01' : 'INX-2026'));
     $userRole = $isMember ? 'Anggota Reguler' : ($r === 'admin' ? 'Admin Pegawai & Tata Kelola' : 'Super Admin');
-    $firstLetter = mb_strtoupper(mb_substr($userName, 0, 1));
+    $firstLetter = $r === 'super' ? 'AR' : mb_strtoupper(mb_substr($userName, 0, 1));
     $tagLabel = $isMember ? 'PORTAL ANGGOTA' : ($r === 'admin' ? 'AKTIVITAS PETUGAS SIRKULASI' : 'KONSOL SUPER ADMIN');
 @endphp
 
-@section('title', ($r === 'admin' ? 'Dashboard Admin Pegawai' : ($r === 'super' ? 'Konsol Super Admin' : 'Dashboard Anggota')) . ' — Inovexa Technologies')
+@section('title', ($r === 'admin' ? 'Dashboard Admin Pegawai' : ($r === 'super' ? 'Dashboard Super Admin' : 'Dashboard Anggota')) . ' — Inovexa Technologies')
 
 @section('content')
 <div class="figma-container">
-    {{-- Sidebar Kiri Hijau Tua Persis Image 2 Figma --}}
-    <aside class="figma-sidebar {{ $r === 'admin' ? 'figma-sidebar-admin' : '' }}">
-        {{-- Area Atas: Header Gambar Perpustakaan + Hamburger & Badge PORTAL ANGGOTA --}}
-        @if($r === 'admin')
+    {{-- Sidebar Kiri Hijau Tua Persis Image 2 Figma & Super Admin Figma --}}
+    <aside class="figma-sidebar {{ $r === 'admin' ? 'figma-sidebar-admin' : ($r === 'super' ? 'figma-sidebar-super' : '') }}">
+        {{-- Area Atas: Header Gambar / Profil Sesuai Peran --}}
+        @if($r === 'super')
+            <div class="figma-super-brand">
+                <div class="figma-super-brand-logo">
+                    <img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa">
+                </div>
+                <div class="figma-super-brand-text">
+                    <b>Inovexa Library</b>
+                    <small>SISTEM INFORMASI &amp; MANAJEMEN</small>
+                </div>
+            </div>
+            <div class="figma-super-user-card">
+                <div class="figma-super-avatar-circle">AR</div>
+                <div class="figma-super-user-meta">
+                    <b>{{ $userName }}</b>
+                    <small>{{ $userRole }}</small>
+                    <div class="figma-super-user-id">KODE : {{ $userNumber }}</div>
+                </div>
+            </div>
+        @elseif($r === 'admin')
             <div class="figma-admin-brand">
                 <img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa">
                 <span><b>Inovexa Library</b><small>Sistem Sirkulasi &amp; Tata Kelola</small></span>
@@ -71,7 +89,8 @@
                     'reports' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
                     'users' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
                     'roles' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-                    'sys' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg>'
+                    'sys' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg>',
+                    'audit' => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
                 ];
                 $icon = $icons[$m[0]] ?? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>';
             @endphp
@@ -90,13 +109,30 @@
             @endforeach
         </nav>
 
+        {{-- Widget Kapasitas Backup Super Admin Persis Figma --}}
+        @if($r === 'super')
+            <div class="figma-super-backup-card">
+                <div class="figma-super-backup-head">
+                    <span>KAPASITAS BACKUP</span>
+                    <span class="figma-super-backup-badge">91%</span>
+                </div>
+                <div class="figma-super-backup-progress">
+                    <div class="figma-super-backup-bar" style="width: 91%"></div>
+                </div>
+                <div class="figma-super-backup-info">
+                    <span>1.8 GB / 2.0 GB</span>
+                    <span>Tersedia 200 MB</span>
+                </div>
+            </div>
+        @endif
+
         {{-- Bagian Bawah: Tombol Keluar Sistem --}}
         <div class="figma-side-bottom">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="figma-logout-btn">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M12 4h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/></svg>
-                    Keluar Sistem
+                <button type="submit" class="figma-logout-btn {{ $r === 'super' ? 'figma-logout-super' : '' }}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/><path d="M12 4h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/></svg>
+                    <span>{{ $r === 'super' ? 'Keluar Sistem (Logout)' : 'Keluar Sistem' }}</span>
                 </button>
             </form>
         </div>
@@ -104,8 +140,33 @@
 
     {{-- Area Konten Utama Kanan Persis Image 2 Figma --}}
     <div class="figma-main-wrapper">
-        {{-- Top Header Bar --}}
-        @if($r === 'admin')
+        {{-- Top Header Bar Sesuai Peran --}}
+        @if($r === 'super')
+        <header class="figma-topbar figma-topbar-light">
+            <div class="figma-search-pill figma-search-pill-light" style="max-width:440px">
+                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <input type="text" placeholder="Cari data pengguna, peran, log audit, atau ISBN...">
+            </div>
+
+            <div class="figma-topbar-actions">
+                <div class="figma-super-status-badge">
+                    <span class="figma-dot-green"></span>
+                    <span>Database Server Normal</span>
+                </div>
+                <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi Sistem" onclick="toast('Semua sistem dan proteksi server normal')">
+                    <span>🔔</span>
+                    <span class="figma-bell-dot" style="background:#ea580c"></span>
+                </button>
+                <div class="figma-topbar-user-pill">
+                    <div class="figma-topbar-user-avatar" style="background:#153223;color:#fff;font-weight:800">AR</div>
+                    <div class="figma-topbar-user-info">
+                        <span class="topbar-user-name">{{ $userName }}</span>
+                        <span class="topbar-user-role">Super Admin (Tingkat 1)</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @elseif($r === 'admin')
         <header class="figma-topbar figma-topbar-light">
             <div class="figma-search-pill figma-search-pill-light" style="max-width:440px">
                 <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
@@ -185,10 +246,16 @@
         </header>
         @endif
 
-        {{-- Konten Utama Panel --}}
+        {{-- Konten Utama Panel Sesuai Peran & Menu --}}
         <main class="figma-page-content">
             @php
                 $panelView = match (true) {
+                    $r === 'super' && $menu === 'ov' => 'panels.super-dashboard',
+                    $r === 'super' && $menu === 'circ' => 'panels.mem',
+                    $r === 'super' && $menu === 'circ_return' => 'panels.circ_return',
+                    $r === 'super' && $menu === 'elib' => 'panels.elib-admin',
+                    $r === 'super' && $menu === 'reports' => 'panels.reports',
+                    $r === 'super' && $menu === 'audit' => 'panels.super-audit',
                     $r === 'admin' && $menu === 'circ' => 'panels.mem',
                     $r === 'admin' && $menu === 'resv' => 'panels.resv-admin',
                     $r === 'admin' && $menu === 'notif' => 'panels.elib-admin',

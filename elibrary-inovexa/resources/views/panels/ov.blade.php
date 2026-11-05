@@ -1,4 +1,6 @@
-@if($u['role'] === 'admin')
+@if($u['role'] === 'super')
+    @include('panels.super-dashboard')
+@elseif($u['role'] === 'admin')
     <div class="admin-dashboard">
     <div class="admin-dashboard-hero" style="background:#153223;color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(21,50,35,.2)">
         <div class="admin-hero-top" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">

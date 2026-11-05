@@ -3618,3 +3618,1532 @@ html body .figma-topbar-light .topbar-user-role {
 .reservation-management-page{grid-template-columns:minmax(0,1fr) 286px!important;gap:10px!important;align-items:start!important}.reservation-management-page .member-management-heading{gap:10px!important;margin-bottom:10px!important}.reservation-management-page .member-management-heading>div:first-child>div:first-child{font-size:8px!important}.reservation-management-page .member-management-heading h2{font-size:16px!important;letter-spacing:-.02em}.reservation-management-page .member-management-heading p{font-size:8px!important;line-height:1.35!important;max-width:590px!important}.reservation-management-page .member-management-heading>div:last-child{display:grid!important;grid-template-columns:repeat(2,max-content);gap:4px!important;max-width:260px!important}.reservation-management-page .member-management-heading>div:last-child button{font-size:7px!important;padding:5px 6px!important}.reservation-management-page .member-management-stats{gap:6px!important;margin-bottom:8px!important}.reservation-management-page .member-management-stats>div{min-height:68px!important;padding:8px!important;border-radius:7px!important}.reservation-management-page .member-management-stats>div span{font-size:6.5px!important}.reservation-management-page .member-management-stats>div>div{font-size:15px!important;margin:3px 0!important}.reservation-management-page .member-management-stats>div small{font-size:6px!important}.reservation-management-page .member-management-toolbar{gap:5px!important;padding:6px!important;margin-bottom:7px!important}.reservation-management-page .member-management-toolbar input,.reservation-management-page .member-management-toolbar select,.reservation-management-page .member-management-toolbar button{height:27px!important;font-size:7px!important;padding:4px 5px!important}.reservation-management-page .collection-tabs{margin-bottom:7px!important}.reservation-management-page .collection-tabs>div{gap:4px!important;flex-wrap:nowrap!important;overflow:hidden}.reservation-management-page .collection-tabs button{font-size:6.7px!important;padding:4px 6px!important;white-space:nowrap}.reservation-management-page .member-management-bulkbar{min-height:28px!important;padding:5px 8px!important;margin-bottom:7px!important;font-size:7px!important}.reservation-management-page .member-management-bulkbar button{font-size:6.5px!important;padding:3px 5px!important}.reservation-management-page .member-management-table table{table-layout:fixed!important;font-size:7px!important}.reservation-management-page .member-management-table th,.reservation-management-page .member-management-table td{padding:6px 5px!important;line-height:1.25!important}.reservation-management-page .member-management-table th:first-child{width:24px}.reservation-management-page .member-management-table th:nth-child(2){width:20%}.reservation-management-page .member-management-table th:nth-child(3){width:25%}.reservation-management-page .member-management-table th:nth-child(4){width:20%}.reservation-management-page .member-management-table th:nth-child(5){width:19%}.reservation-management-page .member-management-table td b{font-size:7.2px!important}.reservation-management-page .member-management-table td small{font-size:6px!important}.reservation-management-page .member-management-table td span{font-size:6px!important}.reservation-management-page .member-management-table>div:last-child{padding:6px 8px!important;font-size:6.5px!important}.reservation-management-page .member-management-main>div:last-child{margin-top:8px!important;padding:8px!important;font-size:7px!important}.reservation-management-page .reservation-detail-panel{padding:9px!important;border-radius:8px!important}.reservation-management-page .collection-rfid-card{padding:10px!important;border-radius:7px!important}.reservation-management-page .reservation-detail-panel h4{font-size:9px!important}.reservation-management-page .reservation-detail-panel button{font-size:7px!important;padding:6px!important}.reservation-locker-map{margin-top:10px;padding-top:8px;border-top:1px solid var(--ln);font-size:7px}.reservation-locker-map>div:first-child{display:flex;justify-content:space-between;align-items:center}.reservation-locker-map>div:first-child small{font-size:6px;color:var(--m)}.reservation-locker-cells{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin:7px 0}.reservation-locker-cells i{height:8px;border-radius:1px;background:#0f172a}.reservation-locker-cells i.occupied{background:#dc2626}.reservation-locker-map>small{font-size:6px;color:var(--m)}.reservation-locker-map>small span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#0f172a}.reservation-locker-map>small span.occupied{background:#dc2626}@media(max-width:1050px){.reservation-management-page{grid-template-columns:1fr!important}.reservation-management-page .reservation-detail-panel{display:block!important}}
 .reservation-selected-card{margin-bottom:9px;border:1px solid var(--ln);border-radius:6px;overflow:hidden;background:#fff}.reservation-selected-top{display:flex;justify-content:space-between;align-items:center;padding:6px 7px;border-bottom:1px solid var(--ln);font-family:monospace;font-size:7px}.reservation-selected-top span{padding:2px 4px;border-radius:3px;background:#d1fae5;color:#065f46;font-family:inherit;font-size:6px;font-weight:800}.reservation-member{display:flex;align-items:center;gap:6px;padding:7px}.reservation-member i{display:grid;width:20px;height:20px;place-items:center;border-radius:50%;background:#d97706;color:#fff;font-size:7px;font-style:normal;font-weight:800}.reservation-member div{display:flex;flex-direction:column;gap:1px}.reservation-member b{font-size:8px}.reservation-member small,.reservation-book small{font-size:6px;color:var(--m)}.reservation-book{display:flex;flex-direction:column;gap:2px;margin:0 7px;padding:7px;border-radius:4px;background:#f8fafc}.reservation-book span{font-size:5.5px;color:#b45309;font-weight:800}.reservation-book b{font-size:7px;line-height:1.25}.reservation-locker-allocation{display:grid;grid-template-columns:1fr auto;gap:3px 5px;margin:7px;padding:7px;border-radius:4px;background:#102e24;color:#fff}.reservation-locker-allocation div{display:flex;flex-direction:column;gap:1px}.reservation-locker-allocation div b{font-size:6px;letter-spacing:.04em}.reservation-locker-allocation div small,.reservation-locker-allocation>small{font-size:5px;color:#a9cbb7}.reservation-locker-allocation strong{font-family:monospace;font-size:8px}.reservation-locker-allocation span{font-family:monospace;font-size:6px;color:#b7e5d0;text-align:right}.reservation-locker-allocation>small{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);padding-top:4px}.reservation-actions-title{margin:0 0 6px!important;font-size:8px!important}.reservation-primary-action,.reservation-secondary-action,.reservation-danger-action{width:100%;margin-bottom:5px;border-radius:5px;font-size:6.5px!important;line-height:1.2;text-align:left}.reservation-primary-action{border:0;background:#111827;color:#fff;font-weight:700}.reservation-secondary-action{border:1px solid var(--ln);background:#fff;color:#475569}.reservation-danger-action{border:0;background:none;color:#dc2626}
 .elib-admin-page{font-size:8px;color:#172033}.elib-admin-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.elib-admin-heading>div:first-child>div{font-size:7px;font-weight:800;color:#64748b}.elib-admin-heading h2{margin:3px 0;font-size:17px}.elib-admin-heading p{max-width:600px;margin:0;color:#64748b;line-height:1.35}.elib-admin-heading>div:last-child{display:flex;gap:4px;align-items:flex-start}.elib-admin-heading button,.elib-admin-page .dark{border:1px solid var(--ln);border-radius:4px;background:#fff;padding:5px 7px;font-size:7px}.elib-admin-heading .dark,.elib-admin-page .dark{background:#153223;color:#fff;border-color:#153223}.elib-admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:9px}.elib-admin-stats article{padding:8px;border:1px solid var(--ln);border-radius:6px;background:#fff}.elib-admin-stats span{display:block;color:#64748b;font-size:6px;font-weight:800}.elib-admin-stats b{display:block;margin:4px 0 1px;font-size:16px}.elib-admin-stats small{font-size:6px;color:#64748b}.elib-admin-layout{display:grid;grid-template-columns:minmax(0,1fr) 248px;gap:9px}.elib-admin-filter{display:grid;grid-template-columns:1.5fr 1fr .9fr auto;gap:5px;padding:6px;border:1px solid var(--ln);border-radius:6px;background:#fff}.elib-admin-filter input,.elib-admin-filter select,.elib-admin-filter button{height:26px;border:1px solid var(--ln);border-radius:4px;background:#fff;padding:4px;font-size:7px}.elib-admin-tabs{display:flex;gap:5px;margin:7px 0}.elib-admin-tabs>*{padding:4px 6px;border-radius:10px;background:#f3f4f6;font-size:6.5px}.elib-admin-tabs b{background:#153223;color:#fff}.elib-admin-table{overflow:hidden;border:1px solid var(--ln);border-radius:6px;background:#fff}.elib-admin-table table{width:100%;border-collapse:collapse;table-layout:fixed}.elib-admin-table th{padding:6px;background:#f8fafc;color:#64748b;font-size:6px;text-align:left}.elib-admin-table td{padding:6px;border-top:1px solid var(--ln);font-size:7px;vertical-align:middle}.elib-admin-table td:nth-child(1){width:20px}.elib-admin-table td:nth-child(2){width:42%}.elib-admin-table td img{float:left;width:23px;height:31px;margin-right:6px;border-radius:2px;object-fit:cover}.elib-admin-table td b,.elib-admin-table td small{display:block}.elib-admin-table td small{font-size:6px;color:#64748b;margin-top:2px}.elib-admin-table em,.elib-admin-table i{padding:2px 4px;border-radius:6px;background:#d1fae5;color:#065f46;font-size:5.5px;font-style:normal;font-weight:800}.elib-admin-table i{background:#fef3c7;color:#b45309}.elib-admin-table footer{padding:6px;background:#f8fafc;color:#64748b;font-size:6px}.elib-admin-table footer b{margin-left:12px;padding:2px 4px;background:#153223;color:#fff;border-radius:2px}.elib-admin-guide{margin-top:10px;padding:8px;border-left:3px solid #d97706;border-radius:5px;background:#fff;font-size:7px}.elib-admin-guide p{margin:3px 0 0;color:#64748b}.elib-admin-side{display:flex;flex-direction:column;gap:8px}.elib-admin-side section{padding:9px;border:1px solid var(--ln);border-radius:6px;background:#fff}.side-title{display:flex;justify-content:space-between}.side-title em{padding:2px 4px;border-radius:3px;background:#d1fae5;color:#065f46;font-size:6px;font-style:normal}.elib-admin-side p{margin:4px 0;color:#64748b;font-size:6.5px}.channel{display:flex;justify-content:space-between;padding:5px 0;border-top:1px solid #f1f5f9;font-size:6.5px}.channel b{color:#059669}.notice{margin-top:6px;padding:6px;border-radius:4px;background:#f8fafc;font-size:6.5px;line-height:1.35}.wide{width:100%;margin-top:7px}.side-metric{display:flex;justify-content:space-between;margin:7px 0 3px;font-size:6.5px;color:#64748b}.side-metric strong{color:#172033}.progress{height:5px;border-radius:4px;background:#e5e7eb;overflow:hidden}.progress i{display:block;width:89%;height:100%;background:#d97706}@media(max-width:900px){.elib-admin-layout{grid-template-columns:1fr}.elib-admin-side{display:grid;grid-template-columns:repeat(3,1fr)}.elib-admin-heading{flex-direction:column}}@media(max-width:720px){.elib-admin-stats{grid-template-columns:repeat(2,1fr)}.elib-admin-filter{grid-template-columns:1fr 1fr}.elib-admin-filter input{grid-column:1/-1}.elib-admin-table{overflow:auto}.elib-admin-table table{min-width:620px}.elib-admin-side{grid-template-columns:1fr}}
+
+
+/* ========================================================================= */
+/* FIGMA EXACT DESIGN FOR SUPER ADMIN DASHBOARD                              */
+/* ========================================================================= */
+
+/* Sidebar Super Admin */
+.figma-sidebar-super {
+    background: #153223 !important;
+    width: 230px !important;
+    min-width: 230px !important;
+    padding: 16px 12px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.figma-super-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 6px 14px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.figma-super-brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 2px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.figma-super-brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.figma-super-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.figma-super-brand-text b {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.figma-super-brand-text small {
+    font-size: 7.5px;
+    font-weight: 700;
+    color: #86efac;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* User Card di Sidebar Super Admin */
+.figma-super-user-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.figma-super-avatar-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.figma-super-user-meta {
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.figma-super-user-meta b {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.figma-super-user-meta small {
+    display: block;
+    font-size: 9.5px;
+    color: #a7f3d0;
+    margin-top: 1px;
+}
+
+.figma-super-user-id {
+    font-size: 8.5px;
+    color: #6ee7b7;
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+/* Nav Item Styling untuk Super Admin */
+.figma-sidebar-super .figma-nav-item {
+    gap: 10px !important;
+    padding: 8px 10px !important;
+    border-radius: 8px !important;
+    color: #b8d5c4 !important;
+    font-size: 11.5px !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: all 0.15s ease !important;
+    text-decoration: none !important;
+    background: transparent !important;
+}
+
+.figma-sidebar-super .figma-nav-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+.figma-sidebar-super .figma-nav-item.active-pill {
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.figma-sidebar-super .figma-nav-item.active-pill .figma-nav-icon,
+.figma-sidebar-super .figma-nav-item.active-pill .figma-nav-text {
+    color: #111827 !important;
+}
+
+/* Card Kapasitas Backup di Sidebar Bawah */
+.figma-super-backup-card {
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    padding: 10px 12px;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+.figma-super-backup-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #cbd5e1;
+    letter-spacing: 0.06em;
+}
+
+.figma-super-backup-badge {
+    background: #b45309;
+    color: #ffffff;
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 99px;
+}
+
+.figma-super-backup-progress {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 99px;
+    margin: 7px 0;
+    overflow: hidden;
+}
+
+.figma-super-backup-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #ea580c);
+    border-radius: 99px;
+}
+
+.figma-super-backup-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+}
+
+.figma-super-backup-info span:first-child {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.figma-super-backup-info span:last-child {
+    color: #94a3b8;
+}
+
+/* Logout Button Super Admin */
+.figma-logout-super {
+    color: #fca5a5 !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
+    font-size: 11.5px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+    border: none !important;
+    background: none !important;
+    width: 100% !important;
+    transition: background 0.15s !important;
+}
+
+.figma-logout-super:hover {
+    background: rgba(239, 68, 68, 0.14) !important;
+}
+
+/* Topbar Super Admin */
+.figma-super-status-badge {
+    background: #f0fdf4 !important;
+    border: 1px solid #bbf7d0 !important;
+    color: #166534 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 5px 14px !important;
+    border-radius: 99px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    white-space: nowrap !important;
+}
+
+.super-dot-green {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+/* Container Dashboard Super Admin */
+.super-dashboard-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #111827;
+}
+
+/* Hero Banner Super Admin */
+.super-hero-banner {
+    background: radial-gradient(circle at 92% 50%, rgba(34, 197, 94, 0.18), transparent 45%), linear-gradient(135deg, #133324 0%, #0d2218 100%);
+    border-radius: 14px;
+    padding: 26px 30px;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(21, 50, 35, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.super-hero-watermark {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 140px;
+    height: 140px;
+    color: #22c55e;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.super-hero-watermark svg {
+    width: 100%;
+    height: 100%;
+}
+
+.super-hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 99px;
+    padding: 4px 12px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+.super-dot-orange {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f97316;
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.8);
+}
+
+.super-hero-title {
+    font-size: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    line-height: 1.2;
+}
+
+.super-hero-desc {
+    font-size: 12.5px;
+    color: #c9ded3;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 0 20px;
+}
+
+.super-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.super-btn-primary {
+    background: #ffffff;
+    color: #153223;
+    font-weight: 700;
+    font-size: 11.5px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.15s, transform 0.15s;
+}
+
+.super-btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.super-btn-glass {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 11.5px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.super-btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 4 KPI Stat Cards */
+.super-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.super-kpi-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 124px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.super-kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.super-kpi-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.super-kpi-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+}
+
+.super-kpi-icon.green {
+    background: #e8f4ed;
+    color: #166534;
+}
+
+.super-kpi-icon.slate {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.super-kpi-icon.amber {
+    background: #fef3e7;
+    color: #b45309;
+}
+
+.super-kpi-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+}
+
+.super-kpi-badge.mint {
+    background: #dcebe2;
+    color: #166534;
+}
+
+.super-kpi-badge.slate {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.super-kpi-badge.amber {
+    background: #fef3e7;
+    color: #b45309;
+}
+
+.super-kpi-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #6b7280;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.super-kpi-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 6px;
+}
+
+.super-kpi-value-currency {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+}
+
+.currency-prefix {
+    font-size: 13px;
+    font-weight: 700;
+    color: #b45309;
+}
+
+.currency-amount {
+    font-size: 22px;
+    font-weight: 800;
+    color: #b45309;
+    letter-spacing: -0.01em;
+}
+
+.super-kpi-unit {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.super-kpi-sub {
+    font-size: 10.5px;
+    color: #6b7280;
+    line-height: 1.35;
+}
+
+/* Two Column Grids (Middle & Lower) */
+.super-two-col-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(290px, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.super-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.super-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.super-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4px;
+}
+
+.super-card-desc {
+    font-size: 11px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.super-btn-dark-pill {
+    background: #153223;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: background 0.15s;
+}
+
+.super-btn-dark-pill:hover {
+    background: #0f2419;
+}
+
+/* Table Toolbar (Tabs + Search) */
+.super-table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.super-table-tabs {
+    display: flex;
+    gap: 6px;
+}
+
+.super-tab-btn {
+    border: none;
+    background: #f3f4f6;
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.super-tab-btn.active {
+    background: #153223;
+    color: #ffffff;
+}
+
+.super-table-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 4px 10px;
+    background: #ffffff;
+    width: 190px;
+}
+
+.super-table-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 11px;
+    width: 100%;
+    color: #111827;
+}
+
+.super-table-search .search-icon {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+/* Tabel Data Pengguna */
+.super-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.super-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+}
+
+.super-table th {
+    text-align: left;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #6b7280;
+    letter-spacing: 0.05em;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.super-table td {
+    padding: 10px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.super-user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.super-table-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.super-table-avatar.green {
+    background: #153223;
+}
+
+.super-table-avatar.slate {
+    background: #475569;
+}
+
+.super-table-avatar.teal {
+    background: #0f766e;
+}
+
+.super-table-avatar.amber {
+    background: #d97706;
+}
+
+.super-table-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.super-verified-icon {
+    font-size: 11px;
+    line-height: 1;
+}
+
+.super-table-meta {
+    font-size: 10px;
+    color: #6b7280;
+    display: block;
+    margin-top: 1px;
+}
+
+.super-role-pill {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.super-role-pill.super-role-super {
+    background: #e8f4ed;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.super-role-pill.super-role-admin {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.super-role-pill.super-role-member {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.super-role-pill.super-role-guest {
+    background: #fef3e7;
+    color: #b45309;
+    border: 1px solid #fed7aa;
+}
+
+.super-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.super-status-pill.green {
+    background: #e8f4ed;
+    color: #166534;
+}
+
+.super-status-pill.amber {
+    background: #fef3e7;
+    color: #b45309;
+}
+
+.super-table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 11px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.super-table-count {
+    color: #6b7280;
+}
+
+.super-link-orange {
+    color: #b45309;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+}
+
+.super-link-orange:hover {
+    text-decoration: underline;
+}
+
+.super-arrow {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* Card Matriks Hak Akses */
+.super-badge-version {
+    background: #f3f4f6;
+    color: #4b5563;
+    border-radius: 99px;
+    padding: 3px 9px;
+    font-size: 9.5px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.super-matrix-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.super-matrix-item {
+    background: #fcfbf9;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.super-matrix-info {
+    min-width: 0;
+}
+
+.super-matrix-name {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 2px;
+}
+
+.super-matrix-scope {
+    font-size: 9.5px;
+    color: #6b7280;
+    display: block;
+}
+
+.super-matrix-scope span {
+    color: #166534;
+    font-weight: 600;
+}
+
+.super-access-pill {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.super-access-pill.full {
+    background: #e8f4ed;
+    color: #166534;
+}
+
+.super-access-pill.edit {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.super-access-pill.public {
+    background: #ccfbf1;
+    color: #0f766e;
+}
+
+.super-btn-dark-full {
+    background: #153223;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: background 0.15s;
+}
+
+.super-btn-dark-full:hover {
+    background: #0f2419;
+}
+
+/* Audit Log Card */
+.super-btn-filter {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.super-btn-filter:hover {
+    background: #f9fafb;
+}
+
+.super-audit-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.super-audit-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.super-audit-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.super-audit-dot.dot-red {
+    background: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.super-audit-dot.dot-green {
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+.super-audit-dot.dot-amber {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.super-audit-dot.dot-darkred {
+    background: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.super-audit-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.super-audit-headline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+}
+
+.super-audit-time {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.super-audit-tag {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.super-audit-tag.system {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.super-audit-tag.backup {
+    background: #e8f4ed;
+    color: #166534;
+}
+
+.super-audit-tag.role {
+    background: #fef3e7;
+    color: #b45309;
+}
+
+.super-audit-tag.firewall {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.super-audit-actor {
+    font-size: 11.5px;
+    color: #111827;
+}
+
+.super-audit-detail {
+    font-size: 10.5px;
+    color: #4b5563;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.super-text-red {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.super-audit-footer {
+    margin-top: 14px;
+    text-align: right;
+}
+
+.super-link-dark {
+    color: #153223;
+    font-weight: 700;
+    font-size: 11px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.super-link-dark:hover {
+    text-decoration: underline;
+}
+
+/* Card Infrastruktur DB */
+.super-status-badge-green {
+    background: #e8f4ed;
+    color: #166534;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.super-storage-box {
+    background: #fcfbf9;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.super-storage-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+.super-storage-label {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.super-storage-value {
+    color: #111827;
+    font-weight: 700;
+}
+
+.super-storage-bar-track {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.super-storage-bar-fill {
+    height: 100%;
+    background: #ea580c;
+    border-radius: 99px;
+}
+
+.super-specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.super-spec-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.super-spec-title {
+    font-size: 9.5px;
+    color: #6b7280;
+    margin-bottom: 3px;
+}
+
+.super-spec-value {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.1;
+    margin-bottom: 2px;
+}
+
+.super-spec-sub {
+    font-size: 9px;
+}
+
+.super-spec-sub.green {
+    color: #166534;
+    font-weight: 600;
+}
+
+.super-spec-sub.muted {
+    color: #6b7280;
+}
+
+.super-infra-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.super-btn-outline-full {
+    background: #ffffff;
+    color: #374151;
+    width: 100%;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.super-btn-outline-full:hover {
+    background: #f9fafb;
+}
+
+/* Card Lebar Bawah: Laporan Ekosistem & Bar Chart */
+.super-report-fullwidth-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.super-report-head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.super-report-title-lockup {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.super-report-icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #fef3e7;
+    color: #b45309;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.super-report-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 3px;
+}
+
+.super-report-subtitle {
+    font-size: 11.5px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.super-report-head-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.super-btn-outline-report {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.super-btn-outline-report:hover {
+    background: #f9fafb;
+}
+
+.super-btn-dark-report {
+    background: #153223;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+}
+
+.super-btn-dark-report:hover {
+    background: #0f2419;
+}
+
+.super-report-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.super-chart-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.super-chart-heading {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #111827;
+    display: block;
+}
+
+.super-chart-sub {
+    font-size: 10.5px;
+    color: #6b7280;
+    display: block;
+    margin-top: 1px;
+}
+
+.super-chart-legends {
+    display: flex;
+    gap: 14px;
+    font-size: 10.5px;
+    color: #374151;
+}
+
+.super-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-dot.green {
+    background: #153223;
+}
+
+.legend-dot.orange {
+    background: #ea580c;
+}
+
+/* Canvas Bar Chart */
+.super-barchart-wrapper {
+    display: flex;
+    gap: 10px;
+    height: 160px;
+    margin-top: 10px;
+}
+
+.super-barchart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 9.5px;
+    color: #94a3b8;
+    font-weight: 600;
+    padding-bottom: 20px;
+    text-align: right;
+    width: 30px;
+}
+
+.super-barchart-canvas {
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 20px;
+}
+
+.super-chart-gridline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #f1f5f9;
+    pointer-events: none;
+}
+
+.super-bars-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.super-month-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    width: 14%;
+}
+
+.super-paired-bars {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    height: calc(100% - 20px);
+    width: 100%;
+    justify-content: center;
+}
+
+.super-bar {
+    width: 12px;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.3s ease, filter 0.2s;
+}
+
+.super-bar.physical {
+    background: #153223;
+}
+
+.super-bar.digital {
+    background: #ea580c;
+}
+
+.super-bar:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+.super-month-label {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+/* Metrik Column */
+.super-metrics-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.super-metric-box {
+    background: #fcfbf9;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.super-metric-title {
+    font-size: 10px;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.super-metric-value {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.1;
+}
+
+.super-metric-unit {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.super-metric-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.super-metric-badge.green {
+    background: #e8f4ed;
+    color: #166534;
+}
+
+.super-metric-badge.slate {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.super-target-card {
+    background: #fef3e7;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.super-target-title {
+    font-size: 9.5px;
+    color: #9a3412;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.super-target-progress {
+    font-size: 15px;
+    font-weight: 800;
+    color: #b45309;
+}
+
+.super-target-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffedd5;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+}
+
+/* Responsive Media Queries untuk Konsol Super Admin */
+@media (max-width: 1050px) {
+    .super-kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .super-two-col-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .super-report-content-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .super-kpi-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .super-hero-banner {
+        padding: 20px 18px !important;
+    }
+    .super-hero-title {
+        font-size: 20px !important;
+    }
+    .super-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .super-hero-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+    .super-hero-watermark {
+        display: none;
+    }
+    .super-table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .super-table-search {
+        width: 100% !important;
+    }
+    .super-report-head-row {
+        flex-direction: column;
+    }
+    .super-report-head-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    .super-report-head-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+}
