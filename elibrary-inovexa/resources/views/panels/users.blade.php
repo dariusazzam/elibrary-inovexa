@@ -1,977 +1,880 @@
+{{--
+    Super Admin: Kelola Akun & Otorisasi Hak Akses Pengguna
+    Figma Prototype Node: 149-6777
+    INOVEXA Library Management System
+--}}
+
 @php
-    $usersData = $lib->users;
-    $defaultEmails = [
-        'Ari' => 'ari.sp@inovexa.id',
-        'Budi Santoso' => 'budi.santoso@inovexa.id',
-        'Siti Nurhaliza' => 'siti.nurhaliza@inovexa.id',
-        'Hendra Kusuma' => 'hendra.k@inovexa.id',
-        'Herdman' => 'herdman.library@inovexa.id',
-        'Kevin Wijaya' => 'kevin.w@campus.ac.id',
-        'Dimas Arya' => 'dimas.arya@techmail.com',
-        'Adinda Zahwa Aprilia' => 'adinda.zahwa@campus.ac.id',
-        'Muhammad Dzaky Zidane' => 'dzaky.zidane@campus.ac.id',
-        'Carendra Aldiansyah' => 'carendra.a@campus.ac.id',
-        'Juniari Nur Shofa' => 'juniari.shofa@campus.ac.id',
-        'syalna kurnia putri' => 'syalna.kurnia@campus.ac.id',
-        'rendi dwiki h' => 'rendi.dwiki@campus.ac.id',
-        'Robiatul Adawiyyah' => 'robiatul.a@campus.ac.id',
-        'Eka Bayu Prasetio' => 'bayu.prasetio@campus.ac.id',
-        'frendy wahyu p' => 'frendy.wahyu@campus.ac.id',
-        'Darius Fikram Azzam' => 'darius.azzam@campus.ac.id',
-        'nopal' => 'naufal.library@campus.ac.id',
-        'Muhammad Okta Ramadhani' => 'okta.ramadhani@campus.ac.id',
+    // Data akun utama persis sesuai tampilan Figma (node-id: 149-6777)
+    $figmaAccounts = [
+        [
+            'name' => 'Ari',
+            'is_you' => true,
+            'email' => 'ariupgris@inovexa.id',
+            'id_code' => 'SA-001',
+            'role' => 'Super Admin (Root)',
+            'role_badge_class' => 'role-badge-root',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+            'role_sub' => 'Full Otoritas Arsitektur',
+            'sec_main' => 'Hardware Key FIDO2',
+            'sec_icon' => 'key',
+            'sec_sub' => 'Sesi Aktif Sekarang',
+            'sec_warn' => false,
+            'avatar' => 'AR',
+            'avatar_class' => 'user-avatar-dark',
+            'selected' => true,
+            'category' => 'super',
+            'root_level' => 'LEVEL 0: ROOT',
+            'auth_type' => 'FIDO2 / Hardware Security Key',
+        ],
+        [
+            'name' => 'Budi Santoso',
+            'is_you' => false,
+            'email' => 'budi.santoso@inovexa.id',
+            'id_code' => 'INX-ADM-2026-04',
+            'role' => 'Admin Pegawai',
+            'role_badge_class' => 'role-badge-dark',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+            'role_sub' => 'Sirkulasi & Denda (R/W)',
+            'sec_main' => 'Authenticator App',
+            'sec_icon' => 'phone',
+            'sec_sub' => 'Login: 12 menit lalu',
+            'sec_warn' => false,
+            'avatar' => 'BS',
+            'avatar_class' => '',
+            'selected' => true,
+            'category' => 'admin',
+            'root_level' => 'LEVEL 1: ADMIN',
+            'auth_type' => 'TOTP Mobile App',
+        ],
+        [
+            'name' => 'Siti Nurhaliza',
+            'is_you' => false,
+            'email' => 'siti.nurhaliza@inovexa.id',
+            'id_code' => 'INX-ADM-2026-09',
+            'role' => 'Admin E-Library',
+            'role_badge_class' => 'role-badge-dark',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+            'role_sub' => 'E-Book & Repositori (R/W)',
+            'sec_main' => 'Authenticator App',
+            'sec_icon' => 'phone',
+            'sec_sub' => 'Login: 1 jam lalu',
+            'sec_warn' => false,
+            'avatar' => 'SN',
+            'avatar_class' => '',
+            'selected' => false,
+            'category' => 'admin',
+            'root_level' => 'LEVEL 1: ADMIN',
+            'auth_type' => 'TOTP Mobile App',
+        ],
+        [
+            'name' => 'Hendra Kusuma',
+            'is_you' => false,
+            'email' => 'hendra.k@inovexa.id',
+            'id_code' => 'INX-ADM-2026-15',
+            'role' => 'Staf Inventaris',
+            'role_badge_class' => 'role-badge-gray',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+            'role_sub' => 'Katalog & Eksemplar',
+            'sec_main' => 'Belum 2FA',
+            'sec_icon' => 'warn',
+            'sec_sub' => 'Wajib Aktivasi',
+            'sec_warn' => true,
+            'avatar' => 'HK',
+            'avatar_class' => '',
+            'selected' => false,
+            'category' => 'admin',
+            'root_level' => 'LEVEL 2: STAF',
+            'auth_type' => 'Standar Password',
+        ],
+        [
+            'name' => 'Herdman',
+            'is_you' => false,
+            'email' => 'herdman.library@inovexa.id',
+            'id_code' => 'INX-2026-08912',
+            'role' => 'Anggota Pemustaka',
+            'role_badge_class' => 'role-badge-muted',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+            'role_sub' => 'OPAC & Pinjam Mandiri',
+            'sec_main' => 'Standard Auth',
+            'sec_icon' => 'lock',
+            'sec_sub' => 'Login: Kemarin',
+            'sec_warn' => false,
+            'avatar' => 'HM',
+            'avatar_class' => '',
+            'selected' => false,
+            'category' => 'member',
+            'root_level' => 'LEVEL 3: PEMUSTAKA',
+            'auth_type' => 'Kredensial Single Factor',
+        ],
+        [
+            'name' => 'Kevin Wijaya',
+            'is_you' => false,
+            'email' => 'kevin.w@campus.ac.id',
+            'id_code' => 'MBR-2026-04321',
+            'role' => 'Pemustaka Mahasiswa',
+            'role_badge_class' => 'role-badge-muted',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
+            'role_sub' => 'Akses Sementara',
+            'sec_main' => 'Belum 2FA',
+            'sec_icon' => 'warn',
+            'sec_sub' => 'Sandi Default',
+            'sec_warn' => true,
+            'avatar' => 'KW',
+            'avatar_class' => 'user-avatar-orange',
+            'selected' => false,
+            'category' => 'member',
+            'root_level' => 'LEVEL 3: PEMUSTAKA',
+            'auth_type' => 'KTM / NIM SSO',
+        ],
+        [
+            'name' => 'Dimas Arya',
+            'is_you' => false,
+            'email' => 'dimas.arya@techmail.com',
+            'id_code' => 'INX-2026-07734',
+            'role' => 'Anggota Umum',
+            'role_badge_class' => 'role-badge-muted',
+            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+            'role_sub' => 'OPAC & Reservasi',
+            'sec_main' => 'Standard Auth',
+            'sec_icon' => 'lock',
+            'sec_sub' => 'Login: 3 hari lalu',
+            'sec_warn' => false,
+            'avatar' => 'DA',
+            'avatar_class' => '',
+            'selected' => false,
+            'category' => 'member',
+            'root_level' => 'LEVEL 3: PEMUSTAKA',
+            'auth_type' => 'Kredensial Single Factor',
+        ],
     ];
 
-    $securityMeta = [
-        'Ari' => [
-            'type' => 'fido2',
-            'title' => 'Hardware Key FIDO2',
-            'sub' => 'Sesi Aktif Sekarang',
-            'active_session' => true,
-        ],
-        'Budi Santoso' => [
-            'type' => 'totp',
-            'title' => 'Authenticator App',
-            'sub' => 'Login: 12 menit lalu',
-            'active_session' => false,
-        ],
-        'Siti Nurhaliza' => [
-            'type' => 'totp',
-            'title' => 'Authenticator App',
-            'sub' => 'Login: 1 jam lalu',
-            'active_session' => false,
-        ],
-        'Hendra Kusuma' => [
-            'type' => 'warn',
-            'title' => 'Belum 2FA',
-            'sub' => 'Wajib Aktivasi',
-            'active_session' => false,
-        ],
-        'Herdman' => [
-            'type' => 'standard',
-            'title' => 'Standard Auth',
-            'sub' => 'Login: Kemarin',
-            'active_session' => false,
-        ],
-        'Kevin Wijaya' => [
-            'type' => 'warn',
-            'title' => 'Belum 2FA',
-            'sub' => 'Sandi Default',
-            'active_session' => false,
-        ],
-        'Dimas Arya' => [
-            'type' => 'standard',
-            'title' => 'Standard Auth',
-            'sub' => 'Login: 3 hari lalu',
-            'active_session' => false,
-        ],
-    ];
+    // Hubungkan dengan $lib->users agar fungsi toggle Laravel tetap berjalan
+    $mappedAccounts = [];
+    $matchedNames = [];
 
-    $roleMeta = [
-        'Super Admin (Root)' => [
-            'pill' => 'access-role-mint',
-            'label' => 'Super Admin (Root)',
-            'sub' => 'Full Otoritas Arsitektur',
-            'category' => 'super',
-            'level' => 'LEVEL 0: ROOT',
-        ],
-        'Super Admin' => [
-            'pill' => 'access-role-mint',
-            'label' => 'Super Admin (Root)',
-            'sub' => 'Full Otoritas Arsitektur',
-            'category' => 'super',
-            'level' => 'LEVEL 0: ROOT',
-        ],
-        'Admin Pegawai' => [
-            'pill' => 'access-role-dark',
-            'label' => 'Admin Pegawai',
-            'sub' => 'Sirkulasi & Denda (R/W)',
-            'category' => 'admin',
-            'level' => 'LEVEL 1: PETUGAS',
-        ],
-        'Admin E-Library' => [
-            'pill' => 'access-role-dark',
-            'label' => 'Admin E-Library',
-            'sub' => 'E-Book & Repositori (R/W)',
-            'category' => 'admin',
-            'level' => 'LEVEL 1: PETUGAS',
-        ],
-        'Staf Inventaris' => [
-            'pill' => 'access-role-gray',
-            'label' => 'Staf Inventaris',
-            'sub' => 'Katalog & Eksemplar',
-            'category' => 'admin',
-            'level' => 'LEVEL 2: STAF',
-        ],
-        'Pemustaka Mahasiswa' => [
-            'pill' => 'access-role-light',
-            'label' => 'Pemustaka Mahasiswa',
-            'sub' => 'Akses Sementara',
-            'category' => 'member',
-            'level' => 'LEVEL 3: ANGGOTA',
-        ],
-        'Anggota Umum' => [
-            'pill' => 'access-role-light',
-            'label' => 'Anggota Umum',
-            'sub' => 'OPAC & Reservasi',
-            'category' => 'member',
-            'level' => 'LEVEL 3: ANGGOTA',
-        ],
-        'Anggota Pemustaka' => [
-            'pill' => 'access-role-light',
-            'label' => 'Anggota Pemustaka',
-            'sub' => 'OPAC & Pinjam Mandiri',
-            'category' => 'member',
-            'level' => 'LEVEL 3: ANGGOTA',
-        ],
-        'Anggota' => [
-            'pill' => 'access-role-light',
-            'label' => 'Anggota Pemustaka',
-            'sub' => 'OPAC & Pinjam Mandiri',
-            'category' => 'member',
-            'level' => 'LEVEL 3: ANGGOTA',
-        ],
-    ];
+    foreach ($figmaAccounts as $acc) {
+        $libIndex = null;
+        $isActive = true;
+        foreach ($lib->users as $idx => $lu) {
+            if (strcasecmp($lu['n'], $acc['name']) === 0) {
+                $libIndex = $idx;
+                $isActive = (bool)$lu['on'];
+                $matchedNames[] = strtolower($lu['n']);
+                break;
+            }
+        }
+        $acc['lib_index'] = $libIndex;
+        $acc['is_active'] = $isActive;
+        $mappedAccounts[] = $acc;
+    }
+
+    // Hanya tampilkan data dari $figmaAccounts (Ari sampai Dimas Arya), tanpa menambah dari $lib->users
 @endphp
 
-<div class="access-page-wrapper">
-    {{-- Header Halaman Sesuai Figma --}}
-    <div class="access-top-header">
-        <div class="access-breadcrumb-bar">
-            <a href="{{ route('dashboard', 'ov') }}" class="access-breadcrumb-link">Dashboard Super Admin</a>
-            <span class="access-breadcrumb-sep">&gt;</span>
-            <span class="access-breadcrumb-active">Kelola Akun &amp; Hak Akses</span>
-        </div>
+<div class="super-users-page">
 
-        <div class="access-header-main-row">
-            <div class="access-header-intro">
-                <h1 class="access-page-title">Kelola Akun &amp; Otorisasi Hak Akses Pengguna</h1>
-                <p class="access-page-subtext">
-                    Pusat kendali hierarki kredensial, manajemen multi-faktor, kebijakan otentikasi SSO, serta konfigurasi matriks peran RBAC (Role-Based Access Control) seluruh ekosistem Inovexa.
-                </p>
-            </div>
-            <div class="access-top-btn-group">
-                <button type="button" class="access-btn-dark-cta" onclick="openModal('create-account-modal')">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    <span>Buat Akun Baru</span>
-                </button>
-                <a href="{{ route('dashboard', 'roles') }}" class="access-btn-white-cta">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <span>Matriks Kebijakan RBAC</span>
-                </a>
-                <button type="button" class="access-btn-ghost-cta" onclick="toast('Mengekspor seluruh data kredensial terenkripsi ke file CSV...')">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>Ekspor .CSV</span>
-                </button>
-            </div>
+    {{-- Breadcrumb persis Figma --}}
+    <div class="super-users-breadcrumb">
+        <a href="{{ route('dashboard', 'ov') }}" class="super-users-bread-link">Dashboard Super Admin</a>
+        <span class="super-users-bread-sep">›</span>
+        <span class="super-users-bread-current">Kelola Akun &amp; Hak Akses</span>
+    </div>
+
+    {{-- Page Header --}}
+    <div class="super-users-header">
+        <div class="super-users-header-left">
+            <h1 class="super-users-title">Kelola Akun &amp; Otorisasi Hak Akses Pengguna</h1>
+            <p class="super-users-desc">
+                Pusat kendali hierarki kredensial, manajemen multi-faktor, kebijakan otentikasi SSO, serta konfigurasi matriks peran RBAC (Role-Based Access Control) seluruh ekosistem Inovexa.
+            </p>
+        </div>
+        <div class="super-users-header-actions">
+            <button type="button" class="btn-users-primary" onclick="openModal('modal-create-account')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                <span>+ Buat Akun Baru</span>
+            </button>
+            <button type="button" class="btn-users-outline" onclick="openModal('modal-rbac-matrix')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span>Matriks Kebijakan RBAC</span>
+            </button>
+            <button type="button" class="btn-users-outline" onclick="exportUsersCsv()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Ekspor .CSV</span>
+            </button>
         </div>
     </div>
 
-    {{-- 4 Stat Cards --}}
-    <div class="access-stat-grid">
+    {{-- 4 Stat Cards Row --}}
+    <div class="super-users-stats-grid">
         {{-- Card 1: Total Akun --}}
-        <div class="access-stat-card">
-            <div class="access-stat-head">
-                <div class="access-stat-icon-wrap" style="background:#f1f5f9;color:#334155">
+        <div class="super-users-stat-card">
+            <div class="super-users-stat-top">
+                <div class="stat-card-icon stat-icon-gray">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <span class="access-pill-badge mint">+12 Minggu Ini</span>
+                <span class="stat-badge stat-badge-green">+12 Minggu Ini</span>
             </div>
-            <div class="access-stat-body">
-                <span class="access-stat-label">TOTAL AKUN TERDAFTAR</span>
-                <div class="access-stat-number-row">
-                    <span class="access-stat-number">2.450</span>
-                    <span class="access-stat-unit">Kredensial</span>
-                </div>
-                <div class="access-stat-footer">
-                    <span>3 Super Admin</span> &bull; <span>42 Staf</span> &bull; <span>2.405</span>
-                </div>
+            <div class="super-users-stat-label">TOTAL AKUN TERDAFTAR</div>
+            <div class="super-users-stat-main">
+                <span class="super-users-stat-val">2.450</span>
+                <span class="super-users-stat-unit">Kredensial</span>
+            </div>
+            <div class="super-users-stat-sub">
+                <span>3 Super Admin • 42 Staf • 2.405</span>
             </div>
         </div>
 
         {{-- Card 2: Status Akses Aktif --}}
-        <div class="access-stat-card">
-            <div class="access-stat-head">
-                <div class="access-stat-icon-wrap" style="background:#ecfdf5;color:#059669">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+        <div class="super-users-stat-card">
+            <div class="super-users-stat-top">
+                <div class="stat-card-icon stat-icon-mint">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
                 </div>
-                <span class="access-pill-badge mint">99.1% Sehat</span>
+                <span class="stat-badge stat-badge-gray">99.1% Sehat</span>
             </div>
-            <div class="access-stat-body">
-                <span class="access-stat-label">STATUS AKSES AKTIF</span>
-                <div class="access-stat-number-row">
-                    <span class="access-stat-number">2.428</span>
-                    <span class="access-stat-unit">Terverifikasi</span>
-                </div>
-                <div class="access-stat-footer">
-                    <span>14 Verifikasi KTM</span> &bull; <span style="color:#dc2626;font-weight:700">8 Suspend</span>
-                </div>
+            <div class="super-users-stat-label">STATUS AKSES AKTIF</div>
+            <div class="super-users-stat-main">
+                <span class="super-users-stat-val">2.428</span>
+                <span class="super-users-stat-unit">Terverifikasi</span>
+            </div>
+            <div class="super-users-stat-sub super-users-stat-sub-split">
+                <span>14 Verifikasi KTM</span>
+                <span>•</span>
+                <span class="stat-suspend-label"><span class="dot-red"></span> 8 Suspend</span>
             </div>
         </div>
 
         {{-- Card 3: Sesi Login Aktif --}}
-        <div class="access-stat-card">
-            <div class="access-stat-head">
-                <div class="access-stat-icon-wrap" style="background:#f8fafc;color:#475569">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="super-users-stat-card">
+            <div class="super-users-stat-top">
+                <div class="stat-card-icon stat-icon-gray">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
-                <span class="access-pill-badge amber">&bull; Live Token</span>
+                <span class="stat-badge stat-badge-token"><span class="dot-orange"></span> Live Token</span>
             </div>
-            <div class="access-stat-body">
-                <span class="access-stat-label">SESI LOGIN AKTIF</span>
-                <div class="access-stat-number-row">
-                    <span class="access-stat-number">184</span>
-                    <span class="access-stat-unit">Perangkat</span>
-                </div>
-                <div class="access-stat-footer">
-                    Multi-device active &bull; 0 Anomali IP
-                </div>
+            <div class="super-users-stat-label">SESI LOGIN AKTIF</div>
+            <div class="super-users-stat-main">
+                <span class="super-users-stat-val">184</span>
+                <span class="super-users-stat-unit">Perangkat</span>
+            </div>
+            <div class="super-users-stat-sub">
+                <span>Multi-device active • 0 Anomali IP</span>
             </div>
         </div>
 
         {{-- Card 4: Integritas RBAC --}}
-        <div class="access-stat-card">
-            <div class="access-stat-head">
-                <div class="access-stat-icon-wrap" style="background:#f1f5f9;color:#0f172a">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <div class="super-users-stat-card">
+            <div class="super-users-stat-top">
+                <div class="stat-card-icon stat-icon-gray">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
-                <span class="access-pill-badge dark">v2.4 Active</span>
+                <span class="stat-badge stat-badge-dark">v2.4 Active</span>
             </div>
-            <div class="access-stat-body">
-                <span class="access-stat-label">INTEGRITAS RBAC</span>
-                <div class="access-stat-number-row">
-                    <span class="access-stat-number">Optimal</span>
-                    <span class="access-stat-unit">2FA On</span>
-                </div>
-                <div class="access-stat-footer">
-                    Kebijakan 2FA Staf Wajib &bull; Enkripsi SHA-256
-                </div>
+            <div class="super-users-stat-label">INTEGRITAS RBAC</div>
+            <div class="super-users-stat-main">
+                <span class="super-users-stat-val">Optimal</span>
+                <span class="super-users-stat-unit">2FA On</span>
+            </div>
+            <div class="super-users-stat-sub">
+                <span>Kebijakan 2FA Staf Wajib • Enkripsi SHA-256</span>
             </div>
         </div>
     </div>
 
-    {{-- Main 2 Column Section --}}
-    <div class="access-content-layout">
-        {{-- Left Column: User Table & Controls --}}
-        <div class="access-table-column">
-            {{-- Filter Tabs --}}
-            <div class="access-filter-tabs">
-                <button type="button" class="access-tab-btn active" data-tab="all" onclick="filterByRole('all', this)">
-                    Semua Pengguna (2.450)
-                </button>
-                <button type="button" class="access-tab-btn" data-tab="super" onclick="filterByRole('super', this)">
-                    Super Admin (3)
-                </button>
-                <button type="button" class="access-tab-btn" data-tab="admin" onclick="filterByRole('admin', this)">
-                    Admin Pegawai &amp; Staf (42)
-                </button>
-                <button type="button" class="access-tab-btn" data-tab="member" onclick="filterByRole('member', this)">
-                    Anggota Pemustaka (2.405)
-                </button>
+    {{-- Two Column Layout --}}
+    <div class="super-users-body">
+
+        {{-- Kolom Kiri: Tabel & Kontrol Akun --}}
+        <div class="super-users-main-col">
+
+            {{-- Tabs Filter Peran --}}
+            <div class="super-users-tabs">
+                <button type="button" class="users-tab-pill active" onclick="filterUserCategory('all', this)">Semua Pengguna (2.450)</button>
+                <button type="button" class="users-tab-pill" onclick="filterUserCategory('super', this)">Super Admin (3)</button>
+                <button type="button" class="users-tab-pill" onclick="filterUserCategory('admin', this)">Admin Pegawai &amp; Staf (42)</button>
+                <button type="button" class="users-tab-pill" onclick="filterUserCategory('member', this)">Anggota Pemustaka (2.405)</button>
             </div>
 
-            {{-- Toolbar: Search & Dropdowns --}}
-            <div class="access-toolbar-row">
-                <div class="access-search-field">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    <input type="text" id="access-search-input" placeholder="Cari berdasarkan nama, email SSO, NIP, atau ID Anggota..." oninput="handleTableSearch(this.value)">
+            {{-- Search & Filter Toolbar --}}
+            <div class="super-users-toolbar">
+                <div class="super-users-search-box">
+                    <span class="super-users-search-icon">🔍</span>
+                    <input type="text" id="user-search-input" class="super-users-search-input" placeholder="Cari berdasarkan nama, email SSO, NIP..." onkeyup="filterUserTable()">
                 </div>
-
-                <div class="access-select-group">
-                    <select id="access-status-filter" onchange="handleStatusFilter(this.value)" class="access-custom-select">
-                        <option value="all">Status Akun: Semua</option>
-                        <option value="active">Aktif (Verified)</option>
-                        <option value="suspended">Tangguhkan (Suspend)</option>
-                    </select>
-
-                    <select id="access-authority-filter" onchange="handleAuthorityFilter(this.value)" class="access-custom-select">
-                        <option value="all">Tingkat Otoritas: Semua</option>
-                        <option value="super">Super Admin (Root)</option>
-                        <option value="admin">Admin Pegawai</option>
-                        <option value="elib">Admin E-Library</option>
-                        <option value="staff">Staf Inventaris</option>
-                        <option value="member">Anggota Pemustaka</option>
-                    </select>
-                </div>
+                <select id="user-status-filter" class="super-users-select" onchange="filterUserTable()">
+                    <option value="all">Status Akun: Semua</option>
+                    <option value="active">Aktif</option>
+                    <option value="inactive">Nonaktif</option>
+                    <option value="suspend">Ditangguhkan</option>
+                </select>
+                <select id="user-authority-filter" class="super-users-select" onchange="filterUserTable()">
+                    <option value="all">Tingkat Otoritas: Semua</option>
+                    <option value="super">Root (Super Admin)</option>
+                    <option value="admin">Admin Sirkulasi &amp; Staf</option>
+                    <option value="member">Pemustaka</option>
+                </select>
             </div>
 
-            {{-- Bulk Actions Bar (Active Bar in Figma) --}}
-            <div class="access-bulk-bar" id="access-bulk-bar">
-                <div class="access-bulk-left">
-                    <label class="access-bulk-label">
-                        <input type="checkbox" id="access-check-all" onchange="toggleSelectAll(this)" checked>
-                        <span id="access-selected-count">2 Akun Terpilih</span>
-                    </label>
+            {{-- Batch Action Bar (Akun Terpilih) --}}
+            <div class="super-users-bulkbar">
+                <div class="super-users-bulk-info">
+                    <span class="bulk-check-box">✓</span>
+                    <span id="bulk-selected-count">2 Akun Terpilih</span>
                 </div>
-                <div class="access-bulk-actions">
-                    <button type="button" class="access-bulk-btn" onclick="toast('Kredensial login SSO berhasil dikirim ulang ke alamat email terdaftar')">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        <span>Kirim Kredensial</span>
+                <div class="super-users-bulk-actions">
+                    <button type="button" class="btn-bulk-action" onclick="toast('Kredensial aktivasi telah dikirimkan ke email terdaftar.')">
+                        <span>▷</span> Kirim Kredensial
                     </button>
-                    <button type="button" class="access-bulk-btn" onclick="toast('Tautan reset kata sandi telah dikirimkan ke email akun terpilih')">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                        <span>Reset Sandi</span>
+                    <button type="button" class="btn-bulk-action" onclick="toast('Tautan reset kata sandi sementara berhasil diterbitkan.')">
+                        <span>⟳</span> Reset Sandi
                     </button>
-                    <button type="button" class="access-bulk-btn-danger" onclick="bulkSuspendAction()">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-                        <span>Tangguhkan</span>
+                    <button type="button" class="btn-bulk-danger" onclick="toast('Akses akun terpilih berhasil ditangguhkan sementara.')">
+                        <span>⊘</span> Tangguhkan
                     </button>
                 </div>
             </div>
 
-            {{-- Users Table --}}
-            <div class="access-table-card">
-                <table class="access-users-table" id="access-users-table">
+            {{-- Tabel Data Pengguna --}}
+            <div class="super-users-table-card">
+                <table class="super-users-table" id="users-table">
                     <thead>
                         <tr>
-                            <th style="width:36px;text-align:center">
-                                <input type="checkbox" id="table-th-checkbox" onchange="toggleSelectAll(this)" checked>
+                            <th style="width: 44%">
+                                <div style="display:flex;align-items:center;gap:10px">
+                                    <input type="checkbox" id="check-all-users" class="user-checkbox" onchange="toggleSelectAllUsers(this)">
+                                    <span>PENGGUNA &amp; IDENTITAS</span>
+                                </div>
                             </th>
-                            <th style="width:34%">PENGGUNA &amp; IDENTITAS</th>
-                            <th style="width:28%">PERAN &amp; LEVEL HAK AKSES</th>
-                            <th style="width:24%">KEAMANAN &amp; 2FA</th>
-                            <th style="width:14%;text-align:right">STATUS &amp; AKSI</th>
+                            <th style="width: 28%">PERAN &amp; LEVEL HAK AKSES</th>
+                            <th style="width: 18%">KEAMANAN &amp; 2FA</th>
+
                         </tr>
                     </thead>
-                    <tbody id="access-table-body">
-                        @foreach($usersData as $i => $x)
+                    <tbody>
+                        @foreach($mappedAccounts as $idx => $row)
                         @php
-                            $userName = $x['n'];
-                            $userId = $x['i'];
-                            $rawRole = $x['r'];
-                            $isActive = (bool) $x['on'];
-                            $isYou = ($userName === 'Ari' || (session('user')['n'] ?? '') === $userName);
-                            
-                            $email = $defaultEmails[$userName] ?? (strtolower(preg_replace('/[^a-zA-Z0-9]/', '.', $userName)) . '@inovexa.id');
-                            
-                            $roleConf = $roleMeta[$rawRole] ?? $roleMeta['Anggota Pemustaka'];
-                            $secConf = $securityMeta[$userName] ?? [
-                                'type' => 'standard',
-                                'title' => 'Standard Auth',
-                                'sub' => 'Login: Terverifikasi',
-                                'active_session' => false,
-                            ];
-
-                            // Inisial Avatar
-                            $nameParts = explode(' ', trim($userName));
-                            $initials = '';
-                            if (count($nameParts) >= 2) {
-                                $initials = mb_strtoupper(mb_substr($nameParts[0], 0, 1) . mb_substr($nameParts[1], 0, 1));
-                            } else {
-                                $initials = mb_strtoupper(mb_substr($userName, 0, 2));
-                            }
-
-                            // Checked by default for Ari & Budi Santoso (sesuai screenshot Figma)
-                            $isChecked = ($i < 2);
-                            $isSelected = ($i === 0);
+                            $rowSelected = $row['selected'] ?? false;
+                            $isActive = $row['is_active'];
                         @endphp
-                        <tr class="access-user-row {{ $isSelected ? 'is-inspected' : '' }}" 
-                            data-index="{{ $i }}"
-                            data-name="{{ $userName }}"
-                            data-id="{{ $userId }}"
-                            data-email="{{ $email }}"
-                            data-role="{{ $roleConf['label'] }}"
-                            data-category="{{ $roleConf['category'] }}"
-                            data-level="{{ $roleConf['level'] }}"
-                            data-status="{{ $isActive ? 'active' : 'suspended' }}"
-                            data-2fa="{{ $secConf['title'] }}"
-                            data-initials="{{ $initials }}"
-                            onclick="inspectUserRow(this, event)">
+                        <tr class="user-row {{ $rowSelected ? 'selected-row' : '' }}"
+                            data-category="{{ $row['category'] }}"
+                            data-status="{{ $isActive ? 'active' : 'inactive' }}"
+                            data-name="{{ strtolower($row['name']) }}"
+                            data-email="{{ strtolower($row['email']) }}"
+                            data-id="{{ strtolower($row['id_code']) }}"
+                            onclick="inspectUser('{{ addslashes($row['name']) }}', '{{ addslashes($row['role']) }}', '{{ addslashes($row['id_code']) }}', '{{ addslashes($row['avatar']) }}', '{{ addslashes($row['root_level']) }}', '{{ addslashes($row['auth_type']) }}')">
                             
-                            {{-- Checkbox --}}
-                            <td style="text-align:center" onclick="event.stopPropagation()">
-                                <input type="checkbox" class="user-row-checkbox" onchange="updateSelectedCount()" {{ $isChecked ? 'checked' : '' }}>
-                            </td>
-
-                            {{-- Pengguna & Identitas --}}
+                            {{-- Kolom Identitas --}}
                             <td>
-                                <div class="access-user-cell">
-                                    <div class="access-user-avatar {{ $isYou ? 'avatar-dark' : ($userName === 'Kevin Wijaya' ? 'avatar-warm' : '') }}">
-                                        {{ $initials }}
+                                <div class="col-identity">
+                                    <input type="checkbox" class="user-checkbox row-select-box" {{ $rowSelected ? 'checked' : '' }} onclick="event.stopPropagation(); updateSelectedCount();">
+                                    <div class="user-avatar-circle {{ $row['avatar_class'] }}">
+                                        <span>{{ $row['avatar'] }}</span>
                                     </div>
-                                    <div class="access-user-meta">
-                                        <div class="access-user-name-row">
-                                            <span class="access-user-fullname">{{ $userName }}</span>
-                                            @if($isYou)
-                                                <span class="access-pill-you">YOU</span>
+                                    <div class="user-identity-meta">
+                                        <div class="user-name-line">
+                                            <span class="user-name">{{ $row['name'] }}</span>
+                                            @if(!empty($row['is_you']))
+                                                <span class="badge-you">YOU</span>
                                             @endif
                                         </div>
-                                        <div class="access-user-id-line">
-                                            <span>{{ $email }}</span>
-                                            <span class="access-dot-sep">&bull;</span>
-                                            <span class="access-badge-id">{{ $userId }}</span>
-                                        </div>
+                                        <span class="user-subtext">{{ $row['email'] }} • {{ $row['id_code'] }}</span>
                                     </div>
                                 </div>
                             </td>
 
-                            {{-- Peran & Level Hak Akses --}}
+                            {{-- Kolom Peran & Hak Akses --}}
                             <td>
-                                <div class="access-role-cell">
-                                    <div class="access-role-pill {{ $roleConf['pill'] }}">
-                                        @if($roleConf['category'] === 'super')
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                        @elseif($roleConf['category'] === 'admin')
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                        @endif
-                                        <span>{{ $roleConf['label'] }}</span>
-                                    </div>
-                                    <span class="access-role-subtext">{{ $roleConf['sub'] }}</span>
+                                <div class="col-role">
+                                    <span class="role-badge {{ $row['role_badge_class'] }}">
+                                        {!! $row['role_icon'] !!}
+                                        <span>{{ $row['role'] }}</span>
+                                    </span>
+                                    <span class="role-subtext">{{ $row['role_sub'] }}</span>
                                 </div>
                             </td>
 
-                            {{-- Keamanan & 2FA --}}
+                            {{-- Kolom Keamanan & 2FA --}}
                             <td>
-                                <div class="access-sec-cell">
-                                    <div class="access-sec-title">
-                                        @if($secConf['type'] === 'fido2')
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                                            <span style="font-weight:700;color:#0f172a">{{ $secConf['title'] }}</span>
-                                        @elseif($secConf['type'] === 'totp')
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                                            <span style="font-weight:600;color:#1e293b">{{ $secConf['title'] }}</span>
-                                        @elseif($secConf['type'] === 'warn')
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                                            <span style="font-weight:700;color:#d97706">{{ $secConf['title'] }}</span>
+                                <div class="col-security">
+                                    <span class="sec-status {{ $row['sec_warn'] ? 'sec-warning' : '' }}">
+                                        @if($row['sec_icon'] === 'key')
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-1.5 1.5L16 7l-2-2m-1.5 1.5L11 8l-2-2m-1.5 1.5L6 9l-2-2M2 22l8.5-8.5"/><circle cx="16.5" cy="7.5" r="4.5"/></svg>
+                                        @elseif($row['sec_icon'] === 'phone')
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                        @elseif($row['sec_icon'] === 'warn')
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                                         @else
-                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                            <span style="font-weight:500;color:#475569">{{ $secConf['title'] }}</span>
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                                         @endif
-                                    </div>
-                                    <div class="access-sec-sub">
-                                        @if(!empty($secConf['active_session']))
-                                            <span class="access-sec-live-dot"></span>
-                                        @endif
-                                        <span>{{ $secConf['sub'] }}</span>
-                                    </div>
+                                        <span>{{ $row['sec_main'] }}</span>
+                                    </span>
+                                    <span class="sec-subtext {{ $row['sec_warn'] ? 'sec-subtext-warn' : '' }}">{{ $row['sec_sub'] }}</span>
                                 </div>
                             </td>
 
-                            {{-- Status & Aksi --}}
-                            <td style="text-align:right" onclick="event.stopPropagation()">
-                                <div class="access-status-action-cell">
-                                    @if($isActive)
-                                        <span class="access-status-badge active">
-                                            <span class="access-status-dot"></span> Aktif
-                                        </span>
-                                        <form method="POST" action="{{ route('user.toggle', $i) }}" class="inline">
-                                            @csrf
-                                            <button type="submit" class="access-toggle-btn ghost-danger" title="Tangguhkan akses akun ini">
-                                                Nonaktifkan
-                                            </button>
-                                        </form>
-                                    @else
-                                        <span class="access-status-badge suspended">
-                                            <span class="access-status-dot red"></span> Suspend
-                                        </span>
-                                        <form method="POST" action="{{ route('user.toggle', $i) }}" class="inline">
-                                            @csrf
-                                            <button type="submit" class="access-toggle-btn primary-mint" title="Aktifkan kembali akses akun ini">
-                                                Aktifkan
-                                            </button>
-                                        </form>
-                                    @endif
-                                </div>
-                            </td>
+
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                {{-- Table Pagination Sesuai Figma --}}
-                <div class="access-pagination-bar">
-                    <div class="access-pagination-info">
-                        Menampilkan <span id="access-page-count">1-{{ count($usersData) }}</span> dari <b>2.450</b> akun terdaftar
-                    </div>
-                    <div class="access-pagination-pills">
-                        <button type="button" class="access-page-pill" title="Sebelumnya">&lsaquo;</button>
-                        <button type="button" class="access-page-pill active">1</button>
-                        <button type="button" class="access-page-pill" onclick="toast('Halaman 2 sedang disinkronkan...')">2</button>
-                        <button type="button" class="access-page-pill" onclick="toast('Halaman 3 sedang disinkronkan...')">3</button>
-                        <span class="access-page-dots">...</span>
-                        <button type="button" class="access-page-pill" onclick="toast('Halaman 350...')">350</button>
-                        <button type="button" class="access-page-pill" title="Berikutnya">&rsaquo;</button>
+                {{-- Pagination Footer --}}
+                <div class="super-users-table-footer">
+                    <span>Menampilkan 1-7 dari 2.450 akun terdaftar</span>
+                    <div class="super-users-pagination">
+                        <button type="button" class="btn-page" onclick="toast('Halaman pertama')">‹</button>
+                        <button type="button" class="btn-page active">1</button>
+                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 2')">2</button>
+                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 3')">3</button>
+                        <span class="page-dots">...</span>
+                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 350')">350</button>
+                        <button type="button" class="btn-page" onclick="toast('Menuju halaman berikutnya')">›</button>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        {{-- Right Column: Inspeksi Hak Akses & Matriks RBAC --}}
-        <div class="access-side-column">
-            {{-- Card 1: Inspeksi Hak Akses --}}
-            <div class="access-side-card">
-                <div class="access-side-head">
-                    <div class="access-side-title-group">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <h3 class="access-side-title">Inspeksi Hak Akses</h3>
+        {{-- Kolom Kanan: Inspeksi Hak Akses & Matriks RBAC --}}
+        <div class="super-users-sidebar-col">
+
+            {{-- Widget 1: Inspeksi Hak Akses --}}
+            <div class="super-users-card">
+                <div class="super-users-card-header">
+                    <div class="super-users-card-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Inspeksi Hak Akses</span>
                     </div>
-                    <span class="access-level-chip" id="inspect-level-badge">LEVEL 0: ROOT</span>
+                    <span class="badge-root-level" id="inspect-root-level">LEVEL 0: ROOT</span>
                 </div>
 
-                {{-- User Mini Profile --}}
-                <div class="access-inspect-box">
-                    <div class="access-inspect-avatar" id="inspect-avatar">PR</div>
-                    <div class="access-inspect-meta">
-                        <div class="access-inspect-name" id="inspect-name">Prasetyo</div>
-                        <div class="access-inspect-role" id="inspect-role">Kepala TI &amp; Super Admin</div>
-                        <div class="access-inspect-id-row">
-                            <span id="inspect-id">Kredensial: SA-001</span>
-                            <span class="access-inspect-verified" id="inspect-2fa">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                                Hardware 2FA Verified
-                            </span>
-                        </div>
+                {{-- User Profile Mini Box --}}
+                <div class="sidebar-user-box">
+                    <div class="sidebar-user-avatar" id="inspect-avatar">PR</div>
+                    <div class="sidebar-user-info">
+                        <span class="sidebar-user-name" id="inspect-name">Princess</span>
+                        <span class="sidebar-user-meta" id="inspect-role">Kepala TI &amp; Super Admin</span>
+                        <span class="sidebar-user-meta" id="inspect-id">Kredensial SA-001</span>
+                        <span class="sidebar-user-2fa" id="inspect-auth">(Hardware 2FA Verified)</span>
                     </div>
                 </div>
 
-                {{-- Kewenangan Modul Sistem --}}
-                <div class="access-module-section">
-                    <div class="access-module-heading">Kewenangan Modul Sistem:</div>
-                    
-                    <div class="access-module-list">
-                        <div class="access-module-item">
-                            <div class="access-module-left">
-                                <div class="access-mod-icon-box">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-                                </div>
-                                <span class="access-mod-label">Kelola Akun &amp; Hak Akses (RBAC)</span>
-                            </div>
-                            <span class="access-mod-tag dark" id="mod-rbac">Full R/W</span>
-                        </div>
+                <div class="sidebar-section-title">Kewenangan Modul Sistem:</div>
 
-                        <div class="access-module-item">
-                            <div class="access-module-left">
-                                <div class="access-mod-icon-box">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                </div>
-                                <span class="access-mod-label">Backup &amp; Restore Basis Data</span>
-                            </div>
-                            <span class="access-mod-tag dark" id="mod-db">Root Cred</span>
+                {{-- 4 Permissions --}}
+                <div class="permission-list">
+                    <div class="permission-item">
+                        <div class="permission-left">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Kelola Akun &amp; Hak Akses (RBAC)</span>
                         </div>
+                        <span class="permission-badge">Full R/W</span>
+                    </div>
 
-                        <div class="access-module-item">
-                            <div class="access-module-left">
-                                <div class="access-mod-icon-box">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                                </div>
-                                <span class="access-mod-label">Bypass Kuota &amp; Batas Sirkulasi</span>
-                            </div>
-                            <span class="access-mod-tag green" id="mod-bypass">Diizinkan</span>
+                    <div class="permission-item">
+                        <div class="permission-left">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Backup &amp; Restore Basis Data</span>
                         </div>
+                        <span class="permission-badge">Root Cmd</span>
+                    </div>
 
-                        <div class="access-module-item">
-                            <div class="access-module-left">
-                                <div class="access-mod-icon-box">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                                </div>
-                                <span class="access-mod-label">Penghapusan Eksemplar Permanen</span>
-                            </div>
-                            <span class="access-mod-tag green" id="mod-delete">Diizinkan</span>
+                    <div class="permission-item">
+                        <div class="permission-left">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Bypass Kuota &amp; Batas Sirkulasi</span>
                         </div>
+                        <span class="permission-badge">Diizinkan</span>
+                    </div>
+
+                    <div class="permission-item">
+                        <div class="permission-left">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Penghapusan Eksemplar Permanen</span>
+                        </div>
+                        <span class="permission-badge">Diizinkan</span>
                     </div>
                 </div>
 
                 {{-- Action Buttons --}}
-                <div class="access-side-actions">
-                    <button type="button" class="access-side-btn-primary" onclick="openModal('edit-permission-modal')">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                        <span>Ubah Konfigurasi Hak Akses</span>
+                <button type="button" class="btn-sidebar-primary" onclick="openModal('modal-rbac-matrix')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    <span>Ubah Konfigurasi Hak Akses</span>
+                </button>
+
+                <div class="sidebar-btn-row">
+                    <button type="button" class="btn-sidebar-secondary" onclick="toast('Sesi aktif pengguna berhasil dicabut dari seluruh perangkat.')">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+                        <span>Cabut Sesi</span>
                     </button>
-                    <div class="access-side-btn-row">
-                        <button type="button" class="access-side-btn-sub" onclick="toast('Sesi perangkat aktif pengguna ini berhasil dicabut')">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
-                            <span>Cabut Sesi</span>
-                        </button>
-                        <button type="button" class="access-side-btn-sub" onclick="window.location='{{ route('dashboard', 'audit') }}'">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            <span>Log Audit Akun</span>
-                        </button>
-                    </div>
+                    <button type="button" class="btn-sidebar-secondary" onclick="toast('Membuka rekaman audit trail otentikasi akun...')">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <span>Log Audit Akun</span>
+                    </button>
                 </div>
             </div>
 
-            {{-- Card 2: Matriks RBAC v2.4 --}}
-            <div class="access-side-card">
-                <div class="access-side-head">
-                    <div class="access-side-title-group">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                        <h3 class="access-side-title">Matriks RBAC v2.4</h3>
+            {{-- Widget 2: Matriks RBAC v2.4 --}}
+            <div class="super-users-card">
+                <div class="super-users-card-header">
+                    <div class="super-users-card-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        <span>Matriks RBAC v2.4</span>
                     </div>
-                    <a href="{{ route('dashboard', 'roles') }}" class="access-side-link">
-                        Kelola Matriks
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </a>
+                    <a href="javascript:void(0)" class="rbac-link-btn" onclick="openModal('modal-rbac-matrix')">Kelola Matriks</a>
                 </div>
-                <p class="access-side-desc">Pemetaan hak istimewa operasional antarmuka menurut peran pengguna.</p>
 
-                {{-- Compact Matrix Table --}}
-                <div class="access-matrix-table-wrap">
-                    <table class="access-matrix-table">
+                <p class="rbac-desc">
+                    Pemetaan hak istimewa operasional antarmuka menurut peran pengguna.
+                </p>
+
+                {{-- Mini Matrix Table --}}
+                <div class="rbac-mini-table-box">
+                    <table class="rbac-mini-table">
                         <thead>
                             <tr>
-                                <th style="width:28%">PERAN</th>
-                                <th style="width:18%">AKUN</th>
-                                <th style="width:18%">SIRKULASI</th>
-                                <th style="width:18%">E-LIBRARY</th>
-                                <th style="width:18%">DB ROOT</th>
+                                <th>PERAN</th>
+                                <th>AKUN</th>
+                                <th>SIRKULASI</th>
+                                <th>E-LIBRARY</th>
+                                <th>DB ROOT</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><b>Super Admin</b></td>
-                                <td><span class="matrix-pill full">Full</span></td>
-                                <td><span class="matrix-pill full">Full</span></td>
-                                <td><span class="matrix-pill full">Full</span></td>
-                                <td><span class="matrix-pill full">Full</span></td>
+                                <td>Super Admin</td>
+                                <td>Full</td>
+                                <td>Full</td>
+                                <td>Full</td>
+                                <td>Full</td>
                             </tr>
                             <tr>
-                                <td><b>Admin Pegawai</b></td>
-                                <td><span class="matrix-pill view">View</span></td>
-                                <td><span class="matrix-pill rw">R/W</span></td>
-                                <td><span class="matrix-pill rw">R/W</span></td>
-                                <td><span class="matrix-pill dash">–</span></td>
+                                <td>Admin Pegawai</td>
+                                <td>View</td>
+                                <td>R/W</td>
+                                <td>R/W</td>
+                                <td><span class="rbac-hyphen-red">-</span></td>
                             </tr>
                             <tr>
-                                <td><b>Staf Inventaris</b></td>
-                                <td><span class="matrix-pill no">No</span></td>
-                                <td><span class="matrix-pill view">View</span></td>
-                                <td><span class="matrix-pill rw">R/W</span></td>
-                                <td><span class="matrix-pill dash">–</span></td>
+                                <td>Staf Inventaris</td>
+                                <td>No</td>
+                                <td>View</td>
+                                <td>R/W</td>
+                                <td><span class="rbac-hyphen-red">-</span></td>
                             </tr>
                             <tr>
-                                <td><b>Pemustaka</b></td>
-                                <td><span class="matrix-pill self">Self</span></td>
-                                <td><span class="matrix-pill pinjam">Pinjam</span></td>
-                                <td><span class="matrix-pill baca">Baca</span></td>
-                                <td><span class="matrix-pill dash">–</span></td>
+                                <td>Pemustaka</td>
+                                <td>Self</td>
+                                <td>Pinjam</td>
+                                <td>Baca</td>
+                                <td><span class="rbac-hyphen-red">-</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <button type="button" class="access-matrix-btn-custom" onclick="openModal('custom-role-modal')">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <button type="button" class="btn-sidebar-outline-full" onclick="openModal('modal-custom-role')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
                     <span>Definisikan Peran Kustom Baru</span>
                 </button>
             </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{-- MODAL 1: Tambah Akun Baru --}}
+<div class="super-modal-overlay" id="modal-create-account" onclick="if(event.target === this) closeModal('modal-create-account')">
+    <div class="super-modal-content">
+        <div class="super-modal-header">
+            <div>
+                <h3 class="super-modal-title">Buat Akun Kredensial Baru</h3>
+                <p class="super-modal-sub">Daftarkan staf baru atau pemustaka ke dalam basis otentikasi SSO Inovexa.</p>
+            </div>
+            <button type="button" class="super-modal-close" onclick="closeModal('modal-create-account')">&times;</button>
+        </div>
+
+        <form onsubmit="event.preventDefault(); toast('Akun kredensial baru berhasil diterbitkan dan notifikasi telah dikirimkan.'); closeModal('modal-create-account');">
+            <div class="modal-form-grid">
+                <div class="modal-field modal-form-full">
+                    <label>Nama Lengkap Akun</label>
+                    <input type="text" class="modal-input" placeholder="Misal: Princess Anggita, M.Kom" required>
+                </div>
+                <div class="modal-field">
+                    <label>Alamat Email SSO</label>
+                    <input type="email" class="modal-input" placeholder="princess@inovexa.id" required>
+                </div>
+                <div class="modal-field">
+                    <label>Nomor Induk / NIP / ID</label>
+                    <input type="text" class="modal-input" placeholder="INX-ADM-2026-99" required>
+                </div>
+                <div class="modal-field">
+                    <label>Peran &amp; Otoritas</label>
+                    <select class="modal-select">
+                        <option value="super">Super Admin (Root)</option>
+                        <option value="admin">Admin Pegawai &amp; Sirkulasi</option>
+                        <option value="elib">Admin E-Library &amp; Repositori</option>
+                        <option value="inv">Staf Inventaris &amp; Katalog</option>
+                        <option value="member">Anggota Pemustaka</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Kebijakan Otentikasi 2FA</label>
+                    <select class="modal-select">
+                        <option>Wajib Hardware Key / FIDO2</option>
+                        <option>Wajib Authenticator App (TOTP)</option>
+                        <option>Standar Password + Email OTP</option>
+                    </select>
+                </div>
+                <div class="modal-field modal-form-full">
+                    <label>Kata Sandi Sementara</label>
+                    <input type="password" class="modal-input" value="InovexaPass2026!" placeholder="Masukkan kata sandi">
+                </div>
+            </div>
+
+            <div class="super-modal-footer">
+                <button type="button" class="btn-users-outline" onclick="closeModal('modal-create-account')">Batal</button>
+                <button type="submit" class="btn-users-primary">Simpan &amp; Terbitkan Akun</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- MODAL 2: Matriks Kebijakan RBAC & Hak Akses Modul --}}
+<div class="super-modal-overlay" id="modal-rbac-matrix" onclick="if(event.target === this) closeModal('modal-rbac-matrix')">
+    <div class="super-modal-content super-modal-lg">
+        <div class="super-modal-header">
+            <div>
+                <h3 class="super-modal-title">Konfigurasi Hak Akses &amp; Matriks Kebijakan RBAC</h3>
+                <p class="super-modal-sub">Pemetaan hierarki otorisasi akses modul operasional untuk setiap peran pengguna.</p>
+            </div>
+            <button type="button" class="super-modal-close" onclick="closeModal('modal-rbac-matrix')">&times;</button>
+        </div>
+
+        <div style="overflow-x:auto;margin-bottom:18px">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left">
+                <thead>
+                    <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0">
+                        <th style="padding:10px;color:#64748b;font-size:10.5px">MODUL SISTEM</th>
+                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">SUPER ADMIN</th>
+                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">ADMIN PEGAWAI</th>
+                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">STAF INVENTARIS</th>
+                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">PEMUSTAKA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom:1px solid #f1f5f9">
+                        <td style="padding:10px;font-weight:600">Kelola Akun &amp; Hak Akses (RBAC)</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9">
+                        <td style="padding:10px;font-weight:600">Backup &amp; Restore Basis Data</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Root Cmd</span></td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9">
+                        <td style="padding:10px;font-weight:600">Sirkulasi Buku &amp; Denda</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#eff6ff;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Pinjam Mandiri</span></td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9">
+                        <td style="padding:10px;font-weight:600">Koleksi &amp; Eksemplar Buku</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Katalog OPAC</span></td>
+                    </tr>
+                    <tr style="border-bottom:1px solid #f1f5f9">
+                        <td style="padding:10px;font-weight:600">Bypass Kuota Sirkulasi</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;font-weight:600">Penghapusan Eksemplar Permanen</td>
+                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="super-modal-footer">
+            <button type="button" class="btn-users-outline" onclick="closeModal('modal-rbac-matrix')">Tutup</button>
+            <button type="button" class="btn-users-primary" onclick="toast('Kebijakan matriks RBAC berhasil diperbarui.'); closeModal('modal-rbac-matrix');">Terapkan Perubahan</button>
         </div>
     </div>
 </div>
 
-{{-- Modal 1: Buat Akun Baru --}}
-<div class="modal" id="create-account-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('create-account-modal')">
-    <div class="modal-box" style="max-width:540px">
-        <button class="modal-close" type="button" onclick="closeModal('create-account-modal')">&times;</button>
-        <div class="lbl">MANAJEMEN KREDENSIAL PENGGUNA</div>
-        <h2 style="margin:4px 0 10px;font-size:20px;font-weight:800;color:#0f172a">Buat Akun &amp; Kredensial Baru</h2>
-        <p style="color:var(--m);font-size:13px;line-height:1.5">
-            Daftarkan entitas kredensial baru dengan hierarki peran dan kebijakan enkripsi autentikasi Inovexa.
-        </p>
-        
-        <form onsubmit="event.preventDefault(); closeModal('create-account-modal'); toast('Akun kredensial baru berhasil diterbitkan dan email aktivasi telah dikirim!')" style="margin-top:16px;display:flex;flex-direction:column;gap:14px">
+{{-- MODAL 3: Definisikan Peran Kustom Baru --}}
+<div class="super-modal-overlay" id="modal-custom-role" onclick="if(event.target === this) closeModal('modal-custom-role')">
+    <div class="super-modal-content">
+        <div class="super-modal-header">
             <div>
-                <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Nama Lengkap Pengguna</label>
-                <input type="text" required placeholder="Contoh: Raditya Pratama, S.Kom" style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;outline:none">
+                <h3 class="super-modal-title">Definisikan Peran Kustom Baru</h3>
+                <p class="super-modal-sub">Tambahkan peran baru dengan cakupan otoritas spesifik di dalam sistem perpustakaan.</p>
             </div>
+            <button type="button" class="super-modal-close" onclick="closeModal('modal-custom-role')">&times;</button>
+        </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">ID Pengguna / NIP</label>
-                    <input type="text" required placeholder="INX-ADM-2026-15" style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;outline:none">
+        <form onsubmit="event.preventDefault(); toast('Peran kustom baru berhasil dibuat dan didaftarkan ke matriks RBAC.'); closeModal('modal-custom-role');">
+            <div class="modal-form-grid">
+                <div class="modal-field modal-form-full">
+                    <label>Nama Peran Kustom</label>
+                    <input type="text" class="modal-input" placeholder="Misal: Kurator Naskah Kuno" required>
                 </div>
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Email SSO Institusi</label>
-                    <input type="email" required placeholder="raditya.p@inovexa.id" style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;outline:none">
-                </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Tingkat Peran (RBAC)</label>
-                    <select style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:#fff;outline:none">
-                        <option value="admin">Admin Pegawai (Sirkulasi)</option>
-                        <option value="elib">Admin E-Library</option>
-                        <option value="staff">Staf Inventaris</option>
-                        <option value="super">Super Admin (Root)</option>
-                        <option value="member">Anggota Pemustaka</option>
+                <div class="modal-field modal-form-full">
+                    <label>Tingkat Tingkatan Hierarki (Level)</label>
+                    <select class="modal-select">
+                        <option>Level 1 - Pengelola / Admin Operasional</option>
+                        <option>Level 2 - Staf / Petugas Teknis Lapangan</option>
+                        <option>Level 3 - Pemustaka Terverifikasi Khusus</option>
                     </select>
                 </div>
-                <div>
-                    <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Kebijakan 2FA</label>
-                    <select style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:#fff;outline:none">
-                        <option value="totp">Wajib Authenticator App</option>
-                        <option value="fido2">Wajib Hardware Key (FIDO2)</option>
-                        <option value="standard">Standard (Sandi + OTP Email)</option>
-                    </select>
+                <div class="modal-field modal-form-full">
+                    <label>Deskripsi Lingkup Tugas</label>
+                    <textarea class="modal-input" rows="3" placeholder="Jelaskan batas kewenangan peran baru ini..."></textarea>
                 </div>
             </div>
 
-            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
-                <button type="button" class="btn ghost" onclick="closeModal('create-account-modal')">Batal</button>
-                <button type="submit" class="btn" style="background:#153223;color:#fff;border-radius:8px;font-weight:700;padding:10px 20px">Terbitkan Akun</button>
+            <div class="super-modal-footer">
+                <button type="button" class="btn-users-outline" onclick="closeModal('modal-custom-role')">Batal</button>
+                <button type="submit" class="btn-users-primary">Simpan Peran Baru</button>
             </div>
         </form>
     </div>
 </div>
 
-{{-- Modal 2: Ubah Konfigurasi Hak Akses --}}
-<div class="modal" id="edit-permission-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('edit-permission-modal')">
-    <div class="modal-box" style="max-width:520px">
-        <button class="modal-close" type="button" onclick="closeModal('edit-permission-modal')">&times;</button>
-        <div class="lbl">OTORISASI MATRIKS HAK AKSES</div>
-        <h2 style="margin:4px 0 10px;font-size:20px;font-weight:800;color:#0f172a" id="modal-perm-title">Konfigurasi Hak Akses — Prasetyo</h2>
-        <p style="color:var(--m);font-size:13px;line-height:1.5">
-            Atur izin spesifik granular untuk modul sistem perpustakaan dan repositori terpusat.
-        </p>
-
-        <form onsubmit="event.preventDefault(); closeModal('edit-permission-modal'); toast('Konfigurasi hak akses modul berhasil diperbarui!')" style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
-            <label style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px 14px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer">
-                <input type="checkbox" checked style="width:16px;height:16px">
-                <div>
-                    <b style="font-size:13px;color:#0f172a;display:block">Kelola Akun &amp; Hak Akses (RBAC)</b>
-                    <span style="font-size:11px;color:#64748b">Izin pembuatan akun, modifikasi matriks peran, dan reset sandi.</span>
-                </div>
-            </label>
-
-            <label style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px 14px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer">
-                <input type="checkbox" checked style="width:16px;height:16px">
-                <div>
-                    <b style="font-size:13px;color:#0f172a;display:block">Backup &amp; Restore Basis Data Forensik</b>
-                    <span style="font-size:11px;color:#64748b">Akses root snapshot SQLite, dump skema, dan rollback arsip.</span>
-                </div>
-            </label>
-
-            <label style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px 14px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer">
-                <input type="checkbox" checked style="width:16px;height:16px">
-                <div>
-                    <b style="font-size:13px;color:#0f172a;display:block">Bypass Kuota &amp; Batas Sirkulasi</b>
-                    <span style="font-size:11px;color:#64748b">Mengabaikan limit pinjaman 3 buku dan penghapusan denda otomatis.</span>
-                </div>
-            </label>
-
-            <label style="display:flex;align-items:center;gap:10px;background:#f8fafc;padding:10px 14px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer">
-                <input type="checkbox" checked style="width:16px;height:16px">
-                <div>
-                    <b style="font-size:13px;color:#0f172a;display:block">Penghapusan Eksemplar Permanen</b>
-                    <span style="font-size:11px;color:#64748b">Izin soft-delete dan hard-purge katalog inventaris fisik.</span>
-                </div>
-            </label>
-
-            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
-                <button type="button" class="btn ghost" onclick="closeModal('edit-permission-modal')">Batal</button>
-                <button type="submit" class="btn" style="background:#153223;color:#fff;border-radius:8px;font-weight:700;padding:10px 20px">Simpan Konfigurasi</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-{{-- Modal 3: Definisikan Peran Kustom Baru --}}
-<div class="modal" id="custom-role-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('custom-role-modal')">
-    <div class="modal-box" style="max-width:500px">
-        <button class="modal-close" type="button" onclick="closeModal('custom-role-modal')">&times;</button>
-        <div class="lbl">DEFINISI RBAC TINGKAT TINGGI</div>
-        <h2 style="margin:4px 0 10px;font-size:20px;font-weight:800;color:#0f172a">Definisikan Peran Kustom Baru</h2>
-        <p style="color:var(--m);font-size:13px;line-height:1.5">
-            Tambahkan tingkat peran baru pada matriks v2.4 dengan hak akses spesifik.
-        </p>
-
-        <form onsubmit="event.preventDefault(); closeModal('custom-role-modal'); toast('Peran kustom baru berhasil ditambahkan ke matriks RBAC!')" style="margin-top:16px;display:flex;flex-direction:column;gap:14px">
-            <div>
-                <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Nama Peran Baru</label>
-                <input type="text" required placeholder="Contoh: Auditor Eksternal BPK" style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;outline:none">
-            </div>
-
-            <div>
-                <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Tingkat Level Hierarki</label>
-                <select style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:#fff;outline:none">
-                    <option value="level2">LEVEL 2: AUDITOR (Read-Only Log &amp; Laporan)</option>
-                    <option value="level1">LEVEL 1: OPERATOR TEKNIS (Sirkulasi &amp; Buku)</option>
-                    <option value="level3">LEVEL 3: TAMU / MITRA RISET</option>
-                </select>
-            </div>
-
-            <div>
-                <label style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px">Akses Sirkulasi</label>
-                <select style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:#fff;outline:none">
-                    <option value="view">Hanya Melihat (View-Only)</option>
-                    <option value="rw">Baca &amp; Tulis (R/W)</option>
-                    <option value="no">Tanpa Akses (No)</option>
-                </select>
-            </div>
-
-            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
-                <button type="button" class="btn ghost" onclick="closeModal('custom-role-modal')">Batal</button>
-                <button type="submit" class="btn" style="background:#153223;color:#fff;border-radius:8px;font-weight:700;padding:10px 20px">Simpan Peran</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-{{-- Interactive Client Scripts --}}
+{{-- Script Interaksi Frontend Khusus Halaman Kelola Akun --}}
 <script>
-    let activeRoleTab = 'all';
-    let searchQuery = '';
-    let statusFilter = 'all';
-    let authorityFilter = 'all';
-
-    function filterByRole(role, btn) {
-        activeRoleTab = role;
-        document.querySelectorAll('.access-tab-btn').forEach(b => b.classList.remove('active'));
+    // Filter Kategori Tab
+    function filterUserCategory(cat, btn) {
+        document.querySelectorAll('.users-tab-pill').forEach(el => el.classList.remove('active'));
         if (btn) btn.classList.add('active');
-        applyFilters();
-    }
 
-    function handleTableSearch(val) {
-        searchQuery = (val || '').toLowerCase().trim();
-        applyFilters();
-    }
-
-    function handleStatusFilter(val) {
-        statusFilter = val;
-        applyFilters();
-    }
-
-    function handleAuthorityFilter(val) {
-        authorityFilter = val;
-        applyFilters();
-    }
-
-    function applyFilters() {
-        const rows = document.querySelectorAll('.access-user-row');
-        let visibleCount = 0;
-
-        rows.forEach(row => {
-            const name = (row.dataset.name || '').toLowerCase();
-            const id = (row.dataset.id || '').toLowerCase();
-            const email = (row.dataset.email || '').toLowerCase();
-            const role = (row.dataset.role || '').toLowerCase();
-            const category = row.dataset.category || '';
-            const status = row.dataset.status || '';
-
-            // Check Tab Category
-            let matchesTab = (activeRoleTab === 'all') || (category === activeRoleTab);
-
-            // Check Search
-            let matchesSearch = !searchQuery || 
-                name.includes(searchQuery) || 
-                id.includes(searchQuery) || 
-                email.includes(searchQuery) || 
-                role.includes(searchQuery);
-
-            // Check Status
-            let matchesStatus = (statusFilter === 'all') || (status === statusFilter);
-
-            // Check Authority
-            let matchesAuthority = (authorityFilter === 'all') || 
-                (authorityFilter === 'super' && category === 'super') ||
-                (authorityFilter === 'admin' && role.includes('admin pegawai')) ||
-                (authorityFilter === 'elib' && role.includes('e-library')) ||
-                (authorityFilter === 'staff' && role.includes('inventaris')) ||
-                (authorityFilter === 'member' && category === 'member');
-
-            if (matchesTab && matchesSearch && matchesStatus && matchesAuthority) {
-                row.style.display = '';
-                visibleCount++;
+        const rows = document.querySelectorAll('#users-table tbody tr');
+        rows.forEach(r => {
+            if (cat === 'all' || r.dataset.category === cat) {
+                r.style.display = '';
             } else {
-                row.style.display = 'none';
+                r.style.display = 'none';
             }
         });
+    }
 
-        const countEl = document.getElementById('access-page-count');
-        if (countEl) countEl.innerText = `1-${visibleCount}`;
+    // Filter Pencarian & Dropdown
+    function filterUserTable() {
+        const query = (document.getElementById('user-search-input').value || '').toLowerCase().trim();
+        const status = document.getElementById('user-status-filter').value;
+        const auth = document.getElementById('user-authority-filter').value;
+        const rows = document.querySelectorAll('#users-table tbody tr');
+
+        rows.forEach(r => {
+            const name = r.dataset.name || '';
+            const email = r.dataset.email || '';
+            const id = r.dataset.id || '';
+            const rowCat = r.dataset.category || '';
+            const rowStatus = r.dataset.status || '';
+
+            const matchQuery = !query || name.includes(query) || email.includes(query) || id.includes(query);
+            const matchStatus = status === 'all' || rowStatus === status;
+            const matchAuth = auth === 'all' || rowCat === auth;
+
+            if (matchQuery && matchStatus && matchAuth) {
+                r.style.display = '';
+            } else {
+                r.style.display = 'none';
+            }
+        });
+    }
+
+    // Checkbox Pilih Semua
+    function toggleSelectAllUsers(master) {
+        const boxes = document.querySelectorAll('.row-select-box');
+        boxes.forEach(b => {
+            b.checked = master.checked;
+            const row = b.closest('tr');
+            if (master.checked) {
+                row.classList.add('selected-row');
+            } else {
+                row.classList.remove('selected-row');
+            }
+        });
         updateSelectedCount();
     }
 
-    function toggleSelectAll(masterCheckbox) {
-        const checked = masterCheckbox.checked;
-        const visibleRows = document.querySelectorAll('.access-user-row:not([style*="display: none"]) .user-row-checkbox');
-        visibleRows.forEach(cb => cb.checked = checked);
-        
-        const thCb = document.getElementById('table-th-checkbox');
-        const bulkCb = document.getElementById('access-check-all');
-        if (thCb) thCb.checked = checked;
-        if (bulkCb) bulkCb.checked = checked;
-
-        updateSelectedCount();
-    }
-
+    // Perbarui counter "X Akun Terpilih"
     function updateSelectedCount() {
-        const checked = document.querySelectorAll('.user-row-checkbox:checked').length;
-        const countSpan = document.getElementById('access-selected-count');
-        const bulkBar = document.getElementById('access-bulk-bar');
-        
-        if (countSpan) {
-            countSpan.innerText = `${checked} Akun Terpilih`;
+        const checkedBoxes = document.querySelectorAll('.row-select-box:checked');
+        const count = checkedBoxes.length;
+        const counterEl = document.getElementById('bulk-selected-count');
+        if (counterEl) {
+            counterEl.textContent = count + ' Akun Terpilih';
         }
-        if (bulkBar) {
-            bulkBar.style.display = checked > 0 ? 'flex' : 'none';
-        }
+
+        // Tandai baris terpilih
+        document.querySelectorAll('.row-select-box').forEach(b => {
+            const row = b.closest('tr');
+            if (b.checked) {
+                row.classList.add('selected-row');
+            } else {
+                row.classList.remove('selected-row');
+            }
+        });
     }
 
-    function bulkSuspendAction() {
-        const checked = document.querySelectorAll('.user-row-checkbox:checked').length;
-        if (checked === 0) {
-            toast('Pilih minimal 1 akun untuk ditangguhkan');
-            return;
-        }
-        if (confirm(`Apakah Anda yakin ingin menangguhkan akses ${checked} akun terpilih?`)) {
-            toast(`${checked} akun terpilih telah berhasil ditangguhkan`);
-        }
+    // Klik Baris untuk Mengupdate Panel Inspeksi Hak Akses di Samping Kanan
+    function inspectUser(name, role, idCode, avatar, rootLevel, authType) {
+        const nameEl = document.getElementById('inspect-name');
+        const roleEl = document.getElementById('inspect-role');
+        const idEl = document.getElementById('inspect-id');
+        const avatarEl = document.getElementById('inspect-avatar');
+        const levelEl = document.getElementById('inspect-root-level');
+        const authEl = document.getElementById('inspect-auth');
+
+        if (nameEl) nameEl.textContent = name;
+        if (roleEl) roleEl.textContent = role;
+        if (idEl) idEl.textContent = 'Kredensial ' + idCode;
+        if (avatarEl) avatarEl.textContent = avatar;
+        if (levelEl) levelEl.textContent = rootLevel;
+        if (authEl) authEl.textContent = '(' + authType + ')';
     }
 
-    function inspectUserRow(row, evt) {
-        document.querySelectorAll('.access-user-row').forEach(r => r.classList.remove('is-inspected'));
-        row.classList.add('is-inspected');
+    // Ekspor CSV Data Akun
+    function exportUsersCsv() {
+        const rows = [
+            ['Nama', 'Email', 'ID/NIP', 'Peran', 'Status', 'Metode Keamanan'],
+            ['Ari', 'ariupgris@inovexa.id', 'SA-001', 'Super Admin (Root)', 'Aktif', 'Hardware Key FIDO2'],
+            ['Budi Santoso', 'budi.santoso@inovexa.id', 'INX-ADM-2026-04', 'Admin Pegawai', 'Aktif', 'Authenticator App'],
+            ['Siti Nurhaliza', 'siti.nurhaliza@inovexa.id', 'INX-ADM-2026-09', 'Admin E-Library', 'Aktif', 'Authenticator App'],
+            ['Hendra Kusuma', 'hendra.k@inovexa.id', 'INX-ADM-2026-15', 'Staf Inventaris', 'Aktif', 'Belum 2FA'],
+            ['Herdman', 'herdman.library@inovexa.id', 'INX-2026-08912', 'Anggota Pemustaka', 'Aktif', 'Standard Auth'],
+            ['Kevin Wijaya', 'kevin.w@campus.ac.id', 'MBR-2026-04321', 'Pemustaka Mahasiswa', 'Aktif', 'Belum 2FA'],
+            ['Dimas Arya', 'dimas.arya@techmail.com', 'INX-2026-07734', 'Anggota Umum', 'Aktif', 'Standard Auth']
+        ];
 
-        const name = row.dataset.name || 'Prasetyo';
-        const role = row.dataset.role || 'Kepala TI & Super Admin';
-        const id = row.dataset.id || 'SA-001';
-        const level = row.dataset.level || 'LEVEL 0: ROOT';
-        const initials = row.dataset.initials || 'PR';
-        const sec = row.dataset['2fa'] || 'Hardware 2FA Verified';
-        const cat = row.dataset.category || 'super';
-
-        const inspectAvatar = document.getElementById('inspect-avatar');
-        const inspectName = document.getElementById('inspect-name');
-        const inspectRole = document.getElementById('inspect-role');
-        const inspectId = document.getElementById('inspect-id');
-        const inspectLevel = document.getElementById('inspect-level-badge');
-        const inspect2fa = document.getElementById('inspect-2fa');
-        const modalTitle = document.getElementById('modal-perm-title');
-
-        if (inspectAvatar) inspectAvatar.innerText = initials;
-        if (inspectName) inspectName.innerText = name;
-        if (inspectRole) inspectRole.innerText = role;
-        if (inspectId) inspectId.innerText = `Kredensial: ${id}`;
-        if (inspectLevel) inspectLevel.innerText = level;
-        if (inspect2fa) inspect2fa.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ${sec}`;
-        if (modalTitle) modalTitle.innerText = `Konfigurasi Hak Akses — ${name}`;
-
-        // Dynamic modules preview based on category
-        const rbacMod = document.getElementById('mod-rbac');
-        const dbMod = document.getElementById('mod-db');
-        const bypassMod = document.getElementById('mod-bypass');
-        const delMod = document.getElementById('mod-delete');
-
-        if (cat === 'super') {
-            if (rbacMod) { rbacMod.innerText = 'Full R/W'; rbacMod.className = 'access-mod-tag dark'; }
-            if (dbMod) { dbMod.innerText = 'Root Cred'; dbMod.className = 'access-mod-tag dark'; }
-            if (bypassMod) { bypassMod.innerText = 'Diizinkan'; bypassMod.className = 'access-mod-tag green'; }
-            if (delMod) { delMod.innerText = 'Diizinkan'; delMod.className = 'access-mod-tag green'; }
-        } else if (cat === 'admin') {
-            if (rbacMod) { rbacMod.innerText = 'View Only'; rbacMod.className = 'access-mod-tag gray'; }
-            if (dbMod) { dbMod.innerText = 'Ditolak'; dbMod.className = 'access-mod-tag red'; }
-            if (bypassMod) { bypassMod.innerText = 'Batas Normal'; bypassMod.className = 'access-mod-tag gray'; }
-            if (delMod) { delMod.innerText = 'Ditolak'; delMod.className = 'access-mod-tag red'; }
-        } else {
-            if (rbacMod) { rbacMod.innerText = 'Tanpa Akses'; rbacMod.className = 'access-mod-tag red'; }
-            if (dbMod) { dbMod.innerText = 'Tanpa Akses'; dbMod.className = 'access-mod-tag red'; }
-            if (bypassMod) { bypassMod.innerText = 'Ditolak'; bypassMod.className = 'access-mod-tag red'; }
-            if (delMod) { delMod.innerText = 'Ditolak'; delMod.className = 'access-mod-tag red'; }
-        }
+        let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "inovexa_daftar_akun_rbac.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast('Mengunduh berkas CSV daftar akun...');
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        updateSelectedCount();
-    });
 </script>

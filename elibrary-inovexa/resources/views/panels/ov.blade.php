@@ -1,5 +1,605 @@
 @if($u['role'] === 'super')
-    @include('panels.super-dashboard')
+<div class="super-dashboard">
+    {{-- 1. HERO BANNER PERSIS FIGMA --}}
+    <div class="super-hero-banner">
+        <div class="super-hero-watermark" aria-hidden="true">
+            <svg width="240" height="240" viewBox="0 0 200 200" fill="none">
+                <path d="M100 25 L165 55 V110 C165 152 100 182 100 182 C100 182 35 152 35 110 V55 Z" stroke="#143c26" stroke-width="5" />
+                <circle cx="100" cy="95" r="28" stroke="#143c26" stroke-width="5" />
+                <path d="M82 142 C82 128 118 128 118 142" stroke="#143c26" stroke-width="5" />
+            </svg>
+        </div>
+        <div class="super-hero-tag">
+            <span class="super-tag-dot"></span>
+            PUSAT KONTROL TINGGI &bull; HAK AKSES ROOT &amp; INFRASTRUKTUR SISTEM
+        </div>
+        <h1 class="super-hero-title">Halo, Super Admin Ari!</h1>
+        <p class="super-hero-desc">
+            Kendali penuh tata kelola akun, otorisasi peran berjenjang, pemeliharaan integritas database, dan pengawasan audit seluruh ekosistem Perpustakaan Inovexa Technologies sesuai mandat operasional.
+        </p>
+        <div class="super-hero-actions">
+            <button type="button" class="btn-super-primary" onclick="toast('Membuka formulir pendaftaran akun baru')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                + Tambah Akun Baru
+            </button>
+            <button type="button" class="btn-super-outline" onclick="window.location='{{ route('dashboard', 'users') }}'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Konfigurasi Hak Akses
+            </button>
+            <button type="button" class="btn-super-outline" onclick="toast('Memulai proses snapshot backup database real-time...')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><polyline points="16 16 12 12 8 16"/></svg>
+                Backup Database Real-time
+            </button>
+            <button type="button" class="btn-super-outline" onclick="toast('Mengunduh audit trail log sistem format .log / .csv')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Unduh Audit Log
+            </button>
+        </div>
+    </div>
+
+    {{-- 2. EMPAT KARTU STATISTIK METRIK PERSIS FIGMA --}}
+    <div class="super-stats-grid">
+        {{-- Card 1: Total Akun Pengguna --}}
+        <div class="super-stat-card">
+            <div class="super-stat-header">
+                <div class="super-stat-icon icon-teal">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="19" cy="11" r="2"/></svg>
+                </div>
+                <span class="super-stat-badge badge-teal">↗ +12 minggu ini</span>
+            </div>
+            <div class="super-stat-label">TOTAL AKUN PENGGUNA</div>
+            <div class="super-stat-value">2.450 Akun</div>
+            <div class="super-stat-sub">
+                <b>1.890</b> Anggota &bull; <b>42</b> Pegawai &bull; <b>3</b> Super Admin
+            </div>
+        </div>
+
+        {{-- Card 2: Uptime Sistem & DB --}}
+        <div class="super-stat-card">
+            <div class="super-stat-header">
+                <div class="super-stat-icon icon-green">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <span class="super-stat-badge badge-green"><span class="badge-dot-green"></span> Optimal</span>
+            </div>
+            <div class="super-stat-label">UPTIME SISTEM &amp; DB</div>
+            <div class="super-stat-value">99.98%</div>
+            <div class="super-stat-sub">PostgreSQL Cluster &bull; Latensi 18ms</div>
+        </div>
+
+        {{-- Card 3: Total Koleksi & E-Library --}}
+        <div class="super-stat-card">
+            <div class="super-stat-header">
+                <div class="super-stat-icon icon-slate">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <span class="super-stat-badge badge-slate">Global Aset</span>
+            </div>
+            <div class="super-stat-label">TOTAL KOLEKSI &amp; E-LIBRARY</div>
+            <div class="super-stat-value">18.420 Aset</div>
+            <div class="super-stat-sub">
+                <b>12.420</b> Fisik &bull; <b>6.000</b> Digital
+            </div>
+        </div>
+
+        {{-- Card 4: Kas Sirkulasi & Denda --}}
+        <div class="super-stat-card">
+            <div class="super-stat-header">
+                <div class="super-stat-icon icon-amber">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/></svg>
+                </div>
+                <span class="super-stat-badge badge-amber">Audit Klir</span>
+            </div>
+            <div class="super-stat-label">KAS SIRKULASI &amp; DENDA</div>
+            <div class="super-stat-value text-amber">Rp 14.850.000</div>
+            <div class="super-stat-sub">Tahun Berjalan &bull; 0 Macet</div>
+        </div>
+    </div>
+
+    {{-- 3. AREA TENGAH: GRID 2 KOLOM (Kiri 65%, Kanan 35%) --}}
+    <div class="super-middle-grid">
+        {{-- Kolom Kiri: Kelola Akun & Audit Log --}}
+        <div class="super-left-col">
+            {{-- Tabel Kelola Akun & Hak Akses Pengguna --}}
+            <div class="super-card">
+                <div class="super-card-header">
+                    <div class="super-card-title-group">
+                        <span class="super-title-icon icon-orange">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
+                        </span>
+                        <div>
+                            <h2 class="super-card-title">Kelola Akun &amp; Hak Akses Pengguna</h2>
+                            <p class="super-card-subtitle">Otorisasi hierarki Super Admin, Admin Pegawai, dan Anggota Pemustaka Inovexa</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-super-dark-sm" onclick="toast('Membuka modal tambah akun & otorisasi akses')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                        + Tambah Akses
+                    </button>
+                </div>
+
+                {{-- Baris Filter Tabs dan Pencarian --}}
+                <div class="super-filter-bar">
+                    <div class="super-tabs">
+                        <button type="button" class="super-tab active">Semua Pengguna (2.450)</button>
+                        <button type="button" class="super-tab">Admin Pegawai (42)</button>
+                        <button type="button" class="super-tab">Super Admin (3)</button>
+                    </div>
+                    <div class="super-search-box">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" placeholder="Filter nama / ID akun...">
+                    </div>
+                </div>
+
+                {{-- Tabel Pengguna --}}
+                <div class="super-table-wrap">
+                    <table class="super-table">
+                        <thead>
+                            <tr>
+                                <th>NAMA &amp; ID PENGGUNA</th>
+                                <th>PERAN &amp; HAK AKSES</th>
+                                <th style="text-align:right">STATUS AKSES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-row-cell">
+                                        <div class="user-avatar-circle bg-dark-green">PR</div>
+                                        <div class="user-meta-info">
+                                            <div class="user-name-line">
+                                                <b>Princess</b>
+                                                <span class="user-badge-star" title="Root Administrator">✪</span>
+                                            </div>
+                                            <small class="user-id-sub">ID: SA-001 &bull; princess@inovexa.id</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-pill-root">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                        Super Admin (Root)
+                                    </span>
+                                </td>
+                                <td style="text-align:right">
+                                    <span class="status-pill-active">&bull; Aktif</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-row-cell">
+                                        <div class="user-avatar-circle bg-slate">BS</div>
+                                        <div class="user-meta-info">
+                                            <div class="user-name-line"><b>Budi Santoso</b></div>
+                                            <small class="user-id-sub">ID: INX-ADM-2026-04</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-pill-admin">Admin Pegawai (Sirkulasi)</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <span class="status-pill-active">&bull; Aktif</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-row-cell">
+                                        <div class="user-avatar-circle bg-slate">SN</div>
+                                        <div class="user-meta-info">
+                                            <div class="user-name-line"><b>Siti Nurhaliza</b></div>
+                                            <small class="user-id-sub">ID: INX-ADM-2026-09</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-pill-admin">Admin Pegawai (E-Library)</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <span class="status-pill-active">&bull; Aktif</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-row-cell">
+                                        <div class="user-avatar-circle bg-blue">DA</div>
+                                        <div class="user-meta-info">
+                                            <div class="user-name-line"><b>Dimas Arya</b></div>
+                                            <small class="user-id-sub">ID: MBR-2026-07734</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-pill-member">Anggota Pemustaka</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <span class="status-pill-active">&bull; Aktif</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-row-cell">
+                                        <div class="user-avatar-circle bg-amber">KW</div>
+                                        <div class="user-meta-info">
+                                            <div class="user-name-line"><b>Kevin Wijaya</b></div>
+                                            <small class="user-id-sub">ID: MBR-2026-04321</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="role-pill-new">Anggota Baru</span>
+                                </td>
+                                <td style="text-align:right">
+                                    <span class="status-pill-pending">Verifikasi KTM</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                {{-- Footer Tabel --}}
+                <div class="super-card-footer">
+                    <span class="footer-count">Menampilkan 5 dari 2.450 total akun pengguna terdaftar</span>
+                    <a href="{{ route('dashboard', 'users') }}" class="footer-link">Buka Modul Kelola Akun &amp; Hak Akses Lengkap &rarr;</a>
+                </div>
+            </div>
+
+            {{-- Audit Log Keamanan & Aktivitas Sistem --}}
+            <div class="super-card" style="margin-top:16px">
+                <div class="super-card-header">
+                    <div class="super-card-title-group">
+                        <span class="super-title-icon icon-dark">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </span>
+                        <div>
+                            <h2 class="super-card-title">Audit Log Keamanan &amp; Aktivitas Sistem</h2>
+                            <p class="super-card-subtitle">Pelacakan forensik real-time seluruh transaksi, login, dan modul basis data</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-super-outline-sm" onclick="toast('Filter parameter log audit aktif')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                        Filter Event
+                    </button>
+                </div>
+
+                <div class="audit-timeline">
+                    {{-- Item 1 --}}
+                    <div class="timeline-item">
+                        <div class="timeline-marker dot-amber"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta-row">
+                                <b class="timeline-time">10:42:15 WIB</b>
+                                <span class="timeline-tag tag-slate">Sirkulasi</span>
+                                <span class="timeline-actor">Admin Pegawai Budi Santoso</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Mengubah status pengembalian eksemplar buku <b>TRX-2026-9812</b> ("Laskar Pelangi") &bull; Denda keterlambatan Rp 2.000 lunas tunai.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Item 2 --}}
+                    <div class="timeline-item">
+                        <div class="timeline-marker dot-green"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta-row">
+                                <b class="timeline-time">09:15:00 WIB</b>
+                                <span class="timeline-tag tag-green">Automated Backup</span>
+                                <span class="timeline-actor">PostgreSQL System Daemon</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Pencadangan rutin otomatis selesai tanpa galat. Ukuran snapshot: <b>4.2 GB</b>, enkripsi hash SHA-256 tersimpan ke Cloud Vault #2.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Item 3 --}}
+                    <div class="timeline-item">
+                        <div class="timeline-marker dot-dark-green"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta-row">
+                                <b class="timeline-time">08:00:22 WIB</b>
+                                <span class="timeline-tag tag-slate">Security Policy</span>
+                                <span class="timeline-actor actor-orange">Super Admin Princess</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Memperbarui izin akses modul E-Library: Anggota aktif diperbolehkan mengunduh format EPUB offline dengan kuota 3 dokumen / bulan.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Item 4 --}}
+                    <div class="timeline-item">
+                        <div class="timeline-marker dot-red"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta-row">
+                                <b class="timeline-time time-red">Kemarin (23:14 WIB)</b>
+                                <span class="timeline-tag tag-red">Firewall Guard</span>
+                                <span class="timeline-actor">Auth Gateway</span>
+                            </div>
+                            <p class="timeline-desc">
+                                Percobaan login gagal terdeteksi 3x berturut-turut pada akun staf via IP <span class="ip-blocked">192.168.1.105</span>. Alamat IP diblokir sementara 60 menit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="super-card-footer" style="justify-content:flex-end">
+                    <a href="{{ route('dashboard', 'sys') }}" class="footer-link">Buka Seluruh Audit Log &amp; Riwayat Backup &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        {{-- Kolom Kanan: Matriks Hak Akses & Infrastruktur DB --}}
+        <div class="super-right-col">
+            {{-- Matriks Hak Akses RBAC --}}
+            <div class="super-card">
+                <div class="matrix-card-header">
+                    <div class="matrix-title-line">
+                        <span class="matrix-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </span>
+                        <h3 class="matrix-title">Matriks Hak Akses</h3>
+                        <span class="matrix-version-badge">RBAC v2.4</span>
+                    </div>
+                    <p class="matrix-desc">Ringkasan otorisasi hak istimewa operasional perpustakaan Inovexa berdasarkan peran.</p>
+                </div>
+
+                <div class="matrix-blocks">
+                    {{-- Blok 1 --}}
+                    <div class="matrix-block">
+                        <div class="block-top">
+                            <b>Kelola Akun &amp; Hak Akses</b>
+                            <span class="block-badge badge-root">ROOT ONLY</span>
+                        </div>
+                        <div class="block-cols">
+                            <span>Super: <b class="text-dark-green">Full</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Admin: <span class="text-muted">No</span></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Anggota: <span class="text-muted">No</span></span>
+                        </div>
+                    </div>
+
+                    {{-- Blok 2 --}}
+                    <div class="matrix-block">
+                        <div class="block-top">
+                            <b>Koleksi &amp; Sirkulasi Buku</b>
+                            <span class="block-badge badge-staf">Staf &amp; Super</span>
+                        </div>
+                        <div class="block-cols">
+                            <span>Super: <b class="text-dark-green">Full</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Admin: <b class="text-dark">R/W</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Anggota: <span class="text-slate">Read</span></span>
+                        </div>
+                    </div>
+
+                    {{-- Blok 3 --}}
+                    <div class="matrix-block">
+                        <div class="block-top">
+                            <b>Akses &amp; Baca E-Library</b>
+                            <span class="block-badge badge-public">Publik</span>
+                        </div>
+                        <div class="block-cols">
+                            <span>Super: <b class="text-dark-green">Full</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Admin: <b class="text-dark">Full</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Anggota: <b class="text-teal">Baca</b></span>
+                        </div>
+                    </div>
+
+                    {{-- Blok 4 --}}
+                    <div class="matrix-block">
+                        <div class="block-top">
+                            <b>Audit Log &amp; Backup Sistem</b>
+                            <span class="block-badge badge-root">ROOT ONLY</span>
+                        </div>
+                        <div class="block-cols">
+                            <span>Super: <b class="text-dark-green">Full</b></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Admin: <span class="text-muted">No</span></span>
+                            <span class="col-divider">&bull;</span>
+                            <span>Anggota: <span class="text-muted">No</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-super-dark-full" onclick="toast('Membuka konfigurasi kebijakan RBAC...')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg>
+                    Atur Policy &amp; Peran RBAC
+                </button>
+            </div>
+
+            {{-- Infrastruktur DB --}}
+            <div class="super-card" style="margin-top:16px">
+                <div class="db-card-header">
+                    <div class="db-title-line">
+                        <span class="db-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        </span>
+                        <h3 class="db-title">Infrastruktur DB</h3>
+                    </div>
+                    <span class="db-status-pill">&bull; Sinkron</span>
+                </div>
+
+                {{-- Storage SSD Bar --}}
+                <div class="db-storage-section">
+                    <div class="db-storage-labels">
+                        <span class="storage-title">Database Storage SSD</span>
+                        <b class="storage-value">136 GB / 200 GB (68%)</b>
+                    </div>
+                    <div class="db-progress-track">
+                        <div class="db-progress-fill" style="width: 68%"></div>
+                    </div>
+                </div>
+
+                {{-- Metric Grid 2x2 --}}
+                <div class="db-metrics-grid">
+                    <div class="db-metric-box">
+                        <small class="metric-label">CPU Load</small>
+                        <div class="metric-num">24.2%</div>
+                        <span class="metric-state text-green">Stabil (8 Cores)</span>
+                    </div>
+                    <div class="db-metric-box">
+                        <small class="metric-label">RAM Cache</small>
+                        <div class="metric-num">38%</div>
+                        <span class="metric-state text-green">12 GB / 32 GB</span>
+                    </div>
+                    <div class="db-metric-box">
+                        <small class="metric-label">Bandwidth</small>
+                        <div class="metric-num">45 Mbps</div>
+                        <span class="metric-state text-muted">Trafik Normal</span>
+                    </div>
+                    <div class="db-metric-box">
+                        <small class="metric-label">Snapshot Terakhir</small>
+                        <div class="metric-num">03:00 WIB</div>
+                        <span class="metric-state text-green">Klir &bull; Terverifikasi</span>
+                    </div>
+                </div>
+
+                <div class="db-actions">
+                    <button type="button" class="btn-super-dark-full" onclick="toast('Snapshot database manual berhasil dibuat (Snapshot #2026-11)')">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        Trigger Backup Manual
+                    </button>
+                    <button type="button" class="btn-super-light-full" onclick="toast('Verifikasi checksum integritas tabel PostgreSQL 100% konsisten')">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+                        Uji Integritas Database
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- 4. BAGIAN BAWAH: LIHAT KESELURUHAN LAPORAN EKOSISTEM PERPUSTAKAAN --}}
+    <div class="super-card super-reports-card">
+        <div class="super-reports-header">
+            <div class="super-card-title-group">
+                <span class="super-title-icon icon-amber-square">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </span>
+                <div>
+                    <h2 class="super-card-title">Lihat Keseluruhan Laporan Ekosistem Perpustakaan</h2>
+                    <p class="super-card-subtitle">Konsolidasi analitik peminjaman fisik vs sirkulasi e-library dan performa operasional berkala</p>
+                </div>
+            </div>
+            <div class="super-reports-actions">
+                <button type="button" class="btn-super-outline-sm" onclick="toast('Mengunduh dataset sirkulasi semester format CSV')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Ekspor Data CSV
+                </button>
+                <button type="button" class="btn-super-dark-sm" onclick="toast('Menyiapkan rekapitulasi tahunan ekosistem dalam format PDF...')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    Cetak Rekapitulasi Tahunan (PDF)
+                </button>
+            </div>
+        </div>
+
+        <div class="super-reports-layout">
+            {{-- Box Grafik Batang --}}
+            <div class="super-chart-box">
+                <div class="chart-header-row">
+                    <div class="chart-title">Tren Sirkulasi Semester I &ndash; 2026</div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-dot dot-dark-green"></span> Buku Fisik</span>
+                        <span class="legend-item"><span class="legend-dot dot-warm-amber"></span> E-Book &amp; Jurnal Digital</span>
+                    </div>
+                </div>
+                <div class="chart-unit">Satuan: Ribu Transaksi</div>
+
+                {{-- SVG Bar Chart --}}
+                <div class="super-svg-chart">
+                    <svg viewBox="0 0 600 240" class="chart-svg">
+                        {{-- Grid lines --}}
+                        <line x1="45" y1="30" x2="580" y2="30" stroke="#f1ede4" stroke-dasharray="3 3" />
+                        <text x="35" y="34" font-size="10" fill="#94a3b8" text-anchor="end">3.0k</text>
+
+                        <line x1="45" y1="85" x2="580" y2="85" stroke="#f1ede4" stroke-dasharray="3 3" />
+                        <text x="35" y="89" font-size="10" fill="#94a3b8" text-anchor="end">2.0k</text>
+
+                        <line x1="45" y1="140" x2="580" y2="140" stroke="#f1ede4" stroke-dasharray="3 3" />
+                        <text x="35" y="144" font-size="10" fill="#94a3b8" text-anchor="end">1.0k</text>
+
+                        <line x1="45" y1="195" x2="580" y2="195" stroke="#e2e8f0" />
+                        <text x="35" y="198" font-size="10" fill="#94a3b8" text-anchor="end">0</text>
+
+                        {{-- Month 1: Jan (Fisik 1.8k -> h:99, y:96; Digital 1.2k -> h:66, y:129) --}}
+                        <rect x="75" y="96" width="18" height="99" rx="3" fill="#133827" />
+                        <rect x="97" y="129" width="18" height="66" rx="3" fill="#b45309" />
+                        <text x="95" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Jan</text>
+
+                        {{-- Month 2: Feb (Fisik 2.1k -> h:115, y:80; Digital 1.5k -> h:82, y:113) --}}
+                        <rect x="160" y="80" width="18" height="115" rx="3" fill="#133827" />
+                        <rect x="182" y="113" width="18" height="82" rx="3" fill="#b45309" />
+                        <text x="180" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Feb</text>
+
+                        {{-- Month 3: Mar (Fisik 2.4k -> h:132, y:63; Digital 1.7k -> h:93, y:102) --}}
+                        <rect x="245" y="63" width="18" height="132" rx="3" fill="#133827" />
+                        <rect x="267" y="102" width="18" height="93" rx="3" fill="#b45309" />
+                        <text x="265" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Mar</text>
+
+                        {{-- Month 4: Apr (Fisik 2.1k -> h:115, y:80; Digital 2.2k -> h:121, y:74) --}}
+                        <rect x="330" y="80" width="18" height="115" rx="3" fill="#133827" />
+                        <rect x="352" y="74" width="18" height="121" rx="3" fill="#b45309" />
+                        <text x="350" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Apr</text>
+
+                        {{-- Month 5: Mei (Fisik 2.5k -> h:137, y:58; Digital 2.3k -> h:126, y:69) --}}
+                        <rect x="415" y="58" width="18" height="137" rx="3" fill="#133827" />
+                        <rect x="437" y="69" width="18" height="126" rx="3" fill="#b45309" />
+                        <text x="435" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Mei</text>
+
+                        {{-- Month 6: Jun (Fisik 2.8k -> h:154, y:41; Digital 2.6k -> h:143, y:52) --}}
+                        <rect x="500" y="41" width="18" height="154" rx="3" fill="#133827" />
+                        <rect x="522" y="52" width="18" height="143" rx="3" fill="#b45309" />
+                        <text x="520" y="215" font-size="11" fill="#64748b" text-anchor="middle" font-weight="600">Jun</text>
+                    </svg>
+                </div>
+            </div>
+
+            {{-- 4 Kartu Metrik Sisi Kanan --}}
+            <div class="super-side-metrics">
+                <div class="report-metric-card">
+                    <div class="metric-top-row">
+                        <span class="report-metric-label">Rasio Baca Digital</span>
+                        <span class="report-pill-mint">+6.2% YoY</span>
+                    </div>
+                    <div class="report-metric-val">44.8%</div>
+                </div>
+
+                <div class="report-metric-card">
+                    <div class="metric-top-row">
+                        <span class="report-metric-label">Rata-rata Durasi Pinjam</span>
+                        <span class="report-pill-slate">Maks 14 Hari</span>
+                    </div>
+                    <div class="report-metric-val">8.4 Hari</div>
+                </div>
+
+                <div class="report-metric-card">
+                    <div class="metric-top-row">
+                        <span class="report-metric-label">Tingkat Pengembalian Tepat Waktu</span>
+                        <span class="report-pill-green">Sangat Patuh</span>
+                    </div>
+                    <div class="report-metric-val">96.2%</div>
+                </div>
+
+                <div class="report-metric-card target-card">
+                    <div class="metric-top-row">
+                        <span class="target-card-label">Target Literasi Inovexa 2026</span>
+                    </div>
+                    <div class="target-bottom-row">
+                        <span class="target-value">Tercapai 78%</span>
+                        <div class="target-medal-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @elseif($u['role'] === 'admin')
     <div class="admin-dashboard">
     <div class="admin-dashboard-hero" style="background:#153223;color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(21,50,35,.2)">
