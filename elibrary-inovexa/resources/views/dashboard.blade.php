@@ -257,7 +257,7 @@
                     $r === 'super' && $menu === 'ov' => 'panels.ov',
                     $r === 'super' && $menu === 'mem' => 'panels.mem',
                     $r === 'super' && $menu === 'stock' => 'panels.stock-super',
-                    $r === 'super' && $menu === 'circ' => 'panels.circ',
+                    $r === 'super' && $menu === 'circ' => 'panels.circ-super',
                     $r === 'super' && $menu === 'resv' => 'panels.resv-admin',
                     $r === 'super' && $menu === 'elib' => 'panels.elib-admin',
                     $r === 'super' && $menu === 'reports' => 'panels.reports',
