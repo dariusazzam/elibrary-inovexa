@@ -454,8 +454,8 @@
 
     {{-- Banner Kepatuhan Tata Kelola & Ketahanan Informasi Perpustakaan --}}
     <div style="margin-top:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px">
-        <div style="background:#fef3c7;color:#b45309;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
-            🛡️
+        <div style="color:#b45309;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 2.4L18 4l.6 3.6L22 9l-1.6 3.2L22 15l-3.4 1.4L18 20l-3.6-.4L12 22l-2.4-2.4L6 20l-.6-3.6L2 15l1.6-3.2L2 9l3.4-1.4L6 4l3.6.4L12 2z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
         <div>
             <h4 style="font-size:13.5px;font-weight:800;color:#0f172a;margin:0 0 2px">Standar Kepatuhan Tata Kelola &amp; Ketahanan Informasi Perpustakaan</h4>
