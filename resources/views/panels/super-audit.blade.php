@@ -429,8 +429,9 @@
     {{-- Kartu Bawah: Validasi Hashing Kriptografis Immutability & Kepatuhan ISO --}}
     <div style="margin-top:20px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
         <div style="display:flex;align-items:center;gap:16px">
-            <div style="background:#fef3c7;color:#b45309;width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
-                🔒
+            <div style="width:160px;height:100px;border-radius:8px;overflow:hidden;flex-shrink:0;position:relative;border:1px solid #cbd5e1">
+                <img src="{{ asset('foto/perpus.jpg') }}" alt="TI-INX-RACK-01" style="width:100%;height:100%;object-fit:cover">
+                <div style="position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.75);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;font-family:monospace">TI-INX-RACK-01</div>
             </div>
             <div>
                 <h4 style="font-size:14px;font-weight:800;color:#0f172a;margin:0 0 4px">Validasi Hashing Kriptografis Immutability</h4>
