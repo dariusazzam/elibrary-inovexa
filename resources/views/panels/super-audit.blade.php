@@ -451,4 +451,17 @@
             </div>
         </div>
     </div>
+
+    {{-- Banner Kepatuhan Tata Kelola & Ketahanan Informasi Perpustakaan --}}
+    <div style="margin-top:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;box-shadow:0 1px 3px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px">
+        <div style="background:#fef3c7;color:#b45309;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
+            🛡️
+        </div>
+        <div>
+            <h4 style="font-size:13.5px;font-weight:800;color:#0f172a;margin:0 0 2px">Standar Kepatuhan Tata Kelola &amp; Ketahanan Informasi Perpustakaan</h4>
+            <p style="font-size:11.5px;color:#475569;margin:0">
+                Sistem tersertifikasi ISO/IEC 27001:2022 (Sistem Manajemen Keamanan Informasi), ISO 22301 (Kelangsungan Usaha &amp; Bencana), serta tunduk pada amanat Undang-Undang Perlindungan Data Pribadi (UU PDP No. 27/2022).
+            </p>
+        </div>
+    </div>
 </div>
