@@ -254,7 +254,7 @@
         <main class="figma-page-content">
             @php
                 $panelView = match (true) {
-                    $r === 'super' && $menu === 'ov' => 'panels.ov',
+                    $r === 'super' && $menu === 'sys' => 'panels.super-audit',
                     $r === 'super' && $menu === 'mem' => 'panels.mem',
                     $r === 'super' && $menu === 'stock' => 'panels.stock-super',
                     $r === 'super' && $menu === 'circ' => 'panels.circ-super',
