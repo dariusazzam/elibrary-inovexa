@@ -1,92 +1,52 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\ELibraryController;
-use App\Http\Controllers\LoanController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\ReturnController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Middleware\EnsureRole;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect()->route('books.index');
+// Publik
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/reservasi/{id}', [HomeController::class, 'reserve'])->whereNumber('id')->name('reserve');
+
+// Auth & Akses Akun
+Route::get('/masuk/{role?}', [AuthController::class, 'form'])->where('role', 'member|admin|super')->name('login');
+Route::get('/login/{role?}', function (?string $role = null) {
+    return redirect()->route('login', $role ? ['role' => $role] : []);
+});
+Route::post('/masuk', [AuthController::class, 'login'])->name('login.post');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/keluar', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout']);
+
+// Pendaftaran mandiri & Lupa Sandi
+Route::get('/daftar', [AuthController::class, 'registerForm'])->name('register');
+Route::post('/daftar', [AuthController::class, 'register'])->name('register.post');
+Route::get('/lupa-sandi', [AuthController::class, 'forgotForm'])->name('password.forgot');
+Route::post('/lupa-sandi', [AuthController::class, 'resetPassword'])->name('password.reset');
+
+// Semua peran yang sudah login
+Route::middleware(EnsureRole::class.':member,admin,super')->group(function () {
+    Route::get('/dashboard/elib/baca/{id}', [DashboardController::class, 'reader'])->whereNumber('id')->name('elib.read');
+    Route::get('/dashboard/{menu?}', [DashboardController::class, 'show'])->name('dashboard');
 });
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.post')->middleware('throttle:5,1');
+// Anggota
+Route::middleware(EnsureRole::class.':member')->group(function () {
+    Route::delete('/reservasi/{id}', [DashboardController::class, 'cancel'])->whereNumber('id')->name('reserve.cancel');
+    Route::post('/dashboard/profil', [DashboardController::class, 'updateProfile'])->name('profile.update');
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+// Petugas & Super Admin
+Route::middleware(EnsureRole::class.':admin,super')->group(function () {
+    Route::post('/sirkulasi', [DashboardController::class, 'lend'])->name('lend');
+    Route::post('/sirkulasi/{id}/kembali', [DashboardController::class, 'giveBack'])->whereNumber('id')->name('return');
+    Route::post('/stok', [DashboardController::class, 'addBook'])->name('stock.add');
+});
 
-Route::get('/catalog', [BookController::class, 'index'])->name('books.index');
-Route::get('/catalog/{book}', [BookController::class, 'show'])->name('books.show');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
-    Route::get('/profile/card', [AuthController::class, 'memberCard'])->name('profile.card');
-
-    Route::get('/elibrary', [ELibraryController::class, 'index'])->name('elibrary.index');
-    Route::get('/elibrary/history', [ELibraryController::class, 'history'])->name('elibrary.history');
-    Route::get('/elibrary/{ebook}/read', [ELibraryController::class, 'read'])->name('elibrary.read');
-    Route::get('/elibrary/{ebook}/download', [ELibraryController::class, 'download'])->name('elibrary.download');
-
-    Route::middleware('role:Anggota')->group(function () {
-        Route::get('/my-loans', [LoanController::class, 'index'])->name('member.loans');
-        Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-        Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
-        Route::post('/reservations/{reservation}/cancel', [ReservationController::class, 'cancel'])->name('reservations.cancel');
-    });
-
-    Route::middleware('role:Admin Pegawai|Super Admin')->group(function () {
-        Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-        Route::post('/books', [BookController::class, 'store'])->name('books.store');
-        Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
-        Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
-        Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
-        Route::post('/books/{book}/copies', [BookController::class, 'storeCopy'])->name('books.copies.store');
-        Route::put('/copies/{copy}', [BookController::class, 'updateCopy'])->name('books.copies.update');
-        Route::delete('/copies/{copy}', [BookController::class, 'destroyCopy'])->name('books.copies.destroy');
-
-        Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
-        Route::get('/loans/create', [LoanController::class, 'create'])->name('loans.create');
-        Route::post('/loans', [LoanController::class, 'store'])->name('loans.store');
-        Route::get('/loans/{loan}', [LoanController::class, 'show'])->name('loans.show');
-        Route::get('/loans/{loan}/slip', [LoanController::class, 'slip'])->name('loans.slip');
-
-        Route::get('/returns', [ReturnController::class, 'index'])->name('returns.index');
-        Route::get('/returns/{loan}/create', [ReturnController::class, 'create'])->name('returns.create');
-        Route::post('/returns', [ReturnController::class, 'store'])->name('returns.store');
-        Route::post('/returns/{returnBook}/pay', [ReturnController::class, 'payPenalty'])->name('returns.pay');
-
-        Route::get('/admin/reservations', [ReservationController::class, 'index'])->name('admin.reservations.index');
-        Route::post('/admin/reservations/{reservation}/taken', [ReservationController::class, 'markAsTaken'])->name('reservations.taken');
-        Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'cancel'])->name('admin.reservations.cancel');
-
-        Route::post('/elibrary', [ELibraryController::class, 'store'])->name('elibrary.store');
-        Route::delete('/elibrary/{ebook}', [ELibraryController::class, 'destroy'])->name('elibrary.destroy');
-
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-        Route::patch('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
-
-        Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-        Route::get('/reports/loans', [ReportController::class, 'loans'])->name('reports.loans');
-        Route::get('/reports/returns', [ReportController::class, 'returns'])->name('reports.returns');
-        Route::get('/reports/books', [ReportController::class, 'books'])->name('reports.books');
-        Route::get('/reports/members', [ReportController::class, 'members'])->name('reports.members');
-    });
-
-    Route::middleware('role:Super Admin')->group(function () {
-        Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-        Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
-    });
+// Super Admin
+Route::middleware(EnsureRole::class.':super')->group(function () {
+    Route::post('/pengguna/{i}/toggle', [DashboardController::class, 'toggleUser'])->whereNumber('i')->name('user.toggle');
+    Route::post('/pengaturan', [DashboardController::class, 'saveSettings'])->name('settings.save');
 });

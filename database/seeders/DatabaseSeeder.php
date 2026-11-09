@@ -44,15 +44,32 @@ class DatabaseSeeder extends Seeder
             'status' => 'active',
         ]);
 
-        User::create([
-            'role_id' => $memberRole->id,
-            'member_number' => 'MBR-2026-0001',
-            'name' => 'Budi Santoso',
-            'email' => 'anggota@perpus.test',
-            'password' => Hash::make('password'),
-            'phone' => '081234567892',
-            'status' => 'active',
-        ]);
+        $members = [
+            ['Adinda Zahwa Aprilia', '24670095'],
+            ['Muhammad Dzaky Zidane', '24670090'],
+            ['Carendra Aldiansyah', '24670104'],
+            ['Juniari Nur Shofa', '24670082'],
+            ['syalna kurnia putri', '24670083'],
+            ['rendi dwiki h', '24670102'],
+            ['Robiatul Adawiyyah', '24670075'],
+            ['Eka Bayu Prasetio', '24670092'],
+            ['frendy wahyu p', '24670091'],
+            ['Darius Fikram Azzam', '24670089'],
+            ['nopal', '24670081'],
+            ['Muhammad Okta Ramadhani', '24670016'],
+        ];
+
+        foreach ($members as $index => $m) {
+            User::create([
+                'role_id' => $memberRole->id,
+                'member_number' => 'MBR-'.$m[1],
+                'name' => $m[0],
+                'email' => 'mhs'.$m[1].'@perpus.test',
+                'password' => Hash::make('password'),
+                'phone' => '08'.str_pad($m[1], 10, '0', STR_PAD_LEFT),
+                'status' => 'active',
+            ]);
+        }
 
         $cat1 = Category::create(['category_name' => 'Teknologi & Komputer']);
         $cat2 = Category::create(['category_name' => 'Sains & Matematika']);
