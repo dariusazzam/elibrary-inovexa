@@ -11,12 +11,27 @@
 
 <nav><div class="w">
     <div class="logo"><img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa Technologies" style="width:42px;height:42px;object-fit:contain;border-radius:8px"><div>Inovexa<small>PUBLIC LIBRARY</small></div></div>
-    <div class="links">
-        <a href="#top" style="background:var(--b);font-weight:600">Beranda</a>
-        <a href="#katalog">Katalog Buku</a>
-        <a href="#layanan">Layanan Warga</a>
-        <a href="#tentang">Tentang</a>
+    <div class="links" id="navLinks">
+        <a href="#top" class="nav-link active-nav" onclick="setActiveNav(this)">Beranda</a>
+        <a href="#katalog" class="nav-link" onclick="setActiveNav(this)">Katalog Buku</a>
+        <a href="#layanan" class="nav-link" onclick="setActiveNav(this)">Layanan Warga</a>
+        <a href="#tentang" class="nav-link" onclick="setActiveNav(this)">Tentang</a>
     </div>
+    <style>
+    .links a.active-nav { background: var(--b) !important; font-weight: 600 !important; }
+    </style>
+    <script>
+    function setActiveNav(el) {
+        document.querySelectorAll('.links a').forEach(a => {
+            a.classList.remove('active-nav');
+            a.style.background = 'none';
+            a.style.fontWeight = '500';
+        });
+        el.classList.add('active-nav');
+        el.style.background = 'var(--b)';
+        el.style.fontWeight = '600';
+    }
+    </script>
     @if(session('user'))
         <a class="btn k" href="{{ route('dashboard') }}">Dashboard</a>
         <span class="av" style="width:32px;height:32px;background:#111;color:#fff;border-radius:50%;display:grid;place-items:center;font-size:13px">{{ mb_strtoupper(mb_substr(session('user')['n'], 0, 1)) }}</span>
@@ -72,7 +87,7 @@
 
     <section class="sec" id="katalog">
         <div class="row">
-            <div><div class="lbl">KATALOG TERPILIH</div><h2>Koleksi Pilihan Minggu Ini</h2></div>
+            <div><div class="lbl">KATALOG TERPILIH</div><h2>Koleksi Pilihan &amp; Hasil Pencarian</h2></div>
             <a href="{{ route('home', ['all' => 1]) }}#katalog">Lihat Semua Katalog ›</a>
         </div>
         <div class="g3" id="grid">

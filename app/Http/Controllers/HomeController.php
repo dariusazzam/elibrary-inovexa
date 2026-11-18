@@ -14,8 +14,10 @@ class HomeController extends Controller
         $topic = (string) $request->query('topic', '');
         $books = $lib->filter($q, $topic);
 
-        if ($q === '' && $topic === '' && ! $request->boolean('all')) {
-            $books = array_slice($books, 0, 3);
+        if ($q !== '') {
+            $books = $lib->filter($q, $topic);
+        } elseif ($topic === '' && ! $request->boolean('all')) {
+            $books = array_slice($books, 0, 5);
         }
 
         return view('home', compact('lib', 'books', 'q', 'topic'));

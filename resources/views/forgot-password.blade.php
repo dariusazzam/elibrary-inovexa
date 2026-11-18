@@ -12,7 +12,7 @@
         <div class="logo"><i style="background:#fff;color:var(--g)">X</i><div>Inovexa Technologies<small style="color:#a9c0b2">PEMULIHAN AKSES</small></div></div>
         <span class="tag" style="align-self:start">Atur Ulang Sandi Anggota</span>
         <h2>Pulihkan Sandi Portal Anda.</h2>
-        <span style="font-size:12px;color:#c9d8cf">Masukkan ID Anggota perpustakaan atau 16 digit NIK yang terdaftar, lalu tentukan kata sandi baru Anda. Kata sandi akan langsung aktif.</span>
+        <span style="font-size:12px;color:#c9d8cf">Masukkan NPM Anggota perpustakaan atau 16 digit NIK yang terdaftar, lalu tentukan kata sandi baru Anda. Kata sandi akan langsung aktif.</span>
         <div class="note" style="background:rgba(255,255,255,.08);border-color:#fff;color:#fff;margin-top:auto">
             <b>Catatan untuk Petugas &amp; Admin:</b><br>
             Reset sandi untuk akun Admin Pegawai atau Super Admin wajib diajukan langsung ke Administrator Sistem di Lobi Utama demi keamanan sirkulasi.
@@ -26,7 +26,7 @@
         <form method="POST" action="{{ route('password.reset') }}" style="margin-top:10px">
             @csrf
 
-            <label for="uid">Nomor ID Anggota (INX-••••) atau 16 Digit NIK</label>
+            <label for="uid">Nomor NPM Anggota (INX-••••) atau 16 Digit NIK</label>
             <input class="in" id="uid" name="id" value="{{ old('id', 'INX-2026-8820') }}" placeholder="Contoh: INX-2026-8820 atau 3271040801990002" required>
             @error('id')<div class="err">{{ $message }}</div>@enderror
 

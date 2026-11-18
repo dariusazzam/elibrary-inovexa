@@ -153,8 +153,22 @@ body > nav .w, nav.public-nav .w{display:flex;align-items:center;gap:20px;height
 .pill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--b)}
 .lbl{font-size:10px;font-weight:700;color:var(--o);letter-spacing:.06em}
 
-/* Card & Band Dasar */
-.card{background:var(--c);border:1px solid var(--ln);border-radius:12px;padding:20px}
+/* Universal Hover Effect for ALL elements across the entire app (excluding login) */
+div, article, section, aside, table {
+    transition: all 0.25s ease-in-out !important;
+}
+div:hover, article:hover, section:hover, aside:hover {
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.14) !important;
+    transform: translateY(-1px) scale(1.001) !important;
+}
+
+/* Exclude login page containers from hover effect */
+body:has(.lg) div:hover, body:has(.lg) article:hover, body:has(.lg) section:hover, body:has(.lg) aside:hover {
+    border-color: inherit !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
 .band{background:var(--b);border-radius:14px;padding:28px}
 .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 .row{display:flex;justify-content:space-between;align-items:end;gap:10px}

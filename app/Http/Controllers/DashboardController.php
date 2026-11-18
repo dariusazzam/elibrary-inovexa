@@ -14,7 +14,9 @@ class DashboardController extends Controller
         $menus = Library::MENU[$u['role']];
         $menu = $menu ?: 'ov';
 
-        abort_unless(in_array($menu, array_column($menus, 0), true), 404);
+        if (!in_array($menu, array_column($menus, 0), true)) {
+            $menu = 'cat';
+        }
 
         $my = array_values(array_filter($lib->loans, fn ($l) => $l['w'] === $u['n']));
         $mr = array_values(array_filter($lib->resv, fn ($r) => $r['w'] === $u['n']));
