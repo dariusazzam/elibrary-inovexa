@@ -18,13 +18,37 @@
         <a href="{{ route('elib.read', 2) }}" class="elib-reader-button">Buka E-Reader Web</a>
     </header>
 
-    <nav class="elib-reference-tabs">
-        <span class="is-active">Sedang Dibaca <b>3</b></span>
-        <span>Koleksi Favorit <b class="muted">12</b></span>
-        <span>Jurnal &amp; Repositori</span>
-        <span>Audiobook</span>
-        <span>Riwayat Baca Selesai</span>
+    <nav class="elib-reference-tabs" id="elibTabs">
+        <span class="is-active" style="cursor:pointer" onclick="switchElibTab(this, 'sedang')">Sedang Dibaca <b>3</b></span>
+        <span style="cursor:pointer" onclick="switchElibTab(this, 'favorit')">Koleksi Favorit <b class="muted">12</b></span>
+        <span style="cursor:pointer" onclick="switchElibTab(this, 'jurnal')">Jurnal &amp; Repositori</span>
+        <span style="cursor:pointer" onclick="switchElibTab(this, 'audio')">Audiobook</span>
+        <span style="cursor:pointer" onclick="switchElibTab(this, 'selesai')">Riwayat Baca Selesai</span>
     </nav>
+
+    <div id="elibTabContent" style="margin-top:20px">
+        <!-- Default Sedang Dibaca -->
+    </div>
+
+    <script>
+    function switchElibTab(el, tabName) {
+        document.querySelectorAll('.elib-reference-tabs span').forEach(s => s.classList.remove('is-active'));
+        el.classList.add('is-active');
+        const container = document.getElementById('elibTabContent');
+        if(tabName === 'favorit') {
+            container.innerHTML = '<div style="padding:30px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;text-align:center"><h3 style="margin-top:0">⭐ Koleksi Favorit Anda (12 Buku)</h3><p style="color:#64748b">Daftar buku pilihan yang Anda tandai sebagai favorit untuk dibaca kembali.</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px"><div style="padding:14px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0"><b>Filosofi Teras</b><br><small>Henry Manampiring</small></div><div style="padding:14px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0"><b>Sapiens</b><br><small>Yuval Noah Harari</small></div><div style="padding:14px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0"><b>Atomic Habits</b><br><small>James Clear</small></div></div></div>';
+        } else if(tabName === 'jurnal') {
+            container.innerHTML = '<div style="padding:30px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;text-align:center"><h3 style="margin-top:0">📑 Jurnal Ilmiah &amp; Repositori Nasional</h3><p style="color:#64748b">Akses dokumen riset, skripsi, tesis, dan jurnal terakreditasi BRIN / SINTA.</p><a href="{{ route('elib.read', 1) }}" class="elib-dark-button" style="display:inline-block;margin-top:10px;text-decoration:none">Buka Viewer Dokumen Riset</a></div>';
+        } else if(tabName === 'audio') {
+            container.innerHTML = '<div style="padding:30px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;text-align:center"><h3 style="margin-top:0">🎧 Audiobook Perpustakaan</h3><p style="color:#64748b">Dengarkan ringkasan dan pembacaan buku populer langsung dari peramban.</p><div style="margin-top:12px;background:#f1f5f9;padding:12px;border-radius:8px">▶ Memutar: <b>Atomic Habits (Bab 3 - Hukum Pertama Perubahan Perilaku)</b> [05:42 / 45:10]</div></div>';
+        } else if(tabName === 'selesai') {
+            container.innerHTML = '<div style="padding:30px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;text-align:center"><h3 style="margin-top:0">✅ Riwayat Baca Selesai</h3><p style="color:#64748b">Anda telah menyelesaikan 18 judul buku sepanjang tahun 2026.</p></div>';
+        } else {
+            container.innerHTML = '';
+            location.reload();
+        }
+    }
+    </script>
 
     <section class="elib-reference-top">
         <article class="elib-continue-card">

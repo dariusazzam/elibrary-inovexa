@@ -5,7 +5,7 @@
 @php 
     $L = \App\Support\Library::LOGIN[$role]; 
     $tabTitles = [
-        'member' => ['Anggota (Pengunjung)', 'INX-2026-8820', 'Nomor ID Anggota Perpustakaan', 'Gunakan nomor kartu fisik perpustakaan atau NIK 16 digit.', 'Masuk ke Portal Anggota'],
+        'member' => ['Anggota (Pengunjung)', 'INX-2026-8820', 'Nomor NPM Anggota Perpustakaan', 'Gunakan nomor kartu fisik perpustakaan atau NIK 16 digit.', 'Masuk ke Portal Anggota'],
         'admin'  => ['Admin Pegawai', 'admin', 'Nomor ID / NIP Pegawai Perpustakaan', 'Masukkan nomor induk staf perpustakaan daerah.', 'Masuk ke Meja Admin Pegawai'],
         'super'  => ['Super Admin', 'super', 'Nomor ID Super Admin Perpustakaan', 'Masukkan ID khusus pusat pengelola sistem.', 'Masuk ke Portal Super Admin'],
     ];
