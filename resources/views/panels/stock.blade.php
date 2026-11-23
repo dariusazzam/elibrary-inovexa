@@ -10,8 +10,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:3px 0 0">Pusat kendali data bibliografi, eksemplar fisik &amp; digital. Registrasi barcode RFID, klasifikasi DDC, kontrol ketersediaan rak, serta opname stok eksemplar secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Barcode &amp; Label QR Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import Katalog MARC/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Barcode &amp; Label QR Massal</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Import Katalog MARC/Excel</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer" onclick="openModal('add-book-modal')">+ Tambah Judul / Eksemplar Baru</button>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">TOTAL KOLEKSI / JUDUL TERDAFTAR</span>
-                    <span style="font-size:14px">📦</span>
+                    <span style="font-size:14px"><x-icon name="package"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">12.450 <span style="font-size:11px;font-weight:normal;color:var(--m)">Judul</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+142 judul baru bulan ini</span>
@@ -30,7 +30,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR FISIK TERSEDIA</span>
-                    <span style="font-size:14px">🏛️</span>
+                    <span style="font-size:14px"><x-icon name="landmark"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">38.820 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
                 <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Tersedia di rak: 32.180 (82.9%)</span>
@@ -39,26 +39,26 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR SEDANG DIPINJAM</span>
-                    <span style="font-size:14px">📖</span>
+                    <span style="font-size:14px"><x-icon name="book-open"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
-                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ 420 mendekati jatuh tempo</span>
+                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> 420 mendekati jatuh tempo</span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">PERAWATAN &amp; RUSAK</span>
-                    <span style="font-size:14px">⚠️</span>
+                    <span style="font-size:14px"><x-icon name="triangle-alert"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">150 <span style="font-size:11px;font-weight:normal;color:var(--m)">Eksemplar</span></div>
-                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚡ Perlu restorasi / penggantian</span>
+                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="zap"/> Perlu restorasi / penggantian</span>
             </div>
         </div>
 
         <!-- Search & Filters -->
         <div class="member-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
-                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
+                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px"><x-icon name="search"/></span>
                 <input type="text" placeholder="Cari ISBN, Judul Buku, Barcode, Pengarang, DDC..." style="width:100%;padding:8px 12px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
             </div>
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
@@ -67,8 +67,8 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Ditambahkan</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
         </div>
 
         <!-- Sub Tabs & Bulk Action -->
@@ -89,8 +89,8 @@
                 <span><b>2 Koleksi Dipilih</b></span>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">🖨️ Cetak Label Barcode</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">📦 Mutasi Rak Terpilih</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Label Barcode</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="package"/> Mutasi Rak Terpilih</button>
                 <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
             </div>
         </div>
@@ -134,8 +134,8 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">● Aktif Terbit</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">📋</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="clipboard-list"/></button>
                         </td>
                     </tr>
 
@@ -164,8 +164,8 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">● Aktif Terbit</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">📋</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="clipboard-list"/></button>
                         </td>
                     </tr>
 
@@ -187,15 +187,15 @@
                         </td>
                         <td style="padding:12px">
                             <b style="color:var(--t)">6 Eksemplar</b><br>
-                            <span style="color:#b45309;font-size:10.5px;background:#fef3c7;padding:1px 6px;border-radius:4px;display:inline-block;margin-top:3px">⚠️ Sisa 1 di Rak (Stok Kritis)</span><br>
+                            <span style="color:#b45309;font-size:10.5px;background:#fef3c7;padding:1px 6px;border-radius:4px;display:inline-block;margin-top:3px"><x-icon name="triangle-alert"/> Sisa 1 di Rak (Stok Kritis)</span><br>
                             <small style="color:var(--m)">5 Sedang Dipinjam</small>
                         </td>
                         <td style="padding:12px">
                             <span style="background:#ffedd5;color:#c2410c;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">Permintaan Tinggi</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">📋</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="clipboard-list"/></button>
                         </td>
                     </tr>
 
@@ -224,8 +224,8 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">● Aktif Terbit</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">📋</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:6px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="clipboard-list"/></button>
                         </td>
                     </tr>
                 </tbody>
@@ -240,7 +240,7 @@
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">3</button>
                     <span>...</span>
                     <button style="background:#fff;border:1px solid var(--ln);padding:0 6px;height:24px;border-radius:4px">2.490</button>
-                    <span>›</span>
+                    <span><x-icon name="chevron-right"/></span>
                 </div>
             </div>
         </div>
@@ -332,10 +332,10 @@
             </div>
         </div>
 
-        <button style="width:100%;background:#153223;color:#fff;border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer">🖨️ Cetak Label Barcode Eksemplar</button>
+        <button style="width:100%;background:#153223;color:#fff;border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer"><x-icon name="printer"/> Cetak Label Barcode Eksemplar</button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🔍 Audit Opname</button>
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📋 Edit MARC</button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="search"/> Audit Opname</button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="clipboard-list"/> Edit MARC</button>
         </div>
     </div>
 </div>

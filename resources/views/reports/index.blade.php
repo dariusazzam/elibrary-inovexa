@@ -11,8 +11,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Unduh, pembaruan, dan cetak laporan sirkulasi berkala sirkulasi peminjaman, pengembalian, perolehan denda administratif, registrasi anggota, keragaan ketersediaan koleksi buku, fisik &amp; e-literasi.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Jadwal Kirim Otomatis (Email/WA)</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">⚙️ Filter Kustom &amp; Periode</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Jadwal Kirim Otomatis (Email/WA)</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Kustom &amp; Periode</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Buat Laporan Khusus</button>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <!-- Banner Sync Status -->
         <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#166534">
             <div style="display:flex;align-items:center;gap:10px">
-                <span style="font-size:16px">🟢</span>
+                <span style="font-size:16px">●</span>
                 <span><b>Status Sinkronisasi Gudang Pustaka:</b> Real-time • <b>Format Resmi PDF (Kop Surat): ISO 9001, DDC, Tandatangan Pejabat</b></span>
             </div>
             <span style="font-weight:700;font-size:11px;background:#dcfce7;padding:4px 10px;border-radius:6px">Terakhir Disinkronkan: Hari Ini, 16:30 WIB</span>
@@ -31,36 +31,36 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL SIRKULASI (MTR 2026)</span>
                 <div style="font-size:24px;font-weight:800;color:var(--t)">3.842</div>
-                <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">▲ +12.4% dibanding September</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📈</span>
+                <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="trending-up"/> +12.4% dibanding September</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="trending-up"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PENGEMBALIAN TEPAT WAKTU</span>
                 <div style="font-size:24px;font-weight:800;color:var(--t)">94.8%</div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">Sangat Baik / Sesuai SLA</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">🛡️</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="shield-check"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PENERIMAAN KAS DENDA</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 4.250.000</div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">82% QRIS • 18% Tunai Loket</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">💰</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="banknote"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">LAPORAN SIAP DIUNDUH</span>
                 <div style="font-size:24px;font-weight:800;color:var(--t)">18 <span style="font-size:12px;font-weight:normal;color:var(--m)">Dokumen</span></div>
                 <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">Hari Ini, Mingguan, Bulanan</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">🖨️</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="printer"/></span>
             </div>
         </div>
 
         <!-- Search & Filters -->
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
-                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
+                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px"><x-icon name="search"/></span>
                 <input type="text" placeholder="Cari judul dokumen, kode draft (e.g. LAP-KRE), atau ID penanggung jawab..." style="width:100%;padding:8px 12px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
             </div>
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
@@ -69,7 +69,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Semua Format (Bebas)</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">🔄</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="refresh"/></button>
         </div>
 
         <!-- Sub Tabs -->
@@ -88,9 +88,9 @@
                 <span><b>Pilih Semua di Halaman Ini</b> • Tersedia: 5 Berkas</span>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">🖨️ Cetak Pilihan</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">📦 Unduh/Zip</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">💬 Kirim ke Kepala Perpus</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Pilihan</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="package"/> Unduh/Zip</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="message-circle"/> Kirim ke Kepala Perpus</button>
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                     <tr style="border-bottom:1px solid var(--ln);background:#f0fdf4">
                         <td style="padding:12px"><input type="checkbox" checked style="accent-color:#059669"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <span style="font-size:18px">📄</span>
+                            <span style="font-size:18px"><x-icon name="file-text"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:13px">Laporan Eksekutif Sirkulasi Bulanan (Oktober 2026)</b><br>
                                 <small style="color:#0284c7;font-family:monospace">LAP-SIRC-2026-10</small><br>
@@ -126,9 +126,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">● Siap Cetak</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px" title="Lihat">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px" title="Unduh PDF">📥</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px" title="Cetak">🖨️</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px" title="Lihat"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px" title="Unduh PDF"><x-icon name="download"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px" title="Cetak"><x-icon name="printer"/></button>
                         </td>
                     </tr>
 
@@ -136,7 +136,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:12px"><input type="checkbox"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <span style="font-size:18px">📊</span>
+                            <span style="font-size:18px"><x-icon name="charts"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:13px">Rekapitulasi Penerimaan Denda &amp; Pembayaran QRIS</b><br>
                                 <small style="color:#0284c7;font-family:monospace">LAP-FIN-2026-10</small><br>
@@ -151,9 +151,9 @@
                             <span style="background:#e0f2fe;color:#0369a1;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">Terverifikasi Keuangan</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📥</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">🖨️</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="download"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="printer"/></button>
                         </td>
                     </tr>
 
@@ -161,7 +161,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:12px"><input type="checkbox"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <span style="font-size:18px">📚</span>
+                            <span style="font-size:18px"><x-icon name="book-open"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:13px">Daftar Koleksi Paling Populer &amp; Rasio Peminjaman Buku</b><br>
                                 <small style="color:#0284c7;font-family:monospace">LAP-COL-2026-99</small><br>
@@ -176,9 +176,9 @@
                             <span style="background:#f3f4f6;color:#374151;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">Arsip Lengkap</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📥</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">🖨️</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="download"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="printer"/></button>
                         </td>
                     </tr>
 
@@ -186,7 +186,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:12px"><input type="checkbox"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <span style="font-size:18px">⚠️</span>
+                            <span style="font-size:18px"><x-icon name="triangle-alert"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:13px">Laporan Kepatuhan Anggota &amp; Daftar Keterlambatan Berjalan</b><br>
                                 <small style="color:#0284c7;font-family:monospace">LAP-MBR-2026-10</small><br>
@@ -201,9 +201,9 @@
                             <span style="background:#fef3c7;color:#b45309;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">Perlu Tindak Lanjut</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📥</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">🖨️</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="download"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="printer"/></button>
                         </td>
                     </tr>
 
@@ -211,7 +211,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:12px"><input type="checkbox"></td>
                         <td style="padding:12px;display:flex;gap:10px;align-items:flex-start">
-                            <span style="font-size:18px">📋</span>
+                            <span style="font-size:18px"><x-icon name="clipboard-list"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:13px">Berita Acara Opname Stok Buku &amp; Kondisi Fisik Rusak/Hilang</b><br>
                                 <small style="color:#0284c7;font-family:monospace">LAP-STK-1901-IV</small><br>
@@ -226,9 +226,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">Disetujui Kepala Perpus</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📥</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">🖨️</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="download"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="printer"/></button>
                         </td>
                     </tr>
                 </tbody>
@@ -238,12 +238,12 @@
             <div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;background:#f9fafb;font-size:11.5px;color:var(--m)">
                 <span>Menampilkan <b>5 dari 18</b> dokumen laporan resmi</span>
                 <div style="display:flex;gap:4px;align-items:center">
-                    <span>‹</span>
+                    <span><x-icon name="chevron-left"/></span>
                     <button style="background:#153223;color:#fff;border:none;width:24px;height:24px;border-radius:4px;font-weight:700">1</button>
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">2</button>
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">3</button>
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">4</button>
-                    <span>›</span>
+                    <span><x-icon name="chevron-right"/></span>
                 </div>
             </div>
         </div>
@@ -256,8 +256,8 @@
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
                 <span style="font-size:11px;font-weight:800;color:var(--t)">PRATINJAU LEMBAR CETAK</span>
                 <div style="display:flex;gap:6px">
-                    <button style="background:#f3f4f6;border:none;width:24px;height:24px;border-radius:4px;cursor:pointer">🔍</button>
-                    <button style="background:#f3f4f6;border:none;width:24px;height:24px;border-radius:4px;cursor:pointer">⤢</button>
+                    <button style="background:#f3f4f6;border:none;width:24px;height:24px;border-radius:4px;cursor:pointer"><x-icon name="search"/></button>
+                    <button style="background:#f3f4f6;border:none;width:24px;height:24px;border-radius:4px;cursor:pointer"><x-icon name="maximize"/></button>
                 </div>
             </div>
 
@@ -288,16 +288,16 @@
                 </div>
             </div>
 
-            <button style="width:100%;background:#153223;color:#fff;border:none;padding:11px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer">🖨️ Cetak Dokumen Sekarang (Ctrl+P)</button>
+            <button style="width:100%;background:#153223;color:#fff;border:none;padding:11px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer"><x-icon name="printer"/> Cetak Dokumen Sekarang (Ctrl+P)</button>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:9px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Unduh PDF (A4)</button>
-                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:9px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">⚙️ Atur Margin &amp; Kop</button>
+                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:9px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Unduh PDF (A4)</button>
+                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:9px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Atur Margin &amp; Kop</button>
             </div>
         </div>
 
         <!-- Butuh Format Laporan Khusus? -->
         <div style="background:#f8fafc;border:1px solid var(--ln);border-radius:12px;padding:16px;font-size:11.5px;color:var(--m)">
-            <b style="color:var(--t)">💡 Butuh Format Laporan Khusus?</b>
+            <b style="color:var(--t)"><x-icon name="lightbulb"/> Butuh Format Laporan Khusus?</b>
             <p style="margin:6px 0 0">Anda dapat mengunduh format ekspor CSV untuk analisis lanjutan di Ms. Excel atau meminta pustakawan pusat menyusun template custom khusus dinas.</p>
         </div>
     </div>

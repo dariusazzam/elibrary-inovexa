@@ -3,9 +3,9 @@
 @section('content')
 @php
     $portals = [
-        ['member', 'Portal Anggota (Warga)', 'Akses katalog online, reservasi buku, kartu digital, dan baca e-library secara mandiri.', 'Masuk Layanan Anggota', '', 'Akses Warga', '#dcebe2', '🪪'],
-        ['admin', 'Meja Kerja Petugas (Admin)', 'Layanan sirkulasi pinjam-kembali, input denda keterlambatan, dan pencatatan buku fisik.', 'Masuk Portal Sirkulasi', 'or', 'Akses Meja Petugas', '#f7e3cf', '🗂'],
-        ['super', 'Konsol Super Admin', 'Pengaturan hak akses peran, data master pengguna, dan konfigurasi sistem perpustakaan.', 'Masuk Konsol Admin', 'nv', 'Tata Kelola Pusat', '#e2e6f0', '⚙'],
+        ['member', 'Portal Anggota (Warga)', 'Akses katalog online, reservasi buku, kartu digital, dan baca e-library secara mandiri.', 'Masuk Layanan Anggota', '', 'Akses Warga', '#dcebe2', 'id-card'],
+        ['admin', 'Meja Kerja Petugas (Admin)', 'Layanan sirkulasi pinjam-kembali, input denda keterlambatan, dan pencatatan buku fisik.', 'Masuk Portal Sirkulasi', 'or', 'Akses Meja Petugas', '#f7e3cf', 'folder'],
+        ['super', 'Konsol Super Admin', 'Pengaturan hak akses peran, data master pengguna, dan konfigurasi sistem perpustakaan.', 'Masuk Konsol Admin', 'nv', 'Tata Kelola Pusat', '#e2e6f0', 'settings'],
     ];
 @endphp
 
@@ -50,10 +50,10 @@
         <p>Jelajahi puluhan ribu koleksi buku fisik, naskah arsip, dan repositori digital untuk seluruh warga kota.</p>
 
         <form class="sb" method="GET" action="{{ route('home') }}#katalog">
-            <span style="color:#555;padding-left:6px">⌕</span>
+            <span style="color:#555;padding-left:6px"><x-icon name="search"/></span>
             <input name="q" value="{{ $q }}" aria-label="Cari katalog" placeholder="Cari judul buku, pengarang, subjek katalog (e.g. Sejarah, Fiksi)">
             @if($topic)<input type="hidden" name="topic" value="{{ $topic }}">@endif
-            <button class="btn or">Cari Katalog →</button>
+            <button class="btn or">Cari Katalog <x-icon name="arrow-right"/></button>
         </form>
 
         <div class="chips">
@@ -75,10 +75,10 @@
                 @foreach($portals as $p)
                 <div class="card">
                     <span class="pill" style="float:right">{{ $p[5] }}</span>
-                    <div class="ic" style="background:{{ $p[6] }}">{{ $p[7] }}</div>
+                    <div class="ic" style="background:{{ $p[6] }}"><x-icon :name="$p[7]"/></div>
                     <h3>{{ $p[1] }}</h3>
                     <p>{{ $p[2] }}</p>
-                    <a class="btn {{ $p[4] }}" style="width:100%" href="{{ route('login', $p[0]) }}">{{ $p[3] }} →</a>
+                    <a class="btn {{ $p[4] }}" style="width:100%" href="{{ route('login', $p[0]) }}">{{ $p[3] }} <x-icon name="arrow-right"/></a>
                 </div>
                 @endforeach
             </div>
@@ -88,7 +88,7 @@
     <section class="sec" id="katalog">
         <div class="row">
             <div><div class="lbl">KATALOG TERPILIH</div><h2>Koleksi Pilihan &amp; Hasil Pencarian</h2></div>
-            <a href="{{ route('home', ['all' => 1]) }}#katalog">Lihat Semua Katalog ›</a>
+            <a href="{{ route('home', ['all' => 1]) }}#katalog">Lihat Semua Katalog <x-icon name="chevron-right"/></a>
         </div>
         <div class="g3" id="grid">
             @forelse($books as $b)
@@ -102,25 +102,25 @@
     <section class="sec" id="layanan">
         <div class="band"><div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
             <div class="card">
-                <h3>👥 Layanan Perpustakaan</h3>
+                <h3><x-icon name="users"/> Layanan Perpustakaan</h3>
                 <p>Kemudahan akses bacaan dan fasilitas inklusif bagi publik</p>
                 <ul class="ck">
-                    <li><b>✓ Kartu Anggota Digital Gratis</b><span>Cukup verifikasi NIK KTP Anda untuk langsung mendapatkan barcode peminjaman mandiri.</span></li>
-                    <li><b>✓ Bebas Denda untuk Pelajar &amp; Anak</b><span>Kebijakan pembebasan denda keterlambatan bagi anak dan siswa guna mendukung minat baca.</span></li>
-                    <li><b>✓ Pojok Baca Digital &amp; Akses Internet</b><span>Tersedia 30 unit komputer riset dan jaringan internet terbuka untuk seluruh pengunjung.</span></li>
+                    <li><b><x-icon name="check"/> Kartu Anggota Digital Gratis</b><span>Cukup verifikasi NIK KTP Anda untuk langsung mendapatkan barcode peminjaman mandiri.</span></li>
+                    <li><b><x-icon name="check"/> Bebas Denda untuk Pelajar &amp; Anak</b><span>Kebijakan pembebasan denda keterlambatan bagi anak dan siswa guna mendukung minat baca.</span></li>
+                    <li><b><x-icon name="check"/> Pojok Baca Digital &amp; Akses Internet</b><span>Tersedia 30 unit komputer riset dan jaringan internet terbuka untuk seluruh pengunjung.</span></li>
                 </ul>
-                <a href="{{ route('register') }}" style="font-size:12px;font-weight:600;color:var(--t)">Pelajari Tata Tertib &amp; Pendaftaran Anggota →</a>
+                <a href="{{ route('register') }}" style="font-size:12px;font-weight:600;color:var(--t)">Pelajari Tata Tertib &amp; Pendaftaran Anggota <x-icon name="arrow-right"/></a>
             </div>
             <div class="card">
-                <h3>🕘 Jam Layanan &amp; Fasilitas</h3>
+                <h3><x-icon name="clock"/> Jam Layanan &amp; Fasilitas</h3>
                 <p>Informasi operasional gedung dan lokasi pengembalian</p>
                 <div style="background:var(--b);padding:12px;border-radius:8px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                     <div><small style="color:var(--m)">SENIN – SABTU</small><br><b style="font-size:16px">08.00 – 20.00 WIB</b></div>
                     <span class="pill" style="background:#dcebe2;color:var(--ok)">Layanan Penuh</span>
                 </div>
                 <ul class="ck">
-                    <li><b>📥 Drop-Box Mandiri 24 Jam</b><span>Kembalikan buku kapan saja tanpa antre melalui slot pengembalian otomatis di gerbang utama.</span></li>
-                    <li><b>📍 Lobi Barat Perpustakaan</b><span>Gedung Perpustakaan Umum Kota, Jl. Perpustakaan Kota No. 42.</span></li>
+                    <li><b><x-icon name="download"/> Drop-Box Mandiri 24 Jam</b><span>Kembalikan buku kapan saja tanpa antre melalui slot pengembalian otomatis di gerbang utama.</span></li>
+                    <li><b><x-icon name="map-pin"/> Lobi Barat Perpustakaan</b><span>Gedung Perpustakaan Umum Kota, Jl. Perpustakaan Kota No. 42.</span></li>
                 </ul>
                 <button class="btn ghost" type="button" style="font-size:11px;padding:7px 10px" onclick="openModal('contact-modal')">Hubungi Meja Sirkulasi</button>
             </div>
@@ -135,20 +135,20 @@
             <p style="color:var(--m);margin-top:0;margin-bottom:20px">Petugas siap membantu masalah pengembalian, perpanjangan pinjaman, atau aktivasi kartu anggota.</p>
             <div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:16px">
                 <div class="card" style="background:var(--b);border:none;padding:16px">
-                    <b>☎ Telepon</b>
+                    <b><x-icon name="phone"/> Telepon</b>
                     <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">(021) 555-0142</span>
                 </div>
                 <div class="card" style="background:var(--b);border:none;padding:16px">
-                    <b>✉ Email Resmi</b>
+                    <b><x-icon name="mail"/> Email Resmi</b>
                     <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">layanan@inovexa.test</span>
                 </div>
                 <div class="card" style="background:var(--b);border:none;padding:16px">
-                    <b>⌂ Lokasi Layanan</b>
+                    <b><x-icon name="home"/> Lokasi Layanan</b>
                     <span style="font-size:13px;color:var(--t);display:block;margin-top:4px">Lobi Barat, Gedung Perpustakaan Umum Kota</span>
                 </div>
             </div>
             <div style="font-size:12px;color:var(--m);display:flex;align-items:center;gap:6px">
-                <span>🕒</span> Jam respons petugas: <b>Senin–Sabtu, 08.00–20.00 WIB</b>.
+                <span><x-icon name="clock"/></span> Jam respons petugas: <b>Senin–Sabtu, 08.00–20.00 WIB</b>.
             </div>
         </div>
     </section>
@@ -184,14 +184,14 @@
 
 <div class="modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title" onclick="if(event.target === this) closeModal('contact-modal')">
     <div class="modal-box">
-        <button class="modal-close" type="button" aria-label="Tutup" onclick="closeModal('contact-modal')">×</button>
+        <button class="modal-close" type="button" aria-label="Tutup" onclick="closeModal('contact-modal')"><x-icon name="x"/></button>
         <div class="lbl">PUSAT BANTUAN</div>
         <h2 id="contact-title">Meja Sirkulasi &amp; Informasi</h2>
         <p style="color:var(--m)">Petugas siap membantu masalah pengembalian, perpanjangan pinjaman, atau aktivasi kartu anggota.</p>
         <div class="card" style="background:var(--b);margin-top:14px">
-            <b>☎ Telepon:</b> (021) 555-0142<br>
-            <b>✉ Email:</b> layanan@inovexa.test<br>
-            <b>⌂ Lokasi:</b> Lobi Barat, Gedung Perpustakaan Umum Kota
+            <b><x-icon name="phone"/> Telepon:</b> (021) 555-0142<br>
+            <b><x-icon name="mail"/> Email:</b> layanan@inovexa.test<br>
+            <b><x-icon name="home"/> Lokasi:</b> Lobi Barat, Gedung Perpustakaan Umum Kota
         </div>
         <p style="font-size:12px;color:var(--m);margin-bottom:0">Jam respons petugas: Senin–Sabtu, 08.00–20.00 WIB.</p>
     </div>

@@ -148,7 +148,7 @@
         @if($r === 'super')
         <header class="figma-topbar figma-topbar-light figma-topbar-super">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="max-width:540px;flex:1;margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari akun pengguna, role, log audit, atau ISBN...">
             </form>
 
@@ -173,7 +173,7 @@
         @elseif($r === 'admin')
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari data anggota, ISBN buku, barcode transaksi...">
             </form>
 
@@ -183,10 +183,10 @@
                     <small>Layanan Aktif: 08:00 - 16:30 WIB</small>
                 </div>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Scan Barcode" onclick="toast('Pemindai barcode siap digunakan')" style="padding:0 14px !important;border-radius:99px !important;background:#000 !important;color:#fff !important;font-size:11px !important;font-weight:600 !important;display:inline-flex !important;align-items:center !important;gap:6px !important;width:auto !important;height:34px !important;line-height:34px !important;border:none !important;cursor:pointer !important;white-space:nowrap !important">
-                    <span style="font-size:13px">▦</span> Scan Barcode
+                    <span style="font-size:13px"><x-icon name="scan-line"/></span> Scan Barcode
                 </button>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
-                    <span>🔔</span>
+                    <span><x-icon name="bell"/></span>
                     <span class="figma-bell-dot"></span>
                 </button>
                 <div class="figma-topbar-user-pill">
@@ -201,7 +201,7 @@
         @elseif(($menu ?? '') === 'card' || ($menu ?? '') === 'resv')
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari koleksi katalog, judul buku, atau ISBN...">
             </form>
 
@@ -211,7 +211,7 @@
                     <small>Layanan Sirkulasi Buka • 08.00 - 20.00 WIB</small>
                 </div>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
-                    <span>🔔</span>
+                    <span><x-icon name="bell"/></span>
                     <span class="figma-bell-dot"></span>
                 </button>
                 <div class="figma-topbar-user-pill">
@@ -226,7 +226,7 @@
         @else
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="max-width:380px;margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8">🔍</span>
+                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari judul buku, pengarang, ISBN katalog...">
             </form>
 
@@ -236,7 +236,7 @@
                     <small>Layanan Aktif: 08:00 - 20:00 WIB</small>
                 </div>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
-                    <span>🔔</span>
+                    <span><x-icon name="bell"/></span>
                     <span class="figma-bell-dot"></span>
                 </button>
                 <div class="figma-topbar-user-pill">
@@ -279,14 +279,14 @@
 {{-- Modal Kontak / Bantuan Sirkulasi --}}
 <div class="modal" id="contact-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('contact-modal')">
     <div class="modal-box">
-        <button class="modal-close" type="button" onclick="closeModal('contact-modal')">×</button>
+        <button class="modal-close" type="button" onclick="closeModal('contact-modal')"><x-icon name="x"/></button>
         <div class="lbl">MEJA SIRKULASI TERPADU</div>
         <h2 style="margin:4px 0 10px">Layanan Konsultasi &amp; Pustakawan</h2>
         <p style="color:var(--m);font-size:13px;line-height:1.5">Hubungi staf sirkulasi bila memerlukan bantuan perpanjangan masa pinjam, loker drop-box, reservasi meja baca, atau validasi kartu.</p>
         <div class="card" style="background:#f9f8f6;margin-top:14px;font-size:13px;line-height:1.8">
-            <b>☎ Telepon / WA Sirkulasi:</b> 0812-9876-5432<br>
-            <b>✉ Pos-el Pelayanan:</b> sirkulasi@inovexa.test<br>
-            <b>📍 Lokasi:</b> Lantai 1 Meja Sirkulasi Sentral (Buka 08.00 - 20.00 WIB)
+            <b><x-icon name="phone"/> Telepon / WA Sirkulasi:</b> 0812-9876-5432<br>
+            <b><x-icon name="mail"/> Pos-el Pelayanan:</b> sirkulasi@inovexa.test<br>
+            <b><x-icon name="map-pin"/> Lokasi:</b> Lantai 1 Meja Sirkulasi Sentral (Buka 08.00 - 20.00 WIB)
         </div>
         <button class="btn" type="button" style="width:100%;margin-top:18px" onclick="closeModal('contact-modal')">Tutup Jendela</button>
     </div>

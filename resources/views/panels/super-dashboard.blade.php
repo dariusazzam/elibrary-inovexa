@@ -59,7 +59,7 @@
                 <div class="super-kpi-icon green">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <span class="super-kpi-badge mint">↗ +12 Minggu ini</span>
+                <span class="super-kpi-badge mint"><x-icon name="trending-up"/> +12 Minggu ini</span>
             </div>
             <div class="super-kpi-label">TOTAL AKUN PENGGUNA</div>
             <div class="super-kpi-value">2.450 <span class="super-kpi-unit">Akun</span></div>
@@ -133,7 +133,7 @@
                     <button type="button" class="super-tab-btn" onclick="toast('Menampilkan 3 permohonan aktivasi akun baru')">Aktivasi Pengguna Baru (3)</button>
                 </div>
                 <div class="super-table-search">
-                    <span class="search-icon">🔍</span>
+                    <span class="search-icon"><x-icon name="search"/></span>
                     <input type="text" placeholder="Cari nama, akun..." id="superUserSearchInput" onkeyup="filterSuperTable(this.value)">
                 </div>
             </div>
@@ -157,7 +157,7 @@
                                     <div class="super-table-user-info">
                                         <div class="super-table-name">
                                             <b>Prasetyo</b>
-                                            <span class="super-verified-icon" title="Root Verified">👑</span>
+                                            <span class="super-verified-icon" title="Root Verified"><x-icon name="crown"/></span>
                                         </div>
                                         <small class="super-table-meta">ID: SA-001 &bull; prasetyo@inovexa.id</small>
                                     </div>
@@ -631,7 +631,7 @@
                         <div class="super-target-progress">Tercapai 78%</div>
                     </div>
                     <div class="super-target-icon">
-                        💡
+                        <x-icon name="lightbulb"/>
                     </div>
                 </div>
             </div>

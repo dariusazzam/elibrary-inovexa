@@ -9,7 +9,7 @@
     {{-- Breadcrumb persis Figma --}}
     <div class="super-stock-breadcrumb">
         <a href="{{ route('dashboard', 'ov') }}" class="super-stock-bread-link">Dashboard Super Admin</a>
-        <span class="super-stock-bread-sep">›</span>
+        <span class="super-stock-bread-sep"><x-icon name="chevron-right"/></span>
         <span class="super-stock-bread-current">Koleksi &amp; Eksemplar Buku</span>
     </div>
 
@@ -54,7 +54,7 @@
             </div>
             <div class="super-stock-stat-val">12.450 <span class="stat-unit">Judul</span></div>
             <div class="super-stock-stat-sub">
-                <span class="badge-green-sm">↗ +142 bulan ini</span>
+                <span class="badge-green-sm"><x-icon name="trending-up"/> +142 bulan ini</span>
                 <span class="text-muted-sm">98.4% ISBN Resmi</span>
             </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="super-stock-stat-val">38.820 <span class="stat-unit">Item</span></div>
             <div class="super-stock-stat-sub">
                 <span class="text-muted-sm">Nilai Aset: Rp 4,82 Miliar</span>
-                <span class="badge-teal-sm">✓ Terverifikasi RFID</span>
+                <span class="badge-teal-sm"><x-icon name="check"/> Terverifikasi RFID</span>
             </div>
         </div>
 
@@ -127,7 +127,7 @@
             {{-- Search & Filter Bar --}}
             <div class="super-stock-filter-bar">
                 <div class="super-stock-search">
-                    <span style="color:#94a3b8;font-size:12px">🔍</span>
+                    <span style="color:#94a3b8;font-size:12px"><x-icon name="search"/></span>
                     <input type="text" id="stock-search-input" placeholder="Cari Judul, Penulis, No. Barcode, ISBN, atau DDC..." onkeyup="filterStockTable()">
                 </div>
                 <select id="stock-ddc-select" class="super-stock-select" onchange="filterStockTable()">
@@ -306,7 +306,7 @@
                             </td>
                             <td>
                                 <span class="stock-status-pill status-pill-orange">
-                                    <span>🔥</span>
+                                    <span><x-icon name="flame"/></span>
                                     <span>Permintaan Tinggi</span>
                                 </span>
                             </td>
@@ -398,7 +398,7 @@
                             </td>
                             <td>
                                 <span class="stock-status-pill status-pill-gray">
-                                    <span>⌛</span>
+                                    <span><x-icon name="hourglass"/></span>
                                     <span>Terbit (Kosong)</span>
                                 </span>
                             </td>
@@ -580,7 +580,7 @@
 {{-- Add Book Modal --}}
 <div class="modal" id="add-book-modal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeModal('add-book-modal')">
     <div class="modal-box">
-        <button class="modal-close" type="button" onclick="closeModal('add-book-modal')">×</button>
+        <button class="modal-close" type="button" onclick="closeModal('add-book-modal')"><x-icon name="x"/></button>
         <div class="lbl">SUPER ADMIN • MASTER BIBLIOGRAFI</div>
         <h2 style="margin:4px 0 14px">Tambah Judul / Eksemplar Baru</h2>
         <form method="POST" action="{{ route('stock.add') }}">

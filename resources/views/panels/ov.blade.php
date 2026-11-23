@@ -45,7 +45,7 @@
                 <div class="super-stat-icon icon-teal">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="19" cy="11" r="2"/></svg>
                 </div>
-                <span class="super-stat-badge badge-teal">↗ +12 minggu ini</span>
+                <span class="super-stat-badge badge-teal"><x-icon name="trending-up"/> +12 minggu ini</span>
             </div>
             <div class="super-stat-label">TOTAL AKUN PENGGUNA</div>
             <div class="super-stat-value">2.450 Akun</div>
@@ -149,7 +149,7 @@
                                         <div class="user-meta-info">
                                             <div class="user-name-line">
                                                 <b>Princess</b>
-                                                <span class="user-badge-star" title="Root Administrator">✪</span>
+                                                <span class="user-badge-star" title="Root Administrator"><x-icon name="star" fill/></span>
                                             </div>
                                             <small class="user-id-sub">ID: SA-001 &bull; princess@inovexa.id</small>
                                         </div>
@@ -624,7 +624,7 @@
             <div style="font-size:9.5px;color:var(--m);font-weight:700;letter-spacing:.05em;margin-bottom:6px">TARGET SIRKULASI HARI INI</div>
             <div style="font-size:22px;font-weight:800;color:var(--t)">142</div>
             <div style="font-size:11px;color:var(--m)">Buku Peminjaman Aktif</div>
-            <div style="font-size:10px;color:var(--ok);margin-top:4px">▲ +14 transaksi dari sesi pagi</div>
+            <div style="font-size:10px;color:var(--ok);margin-top:4px"><x-icon name="trending-up"/> +14 transaksi dari sesi pagi</div>
             <span class="admin-stat-icon" style="position:absolute;top:14px;right:14px;color:#17643d;background:#e8f4ed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h17M8 15l4-4 3 2 5-6"/><path d="M16 7h4v4"/></svg></span>
         </div>
 
@@ -689,7 +689,7 @@
                         <td style="font-size:11.5px"><b>Sapiens: Riwayat Singkat</b><br><small style="color:var(--m)">BUK-300-1 (Rak 503)</small></td>
                         <td style="font-size:11.5px">26 Okt 2026<br><small style="color:var(--ok)">Sisa 5 Hari Lagi</small></td>
                         <td><span class="pill" style="background:#dcebe2;color:var(--ok)">Aktif (5 Hari Lagi)</span></td>
-                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px">✎</button></td>
+                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px"><x-icon name="pencil"/></button></td>
                     </tr>
                     <tr>
                         <td style="font-size:11.5px"><b>TRX-2026-9803</b></td>
@@ -697,7 +697,7 @@
                         <td style="font-size:11.5px"><b>Metodologi Kualitatif</b><br><small style="color:var(--m)">BUK-412-8 (Rak 401)</small></td>
                         <td style="font-size:11.5px"><span style="color:#dc2626">19 Okt 2026</span><br><small style="color:#dc2626">Telat 1 Hari</small></td>
                         <td><span class="pill" style="background:#fef3e7;color:#dc2626">Denda Rp 2.000</span></td>
-                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px">✎ Edit</button></td>
+                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px"><x-icon name="pencil"/> Edit</button></td>
                     </tr>
                     <tr>
                         <td style="font-size:11.5px"><b>TRX-2026-9844</b></td>
@@ -705,7 +705,7 @@
                         <td style="font-size:11.5px"><b>Atomic Habits</b><br><small style="color:var(--m)">BUK-184-2 (Rak 158)</small></td>
                         <td style="font-size:11.5px">28 Okt 2026<br><small style="color:var(--ok)">Sisa 7 Hari Lagi</small></td>
                         <td><span class="pill" style="background:#dcebe2;color:var(--ok)">Aktif (7 Hari Lagi)</span></td>
-                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px">✎</button></td>
+                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px"><x-icon name="pencil"/></button></td>
                     </tr>
                     <tr>
                         <td style="font-size:11.5px"><b>TRX-2026-9958</b></td>
@@ -713,13 +713,13 @@
                         <td style="font-size:11.5px"><b>Algoritma &amp; Struktur Data</b><br><small style="color:var(--m)">BUK-004-9 (Rak 005)</small></td>
                         <td style="font-size:11.5px"><span style="color:#dc2626">24 Okt 2026</span><br><small style="color:#dc2626">Hari Terakhir</small></td>
                         <td><span class="pill" style="background:#fef3e7;color:#b45309">Hari Terakhir</span></td>
-                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px">✎</button></td>
+                        <td><button class="btn ghost" style="padding:4px 8px;font-size:11px"><x-icon name="pencil"/></button></td>
                     </tr>
                 </table>
             </div>
             <div style="margin-top:12px;font-size:11.5px;display:flex;justify-content:space-between;align-items:center">
                 <span style="color:var(--m)">Menampilkan 4 dari 142 transaksi aktif</span>
-                <a href="#" onclick="toast('Melihat seluruh transaksi');return false" style="color:var(--o);font-weight:600">Buka Sirkulasi Transaksi Lengkap ›</a>
+                <a href="#" onclick="toast('Melihat seluruh transaksi');return false" style="color:var(--o);font-weight:600">Buka Sirkulasi Transaksi Lengkap <x-icon name="chevron-right"/></a>
             </div>
         </div>
 
@@ -796,7 +796,7 @@
             </div>
             <div style="display:flex;gap:8px">
                 <span class="pill" style="background:#f3f4f6;color:var(--t)">Bulan Ini (Okt 2026)</span>
-                <button class="btn" style="background:#153223;font-size:11px;padding:6px 12px">📥 Unduh Laporan PDF / Excel</button>
+                <button class="btn" style="background:#153223;font-size:11px;padding:6px 12px"><x-icon name="download"/> Unduh Laporan PDF / Excel</button>
             </div>
         </div>
 
@@ -808,8 +808,8 @@
                     <div style="width:84.2%;height:100%;background:#ea580c;border-radius:99px"></div>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--m)">
-                    <span>🟢 5.400 di Rak</span>
-                    <span>🟠 1.015 Dipinjam</span>
+                    <span><x-icon name="circle"/> 5.400 di Rak</span>
+                    <span><x-icon name="circle"/> 1.015 Dipinjam</span>
                 </div>
             </div>
 
@@ -924,10 +924,10 @@
 
     {{-- 4 Stat Cards Ringkasan Anggota --}}
     <div class="member-summary-grid">
-        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M8 7h8M8 11h8"/></svg></span><div><div class="member-summary-label">Buku Sedang Dipinjam</div><div class="member-summary-value">2 <small>/ Maks 3 Buku</small></div><div class="member-summary-note warning">⚠ 1 buku jatuh tempo 3 hari lagi</div></div></div>
-        <div class="member-summary-card"><span class="member-summary-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h5"/></svg></span><div><div class="member-summary-label">Reservasi Siap Ambil</div><div class="member-summary-value">1 <small>Buku Menunggu</small></div><div class="member-summary-note success">▣ Tersedia di Meja Sirkulasi</div></div></div>
-        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.3 2.3 4.8-4.8"/></svg></span><div><div class="member-summary-label">Denda Keterlambatan</div><div class="member-summary-value green">Rp 0</div><div class="member-summary-note success"><span aria-hidden="true">✓</span> Bebas denda, akun tertib</div></div></div>
-        <div class="member-summary-card"><span class="member-summary-icon neutral"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9 5V3h6v2M9 10h6M9 14h6M9 18h3"/></svg></span><div><div class="member-summary-label">Total Riwayat Selesai</div><div class="member-summary-value">18 <small>Judul Buku</small></div><div class="member-summary-note">★ Tingkat pembaca aktif</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M8 7h8M8 11h8"/></svg></span><div><div class="member-summary-label">Buku Sedang Dipinjam</div><div class="member-summary-value">2 <small>/ Maks 3 Buku</small></div><div class="member-summary-note warning"><x-icon name="triangle-alert"/> 1 buku jatuh tempo 3 hari lagi</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h5"/></svg></span><div><div class="member-summary-label">Reservasi Siap Ambil</div><div class="member-summary-value">1 <small>Buku Menunggu</small></div><div class="member-summary-note success"><x-icon name="id-card"/> Tersedia di Meja Sirkulasi</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.3 2.3 4.8-4.8"/></svg></span><div><div class="member-summary-label">Denda Keterlambatan</div><div class="member-summary-value green">Rp 0</div><div class="member-summary-note success"><span aria-hidden="true"><x-icon name="check"/></span> Bebas denda, akun tertib</div></div></div>
+        <div class="member-summary-card"><span class="member-summary-icon neutral"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9 5V3h6v2M9 10h6M9 14h6M9 18h3"/></svg></span><div><div class="member-summary-label">Total Riwayat Selesai</div><div class="member-summary-value">18 <small>Judul Buku</small></div><div class="member-summary-note"><x-icon name="star" fill/> Tingkat pembaca aktif</div></div></div>
     </div>
 
     {{-- Grid 2 Kolom: Buku Sedang Dipinjam & Status Reservasi Buku --}}
@@ -1023,7 +1023,7 @@
                 <h3 style="margin:0;font-size:16px;font-weight:700">Lanjutkan Membaca E-Library</h3>
                 <small style="color:var(--m);font-size:11.5px">Koleksi digital interaktif yang siap Anda baca kapan saja.</small>
             </div>
-            <a href="{{ route('dashboard', 'elib') }}" style="font-size:12px;color:var(--o);font-weight:600;text-decoration:none">Kunjungi E-Library Lengkap ›</a>
+            <a href="{{ route('dashboard', 'elib') }}" style="font-size:12px;color:var(--o);font-weight:600;text-decoration:none">Kunjungi E-Library Lengkap <x-icon name="chevron-right"/></a>
         </div>
 
         <div class="g3" style="grid-template-columns:repeat(3,1fr);gap:16px">
@@ -1088,7 +1088,7 @@
                     <span class="pill" style="background:#dcebe2;color:var(--ok);font-size:9px;margin-bottom:4px">REKOMENDASI PUSTAKAWAN</span>
                     <b style="font-size:13px;display:block;margin-top:4px">Prinsip Desain Antarmuka Modern</b>
                     <p style="color:var(--m);font-size:11px;margin:4px 0 10px;line-height:1.4">Panduan lengkap UI/UX perpustakaan digital terkini untuk akademisi.</p>
-                    <div style="font-size:11px;color:#b45309;font-weight:700">⭐ 4.9 / 5.0 &bull; <span style="color:var(--m);font-weight:400">128 Pembaca</span></div>
+                    <div style="font-size:11px;color:#b45309;font-weight:700"><x-icon name="star" fill/> 4.9 / 5.0 &bull; <span style="color:var(--m);font-weight:400">128 Pembaca</span></div>
                 </div>
                  <a href="{{ route('dashboard', 'elib') }}" class="btn" style="background:#fff;border:1px solid #059669;color:#059669;font-size:11.5px;padding:6px;text-align:center;text-decoration:none;margin-top:10px">+ Buka E-Library</a>
             </div>

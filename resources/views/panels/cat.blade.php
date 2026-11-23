@@ -23,7 +23,7 @@
     </div>
 
     <form method="GET" action="{{ route('dashboard', 'cat') }}" class="catalog-filter-card">
-        <div class="catalog-search-field"><span>⌕</span><input name="q" value="{{ $catalogQuery }}" type="search" placeholder="Cari judul buku, pengarang, atau lokasi rak..." aria-label="Cari katalog"></div>
+        <div class="catalog-search-field"><span><x-icon name="search"/></span><input name="q" value="{{ $catalogQuery }}" type="search" placeholder="Cari judul buku, pengarang, atau lokasi rak..." aria-label="Cari katalog"></div>
         <select name="category" aria-label="Filter kategori">
             <option value="">Semua Kategori</option>
             @foreach($catalogCategories as $category)
@@ -35,7 +35,7 @@
             <option value="newest" {{ $catalogSort === 'newest' ? 'selected' : '' }}>Terbaru</option>
             <option value="title" {{ $catalogSort === 'title' ? 'selected' : '' }}>Judul A-Z</option>
         </select>
-        <button type="submit" class="catalog-filter-button">☷ Terapkan</button>
+        <button type="submit" class="catalog-filter-button"><x-icon name="sliders"/> Terapkan</button>
         @if($catalogQuery !== '' || $catalogCategory !== '' || $catalogSort !== 'popular')
             <a href="{{ route('dashboard', 'cat') }}" class="catalog-reset-button">Reset</a>
         @endif
@@ -49,7 +49,7 @@
                 <h2>{{ $featured['t'] }}</h2>
                 <p class="catalog-author">{{ $featured['a'] }} <span>•</span> {{ $featured['c'] }}</p>
                 <p class="catalog-description">Koleksi pilihan perpustakaan yang paling banyak dibaca anggota. Tersedia di rak {{ $featured['s'] }} dan dapat dipesan melalui kartu digital Anda.</p>
-                <div class="catalog-featured-meta"><span>● Tersedia di rak</span><span>★★★★★ <b>4.8</b></span></div>
+                <div class="catalog-featured-meta"><span>● Tersedia di rak</span><span><x-icon name="star" fill/><x-icon name="star" fill/><x-icon name="star" fill/><x-icon name="star" fill/><x-icon name="star" fill/> <b>4.8</b></span></div>
                 <a href="{{ route('dashboard', 'resv') }}" class="catalog-primary-action">Reservasi Sekarang</a>
             </div>
             <div class="catalog-featured-stat"><b>92%</b><span>rating pembaca</span><hr><b>215</b><span>halaman</span></div>
@@ -62,7 +62,7 @@
             <article class="catalog-book-card">
                 <div class="catalog-book-cover" style="background-image:url('{{ asset($covers[$b['id']] ?? '') }}')"><span>{{ $b['c'] }}</span></div>
                 <div class="catalog-book-info"><span class="catalog-book-category">{{ strtoupper($b['c']) }}</span><h3>{{ $b['t'] }}</h3><p>{{ $b['a'] }}</p><small>Rak {{ $b['s'] }} <span>•</span> {{ $b['h'] }} halaman</small></div>
-                <div class="catalog-book-footer"><span class="catalog-available">● Tersedia</span><a href="{{ route('dashboard', 'resv') }}">Reservasi <b>→</b></a></div>
+                <div class="catalog-book-footer"><span class="catalog-available">● Tersedia</span><a href="{{ route('dashboard', 'resv') }}">Reservasi <b><x-icon name="arrow-right"/></b></a></div>
             </article>
         @empty
             <div class="catalog-empty-state"><strong>Koleksi tidak ditemukan</strong><span>Coba gunakan kata kunci atau kategori lain.</span><a href="{{ route('dashboard', 'cat') }}">Tampilkan semua koleksi</a></div>

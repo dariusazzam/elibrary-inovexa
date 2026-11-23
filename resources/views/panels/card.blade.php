@@ -226,7 +226,7 @@
                         <span class="stat-mini-label">Masa Aktif Kartu</span>
                         <div class="stat-mini-value">285 Hari</div>
                         <div class="stat-mini-sub green-sub">
-                            <span class="stat-icon-sync">🔄</span> Auto-renewal
+                            <span class="stat-icon-sync"><x-icon name="refresh"/></span> Auto-renewal
                         </div>
                     </div>
 
@@ -234,7 +234,7 @@
                         <span class="stat-mini-label">Denda Berjalan</span>
                         <div class="stat-mini-value">Rp 0</div>
                         <div class="stat-mini-sub green-sub">
-                            <span class="stat-icon-shield">🛡️</span> Bebas Tanggungan
+                            <span class="stat-icon-shield"><x-icon name="shield-check"/></span> Bebas Tanggungan
                         </div>
                     </div>
                 </div>
@@ -630,7 +630,7 @@
 {{-- MODAL 1: UBAH PIN SIRKULASI --}}
 <div class="modal" id="pin-change-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('pin-change-modal')">
     <div class="modal-box" style="max-width:420px">
-        <button class="modal-close" type="button" onclick="closeModal('pin-change-modal')">×</button>
+        <button class="modal-close" type="button" onclick="closeModal('pin-change-modal')"><x-icon name="x"/></button>
         <div class="lbl">KEAMANAN TRANSAKSI MANDIRI</div>
         <h2 style="margin:4px 0 10px;font-size:18px">Ubah PIN Sirkulasi &amp; Kios</h2>
         <p style="color:var(--m);font-size:12px;line-height:1.5">
@@ -665,7 +665,7 @@
 {{-- MODAL 2: LIHAT SEMUA LOG SIRKULASI --}}
 <div class="modal" id="full-audit-modal" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal('full-audit-modal')">
     <div class="modal-box" style="max-width:680px">
-        <button class="modal-close" type="button" onclick="closeModal('full-audit-modal')">×</button>
+        <button class="modal-close" type="button" onclick="closeModal('full-audit-modal')"><x-icon name="x"/></button>
         <div class="lbl">AUDIT LOG SIRKULASI LENGKAP</div>
         <h2 style="margin:4px 0 10px;font-size:18px">Rekam Jejak Presensi &amp; Sirkulasi</h2>
         <p style="color:var(--m);font-size:12px;line-height:1.5">

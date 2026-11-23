@@ -7,8 +7,8 @@
             <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Layanan terpadu sirkulasi buku fisik: peminjaman kilat via RFID/Barcode, verifikasi kuota anggota, perpanjangan masa pinjam, pengembalian eksemplar, serta kalkulasi denda otomatis.</p>
         </div>
         <div style="display:flex;gap:8px">
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">⚙️ Mode Cepat (Kiosk Scan)</button>
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📦 Pengembalian Massal (Drop Box)</button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Mode Cepat (Kiosk Scan)</button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="package"/> Pengembalian Massal (Drop Box)</button>
             <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Transaksi Peminjaman Baru</button>
         </div>
     </div>
@@ -18,29 +18,29 @@
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL TRANSAKSI HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">342 <span style="font-size:11px;font-weight:normal;color:var(--m)">Transaksi</span></div>
-            <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">▲ +24 dibandingkan kemarin</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">🔄</span>
+            <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="trending-up"/> +24 dibandingkan kemarin</span>
+            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="refresh"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">BUKU SEDANG DIPINJAM</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Jatuh tempo minggu ini: <b>820 buku</b></span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">📖</span>
+            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="book-open"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PENGEMBALIAN HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">188 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● 182 tepat waktu, 6 terlambat</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">📦</span>
+            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="package"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">DENDA TERKUMPUL HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 45.000</div>
-            <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ Dari 6 transaksi keterlambatan</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">💳</span>
+            <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> Dari 6 transaksi keterlambatan</span>
+            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="credit-card"/></span>
         </div>
     </div>
 
@@ -50,7 +50,7 @@
             <!-- Search & Filters -->
             <div class="circulation-management-toolbar" style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
                 <div style="flex:1;position:relative">
-                    <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
+                    <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px"><x-icon name="search"/></span>
                     <input type="text" placeholder="Cari No. Transaksi, NIA Anggota, Barcode Buku..." style="width:100%;padding:8px 12px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
                 </div>
                 <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
@@ -59,8 +59,8 @@
                 <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                     <option>Transaksi Terkini</option>
                 </select>
-                <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
-                <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
+                <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+                <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
             </div>
 
             <!-- Sub Tabs -->
@@ -79,8 +79,8 @@
                     <span><b>2 Transaksi Dipilih</b></span>
                 </div>
                 <div style="display:flex;gap:8px">
-                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">🖨️ Cetak Bukti Transaksi</button>
-                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">✓ Selesaikan Transaksi</button>
+                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Bukti Transaksi</button>
+                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="check"/> Selesaikan Transaksi</button>
                     <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
                 </div>
             </div>
@@ -132,9 +132,9 @@
                                 <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">● Aktif</span>
                             </td>
                             <td style="padding:12px;text-align:right">
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px">📥</button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="download"/></button>
                             </td>
                         </tr>
 
@@ -170,9 +170,9 @@
                                 <span style="background:#e5e7eb;color:#374151;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">Selesai</span>
                             </td>
                             <td style="padding:12px;text-align:right">
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px">⏱️</button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="clock"/></button>
                             </td>
                         </tr>
 
@@ -208,9 +208,9 @@
                                 <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">Berhasil</span>
                             </td>
                             <td style="padding:12px;text-align:right">
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px">📥</button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="download"/></button>
                             </td>
                         </tr>
 
@@ -246,9 +246,9 @@
                                 <span style="background:#fee2e2;color:#dc2626;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:4px">Terlambat</span>
                             </td>
                             <td style="padding:12px;text-align:right">
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                                <button style="background:none;border:none;cursor:pointer;font-size:14px">💳</button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                                <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="credit-card"/></button>
                             </td>
                         </tr>
                     </tbody>
@@ -263,7 +263,7 @@
                         <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">3</button>
                         <span>...</span>
                         <button style="background:#fff;border:1px solid var(--ln);padding:0 6px;height:24px;border-radius:4px">69</button>
-                        <span>›</span>
+                        <span><x-icon name="chevron-right"/></span>
                     </div>
                 </div>
             </div>
@@ -273,7 +273,7 @@
         <div class="circulation-management-detail" style="background:#fff;border:1px solid var(--ln);border-radius:12px;padding:16px;height:fit-content">
             <div class="circulation-rfid-card" style="background:#153223;color:#fff;border-radius:10px;padding:16px;margin-bottom:16px;position:relative">
                 <div class="circulation-rfid-card-head">
-                    <span class="circulation-rfid-brand"><span class="circulation-rfid-mark" aria-hidden="true">↪</span><span><b>INOVEXA<br>CIRCULATION</b><small>SMART DESK CHECKOUT<br>RFID SYSTEM</small></span></span>
+                    <span class="circulation-rfid-brand"><span class="circulation-rfid-mark" aria-hidden="true"><x-icon name="corner-down-right"/></span><span><b>INOVEXA<br>CIRCULATION</b><small>SMART DESK CHECKOUT<br>RFID SYSTEM</small></span></span>
                     <span class="circulation-rfid-ready"><i></i><span>SCANNER<br>READY</span></span>
                 </div>
                 <div class="circulation-rfid-number-label">NO. TRANSAKSI SIRKULASI</div>
@@ -334,10 +334,10 @@
                 </div>
             </div>
 
-            <button style="width:100%;background:#153223;color:#fff;border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer">🖨️ Cetak Struk Peminjaman</button>
+            <button style="width:100%;background:#153223;color:#fff;border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer"><x-icon name="printer"/> Cetak Struk Peminjaman</button>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📦 Proses Kembali</button>
-                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">⏱️ Perpanjang Masa</button>
+                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="package"/> Proses Kembali</button>
+                <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="clock"/> Perpanjang Masa</button>
             </div>
         </div>
     </div>

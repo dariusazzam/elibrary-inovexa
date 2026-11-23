@@ -42,17 +42,17 @@
             <div style="background:rgba(0,0,0,.22);padding:12px;border-radius:10px">
                 <span style="font-size:9px;color:#94a3b8">Total Denda Berjalan</span>
                 <div style="font-size:18px;font-weight:800;color:#fff;margin-top:2px">Rp 0</div>
-                <span style="font-size:9px;color:#4ade80;display:flex;align-items:center;gap:3px;margin-top:2px">✓ Bebas Tanggungan</span>
+                <span style="font-size:9px;color:#4ade80;display:flex;align-items:center;gap:3px;margin-top:2px"><x-icon name="check"/> Bebas Tanggungan</span>
             </div>
             <div style="background:rgba(0,0,0,.22);padding:12px;border-radius:10px">
                 <span style="font-size:9px;color:#94a3b8">Masa Berlaku Anggota</span>
                 <div style="font-size:18px;font-weight:800;color:#fff;margin-top:2px">285 Hari</div>
-                <span style="font-size:9px;color:#cbd5e1;display:flex;align-items:center;gap:3px;margin-top:2px">⟳ Auto-renewal</span>
+                <span style="font-size:9px;color:#cbd5e1;display:flex;align-items:center;gap:3px;margin-top:2px"><x-icon name="refresh"/> Auto-renewal</span>
             </div>
         </div>
 
         <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#cbd5e1;border-top:1px solid rgba(255,255,255,.12);padding-top:14px">
-            <span>📡 Anjungan Sirkulasi Mandiri</span>
+            <span><x-icon name="radio"/> Anjungan Sirkulasi Mandiri</span>
             <span style="font-family:monospace;background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;color:#4ade80;font-weight:700">RFID: READY</span>
         </div>
     </div>
@@ -76,7 +76,7 @@
                             <h4 style="margin:4px 0 2px;font-size:15px;font-weight:700">Laskar Pelangi</h4>
                             <small style="color:var(--m);font-size:11.5px">Andrea Hirata &bull; Penerbit: Bentang Pustaka</small>
                         </div>
-                        <span class="pill" style="background:#fef3e7;color:#b45309;font-weight:700">⏰ Sisa 4 Hari</span>
+                        <span class="pill" style="background:#fef3e7;color:#b45309;font-weight:700"><x-icon name="alarm-clock"/> Sisa 4 Hari</span>
                     </div>
 
                     <div style="display:flex;gap:32px;margin-top:12px;font-size:11.5px;color:var(--m);border-top:1px solid var(--ln);padding-top:10px">
@@ -86,8 +86,8 @@
                     </div>
 
                     <div style="display:flex;gap:8px;margin-top:12px">
-                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px">🔄 Perpanjang (+7 Hari)</button>
-                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('QR Balik Drop-Box siap dipindai')">🔲 QR Balik Drop-Box</button>
+                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px"><x-icon name="refresh"/> Perpanjang (+7 Hari)</button>
+                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('QR Balik Drop-Box siap dipindai')"><x-icon name="square"/> QR Balik Drop-Box</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                             <h4 style="margin:4px 0 2px;font-size:15px;font-weight:700">Sapiens: Riwayat Singkat Umat Manusia</h4>
                             <small style="color:var(--m);font-size:11.5px">Yuval Noah Harari &bull; Penerbit: KPG (Kepustakaan Populer Gramedia)</small>
                         </div>
-                        <span class="pill" style="background:#fef3e7;color:#b45309;font-weight:700">⏰ Sisa 5 Hari</span>
+                        <span class="pill" style="background:#fef3e7;color:#b45309;font-weight:700"><x-icon name="alarm-clock"/> Sisa 5 Hari</span>
                     </div>
 
                     <div style="display:flex;gap:32px;margin-top:12px;font-size:11.5px;color:var(--m);border-top:1px solid var(--ln);padding-top:10px">
@@ -113,8 +113,8 @@
                     </div>
 
                     <div style="display:flex;gap:8px;margin-top:12px">
-                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px">🔄 Perpanjang (+7 Hari)</button>
-                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('Menampilkan detail koleksi')">📖 Detail Koleksi</button>
+                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px"><x-icon name="refresh"/> Perpanjang (+7 Hari)</button>
+                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('Menampilkan detail koleksi')"><x-icon name="book-open"/> Detail Koleksi</button>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
 
         {{-- Panduan Sirkulasi Mandiri --}}
         <div class="card" style="margin-top:20px;background:#fdfcf9;border:1px solid var(--ln);padding:20px">
-            <h4 style="margin:0 0 10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px"><span>📖</span> PANDUAN SIRKULASI MANDIRI</h4>
+            <h4 style="margin:0 0 10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px"><span><x-icon name="book-open"/></span> PANDUAN SIRKULASI MANDIRI</h4>
             <ul style="margin:0;padding-left:16px;font-size:12px;color:var(--m);display:flex;flex-direction:column;gap:6px">
                 <li><b>Durasi Peminjaman:</b> Batas pinjam standar adalah 7 hari kalender sejak pemindaian barcode loket.</li>
                 <li><b>Perpanjangan Mandiri:</b> Maksimal 1x perpanjangan daring (+7 hari) jika buku tidak dalam antrean reservasi.</li>
@@ -131,7 +131,7 @@
             </ul>
             <div style="margin-top:14px;font-size:12px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--ln);padding-top:12px">
                 <span style="color:var(--m)">Butuh bantuan petugas?</span>
-                <a href="#" onclick="toast('Menghubungi Meja Sirkulasi...');return false" style="color:var(--o);font-weight:600">Kontak Sirkulasi ›</a>
+                <a href="#" onclick="toast('Menghubungi Meja Sirkulasi...');return false" style="color:var(--o);font-weight:600">Kontak Sirkulasi <x-icon name="chevron-right"/></a>
             </div>
         </div>
     </div>
@@ -141,10 +141,10 @@
 <div class="card" style="margin-top:28px;padding:20px;background:#fff">
     <div class="row" style="margin-bottom:16px">
         <div>
-            <h3 style="margin:0;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px"><span>🕒</span> Riwayat Pemindaian &amp; Aktivitas Kartu Digital</h3>
+            <h3 style="margin:0;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px"><span><x-icon name="clock"/></span> Riwayat Pemindaian &amp; Aktivitas Kartu Digital</h3>
             <small style="color:var(--m);font-size:11.5px">Log audit keamanan penggunaan identitas anggota di seluruh fasilitas perpustakaan.</small>
         </div>
-        <a href="#" onclick="toast('Menampilkan seluruh log sirkulasi');return false" style="color:var(--o);font-weight:600;font-size:12px">Lihat Semua Log Sirkulasi ›</a>
+        <a href="#" onclick="toast('Menampilkan seluruh log sirkulasi');return false" style="color:var(--o);font-weight:600;font-size:12px">Lihat Semua Log Sirkulasi <x-icon name="chevron-right"/></a>
     </div>
 
     <div class="tw">
@@ -158,31 +158,31 @@
             </tr>
             <tr>
                 <td style="font-size:12px"><b>18 Okt 2026</b><br><small style="color:var(--m)">09:15 WIB</small></td>
-                <td style="font-size:12px">📦 Peminjaman Buku Fisik</td>
+                <td style="font-size:12px"><x-icon name="package"/> Peminjaman Buku Fisik</td>
                 <td style="font-size:12px">Meja Sirkulasi Lt. 1<br><small style="color:var(--m)">Petugas: Budi Santoso</small></td>
                 <td style="font-size:12px"><b>Laskar Pelangi</b><br><small style="color:var(--m)">Barcode: BUK-0004-LP</small></td>
-                <td><span class="pill" style="background:#dcebe2;color:var(--ok)">✓ Sukses Disetujui</span></td>
+                <td><span class="pill" style="background:#dcebe2;color:var(--ok)"><x-icon name="check"/> Sukses Disetujui</span></td>
             </tr>
             <tr>
                 <td style="font-size:12px"><b>14 Okt 2026</b><br><small style="color:var(--m)">10:30 WIB</small></td>
-                <td style="font-size:12px">🪪 Presensi Turnstile Gate</td>
+                <td style="font-size:12px"><x-icon name="id-card"/> Presensi Turnstile Gate</td>
                 <td style="font-size:12px">Pintu Masuk Gedung Utama<br><small style="color:var(--m)">Gate B - Tap NFC Digital</small></td>
                 <td style="font-size:12px"><b>Kunjungan Ruang Baca Terbuka</b><br><small style="color:var(--m)">Sesi Belajar Siang</small></td>
                 <td><span class="pill" style="background:#fef3e7;color:#b45309">● Masuk Berhasil</span></td>
             </tr>
             <tr>
                 <td style="font-size:12px"><b>12 Okt 2026</b><br><small style="color:var(--m)">10:00 WIB</small></td>
-                <td style="font-size:12px">📦 Peminjaman Buku Fisik</td>
+                <td style="font-size:12px"><x-icon name="package"/> Peminjaman Buku Fisik</td>
                 <td style="font-size:12px">Meja Sirkulasi Lt. 1<br><small style="color:var(--m)">Petugas: Ratna W.</small></td>
                 <td style="font-size:12px"><b>Sapiens: Riwayat Singkat Umat Manusia</b><br><small style="color:var(--m)">Barcode: BUK-0021-SP</small></td>
-                <td><span class="pill" style="background:#dcebe2;color:var(--ok)">✓ Sukses Disetujui</span></td>
+                <td><span class="pill" style="background:#dcebe2;color:var(--ok)"><x-icon name="check"/> Sukses Disetujui</span></td>
             </tr>
             <tr>
                 <td style="font-size:12px"><b>05 Okt 2026</b><br><small style="color:var(--m)">10:45 WIB</small></td>
-                <td style="font-size:12px">📥 Pengembalian Drop-Box RFID</td>
+                <td style="font-size:12px"><x-icon name="download"/> Pengembalian Drop-Box RFID</td>
                 <td style="font-size:12px">Anjungan Drop-Box Gate A<br><small style="color:var(--m)">Scanner Optik &amp; RFID Aman</small></td>
                 <td style="font-size:12px"><b>Bumi Manusia</b><br><small style="color:var(--m)">Barcode: BUK-1102-BM</small></td>
-                <td><span class="pill" style="background:#e0f2fe;color:#0369a1">✓ Tepat Waktu (Bebas Denda)</span></td>
+                <td><span class="pill" style="background:#e0f2fe;color:#0369a1"><x-icon name="check"/> Tepat Waktu (Bebas Denda)</span></td>
             </tr>
         </table>
     </div>

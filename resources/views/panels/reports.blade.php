@@ -10,8 +10,8 @@
                 <p style="font-size:10.5px;color:var(--m);margin:2px 0 0">Pusat generasi dokumen laporan sirkulasi harian/bulanan, rekapitulasi denda &amp; kas keuangan, inventaris koleksi buku, statistik kunjungan pemustaka, serta audit berkas siap cetak (PDF/Excel) berstandar ISO Perpustakaan.</p>
             </div>
             <div style="display:flex;gap:6px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:600;cursor:pointer">🖨️ Konfigurasi Kop &amp; Tanda Tangan</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:600;cursor:pointer">📅 Jadwalkan Laporan Otomatis</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Konfigurasi Kop &amp; Tanda Tangan</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:5px 10px;border-radius:6px;font-size:10.5px;font-weight:600;cursor:pointer"><x-icon name="calendar"/> Jadwalkan Laporan Otomatis</button>
                 <button style="background:#153223;color:#fff;border:none;padding:5px 12px;border-radius:6px;font-size:10.5px;font-weight:700;cursor:pointer">+ Buat Laporan Kustom</button>
             </div>
         </div>
@@ -21,43 +21,43 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:8px;padding:10px;position:relative">
                 <span style="font-size:9px;color:var(--m);font-weight:700;display:block;margin-bottom:4px">TOTAL SIRKULASI (OKT 2026)</span>
                 <div style="font-size:18px;font-weight:800;color:var(--t)">8.420</div>
-                <span style="font-size:9px;color:#059669;font-weight:600;background:#ecfdf5;padding:1px 5px;border-radius:4px;display:inline-block;margin-top:4px">▲ +14% • 5.120 Pinjam • 3.300 Kembali</span>
-                <span style="position:absolute;right:10px;top:10px;font-size:13px">🔄</span>
+                <span style="font-size:9px;color:#059669;font-weight:600;background:#ecfdf5;padding:1px 5px;border-radius:4px;display:inline-block;margin-top:4px"><x-icon name="trending-up"/> +14% • 5.120 Pinjam • 3.300 Kembali</span>
+                <span style="position:absolute;right:10px;top:10px;font-size:13px"><x-icon name="refresh"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:8px;padding:10px;position:relative">
                 <span style="font-size:9px;color:var(--m);font-weight:700;display:block;margin-bottom:4px">PENERIMAAN KAS &amp; DENDA</span>
                 <div style="font-size:18px;font-weight:800;color:var(--t)">Rp 14.850.000</div>
                 <span style="font-size:9px;color:#059669;font-weight:600;background:#ecfdf5;padding:1px 5px;border-radius:4px;display:inline-block;margin-top:4px">● 100% Rekonsiliasi Kas Daerah Kilir</span>
-                <span style="position:absolute;right:10px;top:10px;font-size:13px">📋</span>
+                <span style="position:absolute;right:10px;top:10px;font-size:13px"><x-icon name="clipboard-list"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:8px;padding:10px;position:relative">
                 <span style="font-size:9px;color:var(--m);font-weight:700;display:block;margin-bottom:4px">PERTUMBUHAN INVENTARIS</span>
                 <div style="font-size:18px;font-weight:800;color:var(--t)">+342 Eksemplar</div>
                 <span style="font-size:9px;color:var(--m);font-weight:600;display:inline-block;margin-top:4px">Total 38.820 eksemplar terindeks aktif</span>
-                <span style="position:absolute;right:10px;top:10px;font-size:13px">📚</span>
+                <span style="position:absolute;right:10px;top:10px;font-size:13px"><x-icon name="library"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:8px;padding:10px;position:relative">
                 <span style="font-size:9px;color:var(--m);font-weight:700;display:block;margin-bottom:4px">KUNJUNGAN &amp; LAYANAN</span>
                 <div style="font-size:18px;font-weight:800;color:var(--t)">18.940 Pemustaka</div>
                 <span style="font-size:9px;color:#059669;font-weight:600;background:#ecfdf5;padding:1px 5px;border-radius:4px;display:inline-block;margin-top:4px">98.4% sirkulasi tepat waktu</span>
-                <span style="position:absolute;right:10px;top:10px;font-size:13px">👥</span>
+                <span style="position:absolute;right:10px;top:10px;font-size:13px"><x-icon name="users"/></span>
             </div>
         </div>
 
         <!-- Search & Filters -->
         <div style="background:#fff;border:1px solid var(--ln);border-radius:8px;padding:8px 10px;margin-bottom:10px;display:flex;gap:8px;align-items:center">
             <div style="flex:1;position:relative">
-                <span style="position:absolute;left:10px;top:7px;color:var(--m);font-size:11px">🔍</span>
+                <span style="position:absolute;left:10px;top:7px;color:var(--m);font-size:11px"><x-icon name="search"/></span>
                 <input type="text" placeholder="Cari data anggota, ISBN buku, barcode transaksi..." style="width:100%;padding:6px 10px 6px 30px;border:1px solid var(--ln);border-radius:6px;font-size:11px">
             </div>
             <select style="padding:6px 10px;border:1px solid var(--ln);border-radius:6px;font-size:11px;background:#fff">
-                <option>📅 Bulan Ini: Oktober 2026</option>
+                <option><x-icon name="calendar"/> Bulan Ini: Oktober 2026</option>
             </select>
             <select style="padding:6px 10px;border:1px solid var(--ln);border-radius:6px;font-size:11px;background:#fff">
-                <option>📥 Semua Format</option>
+                <option><x-icon name="download"/> Semua Format</option>
             </select>
             <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Terapkan Filter</button>
         </div>
@@ -97,7 +97,7 @@
                     <tr style="border-bottom:1px solid var(--ln);background:#f0fdf4">
                         <td style="padding:10px"><input type="checkbox" checked style="accent-color:#059669"></td>
                         <td style="padding:10px;display:flex;gap:8px;align-items:flex-start">
-                            <span style="font-size:15px">📄</span>
+                            <span style="font-size:15px"><x-icon name="file"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:11.5px">Laporan Rekapitulasi Sirkulasi &amp; Peminjaman Bulanan</b><br>
                                 <small style="color:var(--m);font-size:10px">Dihasilkan oleh: Budi Santoso (Admin Pegawai) &bull; 24 Okt 2026, 08:30 WIB</small>
@@ -120,7 +120,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:10px"><input type="checkbox"></td>
                         <td style="padding:10px;display:flex;gap:8px;align-items:flex-start">
-                            <span style="font-size:15px">📊</span>
+                            <span style="font-size:15px"><x-icon name="charts"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:11.5px">Laporan Penerimaan Denda &amp; Rekonsiliasi Kas Loket</b><br>
                                 <small style="color:var(--m);font-size:10px">Dihasilkan oleh: Kasir Shift #02 &bull; 24 Okt 2026, 07:15 WIB</small>
@@ -143,7 +143,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:10px"><input type="checkbox"></td>
                         <td style="padding:10px;display:flex;gap:8px;align-items:flex-start">
-                            <span style="font-size:15px">📚</span>
+                            <span style="font-size:15px"><x-icon name="library"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:11.5px">Buku Induk &amp; Berita Acara Inventaris Koleksi Fisik &amp; E-Book</b><br>
                                 <small style="color:var(--m);font-size:10px">Dihasilkan oleh: Bagian Akusisi Bahan Pustaka &bull; 20 Okt 2026</small>
@@ -165,7 +165,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:10px"><input type="checkbox"></td>
                         <td style="padding:10px;display:flex;gap:8px;align-items:flex-start">
-                            <span style="font-size:15px">⚠️</span>
+                            <span style="font-size:15px"><x-icon name="triangle-alert"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:11.5px">Laporan Kepatuhan Anggota &amp; Pemustaka Kena Sanksi/Denda</b><br>
                                 <small style="color:var(--m);font-size:10px">Dihasilkan oleh: Pengawas Sirkulasi &bull; 22 Okt 2026</small>
@@ -188,7 +188,7 @@
                     <tr style="border-bottom:1px solid var(--ln)">
                         <td style="padding:10px"><input type="checkbox"></td>
                         <td style="padding:10px;display:flex;gap:8px;align-items:flex-start">
-                            <span style="font-size:15px">📋</span>
+                            <span style="font-size:15px"><x-icon name="clipboard-list"/></span>
                             <div>
                                 <b style="color:var(--t);font-size:11.5px">Statistik Kunjungan Pemustaka &amp; Utilisasi Smart Locker</b><br>
                                 <small style="color:var(--m);font-size:10px">Dihasilkan oleh: Sistem Otomatisasi IoT &bull; 23 Okt 2026</small>
@@ -315,9 +315,9 @@
                 </div>
             </div>
 
-            <button style="width:100%;background:#000;color:#fff;border:none;padding:9px;border-radius:6px;font-size:11.5px;font-weight:700;margin-bottom:6px;cursor:pointer">🖨️ Cetak Dokumen Sekarang<br><span style="font-size:9px;font-weight:normal;opacity:0.8">(Ctrl+P)</span></button>
-            <button style="width:100%;background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:6px;font-size:11px;font-weight:600;margin-bottom:4px;cursor:pointer">📥 Unduh PDF Berstempel Digital</button>
-            <button style="width:100%;background:none;border:none;color:var(--t);padding:3px;font-size:11px;font-weight:600;cursor:pointer;text-align:center">🔗 Kirim Tautan Validasi ke Pimpinan</button>
+            <button style="width:100%;background:#000;color:#fff;border:none;padding:9px;border-radius:6px;font-size:11.5px;font-weight:700;margin-bottom:6px;cursor:pointer"><x-icon name="printer"/> Cetak Dokumen Sekarang<br><span style="font-size:9px;font-weight:normal;opacity:0.8">(Ctrl+P)</span></button>
+            <button style="width:100%;background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:6px;font-size:11px;font-weight:600;margin-bottom:4px;cursor:pointer"><x-icon name="download"/> Unduh PDF Berstempel Digital</button>
+            <button style="width:100%;background:none;border:none;color:var(--t);padding:3px;font-size:11px;font-weight:600;cursor:pointer;text-align:center"><x-icon name="link"/> Kirim Tautan Validasi ke Pimpinan</button>
         </div>
     </div>
 </div>

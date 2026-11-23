@@ -24,13 +24,13 @@
         {{-- 3 Tombol Aksi Kanan Atas --}}
         <div style="display:flex;flex-direction:column;gap:8px;min-width:240px">
             <button type="button" style="background:#111827;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.15)" onclick="toast('Memicu pencadangan basis data penuh...')">
-                <span>⚡</span> Trigger Backup Manual
+                <span><x-icon name="zap"/></span> Trigger Backup Manual
             </button>
             <button type="button" style="background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" onclick="toast('Integritas SHA-256 terverifikasi valid.')">
-                🔒 Verifikasi Integritas SHA-256
+                <x-icon name="lock"/> Verifikasi Integritas SHA-256
             </button>
             <button type="button" style="background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" onclick="toast('Mengunduh arsip snapshot .tar.enc...')">
-                📥 Unduh Snapshot (.tar.enc)
+                <x-icon name="download"/> Unduh Snapshot (.tar.enc)
             </button>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05);position:relative">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
                 <span style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:0.5px">SNAPSHOT TERKIRIM</span>
-                <span style="font-size:16px">☁️</span>
+                <span style="font-size:16px"><x-icon name="cloud"/></span>
             </div>
             <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
                 <span style="font-size:28px;font-weight:900;color:#0f172a">100%</span>
@@ -60,7 +60,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05);position:relative">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
                 <span style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:0.5px">INTEGRITAS BASIS DATA</span>
-                <span style="font-size:16px">🛡️</span>
+                <span style="font-size:16px"><x-icon name="shield-check"/></span>
             </div>
             <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
                 <span style="font-size:24px;font-weight:900;color:#0f172a">SHA-256</span>
@@ -79,7 +79,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05);position:relative">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
                 <span style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:0.5px">JEJAK AUDIT FORENSIK</span>
-                <span style="font-size:16px">📋</span>
+                <span style="font-size:16px"><x-icon name="clipboard-list"/></span>
             </div>
             <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
                 <span style="font-size:26px;font-weight:900;color:#0f172a">1.428.950</span>
@@ -98,7 +98,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05);position:relative">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
                 <span style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:0.5px">TARGET PEMULIHAN (RTO/RPO)</span>
-                <span style="font-size:16px">⚡</span>
+                <span style="font-size:16px"><x-icon name="zap"/></span>
             </div>
             <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">
                 <span style="font-size:28px;font-weight:900;color:#0f172a">12 Menit</span>
@@ -125,7 +125,7 @@
                 </div>
                 <div>
                     <button type="button" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#334151;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer" onclick="toast('Mengekspor log ke format CSV & Syslog...')">
-                        📥 Ekspor CSV / Syslog
+                        <x-icon name="download"/> Ekspor CSV / Syslog
                     </button>
                 </div>
             </div>
@@ -133,7 +133,8 @@
             {{-- Filter Bar --}}
             <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;background:#f8fafc;padding:10px;border-radius:8px">
                 <div style="flex:1;min-width:200px;position:relative">
-                    <input type="text" placeholder="🔍  Cari IP, Aktor, Modul, Event ID..." style="width:100%;padding:7px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;outline:none;background:#fff">
+                    <x-icon name="search" size="14" style="position:absolute;left:11px;top:9px;color:#94a3b8"/>
+                    <input type="text" placeholder="Cari IP, Aktor, Modul, Event ID..." style="width:100%;padding:7px 12px 7px 32px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;outline:none;background:#fff">
                 </div>
                 <div>
                     <select style="padding:7px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;background:#fff;color:#334151">
@@ -145,7 +146,7 @@
                 </div>
                 <div>
                     <select style="padding:7px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;background:#fff;color:#334151">
-                        <option>📅 Hari Ini</option>
+                        <option><x-icon name="calendar"/> Hari Ini</option>
                         <option>7 Hari Terakhir</option>
                         <option>Bulan Ini</option>
                     </select>
@@ -215,7 +216,7 @@
                                 <span style="font-size:10px;color:#64748b">Terminal Loket #03</span>
                             </td>
                             <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#fef3c7;color:#92400e;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">✓ TERVALIDASI</span>
+                                <span style="background:#fef3c7;color:#92400e;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block"><x-icon name="check"/> TERVALIDASI</span>
                             </td>
                         </tr>
 
@@ -253,7 +254,7 @@
                             </td>
                             <td style="padding:12px 8px">
                                 <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#dc2626;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">⚠️</span>
+                                    <span style="width:24px;height:24px;background:#dc2626;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700"><x-icon name="triangle-alert"/></span>
                                     <div>
                                         <strong style="font-size:11.5px">Sistem Deteksi Anomali</strong><br>
                                         <span style="font-size:10px;color:#dc2626">IDS / IPS Sensor</span>
@@ -269,7 +270,7 @@
                                 <span style="font-size:10px;color:#64748b">Public ISP (Cellular IP)</span>
                             </td>
                             <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#fee2e2;color:#991b1b;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">🛑 BLOCKED / SUSPENDED</span>
+                                <span style="background:#fee2e2;color:#991b1b;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block"><x-icon name="ban"/> BLOCKED / SUSPENDED</span>
                             </td>
                         </tr>
 
@@ -280,7 +281,7 @@
                             </td>
                             <td style="padding:12px 8px">
                                 <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#334151;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">📚</span>
+                                    <span style="width:24px;height:24px;background:#334151;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700"><x-icon name="library"/></span>
                                     <div>
                                         <strong style="font-size:11.5px">Sistem E-Library</strong><br>
                                         <span style="font-size:10px;color:#64748b">Worker Scheduler</span>
@@ -296,7 +297,7 @@
                                 <span style="font-size:10px;color:#64748b">Cluster Kubernetes Node</span>
                             </td>
                             <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#f1f5f9;color:#475569;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">🟢 BERSIH</span>
+                                <span style="background:#f1f5f9;color:#475569;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block"><x-icon name="circle"/> BERSIH</span>
                             </td>
                         </tr>
                     </tbody>
@@ -323,7 +324,7 @@
             {{-- Panel 1: Konfigurasi Cadangan --}}
             <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0">⚙️ Konfigurasi Cadangan</h3>
+                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0"><x-icon name="settings"/> Konfigurasi Cadangan</h3>
                     <span style="background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px">Aktif</span>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:12px;font-size:12px">
@@ -332,28 +333,28 @@
                             <strong style="color:#0f172a">Snapshot Otomatis Harian</strong><br>
                             <span style="color:#64748b;font-size:11px">Terjadwal Pukul 03:00 WIB (Cron Eksekusi)</span>
                         </div>
-                        <span style="font-size:14px">⏱️</span>
+                        <span style="font-size:14px"><x-icon name="clock"/></span>
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #f1f5f9;padding-bottom:8px">
                         <div>
                             <strong style="color:#0f172a">Replikasi WAL-G Real-Time</strong><br>
                             <span style="color:#64748b;font-size:11px">Streaming Write-Ahead Logs ke Cloud Storage</span>
                         </div>
-                        <span style="font-size:14px">🔄</span>
+                        <span style="font-size:14px"><x-icon name="refresh"/></span>
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #f1f5f9;padding-bottom:8px">
                         <div>
                             <strong style="color:#0f172a">Enkripsi End-to-End</strong><br>
                             <span style="color:#64748b;font-size:11px">AES-256-GCM + Kunci PKIP Root Aki (4096-bit)</span>
                         </div>
-                        <span style="font-size:14px">🔐</span>
+                        <span style="font-size:14px"><x-icon name="lock-keyhole"/></span>
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:flex-start">
                         <div>
                             <strong style="color:#0f172a">Retensi Penyimpanan</strong><br>
                             <span style="color:#64748b;font-size:11px">30 Hari Hot Tier, 365 Hari Cold Glacier</span>
                         </div>
-                        <span style="font-size:14px">🗄️</span>
+                        <span style="font-size:14px"><x-icon name="database"/></span>
                     </div>
                 </div>
             </div>
@@ -361,7 +362,7 @@
             {{-- Panel 2: Target Penyimpanan --}}
             <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0">🗄️ Target Penyimpanan</h3>
+                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0"><x-icon name="database"/> Target Penyimpanan</h3>
                     <span style="font-size:11px;color:#64748b;font-weight:600">3 Multi-Lokasi</span>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:12px;font-size:12px">
@@ -399,8 +400,8 @@
             {{-- Panel 3: Simulasi Pemulihan Bencana --}}
             <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,0.05)">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0">🛡️ Simulasi Pemulihan Bencana</h3>
-                    <span style="font-size:16px">📋</span>
+                    <h3 style="font-size:14px;font-weight:800;color:#0f172a;margin:0"><x-icon name="shield-check"/> Simulasi Pemulihan Bencana</h3>
+                    <span style="font-size:16px"><x-icon name="clipboard-list"/></span>
                 </div>
                 <p style="font-size:11.5px;color:#64748b;margin:0 0 12px">
                     Pengujian berkala otomatis untuk mengukur kesiapan restorasi seluruh basis data anggota, katalog, dan riwayat sirkulasi pada lingkungan Sandbox terisolasi.
@@ -420,7 +421,7 @@
                     </div>
                 </div>
                 <button type="button" style="width:100%;background:#b45309;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px" onclick="toast('Menjalankan uji simulasi restorasi sandbox terisolasi...')">
-                    <span>⚡</span> Jalankan Uji Simulasi Restorasi Sandbox
+                    <span><x-icon name="zap"/></span> Jalankan Uji Simulasi Restorasi Sandbox
                 </button>
             </div>
         </div>

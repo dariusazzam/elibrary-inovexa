@@ -5,7 +5,7 @@
 <div style="background:var(--g);color:#fff;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.15);position:sticky;top:0;z-index:20">
     <div class="w" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
         <div style="display:flex;align-items:center;gap:12px">
-            <a href="{{ route('dashboard', 'elib') }}" style="color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:6px 12px;background:rgba(255,255,255,.12);border-radius:6px">← Tutup Buku</a>
+            <a href="{{ route('dashboard', 'elib') }}" style="color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:6px 12px;background:rgba(255,255,255,.12);border-radius:6px"><x-icon name="arrow-left"/> Tutup Buku</a>
             <div>
                 <b style="font-size:15px">{{ $b['t'] }}</b>
                 <small style="display:block;color:#a9c0b2;font-size:11px">{{ $b['a'] }} · {{ $b['c'] }}</small>
@@ -32,7 +32,7 @@
                        style="text-align:left;font-size:12px;padding:10px 12px;line-height:1.3">
                         <b>Bab {{ $ch['n'] }}</b><br>
                         <span style="opacity:.85">{{ $ch['title'] }}</span>
-                        <small style="display:block;opacity:.65;font-size:10px;margin-top:2px">⏱ ~{{ $ch['minutes'] }} menit baca</small>
+                        <small style="display:block;opacity:.65;font-size:10px;margin-top:2px"><x-icon name="clock"/> ~{{ $ch['minutes'] }} menit baca</small>
                     </a>
                 @endforeach
             </div>
@@ -43,7 +43,7 @@
                 <div style="margin-top:8px">
                     <form method="POST" action="{{ route('reserve', $b['id']) }}">
                         @csrf
-                        <button class="btn or" style="width:100%;font-size:11px;padding:6px 10px">🔖 Reservasi Buku Fisik</button>
+                        <button class="btn or" style="width:100%;font-size:11px;padding:6px 10px"><x-icon name="bookmark"/> Reservasi Buku Fisik</button>
                     </form>
                 </div>
             </div>
@@ -69,15 +69,15 @@
 
             <div style="border-top:1px solid var(--ln);margin-top:32px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
                 @if($currentChapterIndex > 0)
-                    <a class="btn ghost" href="{{ route('elib.read', ['id' => $b['id'], 'bab' => $currentChapterIndex]) }}">← Bab Sebelumnya</a>
+                    <a class="btn ghost" href="{{ route('elib.read', ['id' => $b['id'], 'bab' => $currentChapterIndex]) }}"><x-icon name="arrow-left"/> Bab Sebelumnya</a>
                 @else
                     <span></span>
                 @endif
 
                 @if($currentChapterIndex < count($chapters) - 1)
-                    <a class="btn" href="{{ route('elib.read', ['id' => $b['id'], 'bab' => $currentChapterIndex + 2]) }}">Bab Selanjutnya (Bab {{ $currentChapterIndex + 2 }}) →</a>
+                    <a class="btn" href="{{ route('elib.read', ['id' => $b['id'], 'bab' => $currentChapterIndex + 2]) }}">Bab Selanjutnya (Bab {{ $currentChapterIndex + 2 }}) <x-icon name="arrow-right"/></a>
                 @else
-                    <a class="btn or" href="{{ route('dashboard', 'elib') }}">✓ Selesai Membaca</a>
+                    <a class="btn or" href="{{ route('dashboard', 'elib') }}"><x-icon name="check"/> Selesai Membaca</a>
                 @endif
             </div>
         </article>

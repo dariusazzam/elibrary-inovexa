@@ -11,8 +11,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat kendali basis data anggota terpadu. Verifikasi berkas KTM/KTP, pantau batas kuota peminjaman, perpanjangan smart card, serta audit kepatuhan sirkulasi pemustaka secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Kartu Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import CSV/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Kartu Massal</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Import CSV/Excel</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Tambah Anggota Baru</button>
             </div>
         </div>
@@ -23,35 +23,35 @@
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL ANGGOTA TERDAFTAR</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.890 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+28 registrasi bulan ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">👥</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="users"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">ANGGOTA AKTIF SIRKULASI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.642 <span style="font-size:11px;font-weight:normal;color:var(--m)">Anggota</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Status valid bebas sanksi (86.8%)</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📜</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="scroll-text"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">VERIFIKASI KTM / BERKAS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">14 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
-                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ Butuh validasi loket hari ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📋</span>
+                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> Butuh validasi loket hari ini</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="clipboard-list"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">MASA BERLAKU HABIS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">24 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
-                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚡ Perlu perpanjangan masa aktif</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📅</span>
+                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="zap"/> Perlu perpanjangan masa aktif</span>
+                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="calendar"/></span>
             </div>
         </div>
 
         <!-- Search & Filters -->
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
-                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
+                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px"><x-icon name="search"/></span>
                 <input type="text" placeholder="Cari NIA (INX-...), nama lengkap, NIK..." style="width:100%;padding:8px 30px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
                 <span style="position:absolute;right:10px;top:8px;background:#f3f4f6;color:var(--m);font-size:10px;padding:2px 5px;border-radius:4px">ESC</span>
             </div>
@@ -61,8 +61,8 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Terdaftar</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
         </div>
 
         <!-- Sub Tabs & Info -->
@@ -129,9 +129,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:12px">● Aktif</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">💬</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="message-circle"/></button>
                         </td>
                     </tr>
 
@@ -162,9 +162,9 @@
                             <span style="background:#fed7aa;color:#c2410c;font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px">Perlu Verifikasi</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">✓</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="check"/></button>
                         </td>
                     </tr>
 
@@ -195,9 +195,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:12px">● Aktif</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">💬</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="message-circle"/></button>
                         </td>
                     </tr>
 
@@ -228,9 +228,9 @@
                             <span style="background:#fee2e2;color:#dc2626;font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px">Ada Denda</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">💳</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="credit-card"/></button>
                         </td>
                     </tr>
 
@@ -261,9 +261,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:12px">● Aktif</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">💬</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="message-circle"/></button>
                         </td>
                     </tr>
 
@@ -294,9 +294,9 @@
                             <span style="background:#d1fae5;color:#065f46;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:12px">● Aktif</span>
                         </td>
                         <td style="padding:12px;text-align:right">
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">👁️</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px">📋</button>
-                            <button style="background:none;border:none;cursor:pointer;font-size:14px">💬</button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="eye"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px;margin-right:4px"><x-icon name="clipboard-list"/></button>
+                            <button style="background:none;border:none;cursor:pointer;font-size:14px"><x-icon name="message-circle"/></button>
                         </td>
                     </tr>
                 </tbody>
@@ -310,13 +310,13 @@
                 </div>
                 <span>dari <b>1.890</b> total anggota</span>
                 <div style="display:flex;gap:4px;align-items:center">
-                    <span>‹</span>
+                    <span><x-icon name="chevron-left"/></span>
                     <button style="background:#153223;color:#fff;border:none;width:24px;height:24px;border-radius:4px;font-weight:700">1</button>
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">2</button>
                     <button style="background:#fff;border:1px solid var(--ln);width:24px;height:24px;border-radius:4px">3</button>
                     <span>...</span>
                     <button style="background:#fff;border:1px solid var(--ln);padding:0 6px;height:24px;border-radius:4px">189</button>
-                    <span>›</span>
+                    <span><x-icon name="chevron-right"/></span>
                 </div>
             </div>
         </div>
@@ -399,10 +399,10 @@
             </div>
         </div>
 
-        <button style="width:100%;background:#e5e7eb;color:var(--t);border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer">💬 Kirim Pengingat WhatsApp</button>
+        <button style="width:100%;background:#e5e7eb;color:var(--t);border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer"><x-icon name="message-circle"/> Kirim Pengingat WhatsApp</button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer">⏱️ Perpanjang 1 Thn</button>
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer">🖨️ Cetak Smartcard</button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="clock"/> Perpanjang 1 Thn</button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Smartcard</button>
         </div>
     </div>
 </div>

@@ -153,6 +153,12 @@ body > nav .w, nav.public-nav .w{display:flex;align-items:center;gap:20px;height
 .pill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--b)}
 .lbl{font-size:10px;font-weight:700;color:var(--o);letter-spacing:.06em}
 
+/* Ikon (komponen <x-icon>) — set Lucide, sama dengan desain Figma.
+   Default 1em supaya ukurannya ikut font-size induk; atribut size="" menimpa lewat inline style. */
+.icon{width:1em;height:1em;flex:none;display:inline-block;vertical-align:-0.125em}
+/* Ikon yang berdampingan dengan teks tidak ikut turun naik saat baris di-hover */
+.icon + span,.icon + b{vertical-align:middle}
+
 /* Universal Hover Effect for ALL elements across the entire app (excluding login) */
 div, article, section, aside, table {
     transition: all 0.25s ease-in-out !important;

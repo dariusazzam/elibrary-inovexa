@@ -1,5 +1,5 @@
 <div class="notif-page-header" style="margin-bottom:24px;">
-    <div style="font-size:11px;color:var(--m);margin-bottom:2px;">Portal Anggota › <span style="color:var(--t);font-weight:600;">Notifikasi</span></div>
+    <div style="font-size:11px;color:var(--m);margin-bottom:2px;">Portal Anggota <x-icon name="chevron-right"/> <span style="color:var(--t);font-weight:600;">Notifikasi</span></div>
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
         <div>
             <h1 style="font-size:26px;font-weight:800;margin:0;color:var(--t);letter-spacing:-0.02em;">Notifikasi &amp; Pemberitahuan</h1>
@@ -10,7 +10,7 @@
                 <span>(ok)</span> Tandai Sudah Dibaca
             </button>
             <button type="button" class="btn ghost" style="font-size:12px;padding:8px 14px;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--ln);border-radius:8px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.02);">
-                <span>(opt)</span> Filter Notifikasi <span>▾</span>
+                <span>(opt)</span> Filter Notifikasi <span><x-icon name="chevron-down"/></span>
             </button>
         </div>
     </div>
@@ -109,7 +109,7 @@
             {{-- Item 1: Peringatan Jatuh Tempo --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
                 <div style="width:44px;height:44px;border-radius:10px;background:#fef3c7;border:1px solid #fde047;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    📅
+                    <x-icon name="calendar"/>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -131,7 +131,7 @@
             {{-- Item 2: Smart Locker --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
                 <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    🔒
+                    <x-icon name="lock"/>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -157,7 +157,7 @@
 
                     <div>
                         <button type="button" class="btn" style="padding:7px 16px;font-size:12px;background:#153223;border-radius:8px;display:flex;align-items:center;gap:6px;font-weight:600;">
-                            <span>📱</span> Tampilkan QR Barcode Loker
+                            <span><x-icon name="smartphone"/></span> Tampilkan QR Barcode Loker
                         </button>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
             {{-- Item 3: Presensi Gerbang --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
                 <div style="width:44px;height:44px;border-radius:10px;background:#e0f2fe;border:1px solid #7dd3fc;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    👤
+                    <x-icon name="user"/>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -187,7 +187,7 @@
             {{-- Item 4: Pengembalian Selesai --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
                 <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    ✔
+                    <x-icon name="check"/>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -200,7 +200,7 @@
                     <p style="font-size:13px;color:var(--m);margin:0 0 12px;line-height:1.5;">Buku yang dikembalikan melalui Drop Box Gate II telah diperiksa oleh staf sirkulasi. Kondisi koleksi: <b style="color:var(--t)">Sangat Baik</b>. Tanggungan denda: <b style="color:var(--ok)">Rp 0</b>. Kuota pinjaman Anda kembali bertambah.</p>
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--m);flex-wrap:wrap;gap:10px;">
                         <span>Pemeriksa: Staf Ratna.</span>
-                        <a href="#" style="color:var(--g);font-weight:700;display:flex;align-items:center;gap:4px;">Unduh Bukti Pengembalian (PDF) 📥</a>
+                        <a href="#" style="color:var(--g);font-weight:700;display:flex;align-items:center;gap:4px;">Unduh Bukti Pengembalian (PDF) <x-icon name="download"/></a>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@
         {{-- Widget 1: Pengaturan Notifikasi --}}
         <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02)">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-                <span style="font-size:16px;">⚙</span>
+                <span style="font-size:16px;"><x-icon name="settings"/></span>
                 <h3 style="font-size:15px;font-weight:700;margin:0;">Pengaturan Notifikasi</h3>
             </div>
             <p style="font-size:12px;color:var(--m);margin:0 0 18px;line-height:1.5;">Atur kanal pengingat otomatis untuk batas tempo peminjaman dan kode loker.</p>
@@ -223,7 +223,7 @@
                 <div style="display:flex;justify-content:space-between;align-items:center;">
                     <div>
                         <div style="font-size:13px;font-weight:600;color:var(--t);display:flex;align-items:center;gap:6px;">
-                            <span>💬</span> WhatsApp Alert
+                            <span><x-icon name="message-circle"/></span> WhatsApp Alert
                         </div>
                         <div style="font-size:11px;color:var(--m);margin-top:2px;">+62 812-3456-7890</div>
                     </div>
@@ -237,7 +237,7 @@
                 <div style="display:flex;justify-content:space-between;align-items:center;">
                     <div>
                         <div style="font-size:13px;font-weight:600;color:var(--t);display:flex;align-items:center;gap:6px;">
-                            <span>✉</span> Surel / Email
+                            <span><x-icon name="mail"/></span> Surel / Email
                         </div>
                         <div style="font-size:11px;color:var(--m);margin-top:2px;">{{ strtolower(str_replace(' ', '', $userName)) }}.lib@inovexa</div>
                     </div>
@@ -255,7 +255,7 @@
         {{-- Widget 2: Butuh Bantuan Sirkulasi --}}
         <div class="card" style="background:#153223;color:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 12px rgba(21,50,35,0.15)">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-                <span style="font-size:18px;">🛟</span>
+                <span style="font-size:18px;"><x-icon name="life-buoy"/></span>
                 <h3 style="font-size:15px;font-weight:700;margin:0;color:#fff;">Butuh Bantuan Sirkulasi?</h3>
             </div>
             <p style="font-size:12px;color:#cbd5e1;margin:0 0 16px;line-height:1.5;">Mengalami kendala saat buka Smart Locker, presensi gate RFID, atau perpanjangan buku? Hubungi pustakawan bertugas.</p>
@@ -265,7 +265,7 @@
                     <div style="font-size:9.5px;color:#94a3b8;font-weight:700;letter-spacing:0.04em;">WHATSAPP HELPDESK</div>
                     <div style="font-size:13px;font-weight:700;font-family:monospace;margin-top:2px;">+62 811-2080-4459</div>
                 </div>
-                <span style="font-size:14px;color:#94a3b8;">↗</span>
+                <span style="font-size:14px;color:#94a3b8;"><x-icon name="trending-up"/></span>
             </a>
 
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.12);padding-top:12px;">

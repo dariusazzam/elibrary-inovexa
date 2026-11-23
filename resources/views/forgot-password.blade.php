@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="row" style="max-width:1100px;margin:0 auto;padding:16px 20px 0;align-items:center">
-    <a href="{{ route('login', 'member') }}" style="font-size:12px;color:var(--t);text-decoration:none">← Kembali ke Halaman Masuk</a>
+    <a href="{{ route('login', 'member') }}" style="font-size:12px;color:var(--t);text-decoration:none"><x-icon name="arrow-left"/> Kembali ke Halaman Masuk</a>
     <span class="pill" style="background:#fbe9d6;color:var(--o)">Pemulihan Mandiri</span>
 </div>
 
@@ -33,14 +33,14 @@
             <label for="p1">Kata Sandi Baru (minimal 6 karakter)</label>
             <div style="position:relative">
                 <input class="in" id="p1" name="password" type="password" placeholder="••••••" autocomplete="new-password" required>
-                <button type="button" onclick="eye('p1','p2')" aria-label="Tampilkan sandi" style="position:absolute;right:8px;top:8px;background:none;border:0">👁</button>
+                <button type="button" onclick="eye('p1','p2')" aria-label="Tampilkan sandi" style="position:absolute;right:8px;top:8px;background:none;border:0"><x-icon name="eye"/></button>
             </div>
             @error('password')<div class="err">{{ $message }}</div>@enderror
 
             <label for="p2">Konfirmasi Kata Sandi Baru</label>
             <input class="in" id="p2" name="password_confirmation" type="password" placeholder="Ulangi kata sandi baru" autocomplete="new-password" required>
 
-            <button class="btn" style="width:100%;padding:13px;margin-top:14px">Simpan Kata Sandi Baru →</button>
+            <button class="btn" style="width:100%;padding:13px;margin-top:14px">Simpan Kata Sandi Baru <x-icon name="arrow-right"/></button>
         </form>
 
         <div style="font-size:10px;color:var(--m);margin-top:14px">Contoh demo: ID <code>INX-2026-8820</code> (Herdman) sandi default <code>123456</code>.</div>

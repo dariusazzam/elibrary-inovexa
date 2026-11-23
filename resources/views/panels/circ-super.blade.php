@@ -16,7 +16,7 @@
     <div class="circ-policy-topbar">
         <div class="circ-policy-breadcrumb">
             <a href="{{ route('dashboard', 'ov') }}" class="circ-bread-link">Dashboard Super Admin</a>
-            <span class="circ-bread-sep">›</span>
+            <span class="circ-bread-sep"><x-icon name="chevron-right"/></span>
             <span class="circ-bread-current">Kelola Sirkulasi</span>
         </div>
         <div class="circ-root-pill">
@@ -492,7 +492,7 @@
             </div>
             <a href="javascript:void(0)" class="circ-audit-link" onclick="openModal('modal-audit-circ-policy')">
                 <span>Buka Seluruh Log Forensik (14.280 Rekaman)</span>
-                <span style="font-size:14px">›</span>
+                <span style="font-size:14px"><x-icon name="chevron-right"/></span>
             </a>
         </div>
 
@@ -524,7 +524,7 @@
                             <div class="circ-action-target">Sasaran: Dr. Siti Rahmawati (NIP: 19820411)</div>
                         </td>
                         <td>
-                            <div class="circ-impact-text">Plafon dinaikkan dari 5 → 10 Eksemplar (Riset Hibah Nasional)</div>
+                            <div class="circ-impact-text">Plafon dinaikkan dari 5 <x-icon name="arrow-right"/> 10 Eksemplar (Riset Hibah Nasional)</div>
                         </td>
                         <td style="text-align:right">
                             <span class="circ-integrity-verified">
@@ -613,7 +613,7 @@
                 <h3 class="circ-modal-title">Edit Aturan Kebijakan Sirkulasi</h3>
                 <p class="circ-modal-subtitle" id="modal-rule-cat-name">Dosen &amp; Peneliti Utama</p>
             </div>
-            <button type="button" class="circ-modal-close" onclick="closeModal('modal-edit-circ-rule')">✕</button>
+            <button type="button" class="circ-modal-close" onclick="closeModal('modal-edit-circ-rule')"><x-icon name="x"/></button>
         </div>
         <form id="form-edit-circ-rule" onsubmit="saveCircRuleChanges(event)">
             <input type="hidden" id="edit-rule-code">
@@ -675,7 +675,7 @@
                 <h3 class="circ-modal-title">Simpan &amp; Terapkan Kebijakan Global</h3>
                 <p class="circ-modal-subtitle">Sinkronisasi parameter sirkulasi sistem INOVEXA ke seluruh gerbang &amp; loket.</p>
             </div>
-            <button type="button" class="circ-modal-close" onclick="closeModal('modal-save-circ-policy')">✕</button>
+            <button type="button" class="circ-modal-close" onclick="closeModal('modal-save-circ-policy')"><x-icon name="x"/></button>
         </div>
         <form method="POST" action="{{ route('settings.save') }}">
             @csrf
@@ -719,7 +719,7 @@
                 <h3 class="circ-modal-title">Buku Besar Audit Forensik Kebijakan Sirkulasi</h3>
                 <p class="circ-modal-subtitle">Log tidak dapat dihapus (Immutable Audit Trail) sesuai UU Perpustakaan &amp; BPKAD.</p>
             </div>
-            <button type="button" class="circ-modal-close" onclick="closeModal('modal-audit-circ-policy')">✕</button>
+            <button type="button" class="circ-modal-close" onclick="closeModal('modal-audit-circ-policy')"><x-icon name="x"/></button>
         </div>
         <div class="circ-modal-body">
             <div class="circ-log-list">
@@ -2140,11 +2140,11 @@ function saveCircRuleChanges(e) {
 function handleRootDispensasi(action) {
     if (action === 'full') {
         if (confirm('Konfirmasi Setujui Pemutihan Penuh:\nBuka blokir akun Ahmad Fauzi (NIM: INX-2026-04118) dan hapus denda keterlambatan Rp 18.000?')) {
-            toast('✓ Otorisasi Root Berhasil! Akun pemustaka telah diaktifkan kembali.');
+            toast('Otorisasi Root Berhasil! Akun pemustaka telah diaktifkan kembali.', 'check');
         }
     } else if (action === 'partial') {
         if (confirm('Konfirmasi Dispensasi Sebagian:\nBeri potongan 50% denda (Tagihan disesuaikan menjadi Rp 9.000)?')) {
-            toast('✓ Tagihan denda berhasil dipotong 50%. Menunggu konfirmasi pembayaran kasir.');
+            toast('Tagihan denda berhasil dipotong 50%. Menunggu konfirmasi pembayaran kasir.', 'check');
         }
     } else if (action === 'reject') {
         if (confirm('Konfirmasi Penolakan Usulan:\nTerapkan penalti normal dan pertahankan status freeze akun?')) {

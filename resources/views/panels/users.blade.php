@@ -177,7 +177,7 @@
     {{-- Breadcrumb persis Figma --}}
     <div class="super-users-breadcrumb">
         <a href="{{ route('dashboard', 'ov') }}" class="super-users-bread-link">Dashboard Super Admin</a>
-        <span class="super-users-bread-sep">›</span>
+        <span class="super-users-bread-sep"><x-icon name="chevron-right"/></span>
         <span class="super-users-bread-current">Kelola Akun &amp; Hak Akses</span>
     </div>
 
@@ -299,7 +299,7 @@
             {{-- Search & Filter Toolbar --}}
             <div class="super-users-toolbar">
                 <div class="super-users-search-box">
-                    <span class="super-users-search-icon">🔍</span>
+                    <span class="super-users-search-icon"><x-icon name="search"/></span>
                     <input type="text" id="user-search-input" class="super-users-search-input" placeholder="Cari berdasarkan nama, email SSO, NIP..." onkeyup="filterUserTable()">
                 </div>
                 <select id="user-status-filter" class="super-users-select" onchange="filterUserTable()">
@@ -319,18 +319,18 @@
             {{-- Batch Action Bar (Akun Terpilih) --}}
             <div class="super-users-bulkbar">
                 <div class="super-users-bulk-info">
-                    <span class="bulk-check-box">✓</span>
+                    <span class="bulk-check-box"><x-icon name="check"/></span>
                     <span id="bulk-selected-count">2 Akun Terpilih</span>
                 </div>
                 <div class="super-users-bulk-actions">
                     <button type="button" class="btn-bulk-action" onclick="toast('Kredensial aktivasi telah dikirimkan ke email terdaftar.')">
-                        <span>▷</span> Kirim Kredensial
+                        <span><x-icon name="play"/></span> Kirim Kredensial
                     </button>
                     <button type="button" class="btn-bulk-action" onclick="toast('Tautan reset kata sandi sementara berhasil diterbitkan.')">
-                        <span>⟳</span> Reset Sandi
+                        <span><x-icon name="refresh"/></span> Reset Sandi
                     </button>
                     <button type="button" class="btn-bulk-danger" onclick="toast('Akses akun terpilih berhasil ditangguhkan sementara.')">
-                        <span>⊘</span> Tangguhkan
+                        <span><x-icon name="ban"/></span> Tangguhkan
                     </button>
                 </div>
             </div>
@@ -424,13 +424,13 @@
                 <div class="super-users-table-footer">
                     <span>Menampilkan 1-7 dari 2.450 akun terdaftar</span>
                     <div class="super-users-pagination">
-                        <button type="button" class="btn-page" onclick="toast('Halaman pertama')">‹</button>
+                        <button type="button" class="btn-page" onclick="toast('Halaman pertama')"><x-icon name="chevron-left"/></button>
                         <button type="button" class="btn-page active">1</button>
                         <button type="button" class="btn-page" onclick="toast('Menuju halaman 2')">2</button>
                         <button type="button" class="btn-page" onclick="toast('Menuju halaman 3')">3</button>
                         <span class="page-dots">...</span>
                         <button type="button" class="btn-page" onclick="toast('Menuju halaman 350')">350</button>
-                        <button type="button" class="btn-page" onclick="toast('Menuju halaman berikutnya')">›</button>
+                        <button type="button" class="btn-page" onclick="toast('Menuju halaman berikutnya')"><x-icon name="chevron-right"/></button>
                     </div>
                 </div>
             </div>
