@@ -226,7 +226,9 @@
                         <span class="stat-mini-label">Masa Aktif Kartu</span>
                         <div class="stat-mini-value">285 Hari</div>
                         <div class="stat-mini-sub green-sub">
-                            <span class="stat-icon-sync">🔄</span> Auto-renewal
+                            <span class="stat-icon-sync" style="display:inline-flex;align-items:center;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            </span> Auto-renewal
                         </div>
                     </div>
 
@@ -234,7 +236,9 @@
                         <span class="stat-mini-label">Denda Berjalan</span>
                         <div class="stat-mini-value">Rp 0</div>
                         <div class="stat-mini-sub green-sub">
-                            <span class="stat-icon-shield">🛡️</span> Bebas Tanggungan
+                            <span class="stat-icon-shield" style="display:inline-flex;align-items:center;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </span> Bebas Tanggungan
                         </div>
                     </div>
                 </div>

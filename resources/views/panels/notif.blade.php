@@ -36,8 +36,8 @@
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #f3f4f6;font-size:12px;">
             <span style="color:var(--m);font-size:11px;">Batas: 19 Okt 2026</span>
-            <button type="button" class="btn" style="padding:6px 12px;font-size:11px;background:#153223;border-radius:6px;display:flex;align-items:center;gap:4px;font-weight:600;">
-                <span>(time)</span> Perpanjang (+7 Hari)
+            <button type="button" class="btn" style="padding:6px 12px;font-size:11px;background:#153223;border-radius:6px;display:flex;align-items:center;gap:6px;font-weight:600;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Perpanjang (+7 Hari)
             </button>
         </div>
     </div>
@@ -61,8 +61,8 @@
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #f3f4f6;font-size:12px;">
             <span style="font-size:11px;color:var(--m);">Atomic Habits</span>
-            <button type="button" class="btn ghost" style="padding:6px 12px;font-size:11px;background:#fff;border:1px solid var(--ln);border-radius:6px;display:flex;align-items:center;gap:4px;font-weight:600;color:var(--t);">
-                <span>(qr)</span> Lihat QR Loker
+            <button type="button" class="btn ghost" style="padding:6px 12px;font-size:11px;background:#fff;border:1px solid var(--ln);border-radius:6px;display:flex;align-items:center;gap:6px;font-weight:600;color:var(--t);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Lihat QR Loker
             </button>
         </div>
     </div>
@@ -108,8 +108,8 @@
             
             {{-- Item 1: Peringatan Jatuh Tempo --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
-                <div style="width:44px;height:44px;border-radius:10px;background:#fef3c7;border:1px solid #fde047;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    📅
+                <div style="width:44px;height:44px;border-radius:10px;background:#fef3c7;border:1px solid #fde047;display:grid;place-items:center;flex-shrink:0;color:#b45309;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -130,8 +130,8 @@
 
             {{-- Item 2: Smart Locker --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
-                <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    🔒
+                <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;flex-shrink:0;color:#15803d;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -156,8 +156,8 @@
                     </div>
 
                     <div>
-                        <button type="button" class="btn" style="padding:7px 16px;font-size:12px;background:#153223;border-radius:8px;display:flex;align-items:center;gap:6px;font-weight:600;">
-                            <span>📱</span> Tampilkan QR Barcode Loker
+                        <button type="button" class="btn" style="padding:7px 16px;font-size:12px;background:#153223;border-radius:8px;display:flex;align-items:center;gap:6px;font-weight:600;" onclick="toast('QR code loker siap dipindai')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Tampilkan QR Barcode Loker
                         </button>
                     </div>
                 </div>
@@ -165,8 +165,8 @@
 
             {{-- Item 3: Presensi Gerbang --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
-                <div style="width:44px;height:44px;border-radius:10px;background:#e0f2fe;border:1px solid #7dd3fc;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    👤
+                <div style="width:44px;height:44px;border-radius:10px;background:#e0f2fe;border:1px solid #7dd3fc;display:grid;place-items:center;flex-shrink:0;color:#0369a1;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -186,8 +186,8 @@
 
             {{-- Item 4: Pengembalian Selesai --}}
             <div class="card" style="background:#fff;padding:20px;border-radius:12px;border:1px solid var(--ln);box-shadow:0 1px 3px rgba(0,0,0,0.02);display:flex;gap:16px;align-items:flex-start;">
-                <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;font-size:18px;flex-shrink:0;">
-                    ✔
+                <div style="width:44px;height:44px;border-radius:10px;background:#dcfce7;border:1px solid #86efac;display:grid;place-items:center;flex-shrink:0;color:#15803d;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
                 <div style="flex:1;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
@@ -200,7 +200,9 @@
                     <p style="font-size:13px;color:var(--m);margin:0 0 12px;line-height:1.5;">Buku yang dikembalikan melalui Drop Box Gate II telah diperiksa oleh staf sirkulasi. Kondisi koleksi: <b style="color:var(--t)">Sangat Baik</b>. Tanggungan denda: <b style="color:var(--ok)">Rp 0</b>. Kuota pinjaman Anda kembali bertambah.</p>
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--m);flex-wrap:wrap;gap:10px;">
                         <span>Pemeriksa: Staf Ratna.</span>
-                        <a href="#" style="color:var(--g);font-weight:700;display:flex;align-items:center;gap:4px;">Unduh Bukti Pengembalian (PDF) 📥</a>
+                        <a href="#" onclick="toast('Mengunduh tanda terima pengembalian...');return false;" style="color:var(--g);font-weight:700;display:flex;align-items:center;gap:6px;text-decoration:none;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Unduh Bukti Pengembalian (PDF)
+                        </a>
                     </div>
                 </div>
             </div>

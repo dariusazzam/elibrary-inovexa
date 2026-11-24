@@ -20,8 +20,12 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat verifikasi pelunasan denda keterlambatan, ganti rugi buku hilang/rusak, cetak kuitansi resmi, dan integrasi QRIS Kas Daerah secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Rekap Kas Harian</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Export Laporan Finansial</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Cetak Rekap Kas Harian
+                </button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export Laporan Finansial
+                </button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Terima Pembayaran Kasir</button>
             </div>
         </div>
@@ -32,21 +36,21 @@
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL DENDA HARI INI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 1.450.000</div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">▲ +12% dibanding kemarin</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">💵</span>
+                <span style="position:absolute;right:14px;top:14px;color:#059669"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TAGIHAN TERTUNDA</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 365.000</div>
-                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ 14 anggota terblokir sirkulasinya</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">⏳</span>
+                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● 14 anggota terblokir sirkulasinya</span>
+                <span style="position:absolute;right:14px;top:14px;color:#f59e0b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PEMBAYARAN QRIS / NON-TUNAI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">82% <span style="font-size:11px;font-weight:normal;color:var(--m)">transaksi</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">Rp 1.189.000 masuk kas daerah otomatis</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📱</span>
+                <span style="position:absolute;right:14px;top:14px;color:#0284c7"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
@@ -70,7 +74,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Urutkan Paling Baru</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px;"><span style="color:#a855f7;font-size:14px;">⚙️</span> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
         </div>
 

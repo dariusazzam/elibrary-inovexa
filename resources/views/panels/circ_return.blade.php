@@ -7,8 +7,12 @@
             <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Layanan terpadu sirkulasi buku fisik: peminjaman kilat via RFID/Barcode, verifikasi kuota anggota, perpanjangan masa pinjam, pengembalian eksemplar, serta kalkulasi denda otomatis.</p>
         </div>
         <div style="display:flex;gap:8px">
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">⚙️ Mode Cepat (Kiosk Scan)</button>
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📦 Pengembalian Massal (Drop Box)</button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg> Mode Cepat (Kiosk Scan)
+            </button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Pengembalian Massal (Drop Box)
+            </button>
             <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Transaksi Peminjaman Baru</button>
         </div>
     </div>
@@ -19,28 +23,28 @@
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL TRANSAKSI HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">342 <span style="font-size:11px;font-weight:normal;color:var(--m)">Transaksi</span></div>
             <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">▲ +24 dibandingkan kemarin</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">🔄</span>
+            <span style="position:absolute;right:14px;top:14px;color:#059669"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">BUKU SEDANG DIPINJAM</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Jatuh tempo minggu ini: <b>820 buku</b></span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">📖</span>
+            <span style="position:absolute;right:14px;top:14px;color:#15803d"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PENGEMBALIAN HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">188 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● 182 tepat waktu, 6 terlambat</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">📦</span>
+            <span style="position:absolute;right:14px;top:14px;color:#059669"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">DENDA TERKUMPUL HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 45.000</div>
-            <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ Dari 6 transaksi keterlambatan</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px">💳</span>
+            <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Dari 6 transaksi keterlambatan</span>
+            <span style="position:absolute;right:14px;top:14px;color:#b45309"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
         </div>
     </div>
 
@@ -59,7 +63,7 @@
                 <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                     <option>Transaksi Terkini</option>
                 </select>
-                <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
+                <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px;"><span style="color:#a855f7;font-size:14px;">⚙️</span> Filter Lanjutan</button>
                 <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
             </div>
 

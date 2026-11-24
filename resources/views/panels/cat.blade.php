@@ -23,7 +23,10 @@
     </div>
 
     <form method="GET" action="{{ route('dashboard', 'cat') }}" class="catalog-filter-card">
-        <div class="catalog-search-field"><span>⌕</span><input name="q" value="{{ $catalogQuery }}" type="search" placeholder="Cari judul buku, pengarang, atau lokasi rak..." aria-label="Cari katalog"></div>
+        <div class="catalog-search-field">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input name="q" value="{{ $catalogQuery }}" type="search" placeholder="Cari judul buku, pengarang, atau lokasi rak..." aria-label="Cari katalog">
+        </div>
         <select name="category" aria-label="Filter kategori">
             <option value="">Semua Kategori</option>
             @foreach($catalogCategories as $category)
@@ -35,7 +38,9 @@
             <option value="newest" {{ $catalogSort === 'newest' ? 'selected' : '' }}>Terbaru</option>
             <option value="title" {{ $catalogSort === 'title' ? 'selected' : '' }}>Judul A-Z</option>
         </select>
-        <button type="submit" class="catalog-filter-button">☷ Terapkan</button>
+        <button type="submit" class="catalog-filter-button" style="display:inline-flex;align-items:center;gap:6px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg> Terapkan
+        </button>
         @if($catalogQuery !== '' || $catalogCategory !== '' || $catalogSort !== 'popular')
             <a href="{{ route('dashboard', 'cat') }}" class="catalog-reset-button">Reset</a>
         @endif
@@ -49,7 +54,13 @@
                 <h2>{{ $featured['t'] }}</h2>
                 <p class="catalog-author">{{ $featured['a'] }} <span>•</span> {{ $featured['c'] }}</p>
                 <p class="catalog-description">Koleksi pilihan perpustakaan yang paling banyak dibaca anggota. Tersedia di rak {{ $featured['s'] }} dan dapat dipesan melalui kartu digital Anda.</p>
-                <div class="catalog-featured-meta"><span>● Tersedia di rak</span><span>★★★★★ <b>4.8</b></span></div>
+                <div class="catalog-featured-meta">
+                    <span style="display:inline-flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#166534"></span> Tersedia di rak</span>
+                    <span style="display:inline-flex;align-items:center;gap:4px">
+                        <span style="color:#f59e0b;letter-spacing:1px">★★★★★</span>
+                        <b>4.8</b>
+                    </span>
+                </div>
                 <a href="{{ route('dashboard', 'resv') }}" class="catalog-primary-action">Reservasi Sekarang</a>
             </div>
             <div class="catalog-featured-stat"><b>92%</b><span>rating pembaca</span><hr><b>215</b><span>halaman</span></div>

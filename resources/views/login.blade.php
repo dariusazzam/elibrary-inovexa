@@ -2,6 +2,35 @@
 @section('title', 'Otorisasi Akun — Inovexa Technologies')
 
 @section('content')
+<style>
+    /* Hilangkan semua efek hover, zoom / pembesaran scale, border ungu, dan bayangan di halaman ini */
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+    *:hover, *:focus, *:active {
+        transform: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    .card, .band, article, section, aside, div, table, tr, td, button, .btn, input, select, a, span {
+        transition: none !important;
+    }
+    .card:hover, .band:hover, article:hover, section:hover, aside:hover, div:hover, table:hover, tr:hover, td:hover, button:hover, .btn:hover, input:hover, select:hover, a:hover,
+    .card:active, .band:active, article:active, section:active, aside:active, table:active, tr:active, td:active, button:active, .btn:active,
+    .card:focus, .band:focus, article:focus, section:focus, aside:focus, table:focus, tr:focus, td:focus, button:focus, .btn:focus {
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: inherit !important;
+    }
+    .in:focus, input:focus {
+        border-color: #153223 !important;
+        box-shadow: none !important;
+    }
+    .lp, .rp, .lg {
+        box-shadow: none !important;
+    }
+</style>
 @php 
     $L = \App\Support\Library::LOGIN[$role]; 
     $tabTitles = [
@@ -24,7 +53,7 @@
 
 <div class="lg {{ $role === 'admin' ? 'lg-admin' : '' }}" style="min-height:0;padding-top:16px;max-width:1120px">
     {{-- Panel Kiri Hijau Tua Khazanah Literasi Warga --}}
-    <div class="lp login-promo-panel" style="background:#153223;color:#fff;border-radius:16px 0 0 16px;padding:36px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 30px rgba(21,50,35,.15)">
+    <div class="lp login-promo-panel" style="background:#153223;color:#fff;border-radius:16px 0 0 16px;padding:36px;display:flex;flex-direction:column;gap:14px;box-shadow:none">
         <div class="logo" style="color:#fff">
             <img src="{{ asset('foto/logo.jpeg') }}" alt="Logo Inovexa Technologies" style="width:40px;height:40px;object-fit:contain;background:#fff;border-radius:9px;padding:3px">
             <div>Inovexa Public Library<small style="color:#a9c0b2;letter-spacing:.06em">PERPUSTAKAAN DAERAH &amp; ARSIP SIPIL</small></div>
@@ -110,7 +139,7 @@
 
                 <div class="err" id="err" style="color:#dc2626;font-size:12px;margin-top:6px;min-height:16px">{{ session('err') ?? $errors->first() }}</div>
                 
-                <button class="btn" style="width:100%;padding:12px;background:#153223;color:#fff;border-radius:8px;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px">
+                <button style="width:100%;padding:12px;background:#153223;color:#fff;border-radius:8px;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer">
                     <span aria-hidden="true">↪</span> {{ $currentTab[4] }}
                 </button>
             </form>
@@ -121,7 +150,7 @@
                     <b style="font-size:12px;display:block">Belum terdaftar sebagai anggota?</b>
                     <small style="color:var(--m)">Pendaftaran terbuka untuk seluruh warga ber-KTP / Pelajar.</small>
                 </div>
-                <a class="btn" style="background:#fff;border:1px solid #b45309;color:#b45309;font-size:11px;padding:6px 12px;white-space:nowrap" href="{{ route('register') }}">Daftar Mandiri Gratis</a>
+                <a style="background:#fff;border:1px solid #b45309;color:#b45309;font-size:11px;padding:6px 12px;white-space:nowrap;text-decoration:none;border-radius:6px;display:inline-block" href="{{ route('register') }}">Daftar Mandiri Gratis</a>
             </div>
             @endif
         </div>

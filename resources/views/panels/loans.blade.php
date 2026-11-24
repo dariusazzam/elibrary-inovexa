@@ -86,8 +86,12 @@
                     </div>
 
                     <div style="display:flex;gap:8px;margin-top:12px">
-                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px">🔄 Perpanjang (+7 Hari)</button>
-                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('QR Balik Drop-Box siap dipindai')">🔲 QR Balik Drop-Box</button>
+                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:6px">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg> Perpanjang (+7 Hari)
+                        </button>
+                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:6px" onclick="toast('QR Balik Drop-Box siap dipindai')">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> QR Balik Drop-Box
+                        </button>
                     </div>
                 </div>
             </div>
@@ -113,8 +117,12 @@
                     </div>
 
                     <div style="display:flex;gap:8px;margin-top:12px">
-                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:4px">🔄 Perpanjang (+7 Hari)</button>
-                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:4px" onclick="toast('Menampilkan detail koleksi')">📖 Detail Koleksi</button>
+                        <button class="btn" style="font-size:11px;padding:6px 14px;background:#153223;display:flex;align-items:center;gap:6px">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg> Perpanjang (+7 Hari)
+                        </button>
+                        <button class="btn ghost" style="font-size:11px;padding:6px 14px;display:flex;align-items:center;gap:6px" onclick="toast('Menampilkan detail koleksi')">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Detail Koleksi
+                        </button>
                     </div>
                 </div>
             </div>
@@ -122,7 +130,9 @@
 
         {{-- Panduan Sirkulasi Mandiri --}}
         <div class="card" style="margin-top:20px;background:#fdfcf9;border:1px solid var(--ln);padding:20px">
-            <h4 style="margin:0 0 10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px"><span>📖</span> PANDUAN SIRKULASI MANDIRI</h4>
+            <h4 style="margin:0 0 10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> PANDUAN SIRKULASI MANDIRI
+            </h4>
             <ul style="margin:0;padding-left:16px;font-size:12px;color:var(--m);display:flex;flex-direction:column;gap:6px">
                 <li><b>Durasi Peminjaman:</b> Batas pinjam standar adalah 7 hari kalender sejak pemindaian barcode loket.</li>
                 <li><b>Perpanjangan Mandiri:</b> Maksimal 1x perpanjangan daring (+7 hari) jika buku tidak dalam antrean reservasi.</li>

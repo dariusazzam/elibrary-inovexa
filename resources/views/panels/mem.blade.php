@@ -908,9 +908,9 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat kendali basis data anggota terpadu. Verifikasi berkas KTM/KTP, pantau batas kuota peminjaman, perpanjangan smart card, serta audit kepatuhan sirkulasi pemustaka secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Kartu Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import CSV/Excel</button>
-                <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Tambah Anggota Baru</button>
+                <button class="btn-interactive" style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Kartu Massal</button>
+                <button class="btn-interactive" style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import CSV/Excel</button>
+                <button class="btn-interactive" style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Tambah Anggota Baru</button>
             </div>
         </div>
 
@@ -958,7 +958,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Terdaftar</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px;"><span style="color:#a855f7;font-size:14px;">⚙️</span> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
         </div>
 

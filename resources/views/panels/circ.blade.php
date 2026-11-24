@@ -11,8 +11,12 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat kendali basis data anggota terpadu. Verifikasi berkas KTM/KTP, pantau batas kuota peminjaman, perpanjangan smart card, serta audit kepatuhan sirkulasi pemustaka secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Kartu Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import CSV/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Cetak Kartu Massal
+                </button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Import CSV/Excel
+                </button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Tambah Anggota Baru</button>
             </div>
         </div>
@@ -23,35 +27,35 @@
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL ANGGOTA TERDAFTAR</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.890 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+28 registrasi bulan ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">👥</span>
+                <span style="position:absolute;right:14px;top:14px;color:#10b981"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">ANGGOTA AKTIF SIRKULASI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.642 <span style="font-size:11px;font-weight:normal;color:var(--m)">Anggota</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Status valid bebas sanksi (86.8%)</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📜</span>
+                <span style="position:absolute;right:14px;top:14px;color:#059669"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">VERIFIKASI KTM / BERKAS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">14 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
-                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ Butuh validasi loket hari ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📋</span>
+                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Butuh validasi loket hari ini</span>
+                <span style="position:absolute;right:14px;top:14px;color:#f59e0b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">MASA BERLAKU HABIS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">24 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
-                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚡ Perlu perpanjangan masa aktif</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px">📅</span>
+                <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Perlu perpanjangan masa aktif</span>
+                <span style="position:absolute;right:14px;top:14px;color:#ef4444"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
             </div>
         </div>
 
         <!-- Search & Filters -->
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:12px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
             <div style="flex:1;position:relative">
-                <span style="position:absolute;left:12px;top:9px;color:var(--m);font-size:12px">🔍</span>
+                <span style="position:absolute;left:12px;top:9px;color:var(--m);display:inline-flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
                 <input type="text" placeholder="Cari NIA (INX-...), nama lengkap, NIK..." style="width:100%;padding:8px 30px 8px 34px;border:1px solid var(--ln);border-radius:6px;font-size:12px">
                 <span style="position:absolute;right:10px;top:8px;background:#f3f4f6;color:var(--m);font-size:10px;padding:2px 5px;border-radius:4px">ESC</span>
             </div>
@@ -61,8 +65,8 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Terdaftar</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px;"><span style="color:#a855f7;display:inline-flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg></span> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
         </div>
 
         <!-- Sub Tabs & Info -->
@@ -399,10 +403,16 @@
             </div>
         </div>
 
-        <button style="width:100%;background:#e5e7eb;color:var(--t);border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer">💬 Kirim Pengingat WhatsApp</button>
+        <button style="width:100%;background:#e5e7eb;color:var(--t);border:none;padding:10px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Kirim Pengingat WhatsApp
+        </button>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer">⏱️ Perpanjang 1 Thn</button>
-            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer">🖨️ Cetak Smartcard</button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Perpanjang 1 Thn
+            </button>
+            <button style="background:#f3f4f6;border:1px solid var(--ln);color:var(--t);padding:8px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Cetak Smartcard
+            </button>
         </div>
     </div>
 </div>

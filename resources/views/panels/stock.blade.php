@@ -10,8 +10,12 @@
                 <p style="font-size:11.5px;color:var(--m);margin:3px 0 0">Pusat kendali data bibliografi, eksemplar fisik &amp; digital. Registrasi barcode RFID, klasifikasi DDC, kontrol ketersediaan rak, serta opname stok eksemplar secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">🖨️ Cetak Barcode &amp; Label QR Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer">📥 Import Katalog MARC/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Cetak Barcode &amp; Label QR Massal
+                </button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Import Katalog MARC/Excel
+                </button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer" onclick="openModal('add-book-modal')">+ Tambah Judul / Eksemplar Baru</button>
             </div>
         </div>
@@ -21,7 +25,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">TOTAL KOLEKSI / JUDUL TERDAFTAR</span>
-                    <span style="font-size:14px">📦</span>
+                    <span style="color:#059669"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">12.450 <span style="font-size:11px;font-weight:normal;color:var(--m)">Judul</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+142 judul baru bulan ini</span>
@@ -30,7 +34,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR FISIK TERSEDIA</span>
-                    <span style="font-size:14px">🏛️</span>
+                    <span style="color:#2563eb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">38.820 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
                 <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Tersedia di rak: 32.180 (82.9%)</span>
@@ -39,10 +43,10 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR SEDANG DIPINJAM</span>
-                    <span style="font-size:14px">📖</span>
+                    <span style="color:#d97706"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
-                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">⚠️ 420 mendekati jatuh tempo</span>
+                <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● 420 mendekati jatuh tempo</span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
@@ -67,7 +71,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Ditambahkan</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">⚙️ Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px;"><span style="color:#a855f7;font-size:14px;">⚙️</span> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer">📥</button>
         </div>
 
