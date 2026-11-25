@@ -11,8 +11,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat kendali basis data anggota terpadu. Verifikasi berkas KTM/KTP, pantau batas kuota peminjaman, perpanjangan smart card, serta audit kepatuhan sirkulasi pemustaka secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Kartu Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Import CSV/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="printer"/> Cetak Kartu Massal</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="download"/> Import CSV/Excel</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Tambah Anggota Baru</button>
             </div>
         </div>
@@ -23,28 +23,28 @@
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL ANGGOTA TERDAFTAR</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.890 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+28 registrasi bulan ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="users"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#10b981"><x-icon name="users"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">ANGGOTA AKTIF SIRKULASI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">1.642 <span style="font-size:11px;font-weight:normal;color:var(--m)">Anggota</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● Status valid bebas sanksi (86.8%)</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="scroll-text"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#059669"><x-icon name="scroll-text"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">VERIFIKASI KTM / BERKAS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">14 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> Butuh validasi loket hari ini</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="clipboard-list"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#f59e0b"><x-icon name="clipboard-list"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">MASA BERLAKU HABIS</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">24 <span style="font-size:11px;font-weight:normal;color:var(--m)">Orang</span></div>
                 <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="zap"/> Perlu perpanjangan masa aktif</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="calendar"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#ef4444"><x-icon name="calendar"/></span>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Terdaftar</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px"><x-icon name="settings"/> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
         </div>
 
@@ -82,8 +82,8 @@
                 <span><b>2 Anggota Dipilih</b></span>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Kirim Notifikasi WhatsApp</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Cetak Kartu Terpilih</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">Kirim Notifikasi WhatsApp</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">Cetak Kartu Terpilih</button>
                 <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
             </div>
         </div>

@@ -148,7 +148,7 @@
         @if($r === 'super')
         <header class="figma-topbar figma-topbar-light figma-topbar-super">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="max-width:540px;flex:1;margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
+                <span class="figma-search-icon" style="color:#94a3b8;display:inline-flex;align-items:center"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari akun pengguna, role, log audit, atau ISBN...">
             </form>
 
@@ -173,7 +173,7 @@
         @elseif($r === 'admin')
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
+                <span class="figma-search-icon" style="color:#94a3b8;display:inline-flex;align-items:center"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari data anggota, ISBN buku, barcode transaksi...">
             </form>
 
@@ -201,7 +201,7 @@
         @elseif(($menu ?? '') === 'card' || ($menu ?? '') === 'resv')
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
+                <span class="figma-search-icon" style="color:#94a3b8;display:inline-flex;align-items:center"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari koleksi katalog, judul buku, atau ISBN...">
             </form>
 
@@ -226,14 +226,14 @@
         @else
         <header class="figma-topbar figma-topbar-light">
             <form action="{{ route('dashboard', 'cat') }}" method="GET" class="figma-search-pill figma-search-pill-light" style="max-width:380px;margin:0;border:0;padding:0;background:none">
-                <span class="figma-search-icon" style="color:#94a3b8"><x-icon name="search"/></span>
+                <span class="figma-search-icon" style="color:#94a3b8;display:inline-flex;align-items:center"><x-icon name="search"/></span>
                 <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari judul buku, pengarang, ISBN katalog...">
             </form>
 
             <div class="figma-topbar-actions">
                 <div class="figma-time-badge figma-time-badge-light">
                     <span class="figma-dot-green"></span>
-                    <small>Layanan Aktif: 08:00 - 20:00 WIB</small>
+                    <small>Layanan Perpustakaan Aktif</small>
                 </div>
                 <button type="button" class="figma-bell-btn figma-bell-btn-light" title="Notifikasi" onclick="window.location='{{ route('dashboard', 'notif') }}'">
                     <span><x-icon name="bell"/></span>

@@ -7,8 +7,8 @@
             <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Layanan terpadu sirkulasi buku fisik: peminjaman kilat via RFID/Barcode, verifikasi kuota anggota, perpanjangan masa pinjam, pengembalian eksemplar, serta kalkulasi denda otomatis.</p>
         </div>
         <div style="display:flex;gap:8px">
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Mode Cepat (Kiosk Scan)</button>
-            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="package"/> Pengembalian Massal (Drop Box)</button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="settings"/> Mode Cepat (Kiosk Scan)</button>
+            <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="package"/> Pengembalian Massal (Drop Box)</button>
             <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Transaksi Peminjaman Baru</button>
         </div>
     </div>
@@ -19,28 +19,28 @@
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL TRANSAKSI HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">342 <span style="font-size:11px;font-weight:normal;color:var(--m)">Transaksi</span></div>
             <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="trending-up"/> +24 dibandingkan kemarin</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="refresh"/></span>
+            <span style="position:absolute;right:14px;top:14px;color:#059669"><x-icon name="refresh"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">BUKU SEDANG DIPINJAM</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Jatuh tempo minggu ini: <b>820 buku</b></span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="book-open"/></span>
+            <span style="position:absolute;right:14px;top:14px;color:#15803d"><x-icon name="book-open"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PENGEMBALIAN HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">188 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
             <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">● 182 tepat waktu, 6 terlambat</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="package"/></span>
+            <span style="position:absolute;right:14px;top:14px;color:#059669"><x-icon name="package"/></span>
         </div>
 
         <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
             <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">DENDA TERKUMPUL HARI INI</span>
             <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 45.000</div>
             <span style="font-size:10px;color:#dc2626;font-weight:600;background:#fee2e2;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> Dari 6 transaksi keterlambatan</span>
-            <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="credit-card"/></span>
+            <span style="position:absolute;right:14px;top:14px;color:#b45309"><x-icon name="credit-card"/></span>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
                 <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                     <option>Transaksi Terkini</option>
                 </select>
-                <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+                <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px"><x-icon name="settings"/> Filter Lanjutan</button>
                 <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
             </div>
 
@@ -79,8 +79,8 @@
                     <span><b>2 Transaksi Dipilih</b></span>
                 </div>
                 <div style="display:flex;gap:8px">
-                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Bukti Transaksi</button>
-                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="check"/> Selesaikan Transaksi</button>
+                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="printer"/> Cetak Bukti Transaksi</button>
+                    <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="check"/> Selesaikan Transaksi</button>
                     <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
                 </div>
             </div>

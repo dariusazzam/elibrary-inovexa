@@ -20,8 +20,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat verifikasi pelunasan denda keterlambatan, ganti rugi buku hilang/rusak, cetak kuitansi resmi, dan integrasi QRIS Kas Daerah secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Rekap Kas Harian</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Export Laporan Finansial</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="printer"/> Cetak Rekap Kas Harian</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="download"/> Export Laporan Finansial</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer">+ Terima Pembayaran Kasir</button>
             </div>
         </div>
@@ -32,21 +32,21 @@
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TOTAL DENDA HARI INI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 1.450.000</div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="trending-up"/> +12% dibanding kemarin</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="banknote"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#059669"><x-icon name="banknote"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">TAGIHAN TERTUNDA</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">Rp 365.000</div>
                 <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> 14 anggota terblokir sirkulasinya</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="hourglass"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#f59e0b"><x-icon name="hourglass"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
                 <span style="font-size:10px;color:var(--m);font-weight:700;display:block;margin-bottom:6px">PEMBAYARAN QRIS / NON-TUNAI</span>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">82% <span style="font-size:11px;font-weight:normal;color:var(--m)">transaksi</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">Rp 1.189.000 masuk kas daerah otomatis</span>
-                <span style="position:absolute;right:14px;top:14px;font-size:16px"><x-icon name="smartphone"/></span>
+                <span style="position:absolute;right:14px;top:14px;color:#0284c7"><x-icon name="smartphone"/></span>
             </div>
 
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px;position:relative">
@@ -70,7 +70,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Urutkan Paling Baru</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px"><x-icon name="settings"/> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
         </div>
 
@@ -90,8 +90,8 @@
                 <span><b>2 Tagihan Dipilih</b></span>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Kirim Tagihan WhatsApp</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer">Cetak Kuitansi Terpilih</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">Kirim Tagihan WhatsApp</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px">Cetak Kuitansi Terpilih</button>
                 <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
             </div>
         </div>

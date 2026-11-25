@@ -10,8 +10,8 @@
                 <p style="font-size:11.5px;color:var(--m);margin:3px 0 0">Pusat kendali data bibliografi, eksemplar fisik &amp; digital. Registrasi barcode RFID, klasifikasi DDC, kontrol ketersediaan rak, serta opname stok eksemplar secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Barcode &amp; Label QR Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Import Katalog MARC/Excel</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="printer"/> Cetak Barcode &amp; Label QR Massal</button>
+                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="download"/> Import Katalog MARC/Excel</button>
                 <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer" onclick="openModal('add-book-modal')">+ Tambah Judul / Eksemplar Baru</button>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">TOTAL KOLEKSI / JUDUL TERDAFTAR</span>
-                    <span style="font-size:14px"><x-icon name="package"/></span>
+                    <span style="color:#059669"><x-icon name="package"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">12.450 <span style="font-size:11px;font-weight:normal;color:var(--m)">Judul</span></div>
                 <span style="font-size:10px;color:#059669;font-weight:600;background:#ecfdf5;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px">+142 judul baru bulan ini</span>
@@ -30,7 +30,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR FISIK TERSEDIA</span>
-                    <span style="font-size:14px"><x-icon name="landmark"/></span>
+                    <span style="color:#2563eb"><x-icon name="landmark"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">38.820 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
                 <span style="font-size:10px;color:var(--m);display:block;margin-top:6px">● Tersedia di rak: 32.180 (82.9%)</span>
@@ -39,7 +39,7 @@
             <div style="background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                     <span style="font-size:10px;color:var(--m);font-weight:700">EKSEMPLAR SEDANG DIPINJAM</span>
-                    <span style="font-size:14px"><x-icon name="book-open"/></span>
+                    <span style="color:#d97706"><x-icon name="book-open"/></span>
                 </div>
                 <div style="font-size:22px;font-weight:800;color:var(--t)">5.490 <span style="font-size:11px;font-weight:normal;color:var(--m)">Buku</span></div>
                 <span style="font-size:10px;color:#d97706;font-weight:600;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:6px"><x-icon name="triangle-alert"/> 420 mendekati jatuh tempo</span>
@@ -67,7 +67,7 @@
             <select style="padding:8px 12px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:#fff">
                 <option>Paling Baru Ditambahkan</option>
             </select>
-            <button style="background:#fff;border:1px solid var(--ln);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer"><x-icon name="settings"/> Filter Lanjutan</button>
+            <button style="background:#fff;border:1px solid #a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.15);padding:8px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#1e293b;display:inline-flex;align-items:center;gap:6px"><x-icon name="settings"/> Filter Lanjutan</button>
             <button style="background:#fff;border:1px solid var(--ln);padding:8px 10px;border-radius:6px;font-size:12px;cursor:pointer"><x-icon name="download"/></button>
         </div>
 
@@ -89,8 +89,8 @@
                 <span><b>2 Koleksi Dipilih</b></span>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Label Barcode</button>
-                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer"><x-icon name="package"/> Mutasi Rak Terpilih</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="printer"/> Cetak Label Barcode</button>
+                <button style="background:#1f4e2d;color:#fff;border:none;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="package"/> Mutasi Rak Terpilih</button>
                 <button style="background:none;border:none;color:#cbd5e1;font-size:11px;cursor:pointer">Batal</button>
             </div>
         </div>
