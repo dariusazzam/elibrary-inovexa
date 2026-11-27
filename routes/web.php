@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MembersImportController;
 use App\Http\Middleware\EnsureRole;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,12 @@ Route::middleware(EnsureRole::class.':member')->group(function () {
 
 // Petugas & Super Admin
 Route::middleware(EnsureRole::class.':admin,super')->group(function () {
+    Route::get('/anggota/impor/template', [MembersImportController::class, 'downloadTemplate'])->name('members.import.template');
+    Route::post('/anggota/impor/pratinjau', [MembersImportController::class, 'preview'])->name('members.import.preview');
+    Route::post('/anggota/impor/simpan', [MembersImportController::class, 'store'])->name('members.import.store');
+    Route::post('/anggota/impor/batal', [MembersImportController::class, 'cancel'])->name('members.import.cancel');
+    Route::get('/anggota/impor/laporan-galat', [MembersImportController::class, 'downloadErrorReport'])->name('members.import.errors');
+
     Route::post('/sirkulasi', [DashboardController::class, 'lend'])->name('lend');
     Route::post('/sirkulasi/{id}/kembali', [DashboardController::class, 'giveBack'])->whereNumber('id')->name('return');
     Route::post('/stok', [DashboardController::class, 'addBook'])->name('stock.add');

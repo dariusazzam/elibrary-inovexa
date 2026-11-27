@@ -74,6 +74,9 @@ class Library
 
     public array $users = [];
 
+    /** Detail tambahan anggota hasil impor, diindeks dengan nomor kartu anggota. */
+    public array $memberProfiles = [];
+
     public array $cfg = ['dur' => 7, 'fine' => 1000];
 
     public int $lastId = 20;
@@ -97,8 +100,9 @@ class Library
                 $lib->$k = $v;
             }
 
-            // Selalu perbarui accounts & users agar ID mahasiswa/dosen yang diminta selalu aktif
-            $lib->accounts = [
+            // Lengkapi hanya akun/anggota bawaan yang belum ada; jangan menimpa
+            // data dinamis dari pendaftaran atau impor pada request berikutnya.
+            $seedAccounts = [
                 'INX-2026-8820' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
                 '3271040801990002' => ['pw' => '123456', 'name' => 'Herdman', 'role' => 'member'],
                 '24670095' => ['pw' => '123456', 'name' => 'Adinda Zahwa Aprilia', 'role' => 'member'],
@@ -116,7 +120,7 @@ class Library
                 'admin' => ['pw' => 'admin123', 'name' => 'Budi Santoso', 'role' => 'admin'],
                 'super' => ['pw' => 'super123', 'name' => 'Ari', 'role' => 'super'],
             ];
-            $lib->users = [
+            $seedUsers = [
                 ['n' => 'Herdman',                 'i' => 'INX-2026-8820', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Adinda Zahwa Aprilia',    'i' => '24670095', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Muhammad Dzaky Zidane',   'i' => '24670090', 'r' => 'Anggota',       'on' => true],
@@ -131,8 +135,20 @@ class Library
                 ['n' => 'nopal',                   'i' => '24670081', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Muhammad Okta Ramadhani', 'i' => '24670016', 'r' => 'Anggota',       'on' => true],
                 ['n' => 'Budi Santoso',            'i' => 'admin',         'r' => 'Admin Pegawai', 'on' => true],
-                ['n' => 'Ari',                     'i' => 'SA-ADM-2024-01','r' => 'Super Admin',   'on' => true],
+                ['n' => 'Ari',                     'i' => 'SA-ADM-2024-01', 'r' => 'Super Admin',   'on' => true],
             ];
+
+            foreach ($seedAccounts as $id => $account) {
+                $lib->accounts[$id] ??= $account;
+            }
+
+            $knownUserIds = array_column($lib->users, 'i');
+            foreach ($seedUsers as $user) {
+                if (! in_array($user['i'], $knownUserIds, true)) {
+                    $lib->users[] = $user;
+                }
+            }
+
             $lib->save();
         }
 
@@ -364,6 +380,76 @@ class Library
         $this->save();
 
         return ['id' => $id, 'name' => $name];
+    }
+
+    /**
+     * Mendaftarkan banyak anggota sekaligus (hasil impor CSV/XLSX).
+     *
+     * Nama & NIK yang sudah ada dilewati, bukan ditimpa, agar impor ulang tidak
+     * menghapus data. Setiap anggota yang tersimpan diberi baris `users` dan
+     * `accounts` untuk ID kartu maupun NIK-nya sehingga bisa langsung dipakai login.
+     *
+     * @param  array<int, array<string, string>>  $members  Tiap entri: name, nik, email, phone, category, address, password
+     * @return array{imported:int, skipped:int, members:array<int, array<string, string>>}
+     */
+    public function registerImportedMembers(array $members, string $source = ''): array
+    {
+        $imported = [];
+        $skipped = 0;
+        $knownNames = array_map(fn (array $u): string => mb_strtolower((string) $u['n']), $this->users);
+
+        foreach ($members as $member) {
+            $name = trim((string) ($member['name'] ?? ''));
+            $nik = preg_replace('/\D/', '', (string) ($member['nik'] ?? '')) ?? '';
+
+            if ($name === '' || $nik === '' || isset($this->accounts[$nik])) {
+                $skipped++;
+
+                continue;
+            }
+
+            // Nama yang sudah terpakai dibedakan agar tidak menimpa akun yang ada.
+            $displayName = $name;
+            if (in_array(mb_strtolower($displayName), $knownNames, true)) {
+                $displayName .= ' ('.substr($nik, -4).')';
+            }
+
+            $id = $this->nextMemberId();
+            $password = (string) ($member['password'] ?? '');
+
+            if ($password === '') {
+                $password = MemberImport::DEFAULT_PASSWORD;
+            }
+
+            $this->users[] = ['n' => $displayName, 'i' => $id, 'r' => 'Anggota', 'on' => true];
+            $this->accounts[$id] = ['pw' => $password, 'name' => $displayName, 'role' => 'member'];
+            $this->accounts[$nik] = ['pw' => $password, 'name' => $displayName, 'role' => 'member'];
+
+            $knownNames[] = mb_strtolower($displayName);
+            $this->memberProfiles[$id] = [
+                'name' => $displayName,
+                'nia' => $id,
+                'nik' => $nik,
+                'email' => (string) ($member['email'] ?? ''),
+                'phone' => (string) ($member['phone'] ?? ''),
+                'category' => (string) ($member['category'] ?? 'Umum'),
+                'address' => (string) ($member['address'] ?? ''),
+                'reg_date' => Carbon::today()->translatedFormat('d F Y'),
+                'source' => $source !== '' ? 'Impor '.$source : 'Impor berkas',
+            ];
+
+            $imported[] = ['name' => $displayName, 'id' => $id, 'nik' => $nik];
+        }
+
+        $this->save();
+
+        return ['imported' => count($imported), 'skipped' => $skipped, 'members' => $imported];
+    }
+
+    /** Profil anggota hasil impor, diindeks per ID kartu. @return array<string, string> */
+    public function importedProfile(string $id): array
+    {
+        return $this->memberProfiles[$id] ?? [];
     }
 
     public function memberTaken(string $nik): bool

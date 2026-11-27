@@ -895,6 +895,11 @@
     ADMIN SIRKULASI: KELOLA DATA ANGGOTA PERPUSTAKAAN (EXISTING PANEL)
     ========================================================================
 --}}
+@php
+    $pendingImport = session('members_import');
+    $importResult = session('members_import_result');
+@endphp
+
 <div class="member-management-page" style="display:grid;grid-template-columns:1fr 340px;gap:20px;max-width:1450px;margin:0 auto">
     <div class="member-management-main" style="min-width:0">
         <!-- Top Title & Buttons -->
@@ -908,9 +913,9 @@
                 <p style="font-size:11.5px;color:var(--m);margin:4px 0 0">Pusat kendali basis data anggota terpadu. Verifikasi berkas KTM/KTP, pantau batas kuota peminjaman, perpanjangan smart card, serta audit kepatuhan sirkulasi pemustaka secara real-time.</p>
             </div>
             <div style="display:flex;gap:8px">
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Kartu Massal</button>
-                <button style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="download"/> Import CSV/Excel</button>
-                <button style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .2s ease;cursor:pointer">+ Tambah Anggota Baru</button>
+                <button type="button" style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer"><x-icon name="printer"/> Cetak Kartu Massal</button>
+                <button type="button" onclick="openModal('member-import-modal')" style="background:#fff;border:1px solid var(--ln);color:var(--t);padding:7px 12px;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px"><x-icon name="download"/> Import CSV/Excel</button>
+                <button type="button" style="background:#153223;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .2s ease;cursor:pointer">+ Tambah Anggota Baru</button>
             </div>
         </div>
 
@@ -1062,4 +1067,174 @@
         </div>
     </div>
 </div>
+
+{{-- Modal impor anggota: unggah → validasi pratinjau → simpan baris valid. --}}
+<div class="super-modal-overlay member-import-modal" id="member-import-modal" role="dialog" aria-modal="true" aria-labelledby="member-import-title" onclick="if(event.target === this) closeModal('member-import-modal')">
+    <div class="super-modal-content super-modal-lg">
+        <div class="super-modal-header">
+            <div>
+                <h3 class="super-modal-title" id="member-import-title"><x-icon name="upload"/> Import Data Anggota</h3>
+                <p class="super-modal-sub">Unggah CSV atau Excel (.xlsx), periksa hasil validasi, lalu simpan anggota yang valid.</p>
+            </div>
+            <button type="button" class="super-modal-close" aria-label="Tutup" onclick="closeModal('member-import-modal')">&times;</button>
+        </div>
+
+        @if(session('import_error'))
+            <div class="member-import-alert member-import-alert-error" role="alert"><x-icon name="triangle-alert"/> {{ session('import_error') }}</div>
+        @endif
+
+        @if(! $pendingImport)
+            <form method="POST" action="{{ route('members.import.preview') }}" enctype="multipart/form-data" id="member-import-upload-form">
+                @csrf
+                <label for="member-import-file" class="member-import-dropzone" id="member-import-dropzone">
+                    <x-icon name="upload" size="28"/>
+                    <strong>Pilih atau tarik berkas ke sini</strong>
+                    <span>Format didukung: CSV dan Excel (.xlsx) · Maksimal 5 MB · Maksimal 500 baris data</span>
+                    <span class="member-import-file-name" id="member-import-file-name">Belum ada berkas dipilih</span>
+                    <input id="member-import-file" name="file" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                </label>
+                @error('file')
+                    <p class="member-import-field-error">{{ $message }}</p>
+                @enderror
+
+                <div class="member-import-template-note">
+                    <x-icon name="file-text"/>
+                    <span>Kolom wajib: <b>nama</b> dan <b>nik</b>. Kolom opsional: email, telepon, kategori, alamat.</span>
+                    <a href="{{ route('members.import.template') }}">Unduh templat CSV</a>
+                </div>
+
+                <div class="super-modal-footer">
+                    <button type="button" class="btn-member-outline" onclick="closeModal('member-import-modal')">Batal</button>
+                    <button type="submit" class="btn-member-primary"><x-icon name="search"/> Validasi &amp; Pratinjau</button>
+                </div>
+            </form>
+        @else
+            @php($summary = $pendingImport['summary'])
+            <div class="member-import-file-header">
+                <div><x-icon name="file-text"/><span><b>{{ $pendingImport['filename'] }}</b><small>{{ $summary['total'] }} baris data dibaca</small></span></div>
+                <form method="POST" action="{{ route('members.import.cancel') }}">@csrf<button class="member-import-link-button" type="submit">Ganti berkas</button></form>
+            </div>
+
+            @if(! empty($pendingImport['truncated']))
+                <div class="member-import-alert member-import-alert-warning"><x-icon name="triangle-alert"/> Berkas berisi lebih dari 500 baris. Hanya 500 baris pertama yang ditampilkan dan dapat diimpor.</div>
+            @endif
+
+            <div class="member-import-summary" aria-label="Ringkasan validasi impor">
+                <div><strong>{{ $summary['total'] }}</strong><span>Total Dibaca</span></div>
+                <div class="is-valid"><strong>{{ $summary['valid'] }}</strong><span>Siap Diimpor</span></div>
+                <div class="is-duplicate"><strong>{{ $summary['duplicate'] }}</strong><span>Duplikat</span></div>
+                <div class="is-invalid"><strong>{{ $summary['invalid'] }}</strong><span>Perlu Diperbaiki</span></div>
+            </div>
+
+            <form method="POST" action="{{ route('members.import.store') }}" id="member-import-confirm-form">
+                @csrf
+                <div class="member-import-preview-header">
+                    <span>Centang anggota yang ingin disimpan</span>
+                    <label><input type="checkbox" id="member-import-select-all" checked> Pilih semua yang valid</label>
+                </div>
+                <div class="member-import-preview-table-wrap">
+                    <table class="member-import-preview-table">
+                        <thead><tr><th>Pilih</th><th>Baris</th><th>Nama</th><th>NIK</th><th>Kontak &amp; Kategori</th><th>Status Validasi</th></tr></thead>
+                        <tbody>
+                            @foreach($pendingImport['rows'] as $index => $row)
+                                @php($isValid = $row['status'] === 'valid')
+                                <tr class="member-import-row-{{ $row['status'] }}">
+                                    <td>
+                                        @if($isValid)
+                                            <input class="member-import-row-check" type="checkbox" name="rows[]" value="{{ $index }}" checked aria-label="Pilih baris {{ $row['line'] }}">
+                                        @else
+                                            <span class="member-import-unavailable">—</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $row['line'] }}</td>
+                                    <td><b>{{ $row['data']['name'] ?: '—' }}</b></td>
+                                    <td>{{ $row['data']['nik'] ?: '—' }}</td>
+                                    <td><span>{{ $row['data']['email'] ?: 'Tanpa email' }}</span><small>{{ $row['data']['phone'] ?: 'Tanpa telepon' }} · {{ $row['data']['category'] }}</small></td>
+                                    <td>
+                                        <span class="member-import-status member-import-status-{{ $row['status'] }}">
+                                            @if($row['status'] === 'valid') <x-icon name="circle-check"/> Siap diimpor
+                                            @elseif($row['status'] === 'duplicate') <x-icon name="refresh"/> Duplikat
+                                            @else <x-icon name="triangle-alert"/> Tidak valid
+                                            @endif
+                                        </span>
+                                        <small>{{ implode(' · ', $row['notes']) }}</small>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @error('rows')
+                    <p class="member-import-field-error">{{ $message }}</p>
+                @enderror
+
+                <div class="super-modal-footer member-import-confirm-footer">
+                    <a href="{{ route('members.import.errors') }}" class="btn-member-outline"><x-icon name="download"/> Unduh Laporan Galat</a>
+                    <div>
+                        <button type="button" class="btn-member-outline" onclick="closeModal('member-import-modal')">Simpan Nanti</button>
+                        <button type="submit" class="btn-member-primary" {{ $summary['valid'] === 0 ? 'disabled' : '' }}><x-icon name="check"/> Simpan <span id="member-import-selected-count">{{ $summary['valid'] }}</span> Anggota</button>
+                    </div>
+                </div>
+            </form>
+        @endif
+    </div>
+</div>
+
+@if($importResult)
+<div class="super-modal-overlay member-import-modal" id="member-import-result-modal" role="dialog" aria-modal="true" aria-labelledby="member-import-result-title" onclick="if(event.target === this) closeModal('member-import-result-modal')">
+    <div class="super-modal-content">
+        <div class="member-import-result-icon"><x-icon name="circle-check" size="34"/></div>
+        <h3 class="super-modal-title" id="member-import-result-title">Impor Berhasil Diselesaikan</h3>
+        <p class="super-modal-sub">{{ $importResult['imported'] }} anggota dari <b>{{ $importResult['filename'] }}</b> telah ditambahkan ke direktori dan bisa langsung digunakan untuk login.</p>
+        @if($importResult['skipped'] > 0)
+            <div class="member-import-alert member-import-alert-warning"><x-icon name="triangle-alert"/> {{ $importResult['skipped'] }} data dilewati karena NIK sudah terdaftar saat proses penyimpanan.</div>
+        @endif
+        <div class="member-import-created-list">
+            @foreach(array_slice($importResult['members'], 0, 5) as $member)
+                <div><span>{{ $member['name'] }}</span><b>{{ $member['id'] }}</b></div>
+            @endforeach
+            @if(count($importResult['members']) > 5)
+                <small>dan {{ count($importResult['members']) - 5 }} anggota lainnya.</small>
+            @endif
+        </div>
+        <div class="super-modal-footer"><button type="button" class="btn-member-primary" onclick="closeModal('member-import-result-modal')">Selesai</button></div>
+    </div>
+</div>
+@endif
+
+<script>
+    (function () {
+        const importModal = document.getElementById('member-import-modal');
+        const shouldOpenImport = @json((bool) $pendingImport || session('import_error') || $errors->has('file') || $errors->has('rows'));
+        if (shouldOpenImport && importModal) {
+            window.addEventListener('DOMContentLoaded', () => openModal('member-import-modal'), { once: true });
+        }
+
+        const resultModal = document.getElementById('member-import-result-modal');
+        if (resultModal) {
+            window.addEventListener('DOMContentLoaded', () => openModal('member-import-result-modal'), { once: true });
+        }
+
+        const input = document.getElementById('member-import-file');
+        const fileName = document.getElementById('member-import-file-name');
+        const dropzone = document.getElementById('member-import-dropzone');
+        if (input && fileName) {
+            input.addEventListener('change', () => { fileName.textContent = input.files[0] ? input.files[0].name : 'Belum ada berkas dipilih'; });
+            ['dragenter', 'dragover'].forEach(eventName => dropzone.addEventListener(eventName, event => { event.preventDefault(); dropzone.classList.add('is-dragging'); }));
+            ['dragleave', 'drop'].forEach(eventName => dropzone.addEventListener(eventName, event => { event.preventDefault(); dropzone.classList.remove('is-dragging'); }));
+            dropzone.addEventListener('drop', event => { if (event.dataTransfer.files.length) { input.files = event.dataTransfer.files; input.dispatchEvent(new Event('change')); } });
+        }
+
+        const selectAll = document.getElementById('member-import-select-all');
+        const rowChecks = document.querySelectorAll('.member-import-row-check');
+        const count = document.getElementById('member-import-selected-count');
+        const updateCount = () => {
+            const selected = [...rowChecks].filter(check => check.checked).length;
+            if (count) count.textContent = selected;
+            if (selectAll) selectAll.checked = selected === rowChecks.length && selected > 0;
+        };
+        if (selectAll) selectAll.addEventListener('change', () => { rowChecks.forEach(check => { check.checked = selectAll.checked; }); updateCount(); });
+        rowChecks.forEach(check => check.addEventListener('change', updateCount));
+    }());
+</script>
 @endif
