@@ -5,171 +5,45 @@
 --}}
 
 @php
-    // Data akun utama persis sesuai tampilan Figma (node-id: 149-6777)
-    $figmaAccounts = [
-        [
-            'name' => 'Ari',
-            'is_you' => true,
-            'email' => 'ariupgris@inovexa.id',
-            'id_code' => 'SA-001',
-            'role' => 'Super Admin (Root)',
-            'role_badge_class' => 'role-badge-root',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-            'role_sub' => 'Full Otoritas Arsitektur',
-            'sec_main' => 'Hardware Key FIDO2',
-            'sec_icon' => 'key',
-            'sec_sub' => 'Sesi Aktif Sekarang',
-            'sec_warn' => false,
-            'avatar' => 'AR',
-            'avatar_class' => 'user-avatar-dark',
-            'selected' => true,
-            'category' => 'super',
-            'root_level' => 'LEVEL 0: ROOT',
-            'auth_type' => 'FIDO2 / Hardware Security Key',
-        ],
-        [
-            'name' => 'Budi Santoso',
-            'is_you' => false,
-            'email' => 'budi.santoso@inovexa.id',
-            'id_code' => 'INX-ADM-2026-04',
-            'role' => 'Admin Pegawai',
-            'role_badge_class' => 'role-badge-dark',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-            'role_sub' => 'Sirkulasi & Denda (R/W)',
-            'sec_main' => 'Authenticator App',
-            'sec_icon' => 'phone',
-            'sec_sub' => 'Login: 12 menit lalu',
-            'sec_warn' => false,
-            'avatar' => 'BS',
-            'avatar_class' => '',
-            'selected' => true,
-            'category' => 'admin',
-            'root_level' => 'LEVEL 1: ADMIN',
-            'auth_type' => 'TOTP Mobile App',
-        ],
-        [
-            'name' => 'Siti Nurhaliza',
-            'is_you' => false,
-            'email' => 'siti.nurhaliza@inovexa.id',
-            'id_code' => 'INX-ADM-2026-09',
-            'role' => 'Admin E-Library',
-            'role_badge_class' => 'role-badge-dark',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
-            'role_sub' => 'E-Book & Repositori (R/W)',
-            'sec_main' => 'Authenticator App',
-            'sec_icon' => 'phone',
-            'sec_sub' => 'Login: 1 jam lalu',
-            'sec_warn' => false,
-            'avatar' => 'SN',
-            'avatar_class' => '',
-            'selected' => false,
-            'category' => 'admin',
-            'root_level' => 'LEVEL 1: ADMIN',
-            'auth_type' => 'TOTP Mobile App',
-        ],
-        [
-            'name' => 'Hendra Kusuma',
-            'is_you' => false,
-            'email' => 'hendra.k@inovexa.id',
-            'id_code' => 'INX-ADM-2026-15',
-            'role' => 'Staf Inventaris',
-            'role_badge_class' => 'role-badge-gray',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
-            'role_sub' => 'Katalog & Eksemplar',
-            'sec_main' => 'Belum 2FA',
-            'sec_icon' => 'warn',
-            'sec_sub' => 'Wajib Aktivasi',
-            'sec_warn' => true,
-            'avatar' => 'HK',
-            'avatar_class' => '',
-            'selected' => false,
-            'category' => 'admin',
-            'root_level' => 'LEVEL 2: STAF',
-            'auth_type' => 'Standar Password',
-        ],
-        [
-            'name' => 'Herdman',
-            'is_you' => false,
-            'email' => 'herdman.library@inovexa.id',
-            'id_code' => 'INX-2026-08912',
-            'role' => 'Anggota Pemustaka',
-            'role_badge_class' => 'role-badge-muted',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
-            'role_sub' => 'OPAC & Pinjam Mandiri',
-            'sec_main' => 'Standard Auth',
-            'sec_icon' => 'lock',
-            'sec_sub' => 'Login: Kemarin',
-            'sec_warn' => false,
-            'avatar' => 'HM',
-            'avatar_class' => '',
-            'selected' => false,
-            'category' => 'member',
-            'root_level' => 'LEVEL 3: PEMUSTAKA',
-            'auth_type' => 'Kredensial Single Factor',
-        ],
-        [
-            'name' => 'Kevin Wijaya',
-            'is_you' => false,
-            'email' => 'kevin.w@campus.ac.id',
-            'id_code' => 'MBR-2026-04321',
-            'role' => 'Pemustaka Mahasiswa',
-            'role_badge_class' => 'role-badge-muted',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
-            'role_sub' => 'Akses Sementara',
-            'sec_main' => 'Belum 2FA',
-            'sec_icon' => 'warn',
-            'sec_sub' => 'Sandi Default',
-            'sec_warn' => true,
-            'avatar' => 'KW',
-            'avatar_class' => 'user-avatar-orange',
-            'selected' => false,
-            'category' => 'member',
-            'root_level' => 'LEVEL 3: PEMUSTAKA',
-            'auth_type' => 'KTM / NIM SSO',
-        ],
-        [
-            'name' => 'Dimas Arya',
-            'is_you' => false,
-            'email' => 'dimas.arya@techmail.com',
-            'id_code' => 'INX-2026-07734',
-            'role' => 'Anggota Umum',
-            'role_badge_class' => 'role-badge-muted',
-            'role_icon' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
-            'role_sub' => 'OPAC & Reservasi',
-            'sec_main' => 'Standard Auth',
-            'sec_icon' => 'lock',
-            'sec_sub' => 'Login: 3 hari lalu',
-            'sec_warn' => false,
-            'avatar' => 'DA',
-            'avatar_class' => '',
-            'selected' => false,
-            'category' => 'member',
-            'root_level' => 'LEVEL 3: PEMUSTAKA',
-            'auth_type' => 'Kredensial Single Factor',
-        ],
-    ];
-
-    // Hubungkan dengan $lib->users agar fungsi toggle Laravel tetap berjalan
+    // Mapping akun dari $lib->users agar data dinamis sinkron dengan backend
     $mappedAccounts = [];
-    $matchedNames = [];
+    foreach ($lib->users as $idx => $lu) {
+        $roleCode = $lu['role_code'] ?? ($lu['category'] ?? 'member');
+        $initials = $lu['avatar'] ?? mb_strtoupper(mb_substr($lu['n'], 0, 2));
+        $isRoot = $roleCode === 'super';
+        $isAdmin = $roleCode === 'admin';
 
-    foreach ($figmaAccounts as $acc) {
-        $libIndex = null;
-        $isActive = true;
-        foreach ($lib->users as $idx => $lu) {
-            if (strcasecmp($lu['n'], $acc['name']) === 0) {
-                $libIndex = $idx;
-                $isActive = (bool)$lu['on'];
-                $matchedNames[] = strtolower($lu['n']);
-                break;
-            }
-        }
-        $acc['lib_index'] = $libIndex;
-        $acc['is_active'] = $isActive;
-        $mappedAccounts[] = $acc;
+        $roleIcon = match($roleCode) {
+            'super' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+            'admin' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+            default => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+        };
+
+        $mappedAccounts[] = [
+            'name' => $lu['n'],
+            'is_you' => !empty($lu['is_you']) || (session('user')['n'] ?? '') === $lu['n'],
+            'email' => $lu['email'] ?? ($lu['i'] . '@inovexa.id'),
+            'phone' => $lu['phone'] ?? '+62 812-0000-0000',
+            'id_code' => $lu['i'],
+            'role' => $lu['r'] ?? ($isRoot ? 'Super Admin (Root)' : ($isAdmin ? 'Admin Pegawai' : 'Anggota Pemustaka')),
+            'role_code' => $roleCode,
+            'role_badge_class' => $isRoot ? 'role-badge-root' : ($isAdmin ? 'role-badge-dark' : 'role-badge-muted'),
+            'role_icon' => $roleIcon,
+            'role_sub' => $lu['role_sub'] ?? ($isRoot ? 'Full Otoritas Arsitektur' : ($isAdmin ? 'Sirkulasi & Denda (R/W)' : 'OPAC & Pinjam Mandiri')),
+            'sec_main' => $lu['sec_main'] ?? ($isRoot ? 'Hardware Key FIDO2' : ($isAdmin ? 'Authenticator App' : 'Standard Auth')),
+            'sec_icon' => $lu['sec_icon'] ?? ($isRoot ? 'key' : ($isAdmin ? 'phone' : 'lock')),
+            'sec_sub' => $lu['sec_sub'] ?? ($isRoot ? 'Sesi Aktif Sekarang' : 'Login: Baru Saja'),
+            'sec_warn' => !empty($lu['sec_warn']),
+            'avatar' => $initials,
+            'avatar_class' => $lu['avatar_class'] ?? ($isRoot ? 'user-avatar-dark' : ''),
+            'selected' => !empty($lu['selected']),
+            'category' => $roleCode,
+            'root_level' => $lu['root_level'] ?? ($isRoot ? 'LEVEL 0: ROOT' : ($isAdmin ? 'LEVEL 1: ADMIN' : 'LEVEL 3: PEMUSTAKA')),
+            'auth_type' => $lu['auth_type'] ?? ($isRoot ? 'FIDO2 / Hardware Security Key' : ($isAdmin ? 'TOTP Mobile App' : 'Kredensial Single Factor')),
+            'is_active' => !empty($lu['on']),
+            'lib_index' => $idx,
+        ];
     }
-
-    // Hanya tampilkan data dari $figmaAccounts (Ari sampai Dimas Arya), tanpa menambah dari $lib->users
 @endphp
 
 <div class="super-users-page">
@@ -198,7 +72,7 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 <span>Matriks Kebijakan RBAC</span>
             </button>
-            <button type="button" class="btn-users-outline" onclick="exportUsersCsv()">
+            <button type="button" class="btn-users-outline" onclick="window.location='{{ route('super.export.users') }}'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 <span>Ekspor .CSV</span>
             </button>
@@ -340,15 +214,15 @@
                 <table class="super-users-table" id="users-table">
                     <thead>
                         <tr>
-                            <th style="width: 44%">
+                            <th style="width: 38%">
                                 <div style="display:flex;align-items:center;gap:10px">
                                     <input type="checkbox" id="check-all-users" class="user-checkbox" onchange="toggleSelectAllUsers(this)">
                                     <span>PENGGUNA &amp; IDENTITAS</span>
                                 </div>
                             </th>
-                            <th style="width: 28%">PERAN &amp; LEVEL HAK AKSES</th>
+                            <th style="width: 24%">PERAN &amp; LEVEL HAK AKSES</th>
                             <th style="width: 18%">KEAMANAN &amp; 2FA</th>
-
+                            <th style="width: 20%;text-align:right">STATUS &amp; AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -414,6 +288,33 @@
                                 </div>
                             </td>
 
+                            {{-- Kolom Status & Aksi --}}
+                            <td style="text-align:right" onclick="event.stopPropagation()">
+                                <div style="display:inline-flex;align-items:center;gap:6px">
+                                    <form action="{{ route('super.user.toggle', $row['id_code']) }}" method="POST" style="display:inline;margin:0">
+                                        @csrf
+                                        <button type="submit" style="background:none;border:none;cursor:pointer;padding:0" title="Klik untuk ubah status aktif/nonaktif">
+                                            @if($isActive)
+                                                <span class="status-pill-active" style="padding:3px 7px;border-radius:12px;font-size:10.5px;font-weight:700">&bull; Aktif</span>
+                                            @else
+                                                <span class="status-pill-pending" style="background:#fee2e2;color:#dc2626;padding:3px 7px;border-radius:12px;font-size:10.5px;font-weight:700">&bull; Nonaktif</span>
+                                            @endif
+                                        </button>
+                                    </form>
+                                    <button type="button" class="btn-bulk-action" style="padding:3px 8px;font-size:11px;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer" onclick="openEditUserModal('{{ addslashes($row['id_code']) }}', '{{ addslashes($row['name']) }}', '{{ addslashes($row['email']) }}', '{{ addslashes($row['phone'] ?? '') }}', '{{ addslashes($row['category']) }}', '{{ addslashes($row['auth_type']) }}')" title="Edit Akun">
+                                        ✎ Edit
+                                    </button>
+                                    @if(empty($row['is_you']))
+                                    <form action="{{ route('super.user.delete', $row['id_code']) }}" method="POST" style="display:inline;margin:0" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun {{ addslashes($row['name']) }} ({{ $row['id_code'] }}) secara permanen?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-bulk-danger" style="padding:3px 8px;font-size:11px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;cursor:pointer" title="Hapus Akun">
+                                            ✕
+                                        </button>
+                                    </form>
+                                    @endif
+                                </div>
+                            </td>
 
                         </tr>
                         @endforeach
@@ -422,15 +323,9 @@
 
                 {{-- Pagination Footer --}}
                 <div class="super-users-table-footer">
-                    <span>Menampilkan 1-7 dari 2.450 akun terdaftar</span>
+                    <span>Menampilkan {{ count($mappedAccounts) }} akun terdaftar</span>
                     <div class="super-users-pagination">
-                        <button type="button" class="btn-page" onclick="toast('Halaman pertama')">‹</button>
                         <button type="button" class="btn-page active">1</button>
-                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 2')">2</button>
-                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 3')">3</button>
-                        <span class="page-dots">...</span>
-                        <button type="button" class="btn-page" onclick="toast('Menuju halaman 350')">350</button>
-                        <button type="button" class="btn-page" onclick="toast('Menuju halaman berikutnya')">›</button>
                     </div>
                 </div>
             </div>
@@ -505,14 +400,17 @@
                 </button>
 
                 <div class="sidebar-btn-row">
-                    <button type="button" class="btn-sidebar-secondary" onclick="toast('Sesi aktif pengguna berhasil dicabut dari seluruh perangkat.')">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
-                        <span>Cabut Sesi</span>
-                    </button>
-                    <button type="button" class="btn-sidebar-secondary" onclick="toast('Membuka rekaman audit trail otentikasi akun...')">
+                    <form id="revoke-session-form" action="{{ route('super.user.revoke_session', 'SA-001') }}" method="POST" style="flex:1">
+                        @csrf
+                        <button type="submit" class="btn-sidebar-secondary" style="width:100%" onclick="return confirm('Cabut sesi aktif akun ini dari seluruh perangkat?')">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+                            <span>Cabut Sesi</span>
+                        </button>
+                    </form>
+                    <a href="{{ route('dashboard', 'sys') }}" class="btn-sidebar-secondary" style="flex:1;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                         <span>Log Audit Akun</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -598,23 +496,24 @@
             <button type="button" class="super-modal-close" onclick="closeModal('modal-create-account')">&times;</button>
         </div>
 
-        <form onsubmit="event.preventDefault(); toast('Akun kredensial baru berhasil diterbitkan dan notifikasi telah dikirimkan.'); closeModal('modal-create-account');">
+        <form action="{{ route('super.user.create') }}" method="POST">
+            @csrf
             <div class="modal-form-grid">
                 <div class="modal-field modal-form-full">
                     <label>Nama Lengkap Akun</label>
-                    <input type="text" class="modal-input" placeholder="Misal: Princess Anggita, M.Kom" required>
+                    <input type="text" name="name" class="modal-input" placeholder="Misal: Princess Anggita, M.Kom" required>
                 </div>
                 <div class="modal-field">
                     <label>Alamat Email SSO</label>
-                    <input type="email" class="modal-input" placeholder="princess@inovexa.id" required>
+                    <input type="email" name="email" class="modal-input" placeholder="princess@inovexa.id" required>
                 </div>
                 <div class="modal-field">
                     <label>Nomor Induk / NIP / ID</label>
-                    <input type="text" class="modal-input" placeholder="INX-ADM-2026-99" required>
+                    <input type="text" name="code" class="modal-input" placeholder="INX-ADM-2026-99" required>
                 </div>
                 <div class="modal-field">
                     <label>Peran &amp; Otoritas</label>
-                    <select class="modal-select">
+                    <select name="role" class="modal-select">
                         <option value="super">Super Admin (Root)</option>
                         <option value="admin">Admin Pegawai &amp; Sirkulasi</option>
                         <option value="elib">Admin E-Library &amp; Repositori</option>
@@ -624,21 +523,87 @@
                 </div>
                 <div class="modal-field">
                     <label>Kebijakan Otentikasi 2FA</label>
-                    <select class="modal-select">
-                        <option>Wajib Hardware Key / FIDO2</option>
-                        <option>Wajib Authenticator App (TOTP)</option>
-                        <option>Standar Password + Email OTP</option>
+                    <select name="auth_type" class="modal-select">
+                        <option value="Hardware Key FIDO2">Wajib Hardware Key / FIDO2</option>
+                        <option value="Authenticator App">Wajib Authenticator App (TOTP)</option>
+                        <option value="Standard Auth">Standar Password + Email OTP</option>
                     </select>
                 </div>
                 <div class="modal-field modal-form-full">
                     <label>Kata Sandi Sementara</label>
-                    <input type="password" class="modal-input" value="InovexaPass2026!" placeholder="Masukkan kata sandi">
+                    <input type="password" name="password" class="modal-input" value="InovexaPass2026!" placeholder="Masukkan kata sandi" required>
                 </div>
             </div>
 
             <div class="super-modal-footer">
                 <button type="button" class="btn-users-outline" onclick="closeModal('modal-create-account')">Batal</button>
                 <button type="submit" class="btn-users-primary">Simpan &amp; Terbitkan Akun</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- MODAL EDIT: Edit Data Akun --}}
+<div class="super-modal-overlay" id="modal-edit-user" onclick="if(event.target === this) closeModal('modal-edit-user')">
+    <div class="super-modal-content">
+        <div class="super-modal-header">
+            <div>
+                <h3 class="super-modal-title">Edit Kredensial &amp; Otoritas Pengguna</h3>
+                <p class="super-modal-sub">Perbarui informasi profil, hak otoritas, atau metode otentikasi akun.</p>
+            </div>
+            <button type="button" class="super-modal-close" onclick="closeModal('modal-edit-user')">&times;</button>
+        </div>
+
+        <form action="{{ route('super.user.update') }}" method="POST">
+            @csrf
+            <input type="hidden" name="code" id="edit-user-code">
+            <div class="modal-form-grid">
+                <div class="modal-field modal-form-full">
+                    <label>Nama Lengkap Akun</label>
+                    <input type="text" name="name" id="edit-user-name" class="modal-input" required>
+                </div>
+                <div class="modal-field">
+                    <label>Alamat Email SSO</label>
+                    <input type="email" name="email" id="edit-user-email" class="modal-input" required>
+                </div>
+                <div class="modal-field">
+                    <label>Nomor WhatsApp / Ponsel</label>
+                    <input type="text" name="phone" id="edit-user-phone" class="modal-input">
+                </div>
+                <div class="modal-field">
+                    <label>Peran &amp; Otoritas</label>
+                    <select name="role" id="edit-user-role" class="modal-select">
+                        <option value="super">Super Admin (Root)</option>
+                        <option value="admin">Admin Pegawai &amp; Sirkulasi</option>
+                        <option value="elib">Admin E-Library &amp; Repositori</option>
+                        <option value="inv">Staf Inventaris &amp; Katalog</option>
+                        <option value="member">Anggota Pemustaka</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Kebijakan Otentikasi 2FA</label>
+                    <select name="auth_type" id="edit-user-auth" class="modal-select">
+                        <option value="Hardware Key FIDO2">Wajib Hardware Key / FIDO2</option>
+                        <option value="Authenticator App">Wajib Authenticator App (TOTP)</option>
+                        <option value="Standard Auth">Standar Password + Email OTP</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Status Akun</label>
+                    <select name="status" id="edit-user-status" class="modal-select">
+                        <option value="active">Aktif</option>
+                        <option value="inactive">Nonaktif / Suspend</option>
+                    </select>
+                </div>
+                <div class="modal-field">
+                    <label>Reset Kata Sandi (Opsional)</label>
+                    <input type="password" name="password" class="modal-input" placeholder="Biarkan kosong jika tidak diubah">
+                </div>
+            </div>
+
+            <div class="super-modal-footer">
+                <button type="button" class="btn-users-outline" onclick="closeModal('modal-edit-user')">Batal</button>
+                <button type="submit" class="btn-users-primary">Simpan Perubahan Akun</button>
             </div>
         </form>
     </div>
@@ -655,68 +620,71 @@
             <button type="button" class="super-modal-close" onclick="closeModal('modal-rbac-matrix')">&times;</button>
         </div>
 
-        <div style="overflow-x:auto;margin-bottom:18px">
-            <table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left">
-                <thead>
-                    <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0">
-                        <th style="padding:10px;color:#64748b;font-size:10.5px">MODUL SISTEM</th>
-                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">SUPER ADMIN</th>
-                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">ADMIN PEGAWAI</th>
-                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">STAF INVENTARIS</th>
-                        <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">PEMUSTAKA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom:1px solid #f1f5f9">
-                        <td style="padding:10px;font-weight:600">Kelola Akun &amp; Hak Akses (RBAC)</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #f1f5f9">
-                        <td style="padding:10px;font-weight:600">Backup &amp; Restore Basis Data</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Root Cmd</span></td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #f1f5f9">
-                        <td style="padding:10px;font-weight:600">Sirkulasi Buku &amp; Denda</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#eff6ff;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Pinjam Mandiri</span></td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #f1f5f9">
-                        <td style="padding:10px;font-weight:600">Koleksi &amp; Eksemplar Buku</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Katalog OPAC</span></td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #f1f5f9">
-                        <td style="padding:10px;font-weight:600">Bypass Kuota Sirkulasi</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px;font-weight:600">Penghapusan Eksemplar Permanen</td>
-                        <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                        <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <form action="{{ route('super.rbac.update') }}" method="POST">
+            @csrf
+            <div style="overflow-x:auto;margin-bottom:18px">
+                <table style="width:100%;border-collapse:collapse;font-size:12px;text-align:left">
+                    <thead>
+                        <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0">
+                            <th style="padding:10px;color:#64748b;font-size:10.5px">MODUL SISTEM</th>
+                            <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">SUPER ADMIN</th>
+                            <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">ADMIN PEGAWAI</th>
+                            <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">STAF INVENTARIS</th>
+                            <th style="padding:10px;text-align:center;color:#64748b;font-size:10.5px">PEMUSTAKA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #f1f5f9">
+                            <td style="padding:10px;font-weight:600">Kelola Akun &amp; Hak Akses (RBAC)</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #f1f5f9">
+                            <td style="padding:10px;font-weight:600">Backup &amp; Restore Basis Data</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Root Cmd</span></td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #f1f5f9">
+                            <td style="padding:10px;font-weight:600">Sirkulasi Buku &amp; Denda</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Lihat Saja</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#eff6ff;color:#1d4ed8;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Pinjam Mandiri</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #f1f5f9">
+                            <td style="padding:10px;font-weight:600">Koleksi &amp; Eksemplar Buku</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Full R/W</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#f1f5f9;color:#475569;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Katalog OPAC</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #f1f5f9">
+                            <td style="padding:10px;font-weight:600">Bypass Kuota Sirkulasi</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px;font-weight:600">Penghapusan Eksemplar Permanen</td>
+                            <td style="padding:10px;text-align:center"><span style="background:#ecfdf5;color:#065f46;padding:2px 6px;border-radius:4px;font-weight:700;font-size:10px">Diizinkan</span></td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                            <td style="padding:10px;text-align:center;color:#ef4444;font-weight:bold">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="super-modal-footer">
-            <button type="button" class="btn-users-outline" onclick="closeModal('modal-rbac-matrix')">Tutup</button>
-            <button type="button" class="btn-users-primary" onclick="toast('Kebijakan matriks RBAC berhasil diperbarui.'); closeModal('modal-rbac-matrix');">Terapkan Perubahan</button>
-        </div>
+            <div class="super-modal-footer">
+                <button type="button" class="btn-users-outline" onclick="closeModal('modal-rbac-matrix')">Tutup</button>
+                <button type="submit" class="btn-users-primary">Terapkan Perubahan</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -731,23 +699,24 @@
             <button type="button" class="super-modal-close" onclick="closeModal('modal-custom-role')">&times;</button>
         </div>
 
-        <form onsubmit="event.preventDefault(); toast('Peran kustom baru berhasil dibuat dan didaftarkan ke matriks RBAC.'); closeModal('modal-custom-role');">
+        <form action="{{ route('super.role.create') }}" method="POST">
+            @csrf
             <div class="modal-form-grid">
                 <div class="modal-field modal-form-full">
                     <label>Nama Peran Kustom</label>
-                    <input type="text" class="modal-input" placeholder="Misal: Kurator Naskah Kuno" required>
+                    <input type="text" name="role_name" class="modal-input" placeholder="Misal: Kurator Naskah Kuno" required>
                 </div>
                 <div class="modal-field modal-form-full">
                     <label>Tingkat Tingkatan Hierarki (Level)</label>
-                    <select class="modal-select">
-                        <option>Level 1 - Pengelola / Admin Operasional</option>
-                        <option>Level 2 - Staf / Petugas Teknis Lapangan</option>
-                        <option>Level 3 - Pemustaka Terverifikasi Khusus</option>
+                    <select name="hierarchy_level" class="modal-select">
+                        <option value="1">Level 1 - Pengelola / Admin Operasional</option>
+                        <option value="2">Level 2 - Staf / Petugas Teknis Lapangan</option>
+                        <option value="3">Level 3 - Pemustaka Terverifikasi Khusus</option>
                     </select>
                 </div>
                 <div class="modal-field modal-form-full">
                     <label>Deskripsi Lingkup Tugas</label>
-                    <textarea class="modal-input" rows="3" placeholder="Jelaskan batas kewenangan peran baru ini..."></textarea>
+                    <textarea name="description" class="modal-input" rows="3" placeholder="Jelaskan batas kewenangan peran baru ini..."></textarea>
                 </div>
             </div>
 
@@ -761,6 +730,17 @@
 
 {{-- Script Interaksi Frontend Khusus Halaman Kelola Akun --}}
 <script>
+    // Buka Modal Edit User
+    function openEditUserModal(code, name, email, phone, role, authType) {
+        document.getElementById('edit-user-code').value = code;
+        document.getElementById('edit-user-name').value = name;
+        document.getElementById('edit-user-email').value = email;
+        document.getElementById('edit-user-phone').value = phone || '';
+        if (role) document.getElementById('edit-user-role').value = role;
+        if (authType) document.getElementById('edit-user-auth').value = authType;
+        openModal('modal-edit-user');
+    }
+
     // Filter Kategori Tab
     function filterUserCategory(cat, btn) {
         document.querySelectorAll('.users-tab-pill').forEach(el => el.classList.remove('active'));
@@ -852,29 +832,15 @@
         if (avatarEl) avatarEl.textContent = avatar;
         if (levelEl) levelEl.textContent = rootLevel;
         if (authEl) authEl.textContent = '(' + authType + ')';
+
+        const revokeForm = document.getElementById('revoke-session-form');
+        if (revokeForm) {
+            revokeForm.action = '{{ url("super/user") }}/' + encodeURIComponent(idCode) + '/revoke-session';
+        }
     }
 
     // Ekspor CSV Data Akun
     function exportUsersCsv() {
-        const rows = [
-            ['Nama', 'Email', 'ID/NIP', 'Peran', 'Status', 'Metode Keamanan'],
-            ['Ari', 'ariupgris@inovexa.id', 'SA-001', 'Super Admin (Root)', 'Aktif', 'Hardware Key FIDO2'],
-            ['Budi Santoso', 'budi.santoso@inovexa.id', 'INX-ADM-2026-04', 'Admin Pegawai', 'Aktif', 'Authenticator App'],
-            ['Siti Nurhaliza', 'siti.nurhaliza@inovexa.id', 'INX-ADM-2026-09', 'Admin E-Library', 'Aktif', 'Authenticator App'],
-            ['Hendra Kusuma', 'hendra.k@inovexa.id', 'INX-ADM-2026-15', 'Staf Inventaris', 'Aktif', 'Belum 2FA'],
-            ['Herdman', 'herdman.library@inovexa.id', 'INX-2026-08912', 'Anggota Pemustaka', 'Aktif', 'Standard Auth'],
-            ['Kevin Wijaya', 'kevin.w@campus.ac.id', 'MBR-2026-04321', 'Pemustaka Mahasiswa', 'Aktif', 'Belum 2FA'],
-            ['Dimas Arya', 'dimas.arya@techmail.com', 'INX-2026-07734', 'Anggota Umum', 'Aktif', 'Standard Auth']
-        ];
-
-        let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "inovexa_daftar_akun_rbac.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        toast('Mengunduh berkas CSV daftar akun...');
+        window.location.href = "{{ route('super.export.users') }}";
     }
 </script>

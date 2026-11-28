@@ -18,7 +18,7 @@
             Kendali penuh tata kelola akun, otorisasi peran berjenjang, pemeliharaan integritas database, dan pengawasan audit seluruh ekosistem Perpustakaan Inovexa Technologies sesuai mandat operasional.
         </p>
         <div class="super-hero-actions">
-            <button type="button" class="btn-super-primary" onclick="toast('Membuka formulir pendaftaran akun baru')">
+            <button type="button" class="btn-super-primary" onclick="window.location='{{ route('dashboard', 'users') }}'">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
                 + Tambah Akun Baru
             </button>
@@ -26,14 +26,17 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 Konfigurasi Hak Akses
             </button>
-            <button type="button" class="btn-super-outline" onclick="toast('Memulai proses snapshot backup database real-time...')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><polyline points="16 16 12 12 8 16"/></svg>
-                Backup Database Real-time
-            </button>
-            <button type="button" class="btn-super-outline" onclick="toast('Mengunduh audit trail log sistem format .log / .csv')">
+            <form action="{{ route('super.backup.trigger') }}" method="POST" style="display:inline;margin:0;padding:0">
+                @csrf
+                <button type="submit" class="btn-super-outline" onclick="toast('Memulai proses snapshot backup database real-time...')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><polyline points="16 16 12 12 8 16"/></svg>
+                    Backup Database Real-time
+                </button>
+            </form>
+            <a href="{{ route('super.export.audit_logs') }}" class="btn-super-outline" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px" onclick="toast('Mengunduh audit trail log sistem format .csv...')">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Unduh Audit Log
-            </button>
+            </a>
         </div>
     </div>
 
@@ -48,9 +51,9 @@
                 <span class="super-stat-badge badge-teal">↗ +12 minggu ini</span>
             </div>
             <div class="super-stat-label">TOTAL AKUN PENGGUNA</div>
-            <div class="super-stat-value">2.450 Akun</div>
+            <div class="super-stat-value">{{ number_format($superStats['total_users'] ?? 2450, 0, ',', '.') }} Akun</div>
             <div class="super-stat-sub">
-                <b>1.890</b> Anggota &bull; <b>42</b> Pegawai &bull; <b>3</b> Super Admin
+                <b>{{ $superStats['total_member'] ?? 1890 }}</b> Anggota &bull; <b>{{ $superStats['total_admin'] ?? 42 }}</b> Pegawai &bull; <b>{{ $superStats['total_super'] ?? 3 }}</b> Super Admin
             </div>
         </div>
 
@@ -63,8 +66,8 @@
                 <span class="super-stat-badge badge-green"><span class="badge-dot-green"></span> Optimal</span>
             </div>
             <div class="super-stat-label">UPTIME SISTEM &amp; DB</div>
-            <div class="super-stat-value">99.98%</div>
-            <div class="super-stat-sub">PostgreSQL Cluster &bull; Latensi 18ms</div>
+            <div class="super-stat-value">{{ $superStats['uptime'] ?? '99.98%' }}</div>
+            <div class="super-stat-sub">Cluster Server Inovexa &bull; Latensi 18ms</div>
         </div>
 
         {{-- Card 3: Total Koleksi & E-Library --}}
@@ -76,9 +79,9 @@
                 <span class="super-stat-badge badge-slate">Global Aset</span>
             </div>
             <div class="super-stat-label">TOTAL KOLEKSI &amp; E-LIBRARY</div>
-            <div class="super-stat-value">18.420 Aset</div>
+            <div class="super-stat-value">{{ number_format($superStats['total_assets'] ?? 18420, 0, ',', '.') }} Aset</div>
             <div class="super-stat-sub">
-                <b>12.420</b> Fisik &bull; <b>6.000</b> Digital
+                <b>{{ number_format($superStats['total_physical_copies'] ?? 12420, 0, ',', '.') }}</b> Fisik &bull; <b>{{ number_format($superStats['total_ebooks'] ?? 6000, 0, ',', '.') }}</b> Digital
             </div>
         </div>
 
@@ -91,8 +94,8 @@
                 <span class="super-stat-badge badge-amber">Audit Klir</span>
             </div>
             <div class="super-stat-label">KAS SIRKULASI &amp; DENDA</div>
-            <div class="super-stat-value text-amber">Rp 14.850.000</div>
-            <div class="super-stat-sub">Tahun Berjalan &bull; 0 Macet</div>
+            <div class="super-stat-value text-amber">{{ $lib->rp($superStats['total_fines'] ?? 14850000) }}</div>
+            <div class="super-stat-sub">Tahun Berjalan &bull; {{ $superStats['overdue_loans'] ?? 0 }} Terlambat</div>
         </div>
     </div>
 
@@ -112,7 +115,7 @@
                             <p class="super-card-subtitle">Otorisasi hierarki Super Admin, Admin Pegawai, dan Anggota Pemustaka Inovexa</p>
                         </div>
                     </div>
-                    <button type="button" class="btn-super-dark-sm" onclick="toast('Membuka modal tambah akun & otorisasi akses')">
+                    <button type="button" class="btn-super-dark-sm" onclick="window.location='{{ route('dashboard', 'users') }}'">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
                         + Tambah Akses
                     </button>
@@ -142,104 +145,61 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $previewUsers = array_slice($lib->users, 0, 5);
+                            @endphp
+                            @foreach($previewUsers as $pu)
+                            @php
+                                $roleCode = $pu['role_code'] ?? ($pu['category'] ?? 'member');
+                                $pillClass = $roleCode === 'super' ? 'role-pill-root' : ($roleCode === 'admin' ? 'role-pill-admin' : 'role-pill-member');
+                                $avatarColor = $roleCode === 'super' ? 'bg-dark-green' : ($roleCode === 'admin' ? 'bg-slate' : 'bg-blue');
+                                $initials = $pu['avatar'] ?? mb_strtoupper(mb_substr($pu['n'] ?? 'U', 0, 2));
+                                $isActive = !empty($pu['on']);
+                            @endphp
                             <tr>
                                 <td>
                                     <div class="user-row-cell">
-                                        <div class="user-avatar-circle bg-dark-green">PR</div>
+                                        <div class="user-avatar-circle {{ $avatarColor }}">{{ $initials }}</div>
                                         <div class="user-meta-info">
                                             <div class="user-name-line">
-                                                <b>Princess</b>
-                                                <span class="user-badge-star" title="Root Administrator">✪</span>
+                                                <b>{{ $pu['n'] }}</b>
+                                                @if($roleCode === 'super')
+                                                    <span class="user-badge-star" title="Root Administrator">✪</span>
+                                                @endif
                                             </div>
-                                            <small class="user-id-sub">ID: SA-001 &bull; princess@inovexa.id</small>
+                                            <small class="user-id-sub">ID: {{ $pu['i'] }} &bull; {{ $pu['email'] ?? ($pu['i'].'@inovexa.id') }}</small>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="role-pill-root">
-                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                        Super Admin (Root)
+                                    <span class="{{ $pillClass }}">
+                                        @if($roleCode === 'super')
+                                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                        @endif
+                                        {{ $pu['r'] ?? ($roleCode === 'super' ? 'Super Admin' : ($roleCode === 'admin' ? 'Admin Pegawai' : 'Anggota')) }}
                                     </span>
                                 </td>
                                 <td style="text-align:right">
-                                    <span class="status-pill-active">&bull; Aktif</span>
+                                    <form action="{{ route('super.user.toggle', $pu['i']) }}" method="POST" style="display:inline;margin:0">
+                                        @csrf
+                                        <button type="submit" style="background:none;border:none;cursor:pointer;padding:0" title="Klik untuk ubah status akun">
+                                            @if($isActive)
+                                                <span class="status-pill-active">&bull; Aktif</span>
+                                            @else
+                                                <span class="status-pill-pending" style="background:#fee2e2;color:#dc2626">&bull; Nonaktif</span>
+                                            @endif
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="user-row-cell">
-                                        <div class="user-avatar-circle bg-slate">BS</div>
-                                        <div class="user-meta-info">
-                                            <div class="user-name-line"><b>Budi Santoso</b></div>
-                                            <small class="user-id-sub">ID: INX-ADM-2026-04</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="role-pill-admin">Admin Pegawai (Sirkulasi)</span>
-                                </td>
-                                <td style="text-align:right">
-                                    <span class="status-pill-active">&bull; Aktif</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="user-row-cell">
-                                        <div class="user-avatar-circle bg-slate">SN</div>
-                                        <div class="user-meta-info">
-                                            <div class="user-name-line"><b>Siti Nurhaliza</b></div>
-                                            <small class="user-id-sub">ID: INX-ADM-2026-09</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="role-pill-admin">Admin Pegawai (E-Library)</span>
-                                </td>
-                                <td style="text-align:right">
-                                    <span class="status-pill-active">&bull; Aktif</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="user-row-cell">
-                                        <div class="user-avatar-circle bg-blue">DA</div>
-                                        <div class="user-meta-info">
-                                            <div class="user-name-line"><b>Dimas Arya</b></div>
-                                            <small class="user-id-sub">ID: MBR-2026-07734</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="role-pill-member">Anggota Pemustaka</span>
-                                </td>
-                                <td style="text-align:right">
-                                    <span class="status-pill-active">&bull; Aktif</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="user-row-cell">
-                                        <div class="user-avatar-circle bg-amber">KW</div>
-                                        <div class="user-meta-info">
-                                            <div class="user-name-line"><b>Kevin Wijaya</b></div>
-                                            <small class="user-id-sub">ID: MBR-2026-04321</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="role-pill-new">Anggota Baru</span>
-                                </td>
-                                <td style="text-align:right">
-                                    <span class="status-pill-pending">Verifikasi KTM</span>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
                 {{-- Footer Tabel --}}
                 <div class="super-card-footer">
-                    <span class="footer-count">Menampilkan 5 dari 2.450 total akun pengguna terdaftar</span>
+                    <span class="footer-count">Menampilkan {{ count($previewUsers) }} dari {{ count($lib->users) }} total akun pengguna terdaftar</span>
                     <a href="{{ route('dashboard', 'users') }}" class="footer-link">Buka Modul Kelola Akun &amp; Hak Akses Lengkap &rarr;</a>
                 </div>
             </div>
@@ -256,72 +216,39 @@
                             <p class="super-card-subtitle">Pelacakan forensik real-time seluruh transaksi, login, dan modul basis data</p>
                         </div>
                     </div>
-                    <button type="button" class="btn-super-outline-sm" onclick="toast('Filter parameter log audit aktif')">
+                    <a href="{{ route('dashboard', 'sys') }}" class="btn-super-outline-sm" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                         Filter Event
-                    </button>
+                    </a>
                 </div>
 
                 <div class="audit-timeline">
-                    {{-- Item 1 --}}
+                    @php
+                        $recentLogs = array_slice($lib->auditLogs, 0, 4);
+                    @endphp
+                    @foreach($recentLogs as $log)
+                    @php
+                        $markerClass = match($log['category'] ?? '') {
+                            'Automated Backup' => 'dot-green',
+                            'Security Policy' => 'dot-dark-green',
+                            'Firewall Guard' => 'dot-red',
+                            default => 'dot-amber',
+                        };
+                    @endphp
                     <div class="timeline-item">
-                        <div class="timeline-marker dot-amber"></div>
+                        <div class="timeline-marker {{ $markerClass }}"></div>
                         <div class="timeline-content">
                             <div class="timeline-meta-row">
-                                <b class="timeline-time">10:42:15 WIB</b>
-                                <span class="timeline-tag tag-slate">Sirkulasi</span>
-                                <span class="timeline-actor">Admin Pegawai Budi Santoso</span>
+                                <b class="timeline-time">{{ $log['timestamp'] ?? 'Sekarang' }}</b>
+                                <span class="timeline-tag {{ $log['tag_class'] ?? 'tag-slate' }}">{{ $log['category'] ?? 'Sistem' }}</span>
+                                <span class="timeline-actor">{{ $log['actor'] ?? 'System' }}</span>
                             </div>
                             <p class="timeline-desc">
-                                Mengubah status pengembalian eksemplar buku <b>TRX-2026-9812</b> ("Laskar Pelangi") &bull; Denda keterlambatan Rp 2.000 lunas tunai.
+                                <b>{{ $log['action'] ?? '' }}</b>: {{ $log['desc'] ?? '' }}
                             </p>
                         </div>
                     </div>
-
-                    {{-- Item 2 --}}
-                    <div class="timeline-item">
-                        <div class="timeline-marker dot-green"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-meta-row">
-                                <b class="timeline-time">09:15:00 WIB</b>
-                                <span class="timeline-tag tag-green">Automated Backup</span>
-                                <span class="timeline-actor">PostgreSQL System Daemon</span>
-                            </div>
-                            <p class="timeline-desc">
-                                Pencadangan rutin otomatis selesai tanpa galat. Ukuran snapshot: <b>4.2 GB</b>, enkripsi hash SHA-256 tersimpan ke Cloud Vault #2.
-                            </p>
-                        </div>
-                    </div>
-
-                    {{-- Item 3 --}}
-                    <div class="timeline-item">
-                        <div class="timeline-marker dot-dark-green"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-meta-row">
-                                <b class="timeline-time">08:00:22 WIB</b>
-                                <span class="timeline-tag tag-slate">Security Policy</span>
-                                <span class="timeline-actor actor-orange">Super Admin Princess</span>
-                            </div>
-                            <p class="timeline-desc">
-                                Memperbarui izin akses modul E-Library: Anggota aktif diperbolehkan mengunduh format EPUB offline dengan kuota 3 dokumen / bulan.
-                            </p>
-                        </div>
-                    </div>
-
-                    {{-- Item 4 --}}
-                    <div class="timeline-item">
-                        <div class="timeline-marker dot-red"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-meta-row">
-                                <b class="timeline-time time-red">Kemarin (23:14 WIB)</b>
-                                <span class="timeline-tag tag-red">Firewall Guard</span>
-                                <span class="timeline-actor">Auth Gateway</span>
-                            </div>
-                            <p class="timeline-desc">
-                                Percobaan login gagal terdeteksi 3x berturut-turut pada akun staf via IP <span class="ip-blocked">192.168.1.105</span>. Alamat IP diblokir sementara 60 menit.
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div class="super-card-footer" style="justify-content:flex-end">
@@ -407,7 +334,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn-super-dark-full" onclick="toast('Membuka konfigurasi kebijakan RBAC...')">
+                <button type="button" class="btn-super-dark-full" onclick="window.location='{{ route('dashboard', 'users') }}'">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c0 .69.21 1.33.57 1.87z"/></svg>
                     Atur Policy &amp; Peran RBAC
                 </button>

@@ -10,46 +10,46 @@
         ['label' => 'Audiobook (250)'],
     ];
 
-    $collections = [
+    $collections = !empty($lib->ebooks) ? $lib->ebooks : [
         [
+            'id' => 1,
             'badge' => 'PDF/EPUB', 'badgeClass' => 'neutral',
             'title' => 'Metodologi Penelitian Terapan & Analisis Data',
             'tag' => 'UNLIMITED MULTI-USER', 'tagClass' => 'ok',
             'line' => 'Dr. Ir. Hendra S., M.Sc. &bull; Inovexa Press (2025) &bull; ISBN: 978-623-01-4412-8 &bull; 48.2 MB',
             'foot' => 'Watermark Dinamis Aktif (IP &amp; NIA) &bull; 1.420x diunduh &amp; dibaca',
             'progress' => null,
+            'drm_enabled' => true,
         ],
         [
+            'id' => 2,
             'badge' => 'EPUB 3.0', 'badgeClass' => 'peach',
             'title' => 'Principles of Modern Software Engineering (10th Ed)',
             'tag' => '50 KONKUREN SESI', 'tagClass' => 'neutral',
             'line' => 'Ian Sommerville &bull; Pearson International License &bull; ISBN: 978-013-394303-0 &bull; 24.8 MB',
             'foot' => 'Adobe Content Server LCP Proteksi Ketat',
             'progress' => ['label' => '38 / 50 kuota sedang aktif terpakai', 'pct' => 76],
+            'drm_enabled' => true,
         ],
         [
+            'id' => 3,
             'badge' => 'EPUB+AUDIO', 'badgeClass' => 'neutral',
             'title' => 'Filosofi Teras: Panduan Praktis Mental Tangguh',
             'tag' => 'KOMPAS GRAMEDIA (TIER A)', 'tagClass' => 'neutral',
             'line' => 'Henry Manampiring &bull; Penerbit Buku Kompas &bull; ISBN: 978-602-412-518-9 &bull; 18.5 MB',
             'foot' => 'Read-Only Web &amp; Mobile Sandboxed Reader &bull; 820x dibaca &bull; 0 unduh offline diizinkan',
             'progress' => null,
+            'drm_enabled' => true,
         ],
         [
+            'id' => 4,
             'badge' => 'JOURNAL', 'badgeClass' => 'neutral',
             'title' => 'Jurnal Riset Kecerdasan Buatan Terapan Vol. 14 No. 2',
             'tag' => 'OPEN ACCESS (CC-BY 4.0)', 'tagClass' => 'ok',
             'line' => 'SCOPUS Q2 / SINTA 1 &bull; Pusat Publikasi BRIN &amp; Inovexa Research &bull; DOI: 10.14710/jkat.v14i2.2026 &bull; 14.1 MB',
             'foot' => 'Public Watermark Repo &amp; OAI-PMH Harvester Enabled &bull; 2.840x unduhan sitasi',
             'progress' => null,
-        ],
-        [
-            'badge' => 'EPUB 3', 'badgeClass' => 'peach',
-            'title' => 'Deep Work: Rules for Focused Success in a Distracted World',
-            'tag' => '25 KONKUREN SESI', 'tagClass' => 'neutral',
-            'line' => 'Cal Newport &bull; Grand Central Publishing &bull; ISBN: 978-145-558669-1 &bull; 12.3 MB',
-            'foot' => 'DRM Aktif &bull; Waktu Baca Maks. 3 Jam / Sesi',
-            'progress' => ['label' => '22 / 25 sesi terpakai', 'pct' => 88],
+            'drm_enabled' => false,
         ],
     ];
 
@@ -80,15 +80,15 @@
         </div>
 
         <div class="sx-actions row" style="max-width:430px;justify-content:flex-end">
-            <button type="button" class="sx-btn sx-btn-soft" onclick="toast('Audit akses DRM dijalankan.')">
+            <button type="button" class="sx-btn sx-btn-soft" onclick="window.location.href='{{ route('dashboard', 'sys') }}'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                 Audit Akses DRM
             </button>
-            <button type="button" class="sx-btn sx-btn-soft" onclick="toast('Sinkronisasi cloud storage dimulai...')">
+            <button type="button" class="sx-btn sx-btn-soft" onclick="toast('Sinkronisasi CDN Edge &amp; Cloud Storage selesai (0 latency).')">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
                 Sinkronisasi Cloud Storage
             </button>
-            <button type="button" class="sx-btn sx-btn-dark" style="width:100%" onclick="toast('Formulir unggah master e-book / jurnal dibuka.')">
+            <button type="button" class="sx-btn sx-btn-dark" style="width:100%" onclick="openModal('modal-upload-ebook')">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
                 + Unggah Master E-Book &amp; Jurnal
             </button>
@@ -158,7 +158,7 @@
                     <div class="sx-card-title-group">
                         <span class="sx-swatch dark"></span>
                         <b style="font-size:12.5px;color:var(--sx-ink)">Batch Actions:</b>
-                        <button type="button" class="sx-btn sx-btn-sm sx-btn-muted" onclick="toast('Ekspor metadata MARC21 disiapkan.')">Ekspor Metadata MARC21</button>
+                        <button type="button" class="sx-btn sx-btn-sm sx-btn-muted" onclick="window.location.href='{{ route('super.export.books') }}'">Ekspor Metadata MARC21 (.CSV)</button>
                     </div>
                 </div>
 
@@ -186,7 +186,7 @@
                             <div style="display:flex;gap:14px;align-items:flex-start">
                                 <div style="width:54px;min-height:64px;border-radius:8px;background:var(--sx-bg);border:1px solid var(--sx-line);display:grid;place-items:center;flex-shrink:0;text-align:center;padding:6px">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#45464d" stroke-width="1.7" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                                    <span style="font-size:7.5px;font-weight:800;letter-spacing:.4px;color:var(--sx-mute);margin-top:4px">{{ $item['badge'] }}</span>
+                                    <span style="font-size:7.5px;font-weight:800;letter-spacing:.4px;color:var(--sx-mute);margin-top:4px">{{ $item['badge'] ?? 'PDF' }}</span>
                                 </div>
 
                                 <div style="flex:1;min-width:0">
@@ -194,24 +194,35 @@
                                         <div style="min-width:0">
                                             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                                                 <b style="font-size:13px;color:var(--sx-ink)">{{ $item['title'] }}</b>
-                                                <span class="sx-badge {{ $item['tagClass'] }}">{{ $item['tag'] }}</span>
+                                                <span class="sx-badge {{ $item['tagClass'] ?? 'ok' }}">{{ $item['tag'] ?? 'DIGITAL' }}</span>
                                             </div>
                                             <p style="margin:4px 0 0;font-size:11px;line-height:1.5;color:var(--sx-mute)">{!! $item['line'] !!}</p>
                                         </div>
-                                        <div style="display:flex;gap:6px;flex-shrink:0">
-                                            <button type="button" class="sx-btn sx-btn-sm" style="padding:6px 9px" title="Pratinjau" onclick="toast('Pratinjau koleksi dibuka.')">
+                                        <div style="display:flex;gap:6px;flex-shrink:0;align-items:center">
+                                            <a href="{{ route('elib.read', $item['id'] ?? 1) }}" class="sx-btn sx-btn-sm" style="padding:6px 9px;text-decoration:none;display:inline-flex;align-items:center" title="Pratinjau / Baca">
                                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                                            </button>
-                                            <button type="button" class="sx-btn sx-btn-sm" style="padding:6px 9px" title="Unduh" onclick="toast('Berkas terenkripsi disiapkan untuk diunduh.')">
-                                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
-                                            </button>
-                                            <button type="button" class="sx-btn sx-btn-sm" style="font-weight:700" onclick="toast('Panel kelola akses lisensi dibuka.')">Kelola Akses</button>
+                                            </a>
+                                            <form action="{{ route('super.elib.drm', $item['id'] ?? 1) }}" method="POST" style="display:inline;margin:0">
+                                                @csrf
+                                                <button type="submit" class="sx-btn sx-btn-sm" style="font-weight:700;font-size:11px" title="Ubah Kebijakan Proteksi DRM">
+                                                    {{ !empty($item['drm_enabled']) ? '🛡️ DRM: ON' : '🔓 Open' }}
+                                                </button>
+                                            </form>
+                                            @if(!empty($item['id']) && $item['id'] > 2)
+                                            <form action="{{ route('super.elib.delete', $item['id']) }}" method="POST" style="display:inline;margin:0" onsubmit="return confirm('Hapus aset digital {{ addslashes($item['title']) }} dari repositori?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="sx-btn sx-btn-sm" style="color:#dc2626;padding:6px 8px;font-size:11px" title="Hapus Aset">
+                                                    ✕
+                                                </button>
+                                            </form>
+                                            @endif
                                         </div>
                                     </div>
 
                                     <div style="margin-top:6px;font-size:10.5px;line-height:1.5;color:var(--sx-body)">{!! $item['foot'] !!}</div>
 
-                                    @if ($item['progress'])
+                                    @if (!empty($item['progress']))
                                         <div style="margin-top:8px;display:flex;align-items:center;gap:10px">
                                             <div class="sx-track" style="flex:1"><i class="orange" style="width:{{ $item['progress']['pct'] }}%"></i></div>
                                             <span style="font-size:10.5px;font-weight:600;color:var(--sx-mute);white-space:nowrap">{{ $item['progress']['label'] }}</span>
@@ -314,6 +325,65 @@
                     <button type="button" class="sx-btn sx-btn-sm" style="background:rgba(19,27,46,.8);border-color:transparent;color:#fff" onclick="toast('Dokumen lisensi WIPO diunduh.')">Unduh Dokumen Lisensi</button>
                 </div>
             </section>
+        </div>
+    </div>
+
+    {{-- MODAL UNGGAH MASTER E-BOOK / JURNAL --}}
+    <div class="modal" id="modal-upload-ebook" role="dialog" aria-modal="true" style="display:none" onclick="if(event.target===this)closeModal('modal-upload-ebook')">
+        <div class="modal-box" style="background:#fff;border-radius:12px;max-width:540px;width:90%;padding:24px;position:relative">
+            <button class="modal-close" type="button" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer" onclick="closeModal('modal-upload-ebook')">✕</button>
+            <div style="font-size:10px;font-weight:700;color:var(--sx-amber);letter-spacing:1px;text-transform:uppercase">SUPER ADMIN • REPOSITORI DIGITAL</div>
+            <h2 style="font-size:18px;font-weight:800;color:var(--sx-ink);margin:4px 0 12px">Unggah Master E-Book &amp; Jurnal</h2>
+            <form method="POST" action="{{ route('super.elib.create') }}">
+                @csrf
+                <div style="margin-bottom:10px">
+                    <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Judul E-Resource <span style="color:#dc2626">*</span></label>
+                    <input type="text" name="title" class="sx-input" style="width:100%" placeholder="Contoh: Metodologi Penelitian Terapan..." required>
+                </div>
+                <div style="margin-bottom:10px">
+                    <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Pengarang / Penulis <span style="color:#dc2626">*</span></label>
+                    <input type="text" name="author" class="sx-input" style="width:100%" placeholder="Nama penulis utama..." required>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+                    <div>
+                        <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Format Berkas</label>
+                        <select name="format" class="sx-select" style="width:100%">
+                            <option value="PDF">PDF (ISO 19005 A-1b)</option>
+                            <option value="EPUB">EPUB 3.0</option>
+                            <option value="EPUB+AUDIO">EPUB + Audiobook</option>
+                            <option value="JOURNAL">SCOPUS / Open Journal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Lisensi Hak Cipta</label>
+                        <select name="license" class="sx-select" style="width:100%">
+                            <option value="UNLIMITED MULTI-USER">UNLIMITED MULTI-USER</option>
+                            <option value="50 KONKUREN SESI">50 KONKUREN SESI</option>
+                            <option value="OPEN ACCESS (CC-BY 4.0)">OPEN ACCESS (CC-BY 4.0)</option>
+                            <option value="KOMPAS GRAMEDIA (TIER A)">KOMPAS GRAMEDIA (TIER A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+                    <div>
+                        <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Penerbit / Afiliasi</label>
+                        <input type="text" name="publisher" class="sx-input" style="width:100%" placeholder="Inovexa Press" value="Inovexa Press">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;color:var(--sx-ink)">Ukuran Berkas Master</label>
+                        <input type="text" name="file_size" class="sx-input" style="width:100%" placeholder="18.5 MB" value="18.5 MB">
+                    </div>
+                </div>
+                <div style="margin-bottom:16px;background:#f8fafc;border:1px solid #e2e8f0;padding:10px;border-radius:6px;display:flex;align-items:center;gap:10px">
+                    <input type="checkbox" name="drm_enabled" value="1" id="drm-check" checked style="accent-color:#153223;width:16px;height:16px">
+                    <label for="drm-check" style="font-size:11.5px;color:var(--sx-ink);font-weight:600;cursor:pointer">
+                        Aktifkan Proteksi DRM &amp; Watermark Dinamis (NIA + IP Pemustaka)
+                    </label>
+                </div>
+                <button type="submit" class="sx-btn sx-btn-dark" style="width:100%;padding:10px;font-weight:700;font-size:12.5px">
+                    + Publikasikan Master ke Repositori Digital
+                </button>
+            </form>
         </div>
     </div>
 

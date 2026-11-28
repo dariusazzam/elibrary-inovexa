@@ -448,18 +448,29 @@
 
                 {{-- Action Buttons --}}
                 <div class="circ-action-stack">
-                    <button type="button" class="btn-root-approve" onclick="handleRootDispensasi('full')">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Setujui Pemutihan Penuh (Buka Blokir)</span>
-                    </button>
-                    <button type="button" class="btn-root-partial" onclick="handleRootDispensasi('partial')">
-                        <span style="font-weight:700">%</span>
-                        <span>Dispensasi Sebagian (Potongan 50%)</span>
-                    </button>
-                    <button type="button" class="btn-root-reject" onclick="handleRootDispensasi('reject')">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-                        <span>Tolak Usulan &amp; Terapkan Sanksi Normal</span>
-                    </button>
+                    <form action="{{ route('super.circ.dispensation.approve', 1) }}" method="POST" style="margin:0">
+                        @csrf
+                        <input type="hidden" name="type" value="full">
+                        <button type="submit" class="btn-root-approve" style="width:100%" onclick="return confirm('Konfirmasi Setujui Pemutihan Penuh:\nBuka blokir akun Ahmad Fauzi dan hapus denda keterlambatan?')">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Setujui Pemutihan Penuh (Buka Blokir)</span>
+                        </button>
+                    </form>
+                    <form action="{{ route('super.circ.dispensation.approve', 1) }}" method="POST" style="margin:0">
+                        @csrf
+                        <input type="hidden" name="type" value="partial">
+                        <button type="submit" class="btn-root-partial" style="width:100%" onclick="return confirm('Konfirmasi Dispensasi Sebagian:\nBeri potongan 50% denda?')">
+                            <span style="font-weight:700">%</span>
+                            <span>Dispensasi Sebagian (Potongan 50%)</span>
+                        </button>
+                    </form>
+                    <form action="{{ route('super.circ.dispensation.reject', 1) }}" method="POST" style="margin:0">
+                        @csrf
+                        <button type="submit" class="btn-root-reject" style="width:100%" onclick="return confirm('Konfirmasi Penolakan Usulan:\nTerapkan sanksi normal dan pertahankan freeze akun?')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                            <span>Tolak Usulan &amp; Terapkan Sanksi Normal</span>
+                        </button>
+                    </form>
                 </div>
 
                 {{-- Root Compliance Note --}}
@@ -677,7 +688,7 @@
             </div>
             <button type="button" class="circ-modal-close" onclick="closeModal('modal-save-circ-policy')">✕</button>
         </div>
-        <form method="POST" action="{{ route('settings.save') }}">
+        <form method="POST" action="{{ route('super.circ.policy') }}">
             @csrf
             <div class="circ-modal-body">
                 <div class="circ-alert-info">
@@ -2154,35 +2165,10 @@ function handleRootDispensasi(action) {
 }
 
 function exportKasdaReport() {
-    toast('Mengekspor Laporan Retribusi Denda & Kas Daerah (.CSV)...');
-    var csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "ID Transaksi,Pemustaka,Kategori,Keterlambatan (Hari),Denda (Rp),Status Bayar,Waktu Validasi Kasda\n";
-    csvContent += "TRX-DND-9812,Kevin Wijaya,Mahasiswa Umum,4,4000,Lunas QRIS,2026-11-06 09:45:02\n";
-    csvContent += "TRX-DND-9811,Ahmad Fauzi,Mahasiswa Akhir,18,18000,Menunggu Pemutihan,2026-11-06 08:30:00\n";
-    csvContent += "TRX-DND-9810,Dewi Sartika,Pelajar Mitra,2,1000,Lunas Kasir Loket,2026-11-05 14:15:30\n";
-
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "Laporan_Retribusi_Denda_Kasda_INOVEXA.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.location.href = "{{ route('super.export.circulation') }}";
 }
 
 function exportCircAuditCsv() {
-    toast('Mengunduh Log Audit Forensik Sirkulasi (.CSV)...');
-    var csv = "Waktu,Aktor,Aksi,Sasaran,Dampak,Hash_Integritas\n";
-    csv += "2026-11-06 11:20:14,Ari (Super Admin Root),Manual Override Kuota,Dr. Siti Rahmawati,5 -> 10 Eksemplar,8f3d1b4902a7c5e2194b6da0\n";
-    csv += "2026-11-06 09:45:02,Budi Santoso (Petugas Loket 1),Pelunasan Denda,Kevin Wijaya,Rp 4.000 Lunas,a12c98d41098fe736b042\n";
-    csv += "2026-11-06 08:30:00,Cron Daemon,Auto-Lockout,3 Anggota,Freeze Akun,c77e21fa680b54e38914d\n";
-
-    var encoded = encodeURI("data:text/csv;charset=utf-8," + csv);
-    var a = document.createElement("a");
-    a.href = encoded;
-    a.download = "Audit_Log_Sirkulasi_Forensik.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    window.location.href = "{{ route('super.export.audit_logs') }}";
 }
 </script>

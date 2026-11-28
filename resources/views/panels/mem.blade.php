@@ -139,6 +139,40 @@
             'status_filter' => 'active',
         ],
     ];
+
+    // Merge members dynamically from $lib->users
+    $existingNias = array_column($superMembers, 'nia');
+    foreach (($lib->users ?? []) as $uRow) {
+        if (($uRow['role'] ?? '') === 'member' && !in_array($uRow['code'] ?? '', $existingNias)) {
+            $code = $uRow['code'] ?? ('MBR-'.rand(1000,9999));
+            $initials = strtoupper(substr($uRow['name'] ?? 'U', 0, 2));
+            $superMembers[] = [
+                'name' => $uRow['name'] ?? 'Anggota Baru',
+                'nia' => $code,
+                'nik_masked' => !empty($uRow['nik']) ? substr($uRow['nik'], 0, 8).'****'.substr($uRow['nik'], -4) : '31740924****0099',
+                'category_title' => $uRow['category'] ?? 'Umum / Reguler',
+                'category_verified' => ($uRow['status'] ?? 'active') === 'active',
+                'quota_desc' => 'Kuota: '.($uRow['quota'] ?? 3).' Buku',
+                'repo_desc' => 'Katalog Sirkulasi Biasa',
+                'status_type' => ($uRow['status'] ?? 'active') === 'active' ? 'active' : 'freeze',
+                'status_label' => ($uRow['status'] ?? 'active') === 'active' ? 'Aktif' : 'Nonaktif',
+                'status_sub' => 'Terdaftar di Basis Data',
+                'last_session' => 'Baru Saja',
+                'last_location' => 'Portal Inovexa',
+                'avatar' => $initials,
+                'avatar_class' => 'member-avatar-mint',
+                'selected' => false,
+                'email' => $uRow['email'] ?? '',
+                'phone' => $uRow['phone'] ?? '+62 812-xxxx-xxxx',
+                'valid_until' => '31 Des 2027',
+                'limit_books' => ($uRow['quota'] ?? 3).' Buku',
+                'repo_access' => 'Standar OPAC',
+                'dispensation' => 'Nonaktif',
+                'category_filter' => str_contains(strtolower($uRow['category'] ?? ''), 'dosen') ? 'dosen' : (str_contains(strtolower($uRow['category'] ?? ''), 'mahasiswa') ? 'mahasiswa' : 'umum'),
+                'status_filter' => ($uRow['status'] ?? 'active') === 'active' ? 'active' : 'freeze',
+            ];
+        }
+    }
 @endphp
 
 <div class="super-member-page">
@@ -372,10 +406,24 @@
                                 <div class="compliance-sub">{{ $m['status_sub'] }}</div>
                             </td>
 
-                            {{-- Kolom 4: Sesi Terakhir --}}
+                            {{-- Kolom 4: Sesi Terakhir & Aksi --}}
                             <td>
                                 <div class="session-time">{{ $m['last_session'] }}</div>
-                                <div class="session-location">{{ $m['last_location'] }}</div>
+                                <div class="session-location" style="margin-bottom:6px">{{ $m['last_location'] }}</div>
+                                <div style="display:flex;gap:4px;justify-content:flex-start;align-items:center" onclick="event.stopPropagation()">
+                                    @if($m['status_type'] === 'verify')
+                                    <form action="{{ route('super.member.verify', $m['nia']) }}" method="POST" style="display:inline;margin:0">
+                                        @csrf
+                                        <button type="submit" class="btn-member-bulk" style="padding:2px 7px;font-size:10px;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:4px;cursor:pointer" title="Verifikasi KTM Sekarang">✓ Verifikasi</button>
+                                    </form>
+                                    @endif
+                                    <button type="button" class="btn-member-bulk" style="padding:2px 7px;font-size:10px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:4px;cursor:pointer" onclick="openQuotaModalFor('{{ addslashes($m['nia']) }}', '{{ addslashes($m['limit_books']) }}', '{{ addslashes($m['repo_access']) }}', '{{ addslashes($m['dispensation']) }}')" title="Ubah Kuota">⚙ Kuota</button>
+                                    <form action="{{ route('super.member.delete', $m['nia']) }}" method="POST" style="display:inline;margin:0" onsubmit="return confirm('Hapus data anggota {{ addslashes($m['name']) }} ({{ $m['nia'] }})?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-member-bulk-danger" style="padding:2px 6px;font-size:10px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:4px;cursor:pointer" title="Hapus Anggota">✕</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -554,12 +602,15 @@
                 </button>
 
                 <div class="sidebar-action-subrow">
-                    <button type="button" class="btn-sub-freeze" onclick="toast('Status akun pemustaka dibekukan sementara.')">
-                        <span>🔒</span> Bekukan Akun
-                    </button>
-                    <button type="button" class="btn-sub-log" onclick="toast('Membuka log riwayat transaksi &amp; kepatuhan anggota...')">
+                    <form id="freeze-member-form" action="{{ route('super.member.toggle', $superMembers[0]['nia'] ?? 'INX-2026-07719') }}" method="POST" style="flex:1">
+                        @csrf
+                        <button type="submit" class="btn-sub-freeze" style="width:100%" onclick="return confirm('Ubah status keaktifan / pembekuan akun anggota ini?')">
+                            <span>🔒</span> Bekukan / Aktifkan
+                        </button>
+                    </form>
+                    <a href="{{ route('dashboard', 'sys') }}" class="btn-sub-log" style="flex:1;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:4px">
                         <span>📜</span> Lihat Audit Log
-                    </button>
+                    </a>
                 </div>
 
             </div>
@@ -628,44 +679,45 @@
             <button type="button" class="super-modal-close" onclick="closeModal('modal-register-master-member')">&times;</button>
         </div>
 
-        <form onsubmit="event.preventDefault(); toast('Data anggota baru berhasil didaftarkan dan kartu digital diterbitkan.'); closeModal('modal-register-master-member');">
+        <form action="{{ route('super.member.register') }}" method="POST">
+            @csrf
             <div class="modal-form-grid">
                 <div class="modal-field modal-form-full">
                     <label>Nama Lengkap Pemustaka</label>
-                    <input type="text" class="modal-input" placeholder="Misal: Prof. Dr. Hendra Gunawan" required>
+                    <input type="text" name="name" class="modal-input" placeholder="Misal: Prof. Dr. Hendra Gunawan" required>
                 </div>
                 <div class="modal-field">
                     <label>Nomor Induk Kependudukan (NIK)</label>
-                    <input type="text" class="modal-input" placeholder="16 Digit NIK KTP" required>
+                    <input type="text" name="nik" class="modal-input" placeholder="16 Digit NIK KTP" required>
                 </div>
                 <div class="modal-field">
                     <label>Nomor Induk Anggota (NIA)</label>
-                    <input type="text" class="modal-input" value="INX-2026-9912" required>
+                    <input type="text" name="nia" class="modal-input" value="INX-2026-{{ rand(1000, 9999) }}" required>
                 </div>
                 <div class="modal-field">
                     <label>Kategori Keanggotaan</label>
-                    <select class="modal-select">
-                        <option>Dosen / Peneliti Utama</option>
-                        <option>Mahasiswa Sarjana (S1)</option>
-                        <option>Mahasiswa Pascasarjana (S2/S3)</option>
-                        <option>Masyarakat Umum / Peneliti Mandiri</option>
+                    <select name="category" class="modal-select">
+                        <option value="Dosen / Peneliti Utama">Dosen / Peneliti Utama</option>
+                        <option value="Mahasiswa Sarjana (S1)">Mahasiswa Sarjana (S1)</option>
+                        <option value="Mahasiswa Pascasarjana (S2/S3)">Mahasiswa Pascasarjana (S2/S3)</option>
+                        <option value="Masyarakat Umum / Peneliti Mandiri">Masyarakat Umum / Peneliti Mandiri</option>
                     </select>
                 </div>
                 <div class="modal-field">
                     <label>Limit Kuota Simultan</label>
-                    <select class="modal-select">
-                        <option>Standar Reguler (3 Eksemplar)</option>
-                        <option>Extended Mahasiswa (5 Eksemplar)</option>
-                        <option>Master Dosen / Riset (10 Eksemplar)</option>
+                    <select name="quota" class="modal-select">
+                        <option value="3">Standar Reguler (3 Eksemplar)</option>
+                        <option value="5">Extended Mahasiswa (5 Eksemplar)</option>
+                        <option value="10" selected>Master Dosen / Riset (10 Eksemplar)</option>
                     </select>
                 </div>
                 <div class="modal-field">
                     <label>Alamat Email SSO / Institusi</label>
-                    <input type="email" class="modal-input" placeholder="nama@kampus.ac.id" required>
+                    <input type="email" name="email" class="modal-input" placeholder="nama@kampus.ac.id" required>
                 </div>
                 <div class="modal-field">
                     <label>Nomor WhatsApp / Ponsel</label>
-                    <input type="text" class="modal-input" placeholder="+62 812-xxxx-xxxx" required>
+                    <input type="text" name="phone" class="modal-input" placeholder="+62 812-xxxx-xxxx" required>
                 </div>
             </div>
 
@@ -714,7 +766,7 @@
 
         <div class="super-modal-footer">
             <button type="button" class="btn-member-outline" onclick="closeModal('modal-audit-pdp')">Tutup</button>
-            <button type="button" class="btn-member-primary" onclick="toast('Laporan kepatuhan PDP berhasil diunduh.'); closeModal('modal-audit-pdp');">Unduh Sertifikat Kepatuhan</button>
+            <button type="button" class="btn-member-primary" onclick="window.location.href='{{ route('super.export.members') }}'; closeModal('modal-audit-pdp');">Unduh Sertifikat Kepatuhan</button>
         </div>
     </div>
 </div>
@@ -730,20 +782,22 @@
             <button type="button" class="super-modal-close" onclick="closeModal('modal-member-quota-override')">&times;</button>
         </div>
 
-        <form onsubmit="event.preventDefault(); applyQuotaOverride();">
+        <form action="{{ route('super.member.quota') }}" method="POST">
+            @csrf
+            <input type="hidden" name="nia" id="input-override-nia" value="{{ $superMembers[0]['nia'] ?? 'INX-2026-07719' }}">
             <div class="modal-form-grid">
                 <div class="modal-field modal-form-full">
                     <label>Limit Pinjaman Buku Simultan</label>
-                    <select id="input-override-quota" class="modal-select">
-                        <option value="3 Buku">Standar (3 Buku)</option>
-                        <option value="5 Buku">Extended Mahasiswa (5 Buku)</option>
-                        <option value="10 Buku" selected>Master Peneliti / Dosen (10 Buku)</option>
-                        <option value="15 Buku">VIP / Institusi Mitra (15 Buku)</option>
+                    <select name="quota" id="input-override-quota" class="modal-select">
+                        <option value="3">Standar (3 Buku)</option>
+                        <option value="5">Extended Mahasiswa (5 Buku)</option>
+                        <option value="10" selected>Master Peneliti / Dosen (10 Buku)</option>
+                        <option value="15">VIP / Institusi Mitra (15 Buku)</option>
                     </select>
                 </div>
                 <div class="modal-field modal-form-full">
                     <label>Akses Repositori Naskah Kuno &amp; Arsip Langka</label>
-                    <select id="input-override-repo" class="modal-select">
+                    <select name="repo_access" id="input-override-repo" class="modal-select">
                         <option value="Diizinkan (Full)" selected>Diizinkan Akses Penuh (Full Download &amp; View)</option>
                         <option value="Baca Saja">Baca di Ruang Khusus (View Only)</option>
                         <option value="Tidak Diizinkan">Tidak Diizinkan</option>
@@ -751,7 +805,7 @@
                 </div>
                 <div class="modal-field modal-form-full">
                     <label>Dispensasi Penalti Keterlambatan Sirkulasi</label>
-                    <select id="input-override-fine" class="modal-select">
+                    <select name="dispensation" id="input-override-fine" class="modal-select">
                         <option value="Nonaktif (Standar)" selected>Nonaktif (Denda Normal Sesuai Jadwal)</option>
                         <option value="Aktif (Bebas Denda)">Aktif (Bebas Denda Sirkulasi Selama Masa Riset)</option>
                     </select>
@@ -768,6 +822,18 @@
 
 {{-- Script Interaktivitas Direktori Anggota --}}
 <script>
+    // Buka Modal Quota untuk Anggota Tertentu
+    function openQuotaModalFor(nia, limit, repo, dispense) {
+        document.getElementById('input-override-nia').value = nia;
+        if (limit) {
+            const num = parseInt(limit) || 3;
+            document.getElementById('input-override-quota').value = num;
+        }
+        if (repo) document.getElementById('input-override-repo').value = repo;
+        if (dispense) document.getElementById('input-override-fine').value = dispense;
+        openModal('modal-member-quota-override');
+    }
+
     // Filter Pencarian & Dropdown
     function filterSuperMembersTable() {
         const query = (document.getElementById('member-search-input').value || '').toLowerCase().trim();
@@ -847,45 +913,19 @@
         if (limitVal) limitVal.textContent = limit;
         if (repoVal) repoVal.textContent = repo;
         if (dispenseVal) dispenseVal.textContent = dispense;
-    }
 
-    // Terapkan override dari modal
-    function applyQuotaOverride() {
-        const quota = document.getElementById('input-override-quota').value;
-        const repo = document.getElementById('input-override-repo').value;
-        const fine = document.getElementById('input-override-fine').value;
+        const overrideNia = document.getElementById('input-override-nia');
+        if (overrideNia) overrideNia.value = nia;
 
-        const limitVal = document.getElementById('override-limit-val');
-        const repoVal = document.getElementById('meta-member-repo');
-        const dispenseVal = document.getElementById('meta-member-dispense');
-
-        if (limitVal) limitVal.textContent = quota;
-        if (repoVal) repoVal.textContent = repo;
-        if (dispenseVal) dispenseVal.textContent = fine;
-
-        closeModal('modal-member-quota-override');
-        toast('Kebijakan hak kuota anggota berhasil diperbarui.');
+        const freezeForm = document.getElementById('freeze-member-form');
+        if (freezeForm) {
+            freezeForm.action = '{{ url("super/members") }}/' + encodeURIComponent(nia) + '/toggle';
+        }
     }
 
     // Ekspor CSV
     function exportSuperMembersCsv() {
-        const rows = [
-            ['Nama', 'NIA', 'NIK', 'Kategori', 'Batas Kuota', 'Status Kepatuhan', 'Email', 'No Telepon'],
-            ['Dr. Siti Rahmawati, M.Sc.', 'INX-2026-07719', '3174092400000003', 'Dosen / Peneliti', '10 Buku', 'Aktif Terverifikasi', 'siti.rahmawati@ui.ac.id', '+628129900891'],
-            ['Herdman Pratama', 'INX-2026-08912', '3273100500000001', 'Umum / Reguler', '3 Buku', 'Aktif', 'herdman.pratama@gmail.com', '+628138800102'],
-            ['Kevin Wijaya', 'MBR-2026-04321', '3171011800000007', 'Mahasiswa UI', '3 Buku', 'Perlu Validasi KTM', 'kevin.w@campus.ac.id', '+628564400992'],
-            ['Ahmad Fauzi', 'INX-2026-04118', '3578012900000004', 'Mahasiswa S1 TI', 'Terkunci Denda', 'Freeze Sirkulasi', 'ahmad.fauzi@student.ac.id', '+628192200771'],
-            ['Dimas Arya', 'INX-2026-07734', '3175020100000002', 'Anggota Umum', '3 Buku', 'Aktif', 'dimas.arya@techmail.com', '+628781100332']
-        ];
-        let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "inovexa_direktori_anggota_super.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        toast('Mengunduh berkas CSV direktori anggota...');
+        window.location.href = "{{ route('super.export.members') }}";
     }
 </script>
 

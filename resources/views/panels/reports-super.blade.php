@@ -97,18 +97,18 @@
         </div>
 
         <div class="sx-actions">
-            <button type="button" class="sx-btn" onclick="toast('Pemilih rentang periode dibuka.')">
+            <button type="button" class="sx-btn" onclick="toast('Rentang waktu aktif: Semester I - II TA 2026')">
                 <svg width="14" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                 Rentang: FY 2026 (Sem I - II)
                 <svg width="8" height="5" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
             </button>
-            <button type="button" class="sx-btn sx-btn-dark" onclick="toast('Rekapitulasi eksekutif .PDF disiapkan.')">
+            <button type="button" class="sx-btn sx-btn-dark" onclick="window.location.href='{{ route('super.reports.export', 'akreditasi') }}'">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
-                Ekspor Rekapitulasi Eksekutif (.PDF)
+                Ekspor Rekapitulasi Eksekutif (.CSV)
             </button>
-            <button type="button" class="sx-btn sx-btn-muted" onclick="toast('Dataset .XLSX disiapkan.')">
+            <button type="button" class="sx-btn sx-btn-muted" onclick="window.location.href='{{ route('super.reports.export', 'sirkulasi') }}'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                Dataset (.XLSX)
+                Dataset (.CSV)
             </button>
         </div>
     </header>
@@ -294,10 +294,17 @@
                             <td><span class="sx-badge {{ $r['status'][0] }}">{{ $r['status'][1] }}</span></td>
                             <td>
                                 <div style="display:flex;gap:6px;flex-wrap:wrap">
-                                    <button type="button" class="sx-btn sx-btn-sm" style="padding:5px 9px" onclick="toast('Pratinjau laporan dibuka.')">{{ $r['actions'][0] }}</button>
-                                    <button type="button" class="sx-btn sx-btn-sm sx-btn-dark" style="padding:5px 9px" onclick="toast('{{ $r['actions'][1] }} disiapkan.')">
+                                    @php
+                                        $exportType = match($loop->index) {
+                                            0 => 'akreditasi',
+                                            1 => 'inventaris',
+                                            default => 'sirkulasi'
+                                        };
+                                    @endphp
+                                    <button type="button" class="sx-btn sx-btn-sm" style="padding:5px 9px" onclick="window.location.href='{{ route('super.reports.export', $exportType) }}'">{{ $r['actions'][0] }}</button>
+                                    <a href="{{ route('super.reports.export', $exportType) }}" class="sx-btn sx-btn-sm sx-btn-dark" style="padding:5px 9px;text-decoration:none;display:inline-flex;align-items:center">
                                         {{ $r['actions'][1] }}
-                                    </button>
+                                    </a>
                                 </div>
                             </td>
                         </tr>

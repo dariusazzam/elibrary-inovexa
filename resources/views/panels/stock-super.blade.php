@@ -158,9 +158,9 @@
                         <span>Cetak Barcode &amp; RFID Massal</span>
                     </button>
                     <span style="color:#cbd5e1">|</span>
-                    <button type="button" class="btn-bulk-action" onclick="toast('Mengekspor metadata MARC ke berkas XML...')">
+                    <button type="button" class="btn-bulk-action" onclick="window.location.href='{{ route('super.export.books') }}'">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        <span>Ekspor Metadata MARC</span>
+                        <span>Ekspor Data Koleksi (.CSV)</span>
                     </button>
                     <span style="color:#cbd5e1">|</span>
                     <button type="button" class="btn-bulk-danger" onclick="toast('PERINGATAN: Otorisasi hapus permanen memerlukan konfirmasi otoritas root.')">
@@ -184,235 +184,94 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- Row 1: Laskar Pelangi (Selected) --}}
-                        <tr class="super-stock-row super-stock-row--selected"
-                            data-title="laskar pelangi"
-                            data-author="andrea hirata"
-                            data-isbn="978-979-3062-79-2"
-                            data-ddc="899.221"
-                            data-status="terverifikasi"
-                            onclick="inspectStockBook('Laskar Pelangi', 'Andrea Hirata • Bentang Pustaka', 'Cetakan ke-34 (2021)', '899.221 (Fiksi Dewasa)', '899.221 HIR l', 'INX-EK-0994 · ISO 15693')">
-                            <td><input type="checkbox" class="stock-row-check" checked onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
+                        @foreach($lib->books as $bIdx => $b)
+                        @php
+                            $totalCopies = $b['st_total'] ?? ($b['st'] ?? 5);
+                            $available = $b['st'] ?? 0;
+                            $loaned = max(0, $totalCopies - $available);
+                            $isbn = $b['isbn'] ?? ('978-602-' . str_pad($b['id'], 3, '0', STR_PAD_LEFT) . '-019-2');
+                            $ddc = $b['ddc'] ?? (match($b['c'] ?? 'Umum') {
+                                'Teknologi' => '005.13',
+                                'Sains' => '500',
+                                'Fiksi' => '899.221',
+                                'Sejarah' => '909',
+                                'Pengembangan Diri' => '158.1',
+                                default => '020'
+                            });
+                            $callNum = $ddc . ' ' . strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $b['a'] ?? 'AUT'), 0, 3)) . ' ' . strtolower(substr(preg_replace('/[^a-zA-Z]/', '', $b['t'] ?? 't'), 0, 1));
+                            $rfidUid = 'INX-EK-' . str_pad($b['id'], 4, '0', STR_PAD_LEFT) . ' · ISO 15693';
+                            $statusType = $available === 0 ? 'kosong' : ($available <= 1 ? 'tinggi' : 'terverifikasi');
+                        @endphp
+                        <tr class="super-stock-row {{ $bIdx === 0 ? 'super-stock-row--selected' : '' }}"
+                            data-id="{{ $b['id'] }}"
+                            data-title="{{ strtolower($b['t']) }}"
+                            data-author="{{ strtolower($b['a']) }}"
+                            data-isbn="{{ strtolower($isbn) }}"
+                            data-ddc="{{ $ddc }}"
+                            data-status="{{ $statusType }}"
+                            onclick="inspectStockBook('{{ addslashes($b['t']) }}', '{{ addslashes($b['a']) }} • Penerbit Inovexa', 'Cetakan Master', '{{ $ddc }} ({{ addslashes($b['c'] ?? 'Umum') }})', '{{ $callNum }}', '{{ $rfidUid }}', {{ $b['id'] }})">
+                            <td><input type="checkbox" class="stock-row-check" {{ $bIdx === 0 ? 'checked' : '' }} onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
                             <td>
                                 <div class="stock-book-info">
-                                    <span class="stock-title-text">Laskar Pelangi</span>
-                                    <span class="stock-author-text">Andrea Hirata</span>
-                                    <span class="stock-isbn-text">ISBN: 978-979-3062-79-2</span>
+                                    <span class="stock-title-text">{{ $b['t'] }}</span>
+                                    <span class="stock-author-text">{{ $b['a'] }}</span>
+                                    <span class="stock-isbn-text">ISBN: {{ $isbn }}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="ddc-cell-wrap">
-                                    <span class="ddc-pill">899.221</span>
-                                    <span class="ddc-sub">Sastra Indonesia</span>
+                                    <span class="ddc-pill">{{ $ddc }}</span>
+                                    <span class="ddc-sub">{{ $b['c'] ?? 'Katalog Umum' }}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="ex-cell-wrap">
-                                    <b class="ex-num">5</b>
-                                    <span class="ex-sub">3 Di Rak • 2 Pinjam</span>
+                                    <b class="ex-num">{{ $totalCopies }}</b>
+                                    <span class="ex-sub {{ $available === 0 ? 'ex-sub--danger' : ($available <= 1 ? 'ex-sub--warn' : '') }}">
+                                        {{ $available }} Di Rak • {{ $loaned }} Pinjam
+                                    </span>
                                 </div>
                             </td>
                             <td>
-                                <span class="stock-status-pill status-pill-green">
-                                    <span>●</span>
-                                    <span>Terverifikasi</span>
-                                </span>
+                                @if($statusType === 'terverifikasi')
+                                    <span class="stock-status-pill status-pill-green">
+                                        <span>●</span>
+                                        <span>Terverifikasi</span>
+                                    </span>
+                                @elseif($statusType === 'tinggi')
+                                    <span class="stock-status-pill status-pill-orange">
+                                        <span>🔥</span>
+                                        <span>Permintaan Tinggi</span>
+                                    </span>
+                                @else
+                                    <span class="stock-status-pill status-pill-gray">
+                                        <span>⌛</span>
+                                        <span>Terbit (Kosong)</span>
+                                    </span>
+                                @endif
                             </td>
                             <td style="text-align:right" onclick="event.stopPropagation();">
-                                <div class="action-btn-group">
-                                    <button type="button" class="tbl-action-btn" title="Lihat detail koleksi" onclick="toast('Membuka detail bibliografi Laskar Pelangi...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                <div class="action-btn-group" style="display:inline-flex;gap:4px;align-items:center">
+                                    <form action="{{ route('super.book.add_copy', $b['id']) }}" method="POST" style="display:inline;margin:0" title="Tambah 1 Eksemplar Fisik">
+                                        @csrf
+                                        <button type="submit" class="tbl-action-btn" style="color:#059669;font-weight:700;font-size:11px;padding:3px 6px">
+                                            +1 Eks
+                                        </button>
+                                    </form>
+                                    <button type="button" class="tbl-action-btn" title="Edit Metadata" onclick="openEditBookModal({{ $b['id'] }}, '{{ addslashes($b['t']) }}', '{{ addslashes($b['a']) }}', '{{ addslashes($b['c'] ?? 'Umum') }}', {{ $totalCopies }}, {{ $available }})">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                     </button>
-                                    <button type="button" class="tbl-action-btn" title="Konfigurasi metadata" onclick="toast('Membuka konfigurasi metadata MARC...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-                                    </button>
+                                    <form action="{{ route('super.book.delete', $b['id']) }}" method="POST" style="display:inline;margin:0" onsubmit="return confirm('Hapus permanen koleksi {{ addslashes($b['t']) }} dari pangkalan data inventaris?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="tbl-action-btn" style="color:#dc2626" title="Hapus Koleksi (Write-Off)">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
-
-                        {{-- Row 2: Sapiens --}}
-                        <tr class="super-stock-row"
-                            data-title="sapiens: riwayat singkat umat manusia"
-                            data-author="yuval noah harari"
-                            data-isbn="978-602-424-416-3"
-                            data-ddc="909"
-                            data-status="terverifikasi"
-                            onclick="inspectStockBook('Sapiens: Riwayat Singkat Umat Manusia', 'Yuval Noah Harari • KPG', 'Cetakan ke-12 (2022)', '909 (Sejarah Dunia)', '909 HAR s', 'INX-EK-0380 · ISO 15693')">
-                            <td><input type="checkbox" class="stock-row-check" onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
-                            <td>
-                                <div class="stock-book-info">
-                                    <span class="stock-title-text">Sapiens: Riwayat Singkat Umat Manusia</span>
-                                    <span class="stock-author-text">Yuval Noah Harari</span>
-                                    <span class="stock-isbn-text">ISBN: 978-602-424-416-3</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ddc-cell-wrap">
-                                    <span class="ddc-pill">909</span>
-                                    <span class="ddc-sub">Sejarah Dunia</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ex-cell-wrap">
-                                    <b class="ex-num">4</b>
-                                    <span class="ex-sub">2 Di Rak • 2 Pinjam</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="stock-status-pill status-pill-green">
-                                    <span>●</span>
-                                    <span>Terverifikasi</span>
-                                </span>
-                            </td>
-                            <td style="text-align:right" onclick="event.stopPropagation();">
-                                <div class="action-btn-group">
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka detail bibliografi Sapiens...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                    </button>
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka konfigurasi metadata MARC...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        {{-- Row 3: Atomic Habits --}}
-                        <tr class="super-stock-row"
-                            data-title="atomic habits"
-                            data-author="james clear"
-                            data-isbn="978-602-063-317-6"
-                            data-ddc="158.1"
-                            data-status="tinggi"
-                            onclick="inspectStockBook('Atomic Habits', 'James Clear • Gramedia Pustaka Utama', 'Cetakan ke-18 (2023)', '158.1 (Pengembangan Diri)', '158.1 CLE a', 'INX-EK-0711 · ISO 15693')">
-                            <td><input type="checkbox" class="stock-row-check" onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
-                            <td>
-                                <div class="stock-book-info">
-                                    <span class="stock-title-text">Atomic Habits</span>
-                                    <span class="stock-author-text">James Clear</span>
-                                    <span class="stock-isbn-text">ISBN: 978-602-063-317-6</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ddc-cell-wrap">
-                                    <span class="ddc-pill">158.1</span>
-                                    <span class="ddc-sub">Pengembangan Diri</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ex-cell-wrap">
-                                    <b class="ex-num">6</b>
-                                    <span class="ex-sub ex-sub--warn">1 Di Rak (Kritis) • 5 Pinjam</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="stock-status-pill status-pill-orange">
-                                    <span>🔥</span>
-                                    <span>Permintaan Tinggi</span>
-                                </span>
-                            </td>
-                            <td style="text-align:right" onclick="event.stopPropagation();">
-                                <div class="action-btn-group">
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka detail bibliografi Atomic Habits...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                    </button>
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka konfigurasi metadata MARC...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        {{-- Row 4: Metodologi Penelitian Kualitatif --}}
-                        <tr class="super-stock-row"
-                            data-title="metodologi penelitian kualitatif"
-                            data-author="prof. dr. sugiyono"
-                            data-isbn="978-602-289-325-7"
-                            data-ddc="001.42"
-                            data-status="terverifikasi"
-                            onclick="inspectStockBook('Metodologi Penelitian Kualitatif', 'Prof. Dr. Sugiyono • Alfabeta', 'Edisi Revisi (2021)', '001.42 (Metode Penelitian)', '001.42 SUG m', 'INX-EK-0412 · ISO 15693')">
-                            <td><input type="checkbox" class="stock-row-check" onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
-                            <td>
-                                <div class="stock-book-info">
-                                    <span class="stock-title-text">Metodologi Penelitian Kualitatif</span>
-                                    <span class="stock-author-text">Prof. Dr. Sugiyono</span>
-                                    <span class="stock-isbn-text">ISBN: 978-602-289-325-7</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ddc-cell-wrap">
-                                    <span class="ddc-pill">001.42</span>
-                                    <span class="ddc-sub">Metode Penelitian</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ex-cell-wrap">
-                                    <b class="ex-num">8</b>
-                                    <span class="ex-sub">7 Di Rak • 1 Pinjam</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="stock-status-pill status-pill-green">
-                                    <span>●</span>
-                                    <span>Terverifikasi</span>
-                                </span>
-                            </td>
-                            <td style="text-align:right" onclick="event.stopPropagation();">
-                                <div class="action-btn-group">
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka detail bibliografi...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                    </button>
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka konfigurasi metadata MARC...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        {{-- Row 5: Algoritma & Pemrograman C++ --}}
-                        <tr class="super-stock-row"
-                            data-title="algoritma & pemrograman c++"
-                            data-author="rinaldi munir"
-                            data-isbn="978-623-7131-45-8"
-                            data-ddc="005.13"
-                            data-status="kosong"
-                            onclick="inspectStockBook('Algoritma & Pemrograman C++', 'Rinaldi Munir • Informatika', 'Edisi ke-5 (2020)', '005.13 (Pemrograman Komputer)', '005.13 MUN a', 'INX-EK-0820 · ISO 15693')">
-                            <td><input type="checkbox" class="stock-row-check" onclick="event.stopPropagation(); updateStockSelectedCount();"></td>
-                            <td>
-                                <div class="stock-book-info">
-                                    <span class="stock-title-text">Algoritma &amp; Pemrograman C++</span>
-                                    <span class="stock-author-text">Rinaldi Munir</span>
-                                    <span class="stock-isbn-text">ISBN: 978-623-7131-45-8</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ddc-cell-wrap">
-                                    <span class="ddc-pill">005.13</span>
-                                    <span class="ddc-sub">Pemrograman Komputer</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="ex-cell-wrap">
-                                    <b class="ex-num">3</b>
-                                    <span class="ex-sub ex-sub--danger">0 Di Rak • Habis Dipinjam</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="stock-status-pill status-pill-gray">
-                                    <span>⌛</span>
-                                    <span>Terbit (Kosong)</span>
-                                </span>
-                            </td>
-                            <td style="text-align:right" onclick="event.stopPropagation();">
-                                <div class="action-btn-group">
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka detail bibliografi...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                                    </button>
-                                    <button type="button" class="tbl-action-btn" onclick="toast('Membuka konfigurasi metadata MARC...')">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -548,18 +407,22 @@
 
             {{-- Action Buttons --}}
             <div class="super-stock-sidebar-actions">
-                <button type="button" class="btn-sidebar-primary" onclick="toast('Membuka editor metadata MARC bibliografi...')">
+                <button type="button" class="btn-sidebar-primary" onclick="openEditCurrentBook()">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                     <span>Edit Metadata Bibliografi</span>
                 </button>
-                <button type="button" class="btn-sidebar-secondary" onclick="toast('Membuka jejak audit riwayat eksemplar...')">
+                <a href="{{ route('dashboard', 'sys') }}" class="btn-sidebar-secondary" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     <span>Lihat Jejak Audit Eksemplar</span>
-                </button>
-                <button type="button" class="btn-sidebar-danger" onclick="toast('PERINGATAN: Otorisasi write-off permanen memerlukan konfirmasi otoritas root.')">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    <span>Hapus Permanen Koleksi (Write-Off)</span>
-                </button>
+                </a>
+                <form id="delete-book-form" action="{{ route('super.book.delete', $lib->books[0]['id'] ?? 1) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus permanen koleksi buku ini dari inventaris?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-sidebar-danger" style="width:100%">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        <span>Hapus Permanen Koleksi (Write-Off)</span>
+                    </button>
+                </form>
             </div>
 
             {{-- Integrasi Perpusnas --}}
@@ -583,25 +446,31 @@
         <button class="modal-close" type="button" onclick="closeModal('add-book-modal')">×</button>
         <div class="lbl">SUPER ADMIN • MASTER BIBLIOGRAFI</div>
         <h2 style="margin:4px 0 14px">Tambah Judul / Eksemplar Baru</h2>
-        <form method="POST" action="{{ route('stock.add') }}">
+        <form method="POST" action="{{ route('super.book.create') }}">
             @csrf
             <label class="form-label">Judul Buku <span style="color:#dc2626">*</span></label>
             <input class="form-input" type="text" name="t" placeholder="Masukkan judul lengkap..." required>
             <label class="form-label" style="margin-top:10px">Pengarang <span style="color:#dc2626">*</span></label>
             <input class="form-input" type="text" name="a" placeholder="Nama pengarang utama..." required>
-            <label class="form-label" style="margin-top:10px">ISBN</label>
-            <input class="form-input" type="text" placeholder="978-xxx-xxx-xxx-x">
-            <label class="form-label" style="margin-top:10px">Klasifikasi DDC</label>
-            <input class="form-input" type="text" placeholder="Contoh: 899.221">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
                 <div>
-                    <label class="form-label">Penerbit</label>
-                    <input class="form-input" type="text" placeholder="Nama penerbit...">
+                    <label class="form-label">Kategori</label>
+                    <select class="form-input" name="c">
+                        <option value="Teknologi">Teknologi &amp; Komputer</option>
+                        <option value="Sains">Sains &amp; Riset</option>
+                        <option value="Fiksi">Sastra &amp; Fiksi</option>
+                        <option value="Sejarah">Sejarah &amp; Budaya</option>
+                        <option value="Pengembangan Diri">Pengembangan Diri</option>
+                    </select>
                 </div>
                 <div>
-                    <label class="form-label">Tahun Terbit</label>
-                    <input class="form-input" type="number" placeholder="{{ date('Y') }}">
+                    <label class="form-label">Jumlah Eksemplar</label>
+                    <input class="form-input" type="number" name="st_total" value="5" min="1" required>
                 </div>
+            </div>
+            <div style="margin-top:10px">
+                <label class="form-label">Tersedia di Rak Awal</label>
+                <input class="form-input" type="number" name="st" value="5" min="0" required>
             </div>
             <button class="btn" type="submit" style="width:100%;margin-top:16px;background:#0f172a;color:#fff;border-radius:8px">
                 + Daftarkan ke Master Bibliografi
@@ -610,8 +479,82 @@
     </div>
 </div>
 
+{{-- Edit Book Modal --}}
+<div class="modal" id="edit-book-modal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeModal('edit-book-modal')">
+    <div class="modal-box">
+        <button class="modal-close" type="button" onclick="closeModal('edit-book-modal')">×</button>
+        <div class="lbl">SUPER ADMIN • MASTER BIBLIOGRAFI</div>
+        <h2 style="margin:4px 0 14px">Edit Metadata Koleksi Buku</h2>
+        <form method="POST" action="{{ route('super.book.update') }}">
+            @csrf
+            <input type="hidden" name="id" id="edit-book-id">
+            <label class="form-label">Judul Buku <span style="color:#dc2626">*</span></label>
+            <input class="form-input" type="text" name="t" id="edit-book-t" required>
+            <label class="form-label" style="margin-top:10px">Pengarang <span style="color:#dc2626">*</span></label>
+            <input class="form-input" type="text" name="a" id="edit-book-a" required>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+                <div>
+                    <label class="form-label">Kategori</label>
+                    <select class="form-input" name="c" id="edit-book-c">
+                        <option value="Teknologi">Teknologi &amp; Komputer</option>
+                        <option value="Sains">Sains &amp; Riset</option>
+                        <option value="Fiksi">Sastra &amp; Fiksi</option>
+                        <option value="Sejarah">Sejarah &amp; Budaya</option>
+                        <option value="Pengembangan Diri">Pengembangan Diri</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Total Eksemplar</label>
+                    <input class="form-input" type="number" name="st_total" id="edit-book-st-total" min="1" required>
+                </div>
+            </div>
+            <div style="margin-top:10px">
+                <label class="form-label">Stok Tersedia di Rak</label>
+                <input class="form-input" type="number" name="st" id="edit-book-st" min="0" required>
+            </div>
+            <button class="btn" type="submit" style="width:100%;margin-top:16px;background:#059669;color:#fff;border-radius:8px">
+                Simpan Perubahan Metadata
+            </button>
+        </form>
+    </div>
+</div>
+
 {{-- Interaktivitas Client-Side --}}
 <script>
+    let currentSelectedBook = {
+        id: {{ $lib->books[0]['id'] ?? 1 }},
+        t: '{{ addslashes($lib->books[0]['t'] ?? 'Laskar Pelangi') }}',
+        a: '{{ addslashes($lib->books[0]['a'] ?? 'Andrea Hirata') }}',
+        c: '{{ addslashes($lib->books[0]['c'] ?? 'Fiksi') }}',
+        st_total: {{ $lib->books[0]['st_total'] ?? 5 }},
+        st: {{ $lib->books[0]['st'] ?? 3 }}
+    };
+
+    function openEditBookModal(id, t, a, c, st_total, st) {
+        document.getElementById('edit-book-id').value = id;
+        document.getElementById('edit-book-t').value = t;
+        document.getElementById('edit-book-a').value = a;
+        document.getElementById('edit-book-c').value = c;
+        document.getElementById('edit-book-st-total').value = st_total;
+        document.getElementById('edit-book-st').value = st;
+        openModal('edit-book-modal');
+    }
+
+    function openEditCurrentBook() {
+        if (currentSelectedBook) {
+            openEditBookModal(
+                currentSelectedBook.id,
+                currentSelectedBook.t,
+                currentSelectedBook.a,
+                currentSelectedBook.c,
+                currentSelectedBook.st_total,
+                currentSelectedBook.st
+            );
+        } else {
+            toast('Pilih buku dari tabel terlebih dahulu.');
+        }
+    }
+
     function filterStockTab(tab, btn) {
         document.querySelectorAll('.super-stock-tab').forEach(b => b.classList.remove('active'));
         if (btn) btn.classList.add('active');
@@ -670,7 +613,7 @@
         });
     }
 
-    function inspectStockBook(title, author, edition, ddc, callNum, uid) {
+    function inspectStockBook(title, author, edition, ddc, callNum, uid, id) {
         const titleEl = document.getElementById('inspect-book-title');
         const authorEl = document.getElementById('inspect-book-author');
         const edEl = document.getElementById('inspect-book-edition');
@@ -684,5 +627,15 @@
         if (ddcEl) ddcEl.textContent = ddc;
         if (callEl) callEl.textContent = callNum;
         if (uidEl) uidEl.textContent = uid;
+
+        if (id) {
+            currentSelectedBook.id = id;
+            currentSelectedBook.t = title;
+            currentSelectedBook.a = author.split(' • ')[0] || '';
+            const deleteForm = document.getElementById('delete-book-form');
+            if (deleteForm) {
+                deleteForm.action = '{{ url("super/book") }}/' + id;
+            }
+        }
     }
 </script>

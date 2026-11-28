@@ -23,15 +23,21 @@
 
         {{-- 3 Tombol Aksi Kanan Atas --}}
         <div style="display:flex;flex-direction:column;gap:8px;min-width:240px">
-            <button type="button" style="background:#111827;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.15)" onclick="toast('Memicu pencadangan basis data penuh...')">
-                <span>⚡</span> Trigger Backup Manual
-            </button>
-            <button type="button" style="background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" onclick="toast('Integritas SHA-256 terverifikasi valid.')">
-                🔒 Verifikasi Integritas SHA-256
-            </button>
-            <button type="button" style="background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer" onclick="toast('Mengunduh arsip snapshot .tar.enc...')">
+            <form action="{{ route('super.backup.trigger') }}" method="POST" style="margin:0">
+                @csrf
+                <button type="submit" style="width:100%;background:#111827;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.15)">
+                    <span>⚡</span> Trigger Backup Manual
+                </button>
+            </form>
+            <form action="{{ route('super.backup.verify') }}" method="POST" style="margin:0">
+                @csrf
+                <button type="submit" style="width:100%;background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer">
+                    🔒 Verifikasi Integritas SHA-256
+                </button>
+            </form>
+            <a href="{{ route('super.backup.download', $lib->backups[0]['filename'] ?? 'inovexa_db_snapshot.sql.enc') }}" style="text-decoration:none;background:#fff;color:#111827;border:1px solid #cbd5e1;padding:9px 18px;border-radius:8px;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer">
                 📥 Unduh Snapshot (.tar.enc)
-            </button>
+            </a>
         </div>
     </div>
 
@@ -124,7 +130,7 @@
                     <p style="font-size:12px;color:#64748b;margin:0">Pencatatan real-time seluruh event administratif berkekuatan hukum dengan cap waktu NTP resmi.</p>
                 </div>
                 <div>
-                    <button type="button" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#334151;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer" onclick="toast('Mengekspor log ke format CSV & Syslog...')">
+                    <button type="button" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#334151;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer" onclick="window.location.href='{{ route('super.export.audit_logs') }}'">
                         📥 Ekspor CSV / Syslog
                     </button>
                 </div>
@@ -165,147 +171,64 @@
                         </tr>
                     </thead>
                     <tbody style="color:#1e293b">
+                        @forelse($lib->auditLogs as $log)
+                        @php
+                            $actorInitials = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $log['actor'] ?? 'SY'), 0, 2)) ?: 'SY';
+                            $lvl = $log['level'] ?? 'info';
+                            $bgStatus = match($lvl) {
+                                'warning', 'error' => '#fee2e2',
+                                'success' => '#dcfce7',
+                                default => '#f1f5f9'
+                            };
+                            $colorStatus = match($lvl) {
+                                'warning', 'error' => '#991b1b',
+                                'success' => '#166534',
+                                default => '#334151'
+                            };
+                            $labelStatus = match($lvl) {
+                                'warning', 'error' => '⚠️ PERINGATAN',
+                                'success' => '● SUKSES (Verified)',
+                                default => '✓ TERCATAT'
+                            };
+                        @endphp
                         <tr style="border-bottom:1px solid #f1f5f9">
                             <td style="padding:12px 8px">
-                                <strong style="color:#0f172a">11:28:14</strong><br>
-                                <span style="font-size:10.5px;color:#64748b">26 Okt 2026</span>
+                                <strong style="color:#0f172a">{{ $log['timestamp'] ?? 'Sekarang' }}</strong><br>
+                                <span style="font-size:10.5px;color:#64748b">{{ $log['date'] ?? date('d M Y') }}</span>
                             </td>
                             <td style="padding:12px 8px">
                                 <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#153223;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">AR</span>
+                                    <span style="width:24px;height:24px;background:#153223;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">{{ $actorInitials }}</span>
                                     <div>
-                                        <strong style="font-size:11.5px">Ari (Root)</strong><br>
-                                        <span style="font-size:10px;color:#64748b">NIP: INX-ADM-2026-04</span>
+                                        <strong style="font-size:11.5px">{{ $log['actor'] ?? 'System' }}</strong><br>
+                                        <span style="font-size:10px;color:#64748b">{{ $log['category'] ?? 'Sistem' }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td style="padding:12px 8px">
-                                <span style="background:#f1f5f9;color:#334151;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">Kelola Akun &amp; Hak Akses</span><br>
-                                <span style="color:#0f172a;font-weight:500">Update Kebijakan 2FA Staf Loket</span>
+                                <span style="background:#f1f5f9;color:#334151;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">{{ $log['category'] ?? 'Sirkulasi' }}</span><br>
+                                <span style="color:#0f172a;font-weight:500"><b>{{ $log['action'] ?? '' }}</b>: {{ $log['desc'] ?? '' }}</span>
                             </td>
                             <td style="padding:12px 8px">
-                                <code style="font-size:11px;background:#f8fafc;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0">10.28.1.4</code><br>
-                                <span style="font-size:10px;color:#64748b">Akses Lokal Perpustakaan</span>
+                                <code style="font-size:11px;background:#f8fafc;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0">{{ $log['ip'] ?? '127.0.0.1' }}</code><br>
+                                <span style="font-size:10px;color:#64748b">Verified Host IP</span>
                             </td>
                             <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#dcfce7;color:#166534;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">● BERHASIL (Verified)</span>
+                                <span style="background:{{ $bgStatus }};color:{{ $colorStatus }};font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">{{ $labelStatus }}</span>
                             </td>
                         </tr>
-
-                        <tr style="border-bottom:1px solid #f1f5f9">
-                            <td style="padding:12px 8px">
-                                <strong style="color:#0f172a">10:45:02</strong><br>
-                                <span style="font-size:10.5px;color:#64748b">26 Okt 2026</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#0284c7;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">BS</span>
-                                    <div>
-                                        <strong style="font-size:11.5px">Budi Santoso</strong><br>
-                                        <span style="font-size:10px;color:#64748b">Admin Pegawai Sirkulasi</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <span style="background:#f1f5f9;color:#334151;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">Sirkulasi &amp; Denda</span><br>
-                                <span style="color:#0f172a;font-weight:500">Penerimaan Tunai KW-2026-1025-0144 Rp 4.000</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <code style="font-size:11px;background:#f8fafc;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0">192.168.1.182</code><br>
-                                <span style="font-size:10px;color:#64748b">Terminal Loket #03</span>
-                            </td>
-                            <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#fef3c7;color:#92400e;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">✓ TERVALIDASI</span>
-                            </td>
-                        </tr>
-
-                        <tr style="border-bottom:1px solid #f1f5f9">
-                            <td style="padding:12px 8px">
-                                <strong style="color:#0f172a">03:15:00</strong><br>
-                                <span style="font-size:10.5px;color:#64748b">26 Okt 2026</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#475569;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">CB</span>
-                                    <div>
-                                        <strong style="font-size:11.5px">Daemon Cron Backup</strong><br>
-                                        <span style="font-size:10px;color:#64748b">System Automation</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <span style="background:#f1f5f9;color:#334151;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">Backup Database</span><br>
-                                <span style="color:#0f172a;font-weight:500">Otomatis Snapshot Harian db_inovexa_prod</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <code style="font-size:11px;background:#f8fafc;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0">db-master-01</code><br>
-                                <span style="font-size:10px;color:#64748b">Buster Internal Pools</span>
-                            </td>
-                            <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#dcfce7;color:#166534;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">● SUKSES (4.2 GB)</span>
-                            </td>
-                        </tr>
-
-                        <tr style="border-bottom:1px solid #f1f5f9">
-                            <td style="padding:12px 8px">
-                                <strong style="color:#0f172a">07:42:19</strong><br>
-                                <span style="font-size:10.5px;color:#64748b">26 Okt 2026</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#dc2626;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">⚠️</span>
-                                    <div>
-                                        <strong style="font-size:11.5px">Sistem Deteksi Anomali</strong><br>
-                                        <span style="font-size:10px;color:#dc2626">IDS / IPS Sensor</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <span style="background:#fef2f2;color:#b91c1c;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">Autentikasi</span><br>
-                                <span style="color:#0f172a;font-weight:500">Brute Force Blocked (3x gagal login NIM 24670082)</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <code style="font-size:11px;background:#fef2f2;color:#b91c1c;padding:2px 6px;border-radius:4px;border:1px solid #fecaca">114.124.8.90</code><br>
-                                <span style="font-size:10px;color:#64748b">Public ISP (Cellular IP)</span>
-                            </td>
-                            <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#fee2e2;color:#991b1b;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">🛑 BLOCKED / SUSPENDED</span>
-                            </td>
-                        </tr>
-
+                        @empty
                         <tr>
-                            <td style="padding:12px 8px">
-                                <strong style="color:#0f172a">03:00:10</strong><br>
-                                <span style="font-size:10.5px;color:#64748b">26 Okt 2026</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <div style="display:flex;align-items:center;gap:6px">
-                                    <span style="width:24px;height:24px;background:#334151;color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">📚</span>
-                                    <div>
-                                        <strong style="font-size:11.5px">Sistem E-Library</strong><br>
-                                        <span style="font-size:10px;color:#64748b">Worker Scheduler</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <span style="background:#f1f5f9;color:#334151;font-size:10.5px;padding:2px 6px;border-radius:4px;font-weight:600">DRM Engine</span><br>
-                                <span style="color:#0f172a;font-weight:500">Revoke Sesi Membaca Kadaluwarsa (12 akun)</span>
-                            </td>
-                            <td style="padding:12px 8px">
-                                <code style="font-size:11px;background:#f8fafc;padding:2px 6px;border-radius:4px;border:1px solid #e2e8f0">dns-worker-82</code><br>
-                                <span style="font-size:10px;color:#64748b">Cluster Kubernetes Node</span>
-                            </td>
-                            <td style="padding:12px 8px;text-align:right">
-                                <span style="background:#f1f5f9;color:#475569;font-size:10.5px;padding:3px 8px;border-radius:6px;font-weight:700;display:inline-block">🟢 BERSIH</span>
-                            </td>
+                            <td colspan="5" style="text-align:center;padding:20px;color:#64748b">Belum ada catatan log aktivitas.</td>
                         </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
 
             {{-- Pagination & Summary --}}
             <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid #f1f5f9;font-size:12px;color:#64748b">
-                <span>Menampilkan 5 dari <b>1.428.950</b> entri audit trail forensik</span>
+                <span>Menampilkan <b>{{ count($lib->auditLogs) }}</b> entri audit trail forensik real-time</span>
                 <div style="display:flex;gap:4px;align-items:center">
                     <span style="color:#94a3b8">Sebelumnya</span>
                     <button type="button" style="background:#153223;color:#fff;border:none;width:26px;height:26px;border-radius:4px;font-weight:700">1</button>
@@ -419,9 +342,12 @@
                         <strong style="color:#0f172a">100% Lulus Validasi</strong>
                     </div>
                 </div>
-                <button type="button" style="width:100%;background:#b45309;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px" onclick="toast('Menjalankan uji simulasi restorasi sandbox terisolasi...')">
-                    <span>⚡</span> Jalankan Uji Simulasi Restorasi Sandbox
-                </button>
+                <form action="{{ route('super.backup.verify') }}" method="POST" style="margin:0">
+                    @csrf
+                    <button type="submit" style="width:100%;background:#b45309;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">
+                        <span>⚡</span> Jalankan Uji Simulasi Restorasi Sandbox
+                    </button>
+                </form>
             </div>
         </div>
     </div>
